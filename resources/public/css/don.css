@@ -1,0 +1,11 @@
+body {
+  font-family: 'Special Elite', cursive;
+}
+
+.tooltip {
+  font-family: 'Special Elite', cursive;
+}
+.tooltip-inner {
+  color: #000;
+  background-color: #DAD0D0;
+}
