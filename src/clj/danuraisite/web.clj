@@ -2,6 +2,7 @@
    (:require 
     [clojure.java.io :as io]
     [clojure.data.json :as json]
+    [clj-http.client :as http]
     [compojure.core :refer [context defroutes GET ANY POST]]
     [compojure.route :refer [resources]]
     [ring.util.response :refer [response content-type redirect]]
@@ -65,6 +66,11 @@
     pages/aosc-table)
   (GET "/tools" []
     pages/aosc-tools)
+  (POST "/customsource" [url]
+    (-> (http/get url)
+        :body
+        response
+        (content-type "application/json")))
   (GET "/tooltips" []
     pages/aosc-tooltips)
   (GET "/api/local" []
