@@ -12,28 +12,29 @@
   :uberjar-name "danuraisite-standalone.jar"
   
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/clojurescript "1.10.520"]
-                 [org.clojure/core.async  "0.3.443"]
-                 ; Web server
-                 [http-kit "2.3.0"]
-                 [com.stuartsierra/component "0.3.2"]
-                 ; routing
-                 [compojure "1.6.0"]
-                 [ring/ring-defaults "0.3.1"]
-                 [clj-http "3.7.0"]
-                 ; Websocket sente
-                 ; [com.taoensso/sente "1.12.0"]
-                 ; page rendering
-                 [hiccup "1.0.5"]
-                 [cljs-http "0.1.46"]
-								 ; [cheshire "5.8.0"]
-                 [reagent "0.7.0"]
-                 ; user management
-                 [com.cemerick/friend "0.2.3"]
-                 ; Databasing
-                 [org.clojure/java.jdbc "0.7.5"]
-                 [org.xerial/sqlite-jdbc "3.7.2"]
-                 [org.postgresql/postgresql "9.4-1201-jdbc41"]]
+                [org.clojure/clojurescript "1.10.520"]
+                [org.clojure/core.async  "0.3.443"]
+                [funcool/octet "1.1.2"]
+                ; Web server
+                [http-kit "2.3.0"]
+                [com.stuartsierra/component "0.3.2"]
+                ; routing
+                [compojure "1.6.0"]
+                [ring/ring-defaults "0.3.1"]
+                [clj-http "3.7.0"]
+                ; Websocket sente
+                ; [com.taoensso/sente "1.12.0"]
+                ; page rendering
+                [hiccup "1.0.5"]
+                [cljs-http "0.1.46"]
+								; [cheshire "5.8.0"]
+                [reagent "0.7.0"]
+                ; user management
+                [com.cemerick/friend "0.2.3"]
+                ; Databasing
+                [org.clojure/java.jdbc "0.7.5"]
+                [org.xerial/sqlite-jdbc "3.7.2"]
+                [org.postgresql/postgresql "9.4-1201-jdbc41"]]
 
   :plugins [[lein-figwheel "0.5.14"]
            [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
