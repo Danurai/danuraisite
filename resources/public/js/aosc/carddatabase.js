@@ -4,8 +4,9 @@ var _order = "";
 var _local = true;
 
 if (_local) {
-  $.getJSON("/local/carddata", function (d) {
-  _cards = TAFFY(d.map(c => $.extend(c, {"category_en": c.category.en, "set_number": c.set[0].number, "class_en": (typeof c.class != 'undefined' ? c.class.en : "")})));
+  $.getJSON("/api/data/carddatabase", function (data) { 
+    var d = data.hits.hits.map(s => s._source);
+    _cards = TAFFY(d.map(c => $.extend(c, {"category_en": c.category.en, "set_number": c.set[0].number, "class_en": (typeof c.class != 'undefined' ? c.class.en : "")})));
     write_table();      
   })
 }
