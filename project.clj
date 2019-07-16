@@ -20,6 +20,7 @@
                  ; routing
                  [compojure "1.6.0"]
                  [ring/ring-defaults "0.3.1"]
+                 [clj-http "3.7.0"]
                  ; Websocket sente
                  ; [com.taoensso/sente "1.12.0"]
                  ; page rendering
@@ -48,24 +49,36 @@
         :source-paths ["src/cljs-hsl"]
         :figwheel true
         :compiler {
-          :main       "danuraisite.hslapp"
+          :main       danuraisite.hslapp
           :asset-path "/js/compiled/out-hsl"
           :output-to  "resources/public/js/compiled/hsl-app.js"
           :output-dir "resources/public/js/compiled/out-hsl"
           ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
           ;; https://github.com/binaryage/cljs-devtools
           :preloads [devtools.preload]}}
+      :hsl-prod {
+        :source-paths ["src/cljs-hsl"]
+        :compiler {
+          :main      danuraisite.hslapp
+          :output-to "resources/public/js/compiled/hsl-app.js"
+          :optimizations :advanced :pretty-print false}}
       :don-dev {
         :source-paths ["src/cljs-don"]
         :figwheel true
         :compiler {
-          :main       "danuraisite.core"
+          :main       danuraisite.core
           :asset-path "/js/compiled/out-don"
           :output-to  "resources/public/js/compiled/don-app.js"
           :output-dir "resources/public/js/compiled/out-don"
           ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
           ;; https://github.com/binaryage/cljs-devtools
-          :preloads [devtools.preload]}}}}
+          :preloads [devtools.preload]}}
+      :don-prod {
+        :source-paths ["src/cljs-don"]
+        :compiler {
+          :main      danuraisite.core
+          :output-to "resources/public/js/compiled/don-app.js"
+          :optimizations :advanced :pretty-print false}}}}
 
   :figwheel { :css-dirs ["resources/public/css"]}
 
@@ -76,14 +89,14 @@
     :uberjar {
       :aot :all
       :source-paths ["src/clj"]
-      :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
+      :prep-tasks ["compile" ["cljsbuild" "once" "hsl-prod"] "compile" ["cljsbuild" "once" "don-prod"] ]
     }
     :dev {
       :dependencies [[reloaded.repl "0.2.4"]
-                     [expectations "2.2.0-rc3"]
-                     [binaryage/devtools "0.9.4"]
-                     [figwheel-sidecar "0.5.14"]
-                     [com.cemerick/piggieback "0.2.2"]]
+                    [expectations "2.2.0-rc3"]
+                    [binaryage/devtools "0.9.4"]
+                    [figwheel-sidecar "0.5.14"]
+                    [com.cemerick/piggieback "0.2.2"]]
       ;; need to add dev source path here to get user.clj loaded
       :source-paths ["src/clj" "dev"]
       ;; for CIDER

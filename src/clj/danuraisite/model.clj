@@ -2,6 +2,7 @@
   (:require 
     [clojure.java.io :as io]
     [clojure.data.json :as json]
+    [clj-http.client :as http]
     [cemerick.friend :as friend]
 		[danuraisite.database :as db]))
 
@@ -31,12 +32,17 @@
     (db/get-user-victims (-> req get-authentications :uid))
     "false"))
     
-(defn save-victim [ data req ]
-  (db/save-user-victim (-> req get-authentications :uid) data))
-  
-(defn get-victim [ id ]
-  (db/get-victim id))
-;  (if-let [identity (friend/identity req)]
-;    (db/save-user-victim (-> identity :authentications (get (:current identity)) :id) (-> req :form-params :data))))
-  
     
+; Age of Sigmar: Champions
+
+(defn aoscsearch [ size ]
+  (http/post "https://carddatabase.warhammerchampions.com/warhammer-cards/_search" 
+             {:content-type :json
+              :body (json/write-str {:size size :from 1})}))
+
+(defn aosccardcount []
+  (-> (aoscsearch 1)
+      :body 
+      (json/read-str :key-fn keyword)
+      :hits
+      :total))

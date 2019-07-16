@@ -8,4 +8,4 @@
 
 (r/render [view/don] (.getElementById js/document "donapp"))
 
-(.tooltip (js/$ ".show-tooltip"))
+(.tooltip (js/$ "body") (clj->js {:selector ".show-tooltip"}))

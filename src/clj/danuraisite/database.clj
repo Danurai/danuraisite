@@ -159,7 +159,7 @@
 ;; Should this also validate the logged in user? 
   (first (j/query db ["SELECT * FROM donvictims WHERE uid = ?" vicuid])))  
   
-(defn delete-victim [ vicuid ]
+(defn remove-victim [ vicuid ]
   (j/delete! db  :donvictims ["uid = ?" vicuid]))
   
   

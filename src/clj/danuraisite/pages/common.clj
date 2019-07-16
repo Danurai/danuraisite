@@ -31,14 +31,14 @@
   ;; fonts
     [:link {:href "https://fonts.googleapis.com/css?family=Eczar|Special+Elite&display=swap" :rel "stylesheet"}]
   ;; Site Specific
-    (h/include-css "/css/danuraisite.css?v=1")
+    ;; (h/include-css "/css/danuraisite.css?v=1")
     ])
     
 (defn- navlink [ uri linkuri linkname ]
   [:li.nav-item {:class (if (= uri linkuri) "active")}
     [:a.nav-link {:href linkuri} linkname]])
   
-    
+
 (defn navbar [req]
   [:nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     [:div.container
@@ -58,7 +58,15 @@
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/lugs"} "Sheets"]
               [:a.dropdown-item {:href "/lugs/icons"} "Icons"]
-              [:a.dropdown-item {:href "/lugs/api"} "API"]]]
+              [:a.dropdown-item {:href "/lugs/api"} "API"]]]              
+          [:li.nav-item.dropdown
+            [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "AoS:C"]
+            [:div.dropdown-menu
+              [:a.dropdown-item {:href "/aosc"} "Card List"]
+              [:a.dropdown-item {:href "/aosc/tooltips"} "Card Tooltips"]
+              [:a.dropdown-item {:href "/aosc/tools"} "Tools"]
+              [:a.dropdown-item {:href "/aosc/api/local"} "API Local"]
+              [:a.dropdown-item {:href "/aosc/api/remote"} "API Remote"]]]
           (navlink (:uri req) "/hsl" "Colours")
           (navlink (:uri req) "/don" "DoN Sheets")]
     ;; Login Icon
@@ -71,7 +79,10 @@
                     [:a.dropdown-item {:href "/admin"} "Admin Console"])
                   [:a.dropdown-item {:href "/logout"} "Logout"]]
                 [:div.dropdown-menu {:aria-labelledby "userDropdown"}
-                  [:a.dropdown-item {:href "/login"} "Login"]])]]]])
+                  [:a.dropdown-item {:href (str (if (= "/" (:uri req)) "" (:uri req)) "/login")} "Login"]])]]]])      
+
+    
+
                   
 ;(defn show-alert []
 ;  (let [type (-> @model/alert :type)

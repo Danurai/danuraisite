@@ -51,15 +51,16 @@
 
 (defn savevictim []
   (go (let [response (<! (http/post "/don/save" {:form-params {:data (.stringify js/JSON (clj->js @don-data))}}))]
-    (prn response)
-    (getvictims!)
-    )))
+    (getvictims!))))
 
 (defn choose-victim [ uid ]
   (go (let [response (<! (http/get (str "/don/api/victims/" uid)))]
     (reset! don-data (adduidtodata (:body response))))))
     
-
+(defn remove-victim [ uid ]
+  (go (let [response (<! (http/post "/don/remove" {:form-params {:uid uid}}))]
+    (getvictims!))))
+    
 (defn reset-don! []
   (getvictims!)
   (reset! don-data blank-victim))

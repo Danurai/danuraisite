@@ -9,6 +9,21 @@
   (let [pool (->> specs count (* 2) (- 10))]
     (+ 2 (max score (- pool score)))))
 
+    
+(defn- confirm-modal []
+  [:div#confirm-modal.modal {:role "dialog"}
+    [:div.modal-dialog {:role "document"}
+      [:div.modal-content
+        [:div.modal-header  
+          [:div (str @modal-data)]
+          [:h5 "Confirmation"]
+          [:button.close {:type "button" :data-dismiss "modal" :aria-label "close"} [:span {:aria-hidden "true"} "x"]]]
+        [:div.modal-body
+          [:div (str "Are you sure you want to remove " (:name @modal-data) " from the roll of victims?")]]
+        [:div.modal-footer 
+          [:button.btn.btn-secondary {:type "button" :data-dismiss "modal"} "Cancel"]
+          [:button.btn.btn-warning   {:type "button" :data-dismiss "modal" :on-click (:fn @modal-data)} "Confirm"]]]]])
+    
 (defn- don-modal []
   (let [spec-score (get-spec-score (:score @modal-data) (:specialisations @modal-data))]
     [:div#don-modal.modal {:role "dialog"}
@@ -26,7 +41,7 @@
                                  :on-change #(swap! modal-data assoc :specialisation (.. % -target -value))}]
               [:div.input-group-append
                 [:div.input-group-text spec-score]]]
-            [:div.small.mt-2 (str "Examples: " (:identify @model/hints) )]]
+            [:div.small.mt-2 (str "Examples: " (get @model/hints (:key @modal-data)) )]]
           [:div.modal-footer 
             [:button.btn.btn-secondary {:type "button" 
                                      :data-dismiss "modal"} 
@@ -45,7 +60,7 @@
     [:div.row-fluid.border-bottom.mb-2.pb-3
       [:div.d-flex.justify-content-between
           [:div [:b.py-1.px-2.mr-1 (:score stat)][:span (:name stat)]]
-          [:a.small ;.btn.btn-sm.btn-outline-primary {
+          [:a.small
              {:href   "#"
              :data-toggle "modal" 
              :data-target "#don-modal" 
@@ -62,7 +77,6 @@
                            :on-change (fn [e] 
                                         (swap! model/don-data assoc-in [:stats statkey :score ] (- pool (-> e .-target .-value int))))}]]
       [:div
-        ; [:div "Specialisations:"]
         [:div
           (for [spec (->> stat :specialisations (sort-by :score) reverse)]
             ^{:key (:score spec)}[:div.border-bottom
@@ -77,34 +91,28 @@
                                :value (key @model/don-data) 
                                :on-change #(swap! model/don-data assoc key (.. % -target -value))})]])
                 
-(defn- don-sheet
-"Dead of Night Character Builder"
-  []
-  [:div.container.my-2
-    ;[:div.row (str @model/don-data)]
-    ;[:div.row (str @model/don-victims)]
-    [:div.row.p-3
-      [:div.col-sm-6
-        (don-input :name "Victim Name")
-        (don-input :concept "Concept" {:placeholder "Victim is a..."})
-        (don-input :badhabits "Bad Habit(s)")
-        [:div.form-group
-          [:label.form-label.mr-1 "Notes"]
-          [:textarea.form-control {:rows "4"
-                                :value (:notes @model/don-data)
-                                :on-change #(swap! model/don-data assoc :notes (.. % -target -value))}]]
-        [:div.form-group
-          [:label.form-label "Survival Points"]
-          [:div.d-flex.justify-content-center
-            (for [n (range 5)]
-              ^{:key n}[:i.fas.fa-skull.fa-2x.mr-1])]]]
-      [:div.col-sm-6
-        [:div.text-center [:b "Attributes"]]
-        (don-slider :identify)
-        (don-slider :persuade)
-        (don-slider :pursue)
-        (don-slider :assault)]]
-    (don-modal)])
+(defn- don-sheet []
+  [:div.row.p-3
+    [:div.col-sm-6
+      (don-input :name "Victim Name")
+      (don-input :concept "Concept" {:placeholder "Victim is a..."})
+      (don-input :badhabits "Bad Habit(s)")
+      [:div.form-group
+        [:label.form-label.mr-1 "Notes"]
+        [:textarea.form-control {:rows "4"
+                              :value (:notes @model/don-data)
+                              :on-change #(swap! model/don-data assoc :notes (.. % -target -value))}]]
+      [:div.form-group
+        [:label.form-label "Survival Points"]
+        [:div.d-flex.justify-content-center
+          (for [n (range 5)]
+            ^{:key n}[:i.fas.fa-skull.fa-2x.mr-1])]]]
+    [:div.col-sm-6
+      [:div.text-center [:b "Attributes"]]
+      (don-slider :identify)
+      (don-slider :persuade)
+      (don-slider :pursue)
+      (don-slider :assault)]])
     
 (defn don-victim-roll []
   [:div
@@ -118,7 +126,13 @@
               (.preventDefault e)
               (model/choose-victim (:uid v)))}
             [:div.d-flex.h4 (:name v)
-              [:button.btn.close.ml-auto.show-tooltip {:on-click #(false) :title "Remove Victim"} "x"]]
+              [:button.btn.close.ml-auto.show-tooltip {
+                :data-toggle "modal" :data-target "#confirm-modal" 
+                :title "Remove Victim" 
+                :on-click (fn [e] 
+                          (reset! modal-data {:name (:name v) :fn #(model/remove-victim (:uid v))}) 
+                          (.stopPropagation e)) } 
+                "x"]]
             [:div (:concept v)]
             ])]]])
     
@@ -126,6 +140,8 @@
 "Dead of Night Character Builder"
   []
   [:div.container.my-2
+    (confirm-modal)
+    (don-modal)
     [:div.row
       [:div.col-sm-3
         [:div.row.h4 "Previous Victims"]
@@ -133,9 +149,10 @@
             [:div.row "Log in to see your Victim Roll."]
             [don-victim-roll])]
       [:div.col-sm-9
-        [:div.row 
-          [:button.btn.btn-primary {:on-click #(model/reset-don!)} "reset"]
+        [:div.row.px-3
+          [:button.btn.btn-primary {:on-click #(model/reset-don!)} "Reset"]
+          [:button.btn.btn-outline-dark.ml-2 {:on-click #(.print js/window)} "Print"]
           (if (false? @model/don-victims)
             [:div.ml-auto "You must be logged in to Save Victims"]
-            [:button.btn.btn-warning.ml-auto {:on-click #(model/savevictim)} "Save"])
-          [don-sheet]]]]])
+            [:button.btn.btn-warning.ml-auto {:on-click #(model/savevictim)} "Save"])]
+        [don-sheet]]]])

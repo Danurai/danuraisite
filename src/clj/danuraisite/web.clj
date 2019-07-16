@@ -42,39 +42,67 @@
     (redirect "/admin")))
     
 (defroutes api-routes 
-  (GET "/" []
-    pages/api)
   (GET "/data/:id" [id]
     (-> (model/apidata id)
         response
         (content-type "application/json"))))
-  
+
+;; LUGS
+;;;;;;;;        
 (defroutes lugs-routes
   (GET "/" []
     pages/lugs)
   (GET "/api" []
-    pages/api)
+    (redirect (str "/api/data/lugs")))
   (GET "/icons" []
     pages/lugsicons))
     
-  
+;; AOS:C
+;;;;;;;;;
+
+(defroutes aosc-routes
+  (GET "/" []
+    pages/aosc-table)
+  (GET "/tools" []
+    pages/aosc-tools)
+  (GET "/tooltips" []
+    pages/aosc-tooltips)
+  (GET "/api/local" []
+    (redirect "/api/data/carddatabase"))
+  (GET "/api/remote" []    
+    (-> (model/aoscsearch (model/aosccardcount))
+        :body
+        response
+        (content-type "application/json"))))
+    
+;; DON
+;;;;;;;;
 (defroutes don-routes
   (GET "/" []
     pages/donsheets)
+  (context "/login" []
+    (friend/wrap-authorize
+      (GET "/" [] (redirect "/don"))
+      #{::db/user}))
   (GET "/api/victims" []
     #(-> (model/get-victims %)
          json/write-str
          response
          (content-type "application/json")))
   (GET "/api/victims/:id" [id]
-    (-> (model/get-victim id)
+    (-> (db/get-victim id)
         json/write-str
         response
         (content-type "application/json")))
+;(friend/wrap-authorize pages/home #{::db/user}))
   (POST "/save" [data]
-    #(response (model/save-victim data %))))
-    ;(friend/wrap-authorize pages/home #{::db/user}))
+    #(response
+      (db/save-user-victim (-> % model/get-authentications :uid) data)))
+  (POST "/remove" [ uid ]
+    (response (db/remove-victim uid))))
   
+;; MAIN ROUTES
+;;;;;;;;;;;;;;;;
 (defroutes app-routes
   (GET "/" [] 
     ;(friend/wrap-authorize pages/home #{::db/user}))
@@ -83,11 +111,17 @@
     api-routes)
   (context "/lugs" []
     lugs-routes)
+  (context "/aosc" []
+    aosc-routes)
   (GET "/hsl" []
     pages/hsl)
   (context "/don" []
     don-routes)
 ; ADMIN
+  (context "/:id/login" [id]
+    (friend/wrap-authorize
+      (GET "/" [] (redirect (str "/" id)))
+      #{::db/user}))
   (GET "/login" []
     pages/login)
   (context "/admin" []

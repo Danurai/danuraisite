@@ -8,5 +8,4 @@
       (navbar req)
       [:div.container.my-2
         [:div#app]]
-     (h/include-css "css/hsl.css")
      (h/include-js "/js/compiled/hsl-app.js")]))

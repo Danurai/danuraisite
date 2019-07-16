@@ -50,18 +50,22 @@ Intermediary Values:
   ([]
     (rand-hsl 0 360)))
     
-    
+(defn- hueparams [ huename ]
+  (case huename
+   "Yellow"  [ 20  70 0.25 1 0.2 0.8]
+   "Green"   [ 70 170 0.25 1 0.2 0.8]
+   "Blue"    [170 270 0.25 1 0.2 0.8]
+   "Purple"  [270 320 0.25 1 0.2 0.8]
+   "Red"     [320 400 0.25 1 0.2 0.8]
+   []))
+
+(defn rand-hsl-hue [ huename ]
+  (hsltohex (apply rand-hsl (hueparams huename))))
+   
 (defn update-rand-hsl [ huename ]
-  (let [hueparams (case huename
-                   "Yellow"  [ 20  70 0.25 1 0.2 0.8]
-                   "Green"   [ 70 170 0.25 1 0.2 0.8]
-                   "Blue"    [170 270 0.25 1 0.2 0.8]
-                   "Purple"  [270 320 0.25 1 0.2 0.8]
-                   "Red"     [320 400 0.25 1 0.2 0.8]
-                   [])]
-    (reset! samples (hash-map
-                    :name huename
-                    :colours (repeatedly 20 #(hsltohex (apply rand-hsl hueparams)))))))
+  (reset! samples (hash-map
+                  :name huename
+                  :colours (repeatedly 20 #(rand-hsl-hue huename)))))
       
 (defn convert [ hslint ]
   (let [hsl [(:h @hslvals) (/ (:s @hslvals) 100) (/ (:l @hslvals) 100)]
@@ -103,7 +107,11 @@ Intermediary Values:
    [:div.col-sm-6
     [:div.row-fluid
       [:div.btn-group.d-flex {:role "group"}
-        (map (fn [c] ^{:key (gensym)}[:button.btn.btn-outline-dark.w-100 {:on-click #(update-rand-hsl c)} c]) ["Yellow" "Green" "Blue" "Purple" "Red" "Any"])]]
+        (map (fn [c] 
+          ^{:key (gensym)}[:button.btn.btn-outline-dark.w-100 {
+            :on-click #(update-rand-hsl c)
+            :style {:background-color (rand-hsl-hue c)}}
+            c]) ["Yellow" "Green" "Blue" "Purple" "Red" "Any"])]]
     [:div.row
       [:div.col-sm-6.offset-3
         [:div.row-fluid [:div.h4.text-center (:name @samples)]]
