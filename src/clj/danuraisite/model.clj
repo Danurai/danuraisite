@@ -40,7 +40,7 @@
 (defn aoscsearch [ size ]
   (http/post "https://carddatabase.warhammerchampions.com/warhammer-cards/_search" 
              {:content-type :json
-              :body (json/write-str {:size size :from 1})}))
+              :body (json/write-str {:size size :from 0})}))
 
 (defn aosccardcount []
   (-> (aoscsearch 1)
