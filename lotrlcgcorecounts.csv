@@ -1,0 +1,129 @@
+﻿Code,Name,Type,Sphere,Set,qty
+1001,Aragorn,Hero,Leadership,Core Set #1,1
+1002,Théodred,Hero,Leadership,Core Set #2,1
+1003,Glóin,Hero,Leadership,Core Set #3,1
+1004,Gimli,Hero,Tactics,Core Set #4,1
+1005,Legolas,Hero,Tactics,Core Set #5,1
+1006,Thalin,Hero,Tactics,Core Set #6,1
+1007,Éowyn,Hero,Spirit,Core Set #7,1
+1008,Eleanor,Hero,Spirit,Core Set #8,1
+1009,Dúnhere,Hero,Spirit,Core Set #9,1
+1010,Denethor,Hero,Lore,Core Set #10,1
+1011,Glorfindel,Hero,Lore,Core Set #11,1
+1012,Beravor,Hero,Lore,Core Set #12,1
+1013,Guard of the Citadel,Ally,Leadership,Core Set #13,3
+1014,Faramir,Ally,Leadership,Core Set #14,2
+1015,Son of Arnor,Ally,Leadership,Core Set #15,2
+1016,Snowbourn Scout,Ally,Leadership,Core Set #16,3
+1017,Silverlode Archer,Ally,Leadership,Core Set #17,2
+1018,Longbeard Orc Slayer,Ally,Leadership,Core Set #18,2
+1019,Brok Ironfist,Ally,Leadership,Core Set #19,1
+1020,Ever Vigilant,Event,Leadership,Core Set #20,2
+1021,Common Cause,Event,Leadership,Core Set #21,2
+1022,For Gondor!,Event,Leadership,Core Set #22,2
+1023,Sneak Attack,Event,Leadership,Core Set #23,2
+1024,Valiant Sacrifice,Event,Leadership,Core Set #24,2
+1025,Grim Resolve,Event,Leadership,Core Set #25,1
+1026,Steward of Gondor,Attachment,Leadership,Core Set #26,2
+1027,Celebrían's Stone,Attachment,Leadership,Core Set #27,1
+1028,Veteran Axehand,Ally,Tactics,Core Set #28,3
+1029,Gondorian Spearman,Ally,Tactics,Core Set #29,3
+1030,Horseback Archer,Ally,Tactics,Core Set #30,2
+1031,Beorn,Ally,Tactics,Core Set #31,1
+1032,Blade Mastery,Event,Tactics,Core Set #32,3
+1033,Rain of Arrows,Event,Tactics,Core Set #33,2
+1034,Feint,Event,Tactics,Core Set #34,2
+1035,Quick Strike,Event,Tactics,Core Set #35,2
+1036,Thicket of Spears,Event,Tactics,Core Set #36,2
+1037,Swift Strike,Event,Tactics,Core Set #37,1
+1038,Stand Together,Event,Tactics,Core Set #38,1
+1039,Blade of Gondolin,Attachment,Tactics,Core Set #39,2
+1040,Citadel Plate,Attachment,Tactics,Core Set #40,2
+1041,Dwarven Axe,Attachment,Tactics,Core Set #41,2
+1042,Horn of Gondor,Attachment,Tactics,Core Set #42,1
+1043,Wandering Took,Ally,Spirit,Core Set #43,2
+1044,Lórien Guide,Ally,Spirit,Core Set #44,3
+1045,Northern Tracker,Ally,Spirit,Core Set #45,2
+1046,The Galadhrim's Greeting,Event,Spirit,Core Set #46,2
+1047,Strength of Will,Event,Spirit,Core Set #47,2
+1048,Hasty Stroke,Event,Spirit,Core Set #48,2
+1049,Will of the West,Event,Spirit,Core Set #49,2
+1050,A Test of Will,Event,Spirit,Core Set #50,2
+1051,Stand and Fight,Event,Spirit,Core Set #51,3
+1052,A Light in the Dark,Event,Spirit,Core Set #52,2
+1053,Dwarven Tomb,Event,Spirit,Core Set #53,1
+1054,Fortune or Fate,Event,Spirit,Core Set #54,1
+1055,The Favor of the Lady,Attachment,Spirit,Core Set #55,2
+1056,Power in the Earth,Attachment,Spirit,Core Set #56,2
+1057,Unexpected Courage,Attachment,Spirit,Core Set #57,1
+1058,Daughter of the Nimrodel,Ally,Lore,Core Set #58,3
+1059,Erebor Hammersmith,Ally,Lore,Core Set #59,2
+1060,Henamarth Riversong,Ally,Lore,Core Set #60,1
+1061,Miner of the Iron Hills,Ally,Lore,Core Set #61,2
+1062,Gléowine,Ally,Lore,Core Set #62,2
+1063,Lore of Imladris,Event,Lore,Core Set #63,3
+1064,Lórien's Wealth,Event,Lore,Core Set #64,2
+1065,Radagast's Cunning,Event,Lore,Core Set #65,2
+1066,Secret Paths,Event,Lore,Core Set #66,2
+1067,Gandalf's Search,Event,Lore,Core Set #67,2
+1068,Beorn's Hospitality,Event,Lore,Core Set #68,1
+1069,Forest Snare,Attachment,Lore,Core Set #69,2
+1070,Protector of Lórien,Attachment,Lore,Core Set #70,2
+1071,Dark Knowledge,Attachment,Lore,Core Set #71,1
+1072,Self Preservation,Attachment,Lore,Core Set #72,2
+1073,Gandalf,Ally,Neutral,Core Set #73,4
+1074,King Spider,Enemy,,Core Set #74,2
+1075,Hummerhorns,Enemy,,Core Set #75,1
+1076,Ungoliant's Spawn,Enemy,,Core Set #76,1
+1077,Great Forest Web,Location,,Core Set #77,2
+1078,Mountains of Mirkwood,Location,,Core Set #78,3
+1079,Eyes of the Forest,Treachery,,Core Set #79,1
+1080,Caught in a Web,Treachery,,Core Set #80,2
+1081,Wolf Rider,Enemy,,Core Set #81,1
+1082,Hill Troll,Enemy,,Core Set #82,2
+1083,Goblin Sniper,Enemy,,Core Set #83,2
+1084,Marsh Adder,Enemy,,Core Set #84,1
+1085,Wargs,Enemy,,Core Set #85,2
+1086,Despair,Treachery,,Core Set #86,2
+1087,The Brown Lands,Location,,Core Set #87,2
+1088,The East Bight,Location,,Core Set #88,2
+1089,Dol Guldur Orcs,Enemy,,Core Set #89,3
+1090,Chieftan Ufthak,Enemy,,Core Set #90,1
+1091,Dol Guldur Beastmaster,Enemy,,Core Set #91,2
+1092,Driven by Shadow,Treachery,,Core Set #92,1
+1093,The Necromancer's Reach,Treachery,,Core Set #93,3
+1094,Necromancer's Pass,Location,,Core Set #94,2
+1095,Enchanted Stream,Location,,Core Set #95,2
+1096,Forest Spider,Enemy,,Core Set #96,4
+1097,East Bight Patrol,Enemy,,Core Set #97,1
+1098,Black Forest Bats,Enemy,,Core Set #98,1
+1099,Old Forest Road,Location,,Core Set #99,2
+1100,Forest Gate,Location,,Core Set #100,2
+1101,Dungeon Jailor,Enemy,,Core Set #101,2
+1102,Nazgul of Dol Guldur,Enemy,,Core Set #102,1
+1103,Cavern Guardian,Enemy,,Core Set #103,2
+1104,Under the Shadow,Treachery,,Core Set #104,2
+1105,Iron Shackles,Treachery,,Core Set #105,1
+1106,Endless Caverns,Location,,Core Set #106,2
+1107,Tower Gate,Location,,Core Set #107,2
+1108,Gandalf's Map,Objective,,Core Set #108,1
+1109,Dungeon Torch,Objective,,Core Set #109,1
+1110,Shadow Key,Objective,,Core Set #110,1
+1111,Misty Mountain Goblins,Enemy,,Core Set #111,3
+1112,Massing at Night,Treachery,,Core Set #112,1
+1113,Banks of the Anduin,Location,,Core Set #113,2
+1114,Gladden Fields,Location,,Core Set #114,3
+1115,Eastern Crows,Enemy,,Core Set #115,3
+1116,Evil Storm,Treachery,,Core Set #116,3
+1117,Pursued by Shadow,Treachery,,Core Set #117,2
+1118,Treacherous Fog,Treachery,,Core Set #118,2
+1119,Flies and Spiders,Quest,,Core Set #119,1
+1120,A Fork in the Road,Quest,,Core Set #120,1
+1121,"A Chosen Path: ""Don't Leave the Path!""",Quest,,Core Set #121,1
+1122,A Chosen Path: Beorn's Path,Quest,,Core Set #122,1
+1123,The Necromancer's Tower,Quest,,Core Set #123,1
+1124,Through the Caverns,Quest,,Core Set #124,1
+1125,Out of the Dungeons,Quest,,Core Set #125,1
+1126,To the River...,Quest,,Core Set #126,1
+1127,Anduin Passage,Quest,,Core Set #127,1
+1128,Ambush on the Shore,Quest,,Core Set #128,1
