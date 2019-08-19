@@ -14,7 +14,7 @@ function write_table () {
     outp = '<tr>'
       + '<td>' + v.name + '</td>'
       + '<td>' + v.range + '</td>'
-      + '<td>' + v.hex + '</td>'
+      + '<td><a href = "hsl?q=' + v.hex.slice(1) + '" target="_blank">' + v.hex + '</a></td>'
       + '<td>' + v.h + '</td>'
       + '<td>' + v.s + '</td>'
       + '<td>' + v.l + '</td>'

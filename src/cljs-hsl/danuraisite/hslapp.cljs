@@ -6,7 +6,7 @@
     
 (enable-console-print!)
     
-(def hslvals (r/atom {:h (rand-int 360) :s 100 :l 50 :c 1 :h1 0 :m 0 :rgb [255 0 0]}))
+(def hslvals (r/atom nil))
 (def samples (r/atom nil))
 
 (defn- fontcolour [ hex ]
@@ -44,7 +44,9 @@ Intermediary Values:
 
 (defn rand-hsl 
   ([hmin hmax smin smax lmin lmax]
-    [(mod (+ hmin (rand-int (- hmax hmin))) 360) (+ smin (rand (- smax smin))) (+ lmin (rand (- lmax lmin)))])
+    [(mod (+ hmin (rand-int (- hmax hmin))) 360) 
+     (-> smax (- smin) rand (+ smin) (* 100) int (/ 100)) 
+     (-> lmax (- lmin) rand (+ lmin) (* 100) int (/ 100))])
   ([hmin hmax]
     (rand-hsl hmin hmax 0 1 0 1))
   ([]
@@ -60,7 +62,7 @@ Intermediary Values:
    []))
 
 (defn rand-hsl-hue [ huename ]
-  (hsltohex (apply rand-hsl (hueparams huename))))
+  (apply rand-hsl (hueparams huename)))
    
 (defn update-rand-hsl [ huename ]
   (reset! samples (hash-map
@@ -108,17 +110,54 @@ Intermediary Values:
     [:div.row-fluid
       [:div.btn-group.d-flex {:role "group"}
         (map (fn [c] 
-          ^{:key (gensym)}[:button.btn.btn-outline-dark.w-100 {
-            :on-click #(update-rand-hsl c)
-            :style {:background-color (rand-hsl-hue c)}}
-            c]) ["Yellow" "Green" "Blue" "Purple" "Red" "Any"])]]
+          (let [hsl (rand-hsl-hue c)]
+            ^{:key (gensym)}[:button.btn.btn-outline-dark.w-100 {
+              :on-click #(update-rand-hsl c)
+              :style {:background-color (hsltohex hsl) :color (-> hsl hsltohex fontcolour)}}
+              c])) ["Yellow" "Green" "Blue" "Purple" "Red" "Any"])]]
     [:div.row
-      [:div.col-sm-6.offset-3
+      [:div.col-sm-8.offset-2
         [:div.row-fluid [:div.h4.text-center (:name @samples)]]
-        (for [h (:colours @samples)]
-          ^{:key (gensym)}[:div.row.py-2 {:style {:background-color h :color (fontcolour h)}} h])
-        ]]]])
+        (for [hsl (:colours @samples)]
+          (let [[h s1 l1] hsl 
+                s (-> s1 (* 100) int)
+                l (-> l1 (* 100) int)
+                rgb (hsltorgb hsl) hex (hsltohex hsl)]
+            ^{:key (gensym)}[:div.row.p-2 {
+                  :style {:background-color (hsltohex hsl) :color (-> hsl hsltohex fontcolour) :cursor "pointer" :whiteSpace "pre"} 
+                  :on-click #((swap! hslvals assoc :h h :s s :l l :rgb rgb :hex hex))}
+                [:div (str "HSL: " h (gstring/unescapeEntities "&deg;") " " s "% " l "% \nRGB: " rgb " Hex: " hex)]]))]]]])
+      
+(defn rgbToHSL [[r g b]]
+  (let [r1 (/ r 255) g1 (/ g 255) b1 (/ b 255)
+        cmax (max r1 g1 b1) 
+        cmin (min r1 g1 b1)
+        delta (- cmax cmin)
+        h (-> (if (= cmax r1)
+                (- g1 b1)
+                (if (= cmax g1)
+                  (+ 2 (- b1 r1))
+                  (if (= cmax b1)
+                    (+ 4 (- r1 g1))
+                    0))) 
+               (/ delta)
+               (* 60)
+               (+ 360)
+               (mod 360)
+               int)
+        l (/ (+ cmax cmin) 2)
+        s (if (= delta 0)
+              0
+              (/ delta (- 1 (Math/abs (- (+ cmax cmin) 1)))))] 
+  {:h h :s (-> s (* 100) int) :l (-> l (* 100) int) :c 1 :h1 0 :m 0 :rgb[r g b]}
+))
       
 (update-rand-hsl "Any")
+(def q (or (.data (js/$ "#qry") "query") ""))
+(prn q)
+(reset! hslvals 
+  (if (some? (re-matches #"(?i)[a-f\d]{6}" q))
+    (rgbToHSL (goog.color/hexToRgb (str "#" q)))
+    {:h (rand-int 360) :s 100 :l 50 :c 1 :h1 0 :m 0 :rgb [255 0 0]}))
 (convert @hslvals)
 (r/render [Page] (.getElementById js/document "app"))
