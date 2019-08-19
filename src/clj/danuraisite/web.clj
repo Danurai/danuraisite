@@ -106,23 +106,20 @@
       (db/save-user-victim (-> % model/get-authentications :uid) data)))
   (POST "/remove" [ uid ]
     (response (db/remove-victim uid))))
+    
+(defroutes colour-routes
+  (GET "/hsl" [] pages/hsl)
+  (GET "/citadel" [] pages/citadel))
   
 ;; MAIN ROUTES
 ;;;;;;;;;;;;;;;;
 (defroutes app-routes
-  (GET "/" [] 
-    ;(friend/wrap-authorize pages/home #{::db/user}))
-		pages/homepage)
-  (context "/api" []
-    api-routes)
-  (context "/lugs" []
-    lugs-routes)
-  (context "/aosc" []
-    aosc-routes)
-  (GET "/hsl" []
-    pages/hsl)
-  (context "/don" []
-    don-routes)
+  (GET     "/"     [] pages/homepage)
+  (context "/api"  [] api-routes)
+  (context "/lugs" [] lugs-routes)
+  (context "/aosc" [] aosc-routes)
+  (context "/colours" [] colour-routes)
+  (context "/don"  [] don-routes)
 ; ADMIN
   (context "/:id/login" [id]
     (friend/wrap-authorize
