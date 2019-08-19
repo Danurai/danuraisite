@@ -67,7 +67,11 @@
               [:a.dropdown-item {:href "/aosc/tools"} "Tools"]
               [:a.dropdown-item {:href "/aosc/api/local"} "API Local"]
               [:a.dropdown-item {:href "/aosc/api/remote"} "API Remote"]]]
-          (navlink (:uri req) "/hsl" "Colours")
+          [:li.nav-item.dropdown
+            [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "Colours"]
+            [:div.dropdown-menu
+              [:a.dropdown-item {:href "/colours/hsl"} "HSL Demo"]
+              [:a.dropdown-item {:href "/colours/citadel"} "Citadel Colour Range"]]]
           (navlink (:uri req) "/don" "DoN Sheets")]
     ;; Login Icon
           [:span.nav-item.dropdown
