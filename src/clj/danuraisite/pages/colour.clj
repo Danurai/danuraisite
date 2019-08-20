@@ -19,7 +19,7 @@
     [:body
       (navbar req)
       [:div.container
-        [:div.sticky-top.py-3.bg-light.row
+        [:div.sticky-top.py-3.bg-light.row {:style "z-index: 1;"}
           [:div.col-12
             [:div.row.form-inline
               [:label.mr-2.my-auto "Filter by Range"]
