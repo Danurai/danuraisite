@@ -2,7 +2,6 @@
 
 (defn hsl [ req ]
   (let [q (-> req :params :q)]
-    (prn (-> req :params))
     (h/html5 
       (into pretty-head
         [(h/include-css "/css/hsl.css?v=0.1")])
@@ -21,8 +20,10 @@
       (navbar req)
       [:div.container
         [:div#comparison.row.sticky-top.bg-light.my-3]
-        [:div.row.mb-3
-          [:input#filter.form-control {:type "text" :placeholder "filter"}]]
+        [:div.form-inline.mb-3
+          [:label.mr-2.my-auto "Filter by Range"]
+          [:select#selectrange.mr-2 {:multiple true}]
+          [:input#filter.form-control {:type "text" :placeholder "Filter Name"}]]
         [:div.row
           [:table.table.table-sm
             [:thead 
@@ -35,6 +36,4 @@
                 [:th.sortable "lum"]
                 [:th "Sample"]]]
             [:tbody#colours]]]]
-      (h/include-js "/js/paintchart.js?v=1.000")
-      (h/include-js "/js/tablesort.js?v=1.000")
-      ]))
+      (h/include-js "/js/paintchart.js?v=1.000")]))
