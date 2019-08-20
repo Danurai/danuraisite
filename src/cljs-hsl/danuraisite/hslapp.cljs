@@ -129,27 +129,28 @@ Intermediary Values:
                 [:div (str "HSL: " h (gstring/unescapeEntities "&deg;") " " s "% " l "% \nRGB: " rgb " Hex: " hex)]]))]]]])
       
 (defn rgbToHSL [[r g b]]
-  (let [r1 (/ r 255) g1 (/ g 255) b1 (/ b 255)
+  (let [r1 (/ r 255) 
+        g1 (/ g 255) 
+        b1 (/ b 255)
         cmax (max r1 g1 b1) 
         cmin (min r1 g1 b1)
         delta (- cmax cmin)
         h (-> (if (= cmax r1)
-                (- g1 b1)
+                (-> g1 (- b1) (mod 6))
                 (if (= cmax g1)
-                  (+ 2 (- b1 r1))
+                  (-> b1 (- r1) (/ delta) (+ 2))
                   (if (= cmax b1)
-                    (+ 4 (- r1 g1))
-                    0))) 
-               (/ delta)
+                    (-> b1 (- r1) (/ delta) (+ 4))
+                    0)))
                (* 60)
                (+ 360)
                (mod 360)
-               int)
+               Math/round)
         l (/ (+ cmax cmin) 2)
         s (if (= delta 0)
               0
               (/ delta (- 1 (Math/abs (- (+ cmax cmin) 1)))))] 
-  {:h h :s (-> s (* 100) int) :l (-> l (* 100) int) :c 1 :h1 0 :m 0 :rgb[r g b]}
+  {:h h :s (-> s (* 100) Math/round) :l (-> l (* 100) Math/round) :c 1 :h1 0 :m 0 :rgb[r g b]}
 ))
       
 (update-rand-hsl "Any")
