@@ -19,11 +19,13 @@
     [:body
       (navbar req)
       [:div.container
-        [:div#comparison.row.sticky-top.bg-light.my-3]
-        [:div.form-inline.mb-3
-          [:label.mr-2.my-auto "Filter by Range"]
-          [:select#selectrange.mr-2 {:multiple true}]
-          [:input#filter.form-control {:type "text" :placeholder "Filter Name"}]]
+        [:div.sticky-top.py-3.bg-light.row
+          [:div.col-12
+            [:div.row.form-inline
+              [:label.mr-2.my-auto "Filter by Range"]
+              [:select#selectrange.mr-2 {:multiple true}]
+              [:input#filter.form-control {:type "text" :placeholder "Filter Name"}]]
+            [:div#comparison.row]]]
         [:div.row
           [:table.table.table-sm
             [:thead 

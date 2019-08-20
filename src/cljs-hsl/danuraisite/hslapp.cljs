@@ -140,7 +140,7 @@ Intermediary Values:
                 (if (= cmax g1)
                   (-> b1 (- r1) (/ delta) (+ 2))
                   (if (= cmax b1)
-                    (-> b1 (- r1) (/ delta) (+ 4))
+                    (-> r1 (- g1) (/ delta) (+ 4))
                     0)))
                (* 60)
                (+ 360)
