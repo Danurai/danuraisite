@@ -32,6 +32,7 @@
               [:tr 
                 [:th.sortable "Name"]
                 [:th.sortable "Range"]
+                [:th.sortable "Match"]
                 [:th.sortable "Hex"]
                 [:th.sortable "hue"]
                 [:th.sortable "sat"]
