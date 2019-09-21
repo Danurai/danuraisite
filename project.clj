@@ -54,15 +54,7 @@
           :asset-path "/js/compiled/out-hsl"
           :output-to  "resources/public/js/compiled/hsl-app.js"
           :output-dir "resources/public/js/compiled/out-hsl"
-          ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
-          ;; https://github.com/binaryage/cljs-devtools
           :preloads [devtools.preload]}}
-      :hsl-prod {
-        :source-paths ["src/cljs-hsl"]
-        :compiler {
-          :main      danuraisite.hslapp
-          :output-to "resources/public/js/compiled/hsl-app.js"
-          :optimizations :advanced :pretty-print false}}
       :don-dev {
         :source-paths ["src/cljs-don"]
         :figwheel true
@@ -71,15 +63,54 @@
           :asset-path "/js/compiled/out-don"
           :output-to  "resources/public/js/compiled/don-app.js"
           :output-dir "resources/public/js/compiled/out-don"
-          ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
-          ;; https://github.com/binaryage/cljs-devtools
           :preloads [devtools.preload]}}
+      :mwl-dev {
+        :source-paths ["src/cljs-mwl"]
+        :figwheel true
+        :compiler {
+          :main       danuraisite.mwlapp
+          :asset-path "/js/compiled/out-mwl"
+          :output-to  "resources/public/js/compiled/mwl-app.js"
+          :output-dir "resources/public/js/compiled/out-mwl"
+          :preloads [devtools.preload]}}
+      :nrf-dev {
+        :source-paths ["src/cljs-nrf"]
+        :figwheel true
+        :compiler {
+          :main       danuraisite.nrfapp
+          :asset-path "/js/compiled/out-nrf"
+          :output-to  "resources/public/js/compiled/nrf-app.js"
+          :output-dir "resources/public/js/compiled/out-nrf"
+          :preloads [devtools.preload]}}
+      :hsl-prod {
+        :source-paths ["src/cljs-hsl"]
+        :compiler {
+          :main      danuraisite.hslapp
+          :output-to "resources/public/js/compiled/hsl-app.js"
+          :output-dir "resources/public/js/compiled/prd-out-hsl"
+          :optimizations :advanced :pretty-print false}}
       :don-prod {
         :source-paths ["src/cljs-don"]
         :compiler {
           :main      danuraisite.core
           :output-to "resources/public/js/compiled/don-app.js"
-          :optimizations :advanced :pretty-print false}}}}
+          :output-dir "resources/public/js/compiled/prd-out-don"
+          :optimizations :advanced :pretty-print false}}
+      :mwl-prod {
+        :source-paths ["src/cljs-mwl"]
+        :compiler {
+          :main      danuraisite.mwlapp
+          :output-to "resources/public/js/compiled/mwl-app.js"
+          :output-dir "resources/public/js/compiled/prd-out-mwl"
+          :optimizations :advanced :pretty-print false}}
+      :nrf-prod {
+        :source-paths ["src/cljs-nrf"]
+        :compiler {
+          :main      danuraisite.nrfapp
+          :output-to "resources/public/js/compiled/nrf-app.js"
+          :output-dir "resources/public/js/compiled/prd-out-nrf"
+          :optimizations :advanced :pretty-print false}}
+      }}
 
   :figwheel { :css-dirs ["resources/public/css"]}
 
@@ -90,7 +121,10 @@
     :uberjar {
       :aot :all
       :source-paths ["src/clj"]
-      :prep-tasks ["compile" ["cljsbuild" "once" "hsl-prod"] "compile" ["cljsbuild" "once" "don-prod"] ]
+      :prep-tasks ["compile" ["cljsbuild" "once" "hsl-prod"]
+                  "compile" ["cljsbuild" "once" "don-prod"] 
+                  "compile" ["cljsbuild" "once" "mwl-prod"] 
+                  "compile" ["cljsbuild" "once" "nrf-prod"] ]
     }
     :dev {
       :dependencies [[reloaded.repl "0.2.4"]

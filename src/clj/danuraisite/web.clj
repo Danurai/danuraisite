@@ -111,15 +111,24 @@
   (GET "/hsl" [] pages/hsl)
   (GET "/citadel" [] pages/citadel))
   
+(defroutes anr-routes
+  (GET "/api/:id" [id]
+    (if-let [f (io/resource (str "private/" id ".json"))]
+      (-> f slurp response (content-type "application/json"))
+      (-> "{\"data\": []}" response (content-type "application/json"))))
+  (GET "/mwl" [] pages/mwlpage)
+  (GET "/nrf" [] pages/nrfpage))
+  
 ;; MAIN ROUTES
 ;;;;;;;;;;;;;;;;
 (defroutes app-routes
-  (GET     "/"     [] pages/homepage)
-  (context "/api"  [] api-routes)
-  (context "/lugs" [] lugs-routes)
-  (context "/aosc" [] aosc-routes)
-  (context "/colours" [] colour-routes)
-  (context "/don"  [] don-routes)
+  (GET     "/"         [] pages/homepage)
+  (context "/api"       [] api-routes)
+  (context "/lugs"      [] lugs-routes)
+  (context "/aosc"      [] aosc-routes)
+  (context "/colours"   [] colour-routes)
+  (context "/don"       [] don-routes)
+  (context "/netrunner" [] anr-routes)
 ; ADMIN
   (context "/:id/login" [id]
     (friend/wrap-authorize
@@ -138,15 +147,17 @@
     (ANY "/logout" [] (redirect "/")))
   (resources "/"))
   
+(def friend-config {
+  :allow-anon? true
+  :login-uri "/login"
+  :default-landing-uri "/"
+  :unauthorised-handler (h/html5 [:body [:div.h5 "Access Denied " [:a {:href "/"} "Home"]]])
+  :credential-fn #(creds/bcrypt-credential-fn (db/users) %)
+  :workflows [(workflows/interactive-form)]})
+  
 (def app
   (-> app-routes
-     (friend/authenticate
-      {:allow-anon? true
-       :login-uri "/login"
-       :default-landing-uri "/"
-       :unauthorised-handler (h/html5 [:body [:div.h5 "Access Denied " [:a {:href "/"} "Home"]]])
-       :credential-fn #(creds/bcrypt-credential-fn (db/users) %)
-       :workflows [(workflows/interactive-form)]})
+    (friend/authenticate friend-config)
     (wrap-keyword-params)
     (wrap-params)
     (wrap-session)))

@@ -9,6 +9,11 @@
 
 (load "pages/common")        
 (load "pages/admin")
+(load "pages/legendsuntold")
+(load "pages/colour")
+(load "pages/deadofnight")
+(load "pages/ageofsigmarchampions")
+(load "pages/netrunner")
 
 (defn homepage [ req ]
   (h/html5 
@@ -17,9 +22,3 @@
       (navbar req)
       [:div.container.my-2 "Homepage"]]))
       
-(load "pages/legendsuntold")
-(load "pages/colour")
-(load "pages/deadofnight")
-(load "pages/ageofsigmarchampions")
-
-        

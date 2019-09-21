@@ -29,7 +29,7 @@
   ;; TAFFY JQuery database
     [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/taffydb/2.7.2/taffy-min.js"}]
   ;; fonts
-    [:link {:href "https://fonts.googleapis.com/css?family=Eczar|Special+Elite&display=swap" :rel "stylesheet"}]
+    [:link {:href "https://fonts.googleapis.com/css?family=Exo+2|Eczar|Special+Elite&display=swap" :rel "stylesheet"}]
   ;; Site Specific
     ;; (h/include-css "/css/danuraisite.css?v=1")
     ])
@@ -40,8 +40,8 @@
   
 
 (defn navbar [req]
-  [:nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-    [:div.container
+  [:nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {:style "z-index: 1021;"}
+    [:div.container-fluid
     ;; Home Brand with Icon
       [:a.navbar-brand.mb-0.h1 {:href "/"}
         "Home"]
@@ -72,7 +72,12 @@
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/colours/hsl"} "HSL Demo"]
               [:a.dropdown-item {:href "/colours/citadel"} "Citadel Colour Range"]]]
-          (navlink (:uri req) "/don" "DoN Sheets")]
+          (navlink (:uri req) "/don" "DoN Sheets")
+          [:li.nav-item.dropdown
+            [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "Netrunner"]
+            [:div.dropdown-menu
+              [:a.dropdown-item {:href "/netrunner/mwl"} "MWL Checker"]
+              [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]]
     ;; Login Icon
           [:span.nav-item.dropdown
             [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href="#" :role "button" :data-toggle "dropdown" :aria-haspopup "true" :aria-expanded "false"}
