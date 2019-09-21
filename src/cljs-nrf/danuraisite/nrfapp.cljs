@@ -79,6 +79,24 @@
       (let [clist (buildpages @pwned @faction @cardlist)]
         [:div.container-fluid.my-3
           [:div.row
+            [:div.col-sm-7
+              [:div.row.mb-3
+                [:nav.nav.nav-pills.flex-sm-row.mb-1.mr-1
+                  (doall (for [f (sort-by :position @factions)]
+                    ^{:key (gensym)}[:span.nav-item.nav-link {
+                      :class (if (= (:code f) @faction) "active")
+                      :style {:color (get @colours (:code f))}
+                      :on-click #(reset! faction (:code f))}
+                      (:name f)]))]]
+              [:div.row.mb-3.d-flex
+                [:div.btn-group.btn-group-sm.mx-auto ;.btn-group-toggle.btn-group-sm {:data-toggle "buttons" :on-change #(prn (-> % .-target }
+                  (doall (for [n (range 1 (-> clist count (/ 9) Math/ceil inc))]
+                    ^{:key (gensym)}[:button.btn.btn-outline-secondary {:class (if (= n @pageno) "active") :on-click #(reset! pageno n)}
+                      n]))]]
+              [:div.row.mb-3.sticky-top.pt-2
+                (for [c (take 9 (-> clist (nthnext (-> @pageno dec (* 9)))))]
+                  ^{:key (gensym)}[:div.col-4.mb-3
+                      [:img.img-fluid {:src (if-let [img (:image_url c)] img (clojure.string/replace imgurltemplate #"\{code\}" (:code c)))}]])]]
             [:div.col-sm-5
               [:div.row-fluid.mb-2 
                 [:h4 "Collection"]]
@@ -109,26 +127,7 @@
                                 [:span.float-right.fas.text-success {
                                   :class (if (contains? @pwned (:code p)) "fa-toggle-on" "fa-toggle-off")
                                   }]
-                                ])))])))]
-              ]]
-            [:div.col-sm-7
-              [:div.row.mb-3
-                [:nav.nav.nav-pills.flex-sm-row.mb-1.mr-1
-                  (doall (for [f (sort-by :position @factions)]
-                    ^{:key (gensym)}[:span.nav-item.nav-link {
-                      :class (if (= (:code f) @faction) "active")
-                      :style {:color (get @colours (:code f))}
-                      :on-click #(reset! faction (:code f))}
-                      (:name f)]))]]
-              [:div.row.mb-3.d-flex
-                [:div.btn-group.btn-group-sm.mx-auto ;.btn-group-toggle.btn-group-sm {:data-toggle "buttons" :on-change #(prn (-> % .-target }
-                  (doall (for [n (range 1 (-> clist count (/ 9) Math/ceil inc))]
-                    ^{:key (gensym)}[:button.btn.btn-outline-secondary {:class (if (= n @pageno) "active") :on-click #(reset! pageno n)}
-                      n]))]]
-              [:div.row.mb-3.sticky-top.pt-2
-                (for [c (take 9 (-> clist (nthnext (-> @pageno dec (* 9)))))]
-                  ^{:key (gensym)}[:div.col-4.mb-3
-                      [:img.img-fluid {:src (if-let [img (:image_url c)] img (clojure.string/replace imgurltemplate #"\{code\}" (:code c)))}]])]
-            ]]]))))
+                                ])))])))]]]
+          ]]))))
 
 (r/render [App] (.getElementById js/document "app"))
