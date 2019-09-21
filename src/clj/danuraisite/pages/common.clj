@@ -29,7 +29,7 @@
   ;; TAFFY JQuery database
     [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/taffydb/2.7.2/taffy-min.js"}]
   ;; fonts
-    [:link {:href "https://fonts.googleapis.com/css?family=Exo+2|Eczar|Special+Elite&display=swap" :rel "stylesheet"}]
+    [:link {:href "https://fonts.googleapis.com/css?family=Orbitron|Exo+2|Eczar|Special+Elite&display=swap" :rel "stylesheet"}]
   ;; Site Specific
     ;; (h/include-css "/css/danuraisite.css?v=1")
     ])

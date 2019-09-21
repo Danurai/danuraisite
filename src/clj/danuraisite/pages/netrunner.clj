@@ -3,7 +3,7 @@
 (defn- app-page [ app req ]
   (h/html5 
     pretty-head
-    [:body {:style "font-family: 'Exo 2', sans-serif;"}
+    [:body {:style "font-family: 'Orbitron', sans-serif; font-size: small;"}
       (navbar req)
       [:div#app]
       (h/include-js app)
