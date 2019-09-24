@@ -64,7 +64,7 @@
   (let [cardmwl (-> mwl (get (-> c :code str keyword)))]
     ^{:key (gensym)}[:div {:style {:color (get colours (:faction_code c))}}
       [:span
-        [:span.cardlink {:data-code (:code c) :data-image_url (:image_url c)}
+        [:a.cardlink {:data-code (:code c) :data-image_url (:image_url c)}
           (if (:is_restricted cardmwl)
             [:i.fas.fa-exclamation.text-warning.mr-2 {:title "restricted"}])
           (if (= 0 (:deck_limit cardmwl))
