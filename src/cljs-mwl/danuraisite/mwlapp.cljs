@@ -16,32 +16,22 @@
 (def colours (r/atom nil))
 (def types (r/atom nil))
 
-(go
-  (reset! cycles   (-> (<! (http/get "/netrunner/api/cycles"))   :body :data))
-  (reset! packs    (-> (<! (http/get "/netrunner/api/packs"))    :body :data))
-  (reset! mwls     (-> (<! (http/get "/netrunner/api/mwl"))      :body :data))
-  (reset! types    (-> (<! (http/get "/netrunner/api/types"))    :body :data))
-  (let [cardsapi (<! (http/get "/netrunner/api/cards"))]
-    (reset! cards    (-> cardsapi :body :data))
-    (reset! cardlist (->> cardsapi :body :data (filter #(= (:pack_code %) "core")))))
- ; (reset! factions (-> (<! (http/get "/api/factions")) :body :data)))
-  (reset! colours 
-    (apply merge 
-      (map 
-        #(hash-map (:code %) (str "#" (:color %))) 
-        (-> (<! (http/get "/netrunner/api/factions")) :body :data)))))
+(defn- init! []
+  (go
+    (reset! colours 
+      (apply merge 
+        (map 
+          #(hash-map (:code %) (str "#" (:color %))) 
+          (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
+    (reset! cycles   (-> (<! (http/get "/netrunner/api/cycles"))   :body :data))
+    (reset! packs    (-> (<! (http/get "/netrunner/api/packs"))    :body :data))
+    (reset! mwls     (-> (<! (http/get "/netrunner/api/mwl"))      :body :data))
+    (reset! types    (-> (<! (http/get "/netrunner/api/types"))    :body :data))
+    (let [cardsapi (<! (http/get "/netrunner/api/cards"))]
+      (reset! cards    (-> cardsapi :body :data))
+      (reset! cardlist (->> cardsapi :body :data (filter #(= (:pack_code %) "core")))))))
+ ; (reset! factions (-> (<! (http/get "/api/factions")) :body :data))))
           
-(defn- packtags [cards packs cycles c]
-  (let [otherpacks (->> cards 
-                      (filter #(= (:title %) (:title c)))
-                      (map :pack_code))
-       othercycles (->> packs
-                      (filter #(some #{(:code %)} otherpacks))
-                      (map :cycle_code))]
-    (for [oc (filter #(some #{(:code %)} othercycles) cycles)]
-      ^{:key (gensym)}[:i.icon.mr-2 {
-        :class (str "icon-" (:code oc) (if (:rotated oc) " text-danger")) 
-        :title (str (:name oc) (if (:rotated oc) " !Rotated")) }])))
   
       
 (defn- packs-in-cycle [ packs cycle_code ]
@@ -59,26 +49,49 @@
         (mapv (fn [[a b c d]]
           (first (filter #(= (:title %) (if c c d)) cards)))
           (re-seq #"[0-9]x\s((.+?)\s\u25CF|(.+))" decklist))))))
+          
+            
+(defn- isrotated? [ cardcycles ]
+  (= (count cardcycles) (->> cardcycles (filter :rotated) count)))
+    
+(defn- packtags [ cardcycles ]
+  (for [oc cardcycles]
+    ^{:key (gensym)}[:i.icon.mr-2 {
+      :class (str "icon-" (:code oc) (if (:rotated oc) " text-danger")) 
+      :title (str (:name oc) (if (:rotated oc) " !Rotated")) }]))              
         
 (defn- card-div [ colours cards packs cycles mwl c ]
-  (let [cardmwl (-> mwl (get (-> c :code str keyword)))]
-    ^{:key (gensym)}[:div {:style {:color (get colours (:faction_code c))}}
+  (let [cardmwl        (-> mwl (get (-> c :code str keyword)))
+        cardpackcodes  (->> cards (filter #(= (:title %) (:title c))) (map :pack_code))
+        cardcyclecodes (->> packs (filter #(some #{(:code %)} cardpackcodes)) (map :cycle_code))
+        cardcycles     (filter #(some #{(:code %)} cardcyclecodes) cycles)
+        rotated?       (isrotated? cardcycles)]
+    ^{:key (gensym)}[:div 
       [:span
-        [:a.cardlink {:data-code (:code c) :data-image_url (:image_url c)}
+        [:a.cardlink {
+          :data-code (:code c) 
+          :href "#" 
+          :on-click #(.preventDefault %) 
+          :data-image_url (:image_url c)
+          :style {
+            :color (get colours (:faction_code c))
+            :text-decoration (if rotated? "line-through")
+          }}
           (if (:is_restricted cardmwl)
-            [:i.fas.fa-exclamation.text-warning.mr-2 {:title "restricted"}])
+            [:i.fas.fa-exclamation.text-warning.mr-2 {:title "Restricted"}])
           (if (= 0 (:deck_limit cardmwl))
-            [:i.fas.fa-times-circle.text-danger.mr-2 {:title "banned"}])
+            [:i.fas.fa-times-circle.text-danger.mr-2 {:title "Removed"}])
           [:span.mr-2 (str (if (:uniqueness c) "\u2022 ") (:title c))]
           (repeat (:universal_faction_cost cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])
           (repeat (:global_penalty cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])]
-        (packtags cards packs cycles c)]]))
+        (packtags cardcycles)]]))
         
     
 (defn App [] 
   (let [mwl (r/atom "Standard MWL 3.3")
        selected_name (r/atom "Core Set")
        selected_rotated? (r/atom true)]
+    (init!)
     (fn []
       [:div.container-fluid.my-3
         [:div.row
