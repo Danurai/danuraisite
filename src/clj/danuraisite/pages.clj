@@ -15,6 +15,14 @@
 (load "pages/ageofsigmarchampions")
 (load "pages/netrunner")
 
+(defn kaseipage [ req ]
+  (h/html5
+    pretty-head
+    [:body
+      (navbar req)
+      [:div#kasei]
+      (h/include-js "js/compiled/kasei-app.js")]))
+
 (defn homepage [ req ]
   (h/html5 
     pretty-head

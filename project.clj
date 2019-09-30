@@ -82,6 +82,15 @@
           :output-to  "resources/public/js/compiled/nrf-app.js"
           :output-dir "resources/public/js/compiled/out-nrf"
           :preloads [devtools.preload]}}
+      :kasei-dev {
+        :source-paths ["src/cljs-kasei"]
+        :figwheel true
+        :compiler {
+          :main       danuraisite.core
+          :asset-path "/js/compiled/out-kasei"
+          :output-to  "resources/public/js/compiled/kasei-app.js"
+          :output-dir "resources/public/js/compiled/out-kasei"
+          :preloads [devtools.preload]}}
       :hsl-prod {
         :source-paths ["src/cljs-hsl"]
         :compiler {
@@ -110,6 +119,13 @@
           :output-to "resources/public/js/compiled/nrf-app.js"
           :output-dir "resources/public/js/compiled/prd-out-nrf"
           :optimizations :advanced :pretty-print false}}
+      :kasei-prod {
+        :source-paths ["src/cljs-kasei"]
+        :compiler {
+          :main      danuraisite.core
+          :output-to "resources/public/js/compiled/kasei-app.js"
+          :output-dir "resources/public/js/compiled/prd-out-kasei"
+          :optimizations :advanced :pretty-print false}}
       }}
 
   :figwheel { :css-dirs ["resources/public/css"]}
@@ -124,7 +140,8 @@
       :prep-tasks ["compile" ["cljsbuild" "once" "hsl-prod"]
                   "compile" ["cljsbuild" "once" "don-prod"] 
                   "compile" ["cljsbuild" "once" "mwl-prod"] 
-                  "compile" ["cljsbuild" "once" "nrf-prod"] ]
+                  "compile" ["cljsbuild" "once" "nrf-prod"]
+                  "compile" ["cljsbuild" "once" "kasei-prod"] ]
     }
     :dev {
       :dependencies [[reloaded.repl "0.2.4"]

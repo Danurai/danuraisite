@@ -77,7 +77,8 @@
             [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "Netrunner"]
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/netrunner/mwl"} "MWL Checker"]
-              [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]]
+              [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]
+          (navlink (:uri req) "/kasei" "Kasei")]
     ;; Login Icon
           [:span.nav-item.dropdown
             [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href="#" :role "button" :data-toggle "dropdown" :aria-haspopup "true" :aria-expanded "false"}
