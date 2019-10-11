@@ -23,12 +23,12 @@
 		{
 			"name": "Caves",
 			"type": "Location",
-			"URI": ""
+			"fa": "ra ra-mountains"
 		},
 		{
 			"name": "Discovery",
 			"type": "Location",
-			"URI": ""
+			"fa": "fas fa-map"
 		},
 		{
 			"name": "Foe",
@@ -78,7 +78,7 @@
 		{
 			"name": "Sewers",
 			"type": "Location",
-			"URI": ""
+			"fa": "ra ra-round-shield"
 		},
 		{
 			"name": "Crypts",
@@ -258,12 +258,12 @@
 		{
 			"name": "Strike",
 			"type": "Combat",
-			"URI": ""
+			"fa": "ra ra-sun"
 		},
 		{
 			"name": "Advance",
 			"type": "Combat",
-			"fa": "ra ra-player"
+			"fa": "ra ra-forward"
 		},
 		{
 			"name": "TradeBlows",
@@ -278,12 +278,12 @@
 		{
 			"name": "Fail",
 			"type": "Combat",
-			"fa": "ra ra-broken-bone"
+			"fa": "ra ra-shot-through-the-heart"
 		},
 		{
 			"name": "Miss",
 			"type": "Combat",
-			"fa": "ra ra-shot-through-the-heart"
+			"fa": "ra ra-broken-bone"
 		},
 		{
 			"name": "Health",
@@ -314,12 +314,63 @@
 			"name": "Unconscious",
 			"type": "Combat",
 			"fa": "ra ra-crown-of-thorns"
-		}
+		},
+		{
+			"name": "Knife",
+			"type": "Weapon",
+			"fa": "ra ra-knife"
+		},
+		{
+			"name": "Spear",
+			"type": "Weapon",
+			"fa": "ra ra-spear-head"
+		},
+		{
+			"name": "Staff",
+			"type": "Weapon",
+			"fa": "ra ra-crystal-wand"
+		},
+		{
+			"name": "Bow",
+			"type": "Weapon",
+			"fa": "ra ra-supersonic-arrow"
+		},
+		{
+			"name": "Axe",
+			"type": "Weapon",
+			"fa": "ra ra-axe"
+		},
+		{
+			"name": "Polearm",
+			"type": "Weapon",
+			"fa": "ra ra-halberd"
+		},
+		{
+			"name": "Javelin",
+			"type": "Weapon",
+			"fa": "ra ra-barbed-arrow"
+		},
+    {
+      "name": "Skill Talent",
+      "type": "Card",
+      "fa": "ra ra-book"
+      },
+    {
+      "name": "Outfit",
+      "type": "Card",
+      "fa": "ra ra-vest"
+      },
+    {
+      "name": "Kit",
+      "type": "Card",
+      "fa": "ra ra-gem-pendant"
+      }
 	],
 	"cards": [{
 			"id": "GS-OC01",
 			"name": "Labourer",
 			"specialty": "Construction",
+      "type": "Occupation",
 			"attributes": {
 				"Brawn": 3,
 				"Grace": 1,
@@ -333,6 +384,7 @@
 			"id": "GS-OC02",
 			"name": "Guttersnipe",
 			"specialty": "Devices",
+      "type": "Occupation",
 			"attributes": {
 				"Brawn": 2,
 				"Grace": 3,
@@ -346,6 +398,7 @@
 			"id": "GS-OC03",
 			"name": "Performer",
 			"specialty": "Perform",
+      "type": "Occupation",
 			"attributes": {
 				"Brawn": 1,
 				"Grace": 2,
@@ -359,6 +412,7 @@
 			"id": "GS-OC04",
 			"name": "Follower",
 			"specialty": "Faith",
+      "type": "Occupation",
 			"attributes": {
 				"Brawn": 1,
 				"Grace": 1,
@@ -552,7 +606,7 @@
 			"type": "Skill Talent",
 			"name": "Fungi Expert",
 			"background": "Herbalism",
-			"specialty": "Nature",
+			"specialty": "Herbology",
 			"abilities": [{
 					"name": "Fungal Feast",
 					"icons": ["Fungi"],
@@ -563,13 +617,13 @@
 					"name": "Fungal Spores",
 					"icons": ["Ranged", "Fungi"],
 					"cost": "Exhaust",
-					"text": "Use as a Ranged Attack. Gain +1 to the roll for each [Nature] you have.\n[Strike] 14+ [PushedBack] 10+, 8+ [Miss], [Fail] <=7, inflicts [Damage]."
+					"text": "Use as a Ranged Attack. Gain +1 to the roll for each [Herbology] you have.\n[Strike] 14+ [PushedBack] 10+, 8+ [Miss], [Fail] <=7, inflicts [Damage]."
 				},
 				{
 					"name": "Antidote",
 					"icons": ["Fungi"],
 					"cost": "Exhaust",
-					"text": "Remove the [Poison] Condition from a number of Heroes equal to the number of [Nature] you have. This Ability is not affected by the [Poison] Condition."
+					"text": "Remove the [Poison] Condition from a number of Heroes equal to the number of [Herbology] you have. This Ability is not affected by the [Poison] Condition."
 				}
 			]
 		},
@@ -781,7 +835,7 @@
 			"id": "GS-WT01",
 			"type": "Weapon Talent",
 			"name": "Close Fighting",
-			"weapon": "Spear",
+			"specialty": "Spear",
 			"abilities": [{
 					"name": "Charging Throw",
 					"icons": ["Ranged"],
@@ -800,7 +854,7 @@
 			"id": "GS-WT02",
 			"type": "Weapon Talent",
 			"name": "Team Work",
-			"weapon": "Spear",
+			"specialty": "Spear",
 			"abilities": [{
 					"name": "Reverse Strike",
 					"icons": ["Melee"],
@@ -819,7 +873,7 @@
 			"id": "GS-WT03",
 			"type": "Weapon Talent",
 			"name": "Manoeuvre",
-			"weapon": "Spear",
+			"specialty": "Spear",
 			"abilities": [{
 					"name": "Draw Them Out",
 					"icons": ["Melee"],
@@ -838,7 +892,7 @@
 			"id": "GS-WT04",
 			"type": "Weapon Talent",
 			"name": "Pressure Foe",
-			"weapon": "Axe",
+			"specialty": "Axe",
 			"abilities": [{
 					"name": "Haft Punch",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -857,7 +911,7 @@
 			"id": "GS-WT05",
 			"type": "Weapon Talent",
 			"name": "Furious",
-			"weapon": "Axe",
+			"specialty": "Axe",
 			"abilities": [{
 					"name": "Bloodlust",
 					"icons": ["Melee"],
@@ -876,7 +930,7 @@
 			"id": "GS-WT06",
 			"type": "Weapon Talent",
 			"name": "Vicious",
-			"weapon": "Axe",
+			"specialty": "Axe",
 			"abilities": [{
 					"name": "Over-Reach",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -895,7 +949,7 @@
 			"id": "GS-WT07",
 			"type": "Weapon Talent",
 			"name": "Awareness",
-			"weapon": "Bow",
+			"specialty": "Bow",
 			"abilities": [{
 					"name": "Reactive Shot",
 					"icons": ["Ranged"],
@@ -914,7 +968,7 @@
 			"id": "GS-WT08",
 			"type": "Weapon Talent",
 			"name": "Hunter",
-			"weapon": "Bow",
+			"specialty": "Bow",
 			"abilities": [{
 					"name": "Covered Retreat",
 					"icons": ["Ranged"],
@@ -933,7 +987,7 @@
 			"id": "GS-WT09",
 			"type": "Weapon Talent",
 			"name": "Defensive",
-			"weapon": "Bow",
+			"specialty": "Bow",
 			"abilities": [{
 					"name": "Dive for Cover",
 					"icons": ["Ranged", "PlayAfterRolling"],
@@ -952,7 +1006,7 @@
 			"id": "GS-WT10",
 			"type": "Weapon Talent",
 			"name": "Space Maker",
-			"weapon": "Staff",
+			"specialty": "Staff",
 			"abilities": [{
 					"name": "Keep Away",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -971,7 +1025,7 @@
 			"id": "GS-WT11",
 			"type": "Weapon Talent",
 			"name": "Reaction",
-			"weapon": "Staff",
+			"specialty": "Staff",
 			"abilities": [{
 					"name": "Grounding",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -990,7 +1044,7 @@
 			"id": "GS-WT12",
 			"type": "Weapon Talent",
 			"name": "Aggression",
-			"weapon": "Staff",
+			"specialty": "Staff",
 			"abilities": [{
 					"name": "Quick Thrust",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1009,7 +1063,7 @@
 			"id": "GS-WT13",
 			"type": "Weapon Talent",
 			"name": "Blocking",
-			"weapon": "Polearm",
+			"specialty": "Polearm",
 			"abilities": [{
 					"name": "Take the Hit",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1028,7 +1082,7 @@
 			"id": "GS-WT14",
 			"type": "Weapon Talent",
 			"name": "Push Forward",
-			"weapon": "Polearm",
+			"specialty": "Polearm",
 			"abilities": [{
 					"name": "Push Through",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1047,7 +1101,7 @@
 			"id": "GS-WT15",
 			"type": "Weapon Talent",
 			"name": "Leverage",
-			"weapon": "Polearm",
+			"specialty": "Polearm",
 			"abilities": [{
 					"name": "Overhead Hook",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1066,7 +1120,7 @@
 			"id": "GS-WT16",
 			"type": "Weapon Talent",
 			"name": "Focussed",
-			"weapon": "Javelin",
+			"specialty": "Javelin",
 			"abilities": [{
 					"name": "Aimed Throw",
 					"icons": ["Ranged"],
@@ -1084,6 +1138,7 @@
 		{
 			"id": "GS-OU01",
 			"type": "Outfit",
+			"specialty": "Outfit",
 			"basic": {
 				"name": "Performer Clothes",
 				"text": "Gain +1 to your Bluff (Charm) Tests."
@@ -1096,18 +1151,20 @@
 		{
 			"id": "GS-OU02",
 			"type": "Outfit",
+			"specialty": "Outfit",
 			"basic": {
 				"name": "Burglar's Outfit",
 				"text": "Gain +1 to your Climb (Brawn) Tests."
 			},
 			"upgraded": {
 				"name": "Shady Outfit",
-				"text": "Gain +1 to your Climb (Brawn) Tests.\nGain +1 to the Party's Surprise Tests id the Party is scouting from a Dark Exit."
+				"text": "Gain +1 to your Climb (Brawn) Tests.\nGain +1 to the Party's Surprise Tests if the Party is scouting from a Dark Exit."
 			}
 		},
 		{
 			"id": "GS-OU03",
 			"type": "Outfit",
+			"specialty": "Outfit",
 			"basic": {
 				"name": "Vestments",
 				"text": "Gain +1 to your Lead (Will) Tests."
@@ -1120,6 +1177,7 @@
 		{
 			"id": "GS-OU04",
 			"type": "Outfit",
+			"specialty": "Outfit",
 			"basic": {
 				"name": "Wool Tunic",
 				"text": "Gain +1 to your Brute (Brawn) Tests."
@@ -1132,6 +1190,7 @@
 		{
 			"id": "GS-KI01",
 			"type": "Kit",
+			"specialty": "Kit",
 			"broken": {
 				"title": "No Effect",
 				"text": "This item cannot be broken."
@@ -1148,6 +1207,7 @@
 		{
 			"id": "GS-KI02",
 			"type": "Kit",
+			"specialty": "Kit",
 			"broken": {
 				"title": "Broken!",
 				"text": "The musical instrument is broken and cannot be used until you spend [Time] during the Rest Phase to repair it."
@@ -1164,6 +1224,7 @@
 		{
 			"id": "GS-KI03",
 			"type": "Kit",
+			"specialty": "Kit",
 			"broken": {
 				"title": "Broken!",
 				"text": "The pole has snapped and cannot be used until you spend [Time] during the Rest Phase to repair it."
@@ -1188,6 +1249,7 @@
 		{
 			"id": "GS-KI04",
 			"type": "Kit",
+			"specialty": "Kit",
 			"broken": {
 				"title": "No Effect",
 				"text": "This item cannot be broken."
@@ -1204,6 +1266,7 @@
 		{
 			"id": "GS-KI05",
 			"type": "Kit",
+			"specialty": "Kit",
 			"broken": {
 				"title": "Burst!",
 				"text": "The waterskin is leaking and cannot be used until you spend [Time] during the Rest Phase to sew and repair it."
@@ -1219,8 +1282,9 @@
 		},
 		{
 			"id": "GS-WE00",
+      "name": "Knife",
 			"type": "Weapon",
-			"weapon": "Knife",
+			"specialty": "Knife",
 			"broken": {
 				"title": "No Effect",
 				"text": "This item cannot be broken."
@@ -1251,9 +1315,10 @@
 		},
 		{
 			"id": "GS-WE01",
+      "name": "Spear",
 			"type": "Weapon",
       "sub-type": "2H",
-			"weapon": "Spear",
+			"specialty": "Spear",
 			"broken": {
 				"title": "Broken!",
 				"text": "The Spear snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -1285,9 +1350,10 @@
 		},
 		{
 			"id": "GS-WE02",
+      "name": "Staff",
 			"type": "Weapon",
       "sub-type": "2H",
-			"weapon": "Staff",
+			"specialty": "Staff",
 			"broken": {
 				"title": "Broken!",
 				"text": "The Staff snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -1319,9 +1385,10 @@
 		},
 		{
 			"id": "GS-WE03",
+      "name": "Bow",
 			"type": "Weapon",
       "sub-type": "2H",
-			"weapon": "Bow",
+			"specialty": "Bow",
 			"broken": {
 				"title": "String Snapped!",
 				"text": "The Bow's string snaps, and you cannot use it until you spend [Time] during the Rest Phase to repair it."
@@ -1329,33 +1396,34 @@
 			"basic": {
 				"name": "Rough Bow",
 				"text": "A roughly hewn bow, with a simple bow string.",
+			  "ammo": "Inf.",
 				"attack": {
 					"Critical": 15,
 					"Strike": 13,
 					"Advance": 11,
 					"Miss": 8,
-					"Fail": 7,
-					"Ammo": "Inf."
+					"Fail": 7
 				}
 			},
 			"upgraded": {
 				"name": "Bow",
 				"type": "Weapon",
 				"text": "Cut from a yew tree, it is stronger and more accurate.",
+        "ammo": "Inf.",
 				"attack": {
 					"Critical": 14,
 					"Strike": 12,
 					"Advance": 11,
 					"Miss": 8,
-					"Fail": 7,
-					"Ammo": "Inf."
+					"Fail": 7
 				}
 			}
 		},
 		{
 			"id": "GS-WE04",
+      "name": "Axe",
 			"type": "Weapon",
-			"weapon": "Axe",
+			"specialty": "Axe",
 			"broken": {
 				"title": "Broken!",
 				"text": "The head of the axe comes away and it cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -1387,9 +1455,10 @@
 		},
 		{
 			"id": "GS-WE05",
+      "name": "Polearm",
 			"type": "Weapon",
       "sub-type": "2H",
-			"weapon": "Polearm",
+			"specialty": "Polearm",
 			"broken": {
 				"title": "Broken!",
 				"text": "The bill at the end has come away. The Weapon cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -1421,8 +1490,9 @@
 		},
 		{
 			"id": "GS-WE06",
+      "name": "Javelin",
 			"type": "Weapon",
-			"weapon": "Javelin",
+			"specialty": "Javelin",
 			"broken": {
 				"title": "Shattered!",
 				"text": "Reduce Ammo by 1. You may spend [Time] during the Rest Phase to Restore each lost Ammo up to the maximum for the Weapon."
@@ -1430,25 +1500,25 @@
 			"basic": {
 				"name": "Hunting Javelin",
 				"text": "A shaft with a thin metal point designed for hunting animals.",
+				"ammo": 2,
 				"attack": {
 					"Critical": 15,
 					"Strike": 13,
 					"Advance": 10,
 					"Miss": 7,
-					"Fail": 5,
-					"Ammo": 2
+					"Fail": 5
 				}
 			},
 			"upgraded": {
 				"name": "War Javelin",
 				"text": "Sturdier than its hunting cousin, it is heavier and better weighted.",
+				"ammo": 3,
 				"attack": {
 					"Critical": 15,
 					"Strike": 13,
 					"Advance": 9,
 					"Miss": 7,
-					"Fail": 6,
-					"Ammo": 3
+					"Fail": 6
 				}
 			}
 		}
