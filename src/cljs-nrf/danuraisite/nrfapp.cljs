@@ -155,6 +155,7 @@
     (fn []
       (let [clist (buildpages @pwned @faction @types @cardlist)
             numpages (-> clist count (/ 9) Math/ceil)
+            pagecount (-> clist count (/ 9) Math/ceil)
             currentpage (take 9 (-> clist (nthnext (-> @pageno dec (* 9)))))
             factions @factions]
         [:div.container-fluid.my-3
@@ -169,12 +170,17 @@
                       :style {:color (get @colours (:code f)) :cursor "pointer"}
                       :on-click (fn [] (reset! faction (:code f)) (reset! pageno 1))}
                       (:name f)]))]))]
-              [:div.row-fluid.mb-3.d-flex
+              [:div.row-fluid.mb-3.d-flex.justify-content-between
                 [:span (->> currentpage first :type_code str clojure.string/capitalize)]
-                [:div.btn-group.btn-group-sm.mx-auto
-                  (doall (for [n (range 1 (-> clist count (/ 9) Math/ceil inc))]
-                    ^{:key (gensym)}[:button.btn.btn-outline-secondary {:class (if (= n @pageno) "active") :on-click #(reset! pageno n)}
-                      n]))]]
+                [:span (str "Page " @pageno " of " pagecount)]
+                [:div.btn-group.btn-group-sm ;{:style {:width "15%"}}
+                  [:button.btn.btn-outline-secondary {
+                    :type "button" 
+                    :on-click #(reset! pageno (max 1 (dec @pageno)))} "<<"]
+                  ;[:input.form-control {:type "text" :value @pageno :on-change #(reset! pageno (-> % .-target .-value))}]
+                  [:button.btn.btn-outline-secondary {
+                    :type "button"
+                    :on-click #(reset! pageno (min (inc @pageno) pagecount))} ">>"]]]
               [:div.row.mb-3 ;.sticky-top.pt-2
                 (for [c currentpage]
                   ^{:key (gensym)}[:div.col-4.mb-3

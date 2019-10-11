@@ -15,18 +15,23 @@
 (load "pages/ageofsigmarchampions")
 (load "pages/netrunner")
 
-(defn kaseipage [ req ]
-  (h/html5
-    pretty-head
-    [:body
-      (navbar req)
-      [:div#kasei]
-      (h/include-js "js/compiled/kasei-app.js")]))
-
 (defn homepage [ req ]
   (h/html5 
     pretty-head
     [:body
       (navbar req)
-      [:div.container.my-2 "Homepage"]]))
+      [:div.container.my-3
+        [:div.row
+          [:div.col
+            [:h5 "Legends Untold: The Great Sewer (LUGS)"]
+            [:div.mb-2 "Character Builder and Icon Reference"]
+            [:h5 "Age of Sigmar: Champions (AoS:C)"]
+            [:div.mb-2 "Card list, tooltip demo and API links"]
+            [:h5 "Colours"]
+            [:div.mb-2 [:b "H"] "ue " [:b "S"] "aturation and " [:b "L"] "uminance Demo and Citadel Paint comparison chart"]
+            [:h5 "Dead of Night (DoN)"]
+            [:div.mb-2 "Victim roll..."]
+            [:h5 "Netrunner"]
+            [:div.mb-2 "Rotation Checker and Folder planner"]
+          ]]]]))
       

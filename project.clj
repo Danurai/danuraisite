@@ -46,6 +46,15 @@
 ;; https://stackoverflow.com/questions/29445260/compile-multiple-cljs-files-to-independent-js-files
   :cljsbuild {
     :builds {
+      :lugs-dev {
+        :source-paths ["src/cljs-lugs"]
+        :figwheel true
+        :compiler {
+          :main       danuraisite.lugscore
+          :asset-path "/js/compiled/out-lugs"
+          :output-to  "resources/public/js/compiled/lugs-app.js"
+          :output-dir "resources/public/js/compiled/out-lugs"
+          :preloads [devtools.preload]}}
       :hsl-dev {
         :source-paths ["src/cljs-hsl"]
         :figwheel true
@@ -82,15 +91,13 @@
           :output-to  "resources/public/js/compiled/nrf-app.js"
           :output-dir "resources/public/js/compiled/out-nrf"
           :preloads [devtools.preload]}}
-      :kasei-dev {
-        :source-paths ["src/cljs-kasei"]
-        :figwheel true
+      :lugs-prod {
+        :source-paths ["src/cljs-lugs"]
         :compiler {
-          :main       danuraisite.core
-          :asset-path "/js/compiled/out-kasei"
-          :output-to  "resources/public/js/compiled/kasei-app.js"
-          :output-dir "resources/public/js/compiled/out-kasei"
-          :preloads [devtools.preload]}}
+          :main      danuraisite.hslapp
+          :output-to "resources/public/js/compiled/lugs-app.js"
+          :output-dir "resources/public/js/compiled/prd-out-lugs"
+          :optimizations :advanced :pretty-print false}}
       :hsl-prod {
         :source-paths ["src/cljs-hsl"]
         :compiler {
@@ -119,13 +126,6 @@
           :output-to "resources/public/js/compiled/nrf-app.js"
           :output-dir "resources/public/js/compiled/prd-out-nrf"
           :optimizations :advanced :pretty-print false}}
-      :kasei-prod {
-        :source-paths ["src/cljs-kasei"]
-        :compiler {
-          :main      danuraisite.core
-          :output-to "resources/public/js/compiled/kasei-app.js"
-          :output-dir "resources/public/js/compiled/prd-out-kasei"
-          :optimizations :advanced :pretty-print false}}
       }}
 
   :figwheel { :css-dirs ["resources/public/css"]}
@@ -140,8 +140,7 @@
       :prep-tasks ["compile" ["cljsbuild" "once" "hsl-prod"]
                   "compile" ["cljsbuild" "once" "don-prod"] 
                   "compile" ["cljsbuild" "once" "mwl-prod"] 
-                  "compile" ["cljsbuild" "once" "nrf-prod"]
-                  "compile" ["cljsbuild" "once" "kasei-prod"] ]
+                  "compile" ["cljsbuild" "once" "nrf-prod"] ]
     }
     :dev {
       :dependencies [[reloaded.repl "0.2.4"]

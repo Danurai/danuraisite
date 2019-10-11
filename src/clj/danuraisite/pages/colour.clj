@@ -39,4 +39,5 @@
                 [:th.sortable "lum"]
                 [:th "Sample"]]]
             [:tbody#colours]]]]
+      (h/include-js "https://cdnjs.cloudflare.com/ajax/libs/taffydb/2.7.2/taffy-min.js")
       (h/include-js "/js/paintchart.js?v=1.000")]))

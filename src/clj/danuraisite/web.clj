@@ -53,6 +53,8 @@
 (defroutes lugs-routes
   (GET "/" []
     pages/lugs)
+  (GET "/party" []
+    pages/lugsparty)
   (GET "/api" []
     (redirect (str "/api/data/lugs")))
   (GET "/icons" []
@@ -119,20 +121,16 @@
   (GET "/mwl" [] pages/mwlpage)
   (GET "/nrf" [] pages/nrfpage))
   
-(defroutes kasei-routes
-  (GET "/" [] pages/kaseipage))
-  
 ;; MAIN ROUTES
 ;;;;;;;;;;;;;;;;
 (defroutes app-routes
-  (GET     "/"          [] pages/homepage)
+  (GET     "/"         [] pages/homepage)
   (context "/api"       [] api-routes)
   (context "/lugs"      [] lugs-routes)
   (context "/aosc"      [] aosc-routes)
   (context "/colours"   [] colour-routes)
   (context "/don"       [] don-routes)
   (context "/netrunner" [] anr-routes)
-  (context "/kasei"     [] kasei-routes)
 ; ADMIN
   (context "/:id/login" [id]
     (friend/wrap-authorize

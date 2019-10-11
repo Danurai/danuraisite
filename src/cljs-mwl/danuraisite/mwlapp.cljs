@@ -45,10 +45,14 @@
     (reset! srot? false)
     (reset! clist 
       (apply conj 
-        (filter #(= (:title %) (nth lines 1)) cards)
-        (mapv (fn [[a b c d]]
-          (first (filter #(= (:title %) (if c c d)) cards)))
-          (re-seq #"[0-9]x\s((.+?)\s\u25CF|(.+))" decklist))))))
+        [(-> (filter #(= (:title %) (nth lines 1)) cards)
+            first
+            (assoc :quantity 1))]
+        (mapv (fn [[a b c d e]]
+          (-> (filter #(= (:title %) (if d d e)) cards)
+              first
+              (assoc :quantity b)))
+          (re-seq #"([0-9])x\s((.+?)\s\u25CF|(.+))" decklist))))))
           
             
 (defn- isrotated? [ cardcycles ]
@@ -81,7 +85,7 @@
             [:i.fas.fa-exclamation.text-warning.mr-2 {:title "Restricted"}])
           (if (= 0 (:deck_limit cardmwl))
             [:i.fas.fa-times-circle.text-danger.mr-2 {:title "Removed"}])
-          [:span.mr-2 (str (if (:uniqueness c) "\u2022 ") (:title c))]
+          [:span.mr-2 (str (if (:uniqueness c) "\u2022 ") (:title c) " (" (:quantity c) ")")]
           (repeat (:universal_faction_cost cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])
           (repeat (:global_penalty cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])]
         (packtags cardcycles)]]))

@@ -1,5 +1,13 @@
 (in-ns 'danuraisite.pages)
 
+(defn lugsparty [ req ]
+  (h/html5
+    pretty-head
+    [:body 
+      (navbar req)
+      [:div#app]
+      (h/include-css "/css/rpg-awesome.min.css?v=1")
+      (h/include-js "/js/compiled/lugs-app.js")]))
 
 (defn lugs [ req ]
   (h/html5
