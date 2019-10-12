@@ -137,7 +137,8 @@
     :uberjar {
       :aot :all
       :source-paths ["src/clj"]
-      :prep-tasks ["compile" ["cljsbuild" "once" "hsl-prod"]
+      :prep-tasks ["compile" ["cljsbuild" "once" "lugs-prod"]
+		   "compile" ["cljsbuild" "once" "hsl-prod"]
                   "compile" ["cljsbuild" "once" "don-prod"] 
                   "compile" ["cljsbuild" "once" "mwl-prod"] 
                   "compile" ["cljsbuild" "once" "nrf-prod"] ]
