@@ -17,20 +17,19 @@
              :subname     "resources/db/db.sqlite3"}))
 
 ; Local postgresql for testing
-;(def db {:dbtype "postgresql"
-;         :dbname "conq_db"
-;         :host "localhost"
-;         :port "5432"
-;         :user "conq_user"
-;         :password "user"})
+;(def db {:dbtype "postgresql" :dbname "conq_db" :host "localhost" :port "5432" :user "conq_user" :password "user"})
+
+;; admin
       
 (defn updateuseradmin [uid admin]
-  (j/update! db :users {:admin admin}
-           ["uid = ?" uid]))
+  (j/db-do-commands db [(str "update users set admin=" admin " where uid=" uid)]))
+;  (j/update! db :users {:admin (= admin 1)}
+;           ["uid = ?" uid]))
   
 (defn updateuserpassword [uid password]
-  (j/update! db :users {:password (creds/hash-bcrypt password)}
-           ["uid = ?" uid]))
+  (j/db-do-commands db [(str "update users set password='" (creds/hash-bcrypt password) "' where uid=" uid)]))
+;  (j/update! db :users {:password (creds/hash-bcrypt password)}
+;           ["uid = ?" (int uid)]))
            
 (defn adduser [username password admin]
   (j/insert! db :users 
@@ -84,10 +83,35 @@
          [:released :bigint]]))
     (j/insert! db :version {:major 0 :minor 1 :note "dev" :released (c/to-long (t/now))})
     (catch Exception e (str "DB Error - version: " e))))
+    
+(defn- create-tbl-lugsparty []
+  (if (= (:subprotocol db) "sqlite") ; Split for AUTOINCREMENT / NEXTVAL
+    (try 
+      (j/db-do-commands db
+        (j/create-table-ddl :lugsparty
+          [[:uid        :integer :primary :key :AUTOINCREMENT]
+           [:name       :text]
+           [:data       :text]  ;json
+           [:author     :integer]
+           [:created    :bigint]
+           [:updated    :bigint]]))
+      (j/insert! db :sqlite_sequence {:name "lugsparty" :seq 1000})
+      (catch Exception e (println (str "DB Error - LUGS Party: " e))))
+  ; Create Table in postgresql
+    (try
+      (j/db-do-commands db
+        (j/db-do-commands db ["create sequence lp_uid_seq minvalue 1000"])
+        (j/create-table-ddl :lugsparty
+          [[:uid        :int :default "nextval ('lp_uid_seq')"]
+           [:data       :text]  ;json
+           [:author     :integer]
+           [:created    :bigint]
+           [:updated    :bigint]]))
+      (catch Exception e (println (str "DB Error - LUGS Party: " e))))))
                        
 (defn- create-tbl-donvictims []
   (if (= (:subprotocol db) "sqlite") ; Split for AUTOINCREMENT / NEXTVAL
-  ; Create User table in SQLITE
+  ; Create table in SQLITE
     (try
       (j/db-do-commands db
         (j/create-table-ddl :donvictims
@@ -96,11 +120,12 @@
            [:author     :integer]
            [:created    :bigint]
            [:updated    :bigint]]))
+      (j/insert! db :sqlite_sequence {:name "donvictims" :seq 1000})
       (catch Exception e (println (str "DB Error - DoN Victims: " e))))
-  ; Create User Table in postgresql
+  ; Create Table in postgresql
     (try
+      (j/db-do-commands db ["create sequence don_uid_seq minvalue 1000"])
       (j/db-do-commands db
-        (j/db-do-commands db ["create sequence don_uid_seq minvalue 1000"])
         (j/create-table-ddl :donvictims
           [[:uid        :int :default "nextval ('don_uid_seq')"]
            [:data       :text]  ;json
@@ -112,7 +137,9 @@
 (defn create-db []
   (create-tbl-users)
   (create-tbl-version)
-  (create-tbl-donvictims))
+  (create-tbl-donvictims)
+  (create-tbl-lugsparty)
+  )
   
   
 ; USERS  
@@ -152,8 +179,8 @@
             (j/insert! t-con :donvictims (assoc qry :created (c/to-long (t/now))))
             result))))))
 
-(defn get-user-victims [ uid ]
-  (j/query db ["SELECT * FROM donvictims WHERE author = ? ORDER BY UPDATED DESC" uid]))
+(defn get-user-victims [ author ]
+  (j/query db ["SELECT * FROM donvictims WHERE author = ? ORDER BY UPDATED DESC" author]))
   
 (defn get-victim [ vicuid ]
 ;; Should this also validate the logged in user? 
@@ -163,4 +190,23 @@
   (j/delete! db  :donvictims ["uid = ?" vicuid]))
   
   
+; Legends Untold: The Great Sewer
+
+(defn save-party [ uid name data author ]
+  (let [qry {:data data :author author :name name :updated (c/to-long (t/now))}
+        where-clause ["uid = ?" uid]]
+    (j/with-db-transaction [t-con db]
+      (let [result (j/update! t-con :lugsparty qry where-clause)]
+        (if (zero? (first result))
+          (j/insert! t-con :lugsparty (assoc qry :created (c/to-long (t/now))))
+          result)))))
+          
+(defn delete-party [ uid ]
+  (j/delete! db :lugsparty ["uid = ?" uid]))
+          
+(defn get-user-parties [ author ]
+  (j/query db ["SELECT * FROM lugsparty WHERE author = ? ORDER BY UPDATED DESC" author]))
+  
+(defn get-lugs-party [ author uid ]
+  (j/query db ["SELECT * FROM lugsparty WHERE author = ? AND uid = ? ORDER BY UPDATED DESC" author uid]))
          

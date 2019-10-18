@@ -2,9 +2,10 @@
 
 (defn login [req]
   (h/html5
-    (into pretty-head (h/include-js "/js/formvalidation.js?v=0.1"))
+    pretty-head
     [:body  
       (navbar req)
+      ; TODO Failed Login
       [:div.container
         [:div.row.my-2
           [:div.col-sm-6.mx-auto
@@ -20,7 +21,6 @@
                   [:div.form-group
                     [:label {:for "password"} "Password"]
                     [:input.form-control {:type "password" :name "password" :placeholder "Password"}]]
-                  [:input {:hidden true :disabled true :name "referer" :value (-> req :headers (get "referer" "/"))}]
                   [:button.btn.btn-warning.mr-2 {:type "submit"} "Login"]]]
               [:div#registertab.tab-pane.fade {:role "tabpanel"}
                 [:form.needs-validation.was-validated {:action "register" :method "post" :novalidate true}
@@ -42,29 +42,30 @@
                     [:input#password1.form-control {:type "password" :name "password1" :placeholder "password" :auto-focus true :required true}]
                     [:div.invalid-feedback "Passwords required, passwords must match"]]
                   [:button.btn.btn-warning.mr-2.disabled {:type "submit"} "Register"]]]]]]]
-      [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" 
-                              :integrity "sha256-Znf8FdJF85f1LV0JmPOob5qudSrns8pLPZ6qkd/+F0o=" 
-                              :crossorigin "anonymous"}]]))
+      (h/include-js "/js/formvalidation.js?v=0.1")
+      [:script {
+        :src "https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" 
+        :integrity "sha256-Znf8FdJF85f1LV0JmPOob5qudSrns8pLPZ6qkd/+F0o="
+        :crossorigin "anonymous"}]]))        
         
-
-(defn useradmin [req]
+(defn useradmin [ req ]
   (h/html5
     (into pretty-head (h/include-js "/js/formvalidation.js?v=0.1"))
     [:body  
       (navbar req)
-      [:div.container.mt-1
-        [:h2.mt-2 "User Admin"]
+      [:div.container.my-3
         [:ul.list-group
           [:li.list-group-item ;"Add user"
             [:form.form-inline.justify-content-between.needs-validation {:action "admin/adduser" :method "post" :novalidate true}
               [:div.form-row.align-items-center
-                [:div.col-auto
+                [:div.col-auto.mb-auto
                   [:input#username.form-control {:name "username" :type "text" :placeholder "Username" :required true}]
-                  [:div.invalid-feedback "Username Required"]]
-                [:div.col-auto
+                  [:div.invalid-feedback "Username Required"]
+                  [:div.valid-feedback "Good to go"]]
+                [:div.col-auto.mb-auto
                   [:input#password.form-control {:name "password" :type "password" :placeholder "Password" :required true}]
                   [:div.invalid-feedback "Password Required"]]
-                [:div.col-auto
+                [:div.col-auto.mb-auto
                   [:input#password1.form-control {:name "confirm" :type "password" :placeholder "Password" :required true}]
                   [:div.invalid-feedback "Password Required"]]
                 [:div.col-auto
@@ -82,7 +83,8 @@
                     (if (not= (:uid user) 1001) 
                       [:form {:action "admin/deleteuser" :method "post"}
                         [:input {:type "text" :name "uid" :value (:uid user) :readonly true :hidden true}]
-                        [:button.btn.btn-danger.float-right [:i.fas.fa-times.mr-1] "Delete"]])]
+                        ;[:button.btn.btn-danger.float-right [:i.fas.fa-times.mr-1] "Delete"]
+                        ])]
                 [:div.row
                   [:div.col-sm-2
                     (if (not= (:uid user) 1001)
@@ -98,8 +100,9 @@
                         [:label.mr-2 "Reset password"]
                         [:input.form-control {:name "password" :type "password" :placeholder "new password"}]
                         [:input.form-control {:name "confirm" :type "password" :placeholder "confirm password"}]]
-                      [:button.btn.btn-warning [:i.fas.fa-edit.mr-1] "Reset"]]]
-                ]])]]
-      [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" 
-                              :integrity "sha256-Znf8FdJF85f1LV0JmPOob5qudSrns8pLPZ6qkd/+F0o=" 
-                              :crossorigin "anonymous"}]]))
+                      [:button.btn.btn-warning [:i.fas.fa-edit.mr-1] "Reset"]]]]])]]
+    (h/include-js "/js/formvalidation.js?v=0.1")
+    [:script {
+      :src "https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" 
+      :integrity "sha256-Znf8FdJF85f1LV0JmPOob5qudSrns8pLPZ6qkd/+F0o="
+      :crossorigin "anonymous"}]]))
