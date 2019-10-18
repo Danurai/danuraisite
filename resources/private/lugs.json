@@ -423,6 +423,253 @@
 			}
 		},
 		{
+			"id": "GS-WE00",
+      "name": "Knife",
+			"specialty": "Knife",
+			"type": "Weapon",
+			"broken": {
+				"title": "No Effect",
+				"text": "This item cannot be broken."
+			},
+			"basic": {
+				"name": "Knife",
+				"attack": {
+					"Critical": 16,
+					"Strike": 14,
+					"Advance": 12,
+					"TradeBlows": 10,
+					"PushedBack": 9,
+					"Fail": 8
+				}
+			},
+			"upgraded": {
+				"name": "Knife",
+				"attack": {
+					"Critical": 16,
+					"Strike": 14,
+					"Advance": 12,
+					"TradeBlows": 10,
+					"PushedBack": 9,
+					"Fail": 8
+				}
+			}
+
+		},
+		{
+			"id": "GS-WE01",
+      "name": "Spear",
+			"specialty": "Spear",
+			"type": "Weapon",
+      "melee": true,
+			"broken": {
+				"title": "Broken!",
+				"text": "The Spear snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
+			},
+			"basic": {
+				"name": "Rough Spear",
+				"text": "The most basic of sticks, with a roughly cast head.",
+        "ammo": ["Ammo"],
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 12,
+					"TradeBlows": 9,
+					"PushedBack": 6,
+					"Fail": 5
+				}
+			},
+			"upgraded": {
+				"name": "Spear",
+				"text": "An improved head and binding makes this spear more deadly.",
+        "ammo": ["Ammo"],
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 11,
+					"TradeBlows": 9,
+					"PushedBack": 6,
+					"Fail": 5
+				}
+			}
+		},
+		{
+			"id": "GS-WE02",
+      "name": "Staff",
+			"type": "Weapon",
+      "twohanded": true,
+      "melee": true,
+			"specialty": "Staff",
+			"broken": {
+				"title": "Broken!",
+				"text": "The Staff snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
+			},
+			"basic": {
+				"name": "Rough Staff",
+				"text": "A trimmed, thick, tree branch, cut to use as a makeshift weapon.",
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 12,
+					"TradeBlows": 9,
+					"PushedBack": 5,
+					"Fail": 4
+				}
+			},
+			"upgraded": {
+				"name": "Staff",
+				"text": "A reinforced version of the rough staff, stronger and lighter.",
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 12,
+					"TradeBlows": 8,
+					"PushedBack": 5,
+					"Fail": 4
+				}
+			}
+		},
+		{
+			"id": "GS-WE03",
+      "name": "Bow",
+			"type": "Weapon",
+      "twohanded": true,
+			"specialty": "Bow",
+			"broken": {
+				"title": "String Snapped!",
+				"text": "The Bow's string snaps, and you cannot use it until you spend [Time] during the Rest Phase to repair it."
+			},
+			"basic": {
+				"name": "Rough Bow",
+				"text": "A roughly hewn bow, with a simple bow string.",
+			  "ammo": ["InfiniteAmmo","Ammo"],
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 11,
+					"Miss": 8,
+					"Fail": 7
+				}
+			},
+			"upgraded": {
+				"name": "Bow",
+				"type": "Weapon",
+				"text": "Cut from a yew tree, it is stronger and more accurate.",
+        "ammo": ["InfiniteAmmo","Ammo"],
+				"attack": {
+					"Critical": 14,
+					"Strike": 12,
+					"Advance": 11,
+					"Miss": 8,
+					"Fail": 7
+				}
+			}
+		},
+		{
+			"id": "GS-WE04",
+      "name": "Axe",
+			"type": "Weapon",
+      "melee": true,
+			"specialty": "Axe",
+			"broken": {
+				"title": "Broken!",
+				"text": "The head of the axe comes away and it cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
+			},
+			"basic": {
+				"name": "Worn Axe",
+				"text": "An old felling axe, work and tarnished.",
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 11,
+					"TradeBlows": 9,
+					"PushedBack": 8,
+					"Fail": 7
+				}
+			},
+			"upgraded": {
+				"name": "Axe",
+				"text": "A sharpened blade and reinforced head make this a better weapon.",
+				"attack": {
+					"Critical": 14,
+					"Strike": 12,
+					"Advance": 11,
+					"TradeBlows": 9,
+					"PushedBack": 8,
+					"Fail": 7
+				}
+			}
+		},
+		{
+			"id": "GS-WE05",
+      "name": "Polearm",
+			"type": "Weapon",
+      "melee": true,
+      "twohanded": true,
+			"specialty": "Polearm",
+			"broken": {
+				"title": "Broken!",
+				"text": "The bill at the end has come away. The Weapon cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
+			},
+			"basic": {
+				"name": "Crude Polearm",
+				"text": "A pole, with a farmer's bill strapped to one end.",
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 11,
+					"TradeBlows": 9,
+					"PushedBack": 8,
+					"Fail": 7
+				}
+			},
+			"upgraded": {
+				"name": "Bill",
+				"text": "A pole that has had a hooked blade screwed onto it.",
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 10,
+					"TradeBlows": 9,
+					"PushedBack": 8,
+					"Fail": 7
+				}
+			}
+		},
+		{
+			"id": "GS-WE06",
+      "name": "Javelin",
+			"type": "Weapon",
+			"specialty": "Javelin",
+			"broken": {
+				"title": "Shattered!",
+				"text": "Reduce Ammo by 1. You may spend [Time] during the Rest Phase to Restore each lost Ammo up to the maximum for the Weapon."
+			},
+			"basic": {
+				"name": "Hunting Javelin",
+				"text": "A shaft with a thin metal point designed for hunting animals.",
+				"ammo": ["Ammo","Ammo"],
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 10,
+					"Miss": 7,
+					"Fail": 5
+				}
+			},
+			"upgraded": {
+				"name": "War Javelin",
+				"text": "Sturdier than its hunting cousin, it is heavier and better weighted.",
+				"ammo": ["Ammo","Ammo","Ammo"],
+				"attack": {
+					"Critical": 15,
+					"Strike": 13,
+					"Advance": 9,
+					"Miss": 7,
+					"Fail": 6
+				}
+			}
+		},
+		{
 			"id": "GS-ST01",
 			"type": "Skill Talent",
 			"name": "Orator",
@@ -546,7 +793,7 @@
 					"name": "Dirty Fighter",
 					"icons": ["Melee"],
 					"cost": "Exhaust",
-					"text": "Turn a [TradeBlows] into a [Hit] if you had Advantage on your attack."
+					"text": "Turn a [TradeBlows] into a [Strike] if you had Advantage on your attack."
 				}
 			]
 		},
@@ -662,19 +909,19 @@
 					"name": "Quick Snack",
 					"icons": ["Animal"],
 					"cost": "Exhaust",
-					"text": "You may Heal any Hero for [health]"
+					"text": "You may Heal any Hero for [Wound]"
 				},
 				{
 					"name": "Exterminator",
 					"icons": [],
 					"cost": "Exhaust",
-					"text": "Gain  on any  against a card that has the [Animal] modifier, or to any Event that requires [Animal]."
+					"text": "Gain +2 on any Test against a card that has the [Animal] modifier, or to any Event that requires [Animal]."
 				},
 				{
 					"name": "Follow Tracks",
 					"icons": ["Animal"],
 					"cost": "Exhaust",
-					"text": "Gain  to the current  from this location"
+					"text": "Gain +2 to the current Scouting Test from this location"
 				}
 			]
 		},
@@ -827,7 +1074,7 @@
 					"name": "Brawler",
 					"icons": ["Knife &", "Melee", "PlayAfterRolling"],
 					"cost": "Exhaust",
-					"text": "Change a [SHIELD] result into a [Advantage] or [TradeBlows] result."
+					"text": "Change a [PushedBack] result into a [Advance] or [TradeBlows] result."
 				}
 			]
 		},
@@ -1279,248 +1526,6 @@
 				"name": "Large Watercarrier",
 				"text": "Gain +1 to your Swim (Brawn) Tests. Exhaust to Heal one Hero for [Health]. May only be restored during the Rest Phase if the Location has a Campsite."
 			}
-		},
-		{
-			"id": "GS-WE00",
-      "name": "Knife",
-			"type": "Weapon",
-			"specialty": "Knife",
-			"broken": {
-				"title": "No Effect",
-				"text": "This item cannot be broken."
-			},
-			"basic": {
-				"name": "Knife",
-				"attack": {
-					"Critical": 16,
-					"Strike": 14,
-					"Advance": 12,
-					"TradeBlows": 10,
-					"PushedBack": 9,
-					"Fail": 8
-				}
-			},
-			"upgraded": {
-				"name": "Knife",
-				"attack": {
-					"Critical": 16,
-					"Strike": 14,
-					"Advance": 12,
-					"TradeBlows": 10,
-					"PushedBack": 9,
-					"Fail": 8
-				}
-			}
-
-		},
-		{
-			"id": "GS-WE01",
-      "name": "Spear",
-			"type": "Weapon",
-      "sub-type": "2H",
-			"specialty": "Spear",
-			"broken": {
-				"title": "Broken!",
-				"text": "The Spear snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
-			},
-			"basic": {
-				"name": "Rough Spear",
-				"text": "The most basic of sticks, with a roughly cast head.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 12,
-					"TradeBlows": 9,
-					"PushedBack": 6,
-					"Fail": 5
-				}
-			},
-			"upgraded": {
-				"name": "Spear",
-				"text": "An improved head and binding makes this spear more deadly.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 11,
-					"TradeBlows": 9,
-					"PushedBack": 6,
-					"Fail": 5
-				}
-			}
-		},
-		{
-			"id": "GS-WE02",
-      "name": "Staff",
-			"type": "Weapon",
-      "sub-type": "2H",
-			"specialty": "Staff",
-			"broken": {
-				"title": "Broken!",
-				"text": "The Staff snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
-			},
-			"basic": {
-				"name": "Rough Staff",
-				"text": "A trimmed, thick, tree branch, cut to use as a makeshift weapon.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 12,
-					"TradeBlows": 9,
-					"PushedBack": 5,
-					"Fail": 4
-				}
-			},
-			"upgraded": {
-				"name": "Staff",
-				"text": "A reinforced version of the rough staff, stronger and lighter.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 12,
-					"TradeBlows": 8,
-					"PushedBack": 5,
-					"Fail": 4
-				}
-			}
-		},
-		{
-			"id": "GS-WE03",
-      "name": "Bow",
-			"type": "Weapon",
-      "sub-type": "2H",
-			"specialty": "Bow",
-			"broken": {
-				"title": "String Snapped!",
-				"text": "The Bow's string snaps, and you cannot use it until you spend [Time] during the Rest Phase to repair it."
-			},
-			"basic": {
-				"name": "Rough Bow",
-				"text": "A roughly hewn bow, with a simple bow string.",
-			  "ammo": "Inf.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 11,
-					"Miss": 8,
-					"Fail": 7
-				}
-			},
-			"upgraded": {
-				"name": "Bow",
-				"type": "Weapon",
-				"text": "Cut from a yew tree, it is stronger and more accurate.",
-        "ammo": "Inf.",
-				"attack": {
-					"Critical": 14,
-					"Strike": 12,
-					"Advance": 11,
-					"Miss": 8,
-					"Fail": 7
-				}
-			}
-		},
-		{
-			"id": "GS-WE04",
-      "name": "Axe",
-			"type": "Weapon",
-			"specialty": "Axe",
-			"broken": {
-				"title": "Broken!",
-				"text": "The head of the axe comes away and it cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
-			},
-			"basic": {
-				"name": "Worn Axe",
-				"text": "An old felling axe, work and tarnished.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 11,
-					"TradeBlows": 9,
-					"PushedBack": 8,
-					"Fail": 7
-				}
-			},
-			"upgraded": {
-				"name": "Axe",
-				"text": "A sharpened blade and reinforced head make this a better weapon.",
-				"attack": {
-					"Critical": 14,
-					"Strike": 12,
-					"Advance": 11,
-					"TradeBlows": 9,
-					"PushedBack": 8,
-					"Fail": 7
-				}
-			}
-		},
-		{
-			"id": "GS-WE05",
-      "name": "Polearm",
-			"type": "Weapon",
-      "sub-type": "2H",
-			"specialty": "Polearm",
-			"broken": {
-				"title": "Broken!",
-				"text": "The bill at the end has come away. The Weapon cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
-			},
-			"basic": {
-				"name": "Crude Polearm",
-				"text": "A pole, with a farmer's bill strapped to one end.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 11,
-					"TradeBlows": 9,
-					"PushedBack": 8,
-					"Fail": 7
-				}
-			},
-			"upgraded": {
-				"name": "Bill",
-				"text": "A pole that has had a hooked blade screwed onto it.",
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 10,
-					"TradeBlows": 9,
-					"PushedBack": 8,
-					"Fail": 7
-				}
-			}
-		},
-		{
-			"id": "GS-WE06",
-      "name": "Javelin",
-			"type": "Weapon",
-			"specialty": "Javelin",
-			"broken": {
-				"title": "Shattered!",
-				"text": "Reduce Ammo by 1. You may spend [Time] during the Rest Phase to Restore each lost Ammo up to the maximum for the Weapon."
-			},
-			"basic": {
-				"name": "Hunting Javelin",
-				"text": "A shaft with a thin metal point designed for hunting animals.",
-				"ammo": 2,
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 10,
-					"Miss": 7,
-					"Fail": 5
-				}
-			},
-			"upgraded": {
-				"name": "War Javelin",
-				"text": "Sturdier than its hunting cousin, it is heavier and better weighted.",
-				"ammo": 3,
-				"attack": {
-					"Critical": 15,
-					"Strike": 13,
-					"Advance": 9,
-					"Miss": 7,
-					"Fail": 6
-				}
-			}
 		}
-	]
+  ]
 }
