@@ -18,12 +18,19 @@
       io/resource
       slurp))
 
+;; Legends Untold
+
 (def lugsicons
   (-> "private/lugs.json"
       io/resource
       slurp
       (json/read-str :key-fn keyword)
       :icons))
+      
+(defn get-parties [ req ]
+  (if-let [identity (friend/identity req)]
+    (db/get-user-parties (-> req get-authentications :uid))
+    "false"))
       
 ;; Dead of Night
 

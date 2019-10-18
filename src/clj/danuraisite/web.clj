@@ -51,37 +51,32 @@
 ;; LUGS
 ;;;;;;;;        
 (defroutes lugs-routes
-  (GET "/" []
-    pages/lugs)
+  (context "/party/login" []
+    (friend/wrap-authorize 
+      (GET "/" [] (redirect "/lugs/party"))
+      #{::db/user}))
   (GET "/party" []
     pages/lugsparty)
   (GET "/api" []
     (redirect (str "/api/data/lugs")))
+  (GET "/api/parties" []
+    #(-> (model/get-parties %)
+         json/write-str
+         response
+         (content-type "application/json")))
+  (GET "/api/party/:id" [id]
+    #(-> (db/get-lugs-party (-> % model/get-authentications :uid) id)
+         json/write-str
+         response
+         (content-type "application/json")))
   (GET "/icons" []
-    pages/lugsicons))
-    
-;; AOS:C
-;;;;;;;;;
-
-(defroutes aosc-routes
-  (GET "/" []
-    pages/aosc-table)
-  (GET "/tools" []
-    pages/aosc-tools)
-  (POST "/customsource" [url]
-    (-> (http/get url)
-        :body
-        response
-        (content-type "application/json")))
-  (GET "/tooltips" []
-    pages/aosc-tooltips)
-  (GET "/api/local" []
-    (redirect "/api/data/carddatabase"))
-  (GET "/api/remote" []    
-    (-> (model/aoscsearch (model/aosccardcount))
-        :body
-        response
-        (content-type "application/json"))))
+    pages/lugsicons)
+  (POST "/party/save" [ uid name data ]
+    #(response 
+      (db/save-party uid name data (-> % model/get-authentications :uid))))
+  (POST "/party/delete" [ uid ]
+    (prn uid)
+    (response (db/delete-party uid))))
     
 ;; DON
 ;;;;;;;;
@@ -127,7 +122,6 @@
   (GET     "/"         [] pages/homepage)
   (context "/api"       [] api-routes)
   (context "/lugs"      [] lugs-routes)
-  (context "/aosc"      [] aosc-routes)
   (context "/colours"   [] colour-routes)
   (context "/don"       [] don-routes)
   (context "/netrunner" [] anr-routes)

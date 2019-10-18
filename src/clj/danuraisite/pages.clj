@@ -12,7 +12,6 @@
 (load "pages/legendsuntold")
 (load "pages/colour")
 (load "pages/deadofnight")
-(load "pages/ageofsigmarchampions")
 (load "pages/netrunner")
 
 (defn homepage [ req ]
