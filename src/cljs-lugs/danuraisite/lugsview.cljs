@@ -48,10 +48,10 @@
   [:div.d-flex
     [:span.mr-1 (:name ab)]
     [:span.my-auto.ml-auto
-      (doall (for [ic (:icons ab)]
+      (doall (for [ic (:icons ab)] 
         ^{:key (gensym)}[:span.mr-1 {:title ic :class (get @fa-icons ic)}]))
-      (if-let [cost (:cost ab)]
-        [:span {:title cost :class (get @fa-icons cost)}])]])
+      (doall (for [co (:cost ab)]
+          ^{:key (gensym)}[:span.mr-1 {:title co :class (get @fa-icons co)}]))]])
 
 (defn- talent-abilities 
   ([ crd hero? ]
@@ -59,7 +59,9 @@
       (doall (for [ab (:abilities crd)]
         ^{:key (gensym)}[:div.card 
           [:div.card-header.p-2 {:style {:white-space "nowrap" :cursor "pointer"} :data-toggle "collapse" :data-target (str ".collapse-" (:id crd) (if hero? "-h"))} (ability-header ab)]
-          [:div.card-body.collapse.p-2 {:class (str "collapse-" (:id crd) (if hero? "-h"))} [:span (-> ab :text (markdown @fa-icons))]]]))])
+          [:div.card-body.collapse.p-2 {:class (str "collapse-" (:id crd) (if hero? "-h"))} 
+            [:div (doall (for [co (:cost ab)] ^{:key (gensym)}[:span.mr-1 {:title co :class (get @fa-icons co)}]))]
+            [:div (-> ab :text (markdown @fa-icons))]]]))])
   ([ crd ]
     (talent-abilities crd false)))
   
@@ -286,7 +288,7 @@
           
 
 (defn Page []
-  (let [ps (r/atom {:cardlist "Occupation"})]
+  (let [ps (r/atom {:cardlist "Skill Talent"})]
     ;(setparty! ps nil)
     ;(swap! ps assoc :hero (-> @party :heros first key))
     (fn []
