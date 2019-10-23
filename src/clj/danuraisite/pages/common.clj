@@ -68,15 +68,7 @@
               ;[:a.dropdown-item {:href "/lugs"} "Sheets"]
               [:a.dropdown-item {:href "/lugs/party"} "Party"]
               [:a.dropdown-item {:href "/lugs/icons"} "Icons"]
-              [:a.dropdown-item {:href "/lugs/api"} "API"]]]              
-          [:li.nav-item.dropdown
-            [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "AoS:C"]
-            [:div.dropdown-menu
-              [:a.dropdown-item {:href "/aosc"} "Card List"]
-              [:a.dropdown-item {:href "/aosc/tooltips"} "Card Tooltips"]
-              [:a.dropdown-item {:href "/aosc/tools"} "Tools"]
-              [:a.dropdown-item {:href "/aosc/api/local"} "API Local"]
-              [:a.dropdown-item {:href "/aosc/api/remote"} "API Remote"]]]
+              [:a.dropdown-item {:href "/lugs/api"} "API"]]]
           [:li.nav-item.dropdown
             [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "Colours"]
             [:div.dropdown-menu
