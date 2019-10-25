@@ -110,6 +110,10 @@
 ; OCCUPATION  ;
 ;;;;;;;;;;;;;;;
 
+(defn- knife []
+  (let [crd (->> @apidata :cards (filter #(= (:id %) "GS-WE00")) first)]
+    [:span.text-muted.showpopover
+      [:i.ml-auto {:class (get @fa-icons "Knife")}]]))
 
   
 (defn- attribute-row [ attributes ]
@@ -118,19 +122,6 @@
       ^{:key (gensym)}[:span {:title (-> att key name)}
         [:span.bg-secondary.text-light.px-2.border.border-secondary (-> att key name (subs 0 2) )][:span.px-2.text-center (-> att val)]]
       )])
-
-(defn- occupation-content [ crd ]
-  (let [w (->> @apidata :cards (filter #(= (:id %) "GS-WE00")) first)]
-    [:div
-      [:div.mb-1
-        [:div.d-flex.justify-content-center 
-          (attribute-row (:attributes crd))]]
-      [:div.d-flex.justify-content-center.text-muted
-        [:span.example-popover {:data-toggle "popover" :data-content "Knifw" :title "Weapon"}
-          [:i {:class (get @fa-icons (:specialty w))}]]
-        ;(card-header w)
-        ;(attack-row (-> w :basic :attack))
-        ]]))
         
 (defn occupation-row [ ps crd ]
   ^{:key (gensym)}[:li.list-group-item 
@@ -139,7 +130,8 @@
         [:div.mb-2 (card-header crd)]
         [:div (select-button ps crd)]]
       [:div.col-sm-9
-        (occupation-content crd)]
+        [:div.d-flex.justify-content-around
+          (attribute-row (:attributes crd)) (knife)]]
       [card-id crd]]])
         
 ;; Cards
@@ -154,11 +146,6 @@
 )
 
 ;; Heroes 
-
-(defn- knife []
-  (let [crd (->> @apidata :cards (filter #(= (:id %) "GS-WE00")) first)]
-    [:span.text-muted.showpopover
-      [:i.ml-auto {:class (get @fa-icons "Knife")}]]))
 
 (defn- simple-card-row [ crd level ]
   (case (:type crd)
@@ -288,7 +275,7 @@
           
 
 (defn Page []
-  (let [ps (r/atom {:cardlist "Skill Talent"})]
+  (let [ps (r/atom {:cardlist "Occupation"})]
     ;(setparty! ps nil)
     ;(swap! ps assoc :hero (-> @party :heros first key))
     (fn []
