@@ -45,7 +45,7 @@
     (reset! srot? false)
     (reset! clist 
       (apply conj 
-        [(-> (filter #(= (:title %) (nth lines 1)) cards)
+        [(-> (filter #(= (:title %) @sname) cards)
             first
             (assoc :quantity 1))]
         (mapv (fn [[a b c d e]]
