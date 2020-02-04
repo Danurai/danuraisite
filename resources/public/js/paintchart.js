@@ -66,7 +66,7 @@ function write_comparison () {
 $('#colours').on('click','.sample', function () {
   var c = _data({name: $(this).data('name'), range: $(this).data('range')}).first();
   if (c.hex != "") { 
-    compare.push();
+    compare.push(c);
     write_comparison();
   }
 });
