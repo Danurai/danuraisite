@@ -48,17 +48,17 @@
         response
         (content-type "application/json"))))
 
-;; LUGS
+;; LEGENDS UNTOLD
 ;;;;;;;;        
-(defroutes lugs-routes
+(defroutes lu-routes
   (context "/party/login" []
     (friend/wrap-authorize 
-      (GET "/" [] (redirect "/lugs/party"))
+      (GET "/" [] (redirect "/lu/party"))
       #{::db/user}))
   (GET "/party" []
     pages/lugsparty)
   (GET "/api" []
-    (redirect (str "/api/data/lugs")))
+    (redirect (str "/api/data/lu")))
   (GET "/api/parties" []
     #(-> (model/get-parties %)
          json/write-str
@@ -116,15 +116,26 @@
   (GET "/mwl" [] pages/mwlpage)
   (GET "/nrf" [] pages/nrfpage))
   
+(defroutes dsapp-routes
+  (GET "/"      [] pages/apphome)
+  (GET "/kasei"  [] pages/kasei)
+  (GET "/kosa"   [] pages/kosa)
+  (GET "/rklotr" [] pages/rklotr))
+  
+(defroutes score-routes
+  (GET "/"   [] pages/scorehome))
+  
 ;; MAIN ROUTES
 ;;;;;;;;;;;;;;;;
 (defroutes app-routes
   (GET     "/"         [] pages/homepage)
   (context "/api"       [] api-routes)
-  (context "/lugs"      [] lugs-routes)
+  (context "/lu"        [] lu-routes)
   (context "/colours"   [] colour-routes)
   (context "/don"       [] don-routes)
   (context "/netrunner" [] anr-routes)
+  (context "/apps"  [] dsapp-routes)
+  (context "/scores" [] score-routes)
 ; ADMIN
   (context "/:id/login" [id]
     (friend/wrap-authorize
