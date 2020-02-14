@@ -13,6 +13,15 @@
 (load "pages/colour")
 (load "pages/deadofnight")
 (load "pages/netrunner")
+(load "pages/apps")
+
+(defn scorehome [ req ]
+  (h/html5 
+    pretty-head
+    [:body
+      (navbar req)
+      [:div#app]
+      (h/include-js "/js/compiled/scoresapp.js")]))
 
 (defn homepage [ req ]
   (h/html5 
@@ -22,7 +31,7 @@
       [:div.container.my-3
         [:div.row
           [:div.col
-            [:h5 "Legends Untold: The Great Sewer (LUGS)"]
+            [:h5 "Legends Untold"]
             [:div.mb-2 "Character Builder and Icon Reference"]
             [:h5 "Age of Sigmar: Champions (AoS:C)"]
             [:div.mb-2 "Card list, tooltip demo and API links"]
