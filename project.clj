@@ -142,6 +142,23 @@
           :output-to "resources/public/js/compiled/kasei-app.js"
           :output-dir "resources/public/js/compiled/prd-out-kasei"
           :optimizations :advanced :pretty-print false}}
+          
+      :scores-dev {
+        :source-paths ["src/cljs-scores"]
+        :figwheel true
+        :compiler {
+          :main       danuraisite.scores
+          :asset-path "/js/compiled/out-scores"
+          :output-to  "resources/public/js/compiled/scoresapp.js"
+          :output-dir "resources/public/js/compiled/out-scores"
+          :preloads [devtools.preload]}}
+      :scores-prod {
+        :source-paths ["src/cljs-scores"]
+        :compiler {
+          :main      danuraisite.scores
+          :output-to "resources/public/js/compiled/scoresapp.js"
+          :output-dir "resources/public/js/compiled/prd-out-scores"
+          :optimizations :advanced :pretty-print false}}
       }}
 
   :figwheel { :css-dirs ["resources/public/css"]}
@@ -157,6 +174,7 @@
                   "compile" ["cljsbuild" "once" "hsl-prod"]
                   "compile" ["cljsbuild" "once" "don-prod"] 
                   "compile" ["cljsbuild" "once" "mwl-prod"] 
+                  "compile" ["cljsbuild" "once" "scores-prod"]
                   "compile" ["cljsbuild" "once" "nrf-prod"] ]
     }
     :dev {

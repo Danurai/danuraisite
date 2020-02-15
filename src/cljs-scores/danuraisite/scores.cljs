@@ -117,7 +117,7 @@
             :style {:width "auto"}
             :value (if (:adversary @app) (:advlvl @app) "Base")
             :on-change #(swap! app assoc :advlvl (-> % .-target .-value int))}
-            (for [advlvl (range 7)] [:option {:key (gensym) :val advlvl} (if (= 0 advlvl) "Base" advlvl)])]]]]
+            (for [advlvl (range 7)] [:option {:key (gensym)} (if (= 0 advlvl) "Base" advlvl)])]]]]
     [:div.row.border-top.border-bottom.my-2.py-2
       [:div.col
         [:div.form-inline

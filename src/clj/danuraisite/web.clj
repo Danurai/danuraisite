@@ -116,11 +116,11 @@
   (GET "/mwl" [] pages/mwlpage)
   (GET "/nrf" [] pages/nrfpage))
   
-(defroutes dsapp-routes
-  (GET "/"      [] pages/apphome)
-  (GET "/kasei"  [] pages/kasei)
-  (GET "/kosa"   [] pages/kosa)
-  (GET "/rklotr" [] pages/rklotr))
+;(defroutes dsapp-routes
+;  (GET "/"      [] pages/apphome)
+;  (GET "/kasei"  [] pages/kasei)
+;  (GET "/kosa"   [] pages/kosa)
+;  (GET "/rklotr" [] pages/rklotr))
   
 (defroutes score-routes
   (GET "/"   [] pages/scorehome))
@@ -134,7 +134,7 @@
   (context "/colours"   [] colour-routes)
   (context "/don"       [] don-routes)
   (context "/netrunner" [] anr-routes)
-  (context "/apps"  [] dsapp-routes)
+  ;(context "/apps"  [] dsapp-routes)
   (context "/scores" [] score-routes)
 ; ADMIN
   (context "/:id/login" [id]

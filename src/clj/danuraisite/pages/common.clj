@@ -65,10 +65,10 @@
           [:li.nav-item.dropdown
             [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "LUGS"]
             [:div.dropdown-menu
-              ;[:a.dropdown-item {:href "/lugs"} "Sheets"]
-              [:a.dropdown-item {:href "/lugs/party"} "Party"]
-              [:a.dropdown-item {:href "/lugs/icons"} "Icons"]
-              [:a.dropdown-item {:href "/lugs/api"} "API"]]]
+              ;[:a.dropdown-item {:href "/lu"} "Sheets"]
+              [:a.dropdown-item {:href "/lu/party"} "Party"]
+              [:a.dropdown-item {:href "/lu/icons"} "Icons"]
+              [:a.dropdown-item {:href "/lu/api"} "API"]]]
           [:li.nav-item.dropdown
             [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "Colours"]
             [:div.dropdown-menu
@@ -79,7 +79,8 @@
             [:a.nav-link.dropdown-toggle {:href "#" :role "dropdown" :data-toggle "dropdown"} "Netrunner"]
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/netrunner/mwl"} "MWL Checker"]
-              [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]]
+              [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]
+          (navlink (:uri req) "/scores" "Scores")]
     ;; Login Icon
           [:span.nav-item.dropdown
             [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href="#" :role "button" :data-toggle "dropdown" :aria-haspopup "true" :aria-expanded "false"}

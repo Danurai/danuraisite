@@ -13,7 +13,7 @@
 (load "pages/colour")
 (load "pages/deadofnight")
 (load "pages/netrunner")
-(load "pages/apps")
+;(load "pages/apps")
 
 (defn scorehome [ req ]
   (h/html5 
