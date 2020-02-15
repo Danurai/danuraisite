@@ -21,7 +21,7 @@
 ;; Legends Untold
 
 (def lugsicons
-  (-> "private/lugs.json"
+  (-> "private/lu.json"
       io/resource
       slurp
       (json/read-str :key-fn keyword)
