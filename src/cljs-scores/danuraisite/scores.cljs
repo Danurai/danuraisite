@@ -14,7 +14,8 @@
     :adversary "none"
     :boards (:boards sidata)
     :advlvl 0
-    :score {:win true :invdeck 0 :dahan 10 :blight 2}}))
+    :score {:win true :invdeck 0 :dahan 10 :blight 2}
+    :sets {:core true}}))
     
 (def maxdiff 14)
 ;(+ (->> sidata :scenarios (map :difficulty) (remove nil?) (apply max))
@@ -56,10 +57,10 @@
 (defn- randomise []
   (let [p (:players @app)
         rnd (rand-int 6)
-        sora (cond (= rnd 0) nil (< 0 rnd 3) :scen (< 2 rnd 4) :adv :else :both)]
-    (prn sora)
+        sora (cond (= rnd 0) nil (< 0 rnd 3) :scen (< 2 rnd 4) :adv :else :both)
+        setfilter (->> @app :sets keys (map name) set)]
     (swap! app assoc
-      :spirits   (vec (concat (take p (->> sidata :spirits (filter #(nil? (:promo %))) shuffle (map :name))) (repeat (- 4 p) "none")))
+      :spirits   (vec (concat (take p (->> sidata :spirits (filter #(contains? setfilter (:setname %))) shuffle (map :name))) (repeat (- 4 p) "none")))
       :blight    true
       :scenario  (case sora (:scen :both) (->> sidata :scenarios rest shuffle (map :name) first) nil)
       :adversary (case sora (:adv :both) (->> sidata :adversaries rest shuffle (map :name) first) nil)
@@ -67,7 +68,7 @@
       :advlvl    (-> @app :advlvl (+ (- (rand-int 3) 1)) (max 0) (min 6)))))
     
 (defn page [ dom-node ]
-  [:div.container.my-3
+  [:div.container-fluid.my-3
     ;[:div (-> @app :advlvl str)]
     [:div.images {:hidden true}
       [:img#boarda {:src "img/boards/boarda.png"}]
@@ -75,19 +76,33 @@
       [:img#boardc {:src "img/boards/boardc.png"}]
       [:img#boardd {:src "img/boards/boardd.png"}]]
     [:div.row.mb-2
-      [:div.col-12
-        [:div.d-flex
-          [:button.btn.btn-outline-secondary.mr-1 {:on-click #(randomise)}
-            "Randomise"]
-          [:select.form-control.w-auto.mr-1 {
-            :value (:players @app) 
-            :on-change #(swap! app assoc :players (-> % .-target .-value int))}
-            (for [n (range 1 5)] [:option {:key (gensym)} n])]
-          [:label.my-auto.mr-1 "Players"]
-          [:div.ml-auto.d-flex
+      [:div.col-sm-4
+        [:div.d-flex.justify-content-center
+          [:div.form-check.form-check-inline
+            [:input.form-check-input {
+              :type "checkbox" 
+              :value (-> @app :sets :promo1) 
+              :on-change #(if (-> @app :sets :promo1) (swap! app update :sets dissoc :promo1) (swap! app assoc-in [:sets :promo1] true))}]
+            [:label.form-check-label "Promo Pack 1"]]
+          [:div.form-check.form-check-inline
+            [:input.form-check-input {
+              :type "checkbox" 
+              :value (-> @app :sets :bandc) 
+              :on-change #(if (-> @app :sets :bandc) (swap! app update :sets dissoc :bandc) (swap! app assoc-in [:sets :bandc] true))}]
+            [:label.form-check-label "Branch and Claw"]]]]
+        [:div.col-sm-4
+          [:div.d-flex.justify-content-center.input-group.mb-1 {:style {:display "inline-flex" :flex "auto"}}
+            [:label.my-auto.mr-1 "Players:"]
+            [:select.form-control.w-auto.mr-2 {
+              :value (:players @app) 
+              :on-change #(swap! app assoc :players (-> % .-target .-value int))}
+              (for [n (range 1 5)] [:option {:key (gensym)} n])]
+            [:div [:button.btn.btn-outline-secondary.mr-1 {:on-click #(randomise)} "Randomise"]]]]
+        [:div.col-sm-4
+          [:div.d-flex.justify-content-center
             [:span.my-auto (str "Difficulty: " (getdiff) "/" maxdiff)]
             [:div.progress.mx-1.border.my-auto {:style {:width "150px"}}
-              [:div.progress-bar {:role "" :style {:width (-> (getdiff) (/ maxdiff) (* 100) int (str "%"))}}]]]]]]
+              [:div.progress-bar {:role "" :style {:width (-> (getdiff) (/ maxdiff) (* 100) int (str "%"))}}]]]]]
     [:div.row.mb-2
       [:div.col-sm-6
         [:label "Spirits"]

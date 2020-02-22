@@ -3,6 +3,7 @@
 (def sidata {
   :spirits [{
 		:name "A Spread of Rampant Green"
+    :setname "core"
 		:setup "1 Presence in highest Wetlands 1 Presence in Jungle without Dahan"
 		:passive "In SS may destroy Presence to prevent Build/Ravage. During Growth may place destroyed Presence (costs 1 Energy if Blight card has flipped)."
 		:growth ["ALWAYS Place Presence at range 2 in J/W PLUS ONE OF…" "Reclaim cards gain a card" "Place presence at range 1 +1 card play this turn" "Gain a card +3 Energy"]
@@ -46,6 +47,7 @@
 		}]
 	} {
 		:name "Bringer of Dreams and Nightmares"
+    :setname "core"
 		:setup "2 Presence in highest Sands"
 		:passive "If Powers would destroy instead push and make 0/2/5 fear for Exp/Town/City instead"
 		:growth ["Reclaim cards Gain a card" "Reclaim one card Place Presence at range 0" "Gain a card Place Presence at range 1" "Place presence with Dahan/Inv at range 4 +2 Energy"]
@@ -83,7 +85,7 @@
 		}]
 	} {
 		:name "Heart of the Wildfire"
-    :promo true
+    :setname "promo1"
 		:setup "3 Presence and 2 Blight in highest Sands"
 		:passive "Whenever you place presence deal X damage in the land to invaders X = revealed fire on presence tracks; If you deal 2+ add a blight push all beasts and any number of dahan; If multiple presence are added at once this only triggers once; Your presence are not removed by blight caused by player card effects"
 		:growth ["Reclaim cards gain a card 1 energy" "Gain a card place presence at range 3" "Place a presence at range 1 gain energy equal to 2+X X = revealed fire/plant on presence tracks"]
@@ -128,6 +130,7 @@
 		}]
 	} {
 		:name "Lightning's Swift Strike"
+    :setname "core"
 		:setup "2 Presence in highest Sands"
 		:passive "Make a number of slow powers equal to your Air into fast powers"
 		:growth ["Reclaim Gain a card +1 energy" "Place Presence Range 2 Place Presence Range 0" "Place Presence Range 1 +2 Energy"]
@@ -159,6 +162,7 @@
 		}]
 	} {
 		:name "Ocean's Hungry Grasp"
+    :setname "core"
 		:setup "1 Presence in the Ocean (connected to all coasts) and 1 Presence in any Coastal land"
 		:passive "Oceans on boards with your Presence are coastal wetlands for powers and blight. Invaders and Dahan drown. May exchange # Players drowned health for 1 Energy."
 		:growth ["Reclaim cards gain a card Gather 1 Presence into Ocean +2 energy" "Place 1 Presence in an Ocean 1 Presence in an Ocean +1 Energy" "Gain a card place 1 Presence at range 1 in Coastal land Push 1 Presence from each Ocean"]
@@ -204,6 +208,7 @@
 		}]
 	} {
 		:name "River Surges in Sunlight"
+    :setname "core"
 		:setup "1 Presence in highest Wetlands"
 		:passive "Presence in Wetlands are considered Sacred Site"
 		:growth ["Reclaim cards gain a card +1 energy" "Place presence at range 1 place presence at range 1" "Gain a card place presence at range 2"]
@@ -230,7 +235,7 @@
 		}]
 	} {
 		:name "Serpent Slumbering Beneath the Island"
-    :promo true
+    :setname "promo1"
 		:setup "1 Presence in Land 5; Deep Slumber Track 5 7 8 10 11 12 13"
 		:passive "Deep Slumber Track 5 7 8 10 11 12 13"
 		:growth ["PICK TWO OF… Reclaim cards Move a Presence Range 1" "Gain a Card +1 Energy" "+4 Energy" "Place Presence in land without Blight Range 3"]
@@ -278,6 +283,7 @@
 		}]
 	} {
 		:name "Shadows Flicker Like Flame"
+    :setname "core"
 		:setup "2 Presence in highest Jungle 1 Presence in land #5"
 		:passive "May pay 1 Energy to target lands with Dahan ignoring range"
 		:growth ["Reclaim cards gain a card" "Gain a card place presence at range 1" "Place presence at range 3 +3 Energy"]
@@ -304,6 +310,7 @@
 		}]
 	} {
 		:name "Thunderspeaker"
+    :setname "core"
 		:setup "1 Presence in each land with 2 Dahan (2 Presence total)"
 		:passive "Your presence may move with Dahan; after placing Blight from Ravage destroy a Presence within Range 1 for each destroyed Dahan"
 		:growth ["Reclaim cards Gain two cards" "Place two Presence in land with Dahan (Range 2 Range 1)" "Place a Presence Range 1 gain 4 Energy"]
@@ -338,6 +345,7 @@
 		}]
 	} {
 		:name "Vital Strength of the Earth"
+    :setname "core"
 		:setup "2 Presence in highest Mountain 1 in highest Jungle"
 		:passive "Defend 3 in all SS"
 		:growth ["Reclaim Place Presence Range 2" "Gain a card Place Presence Range 0" "Place Presence Range 1 +2 Energy"]
