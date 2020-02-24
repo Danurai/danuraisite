@@ -160,7 +160,7 @@
             factions @factions]
         [:div.container-fluid.my-3
           [:div.row
-            [:div.col-sm-7.mb-3
+            [:div.col-12.col-lg-7.mb-3
               [:div.row-fluid.mb-3
                 (doall (for [side ["runner" "corp"]]
                   ^{:key (gensym)}[:ol.breadcrumb
@@ -199,7 +199,7 @@
                                    (if-let [img (:image_url c)] 
                                      img
                                      (clojure.string/replace imgurltemplate #"\{code\}" (:code c))))}]]])]]
-            [:div.col-sm-5.mb-3
+            [:div.col-12.col-lg-5.mb-3
               [:div.row-fluid.mb-2
                 [:ul.nav.nav-tabs.nav-fill.mb-2
                   [:li.nav-item [:a.nav-link.active {:data-toggle "tab" :href "#collection" :role "tab"} "Collection"]]
@@ -237,8 +237,6 @@
                         :value (:core2 @setcounts) 
                         :on-change (fn [e]
                           (swap! setcounts assoc :core2 (-> e .-target .-value))
-                          (set-item! "nrsets_owned" @setcounts))}]]
-                  ]
-                ]]]]]))))
+                          (set-item! "nrsets_owned" @setcounts))}]]]]]]]]))))
 
 (r/render [App] (.getElementById js/document "app"))
