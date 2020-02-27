@@ -16,6 +16,18 @@
 (def colours (r/atom nil))
 (def types (r/atom nil))
 
+
+(defn normalise [ name ]
+  (-> name
+      (clojure.string/lower-case)
+      (clojure.string/replace #"[\u00e0-\u00e5]" "a")
+      (clojure.string/replace #"[\u00e8-\u00eb]" "e")
+      (clojure.string/replace #"[\u00ec-\u00ef]" "i")
+      (clojure.string/replace #"[\u00f2-\u00f6]" "o")
+      (clojure.string/replace #"[\u00f9-\u00fc]" "u")
+      (clojure.string/replace #"[\u015e-\u015f]" "s") ;Ş
+      (clojure.string/replace #"[\u0022|\s|\-|\_]" "")))
+
 (defn- init! []
   (go
     (reset! colours 
@@ -27,9 +39,10 @@
     (reset! packs    (-> (<! (http/get "/netrunner/api/packs"))    :body :data))
     (reset! mwls     (-> (<! (http/get "/netrunner/api/mwl"))      :body :data))
     (reset! types    (-> (<! (http/get "/netrunner/api/types"))    :body :data))
-    (let [cardsapi (<! (http/get "/netrunner/api/cards"))]
-      (reset! cards    (-> cardsapi :body :data))
-      (reset! cardlist (->> cardsapi :body :data (filter #(= (:pack_code %) "core")))))))
+    (let [cardsapi (<! (http/get "/netrunner/api/cards"))
+          cardsslug (->> cardsapi :body :data (map #(assoc % :slug (-> % :title normalise))))]
+      (reset! cards    cardsslug)
+      (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug)))))
  ; (reset! factions (-> (<! (http/get "/api/factions")) :body :data))))
           
   
@@ -85,11 +98,90 @@
             [:i.fas.fa-exclamation.text-warning.mr-2 {:title "Restricted"}])
           (if (= 0 (:deck_limit cardmwl))
             [:i.fas.fa-times-circle.text-danger.mr-2 {:title "Removed"}])
-          [:span.mr-2 (str (if (:uniqueness c) "\u2022 ") (:title c) " (" (:quantity c) ")")]
+          [:span.mr-2 (str (if (:uniqueness c) "\u2B24 ") (:title c) " (" (:quantity c) ")")]
           (repeat (:universal_faction_cost cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])
           (repeat (:global_penalty cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])]
         (packtags cardcycles)]]))
         
+(defn- main [mwl selected_name selected_rotated?]
+  [:div.row
+    [:div.col-sm-4 
+      [:div.row-fluid
+        [:ul.nav.nav-tabs.w-100.nav-fill {:role "tablist"}
+          [:li.nav-item
+            [:a.nav-link.active {:data-toggle "tab" :href "#packs" :role "tab"} "Packs"]]
+          [:li.nav-item
+            [:a.nav-link {:data-toggle "tab" :href "#deck" :role "tab"} "Deck"]]]
+        [:div.tab-content.w-100.py-2
+          [:div#packs.tab-pane.fade.show.active {:role "tabpanel"}
+            [:div.list-group.w-100
+              (doall (for [c (->> @cycles (sort-by :position))] ; reverse)]
+                (let [packs (packs-in-cycle @packs (:code c))
+                      rotated_icon (if (:rotated c) [:i.fas.fa-sync-alt.text-danger {:title "Rotated"}])]
+                  ^{:key (gensym)}[:div.list-group-item
+                    [:div {
+                      :style {:cursor "pointer"}
+                      :on-click (fn []
+                        (reset! cardlist (filter #(some #{(:pack_code %)} (map :code packs)) @cards))
+                        (reset! selected_name (:name c))
+                        (reset! selected_rotated? (:rotated c)))
+                      }
+                      [:i.icon.mr-2 {:class (str "icon-" (:code c))}]
+                      [:span (:name c)]
+                      [:span.float-right rotated_icon]]
+                    (if (< 1 (:size c))
+                      (for [p packs]
+                        ^{:key (gensym)}[:div.pl-2 {
+                          :style {:cursor "pointer"} 
+                          :on-click (fn []
+                            (reset! cardlist (filter #(= (:pack_code %) (:code p)) @cards))
+                            (reset! selected_name (:name p))
+                            (reset! selected_rotated? (:rotated c)))
+                          }
+                            [:i.icon.icon-subroutine.mr-2] 
+                            (:name p)
+                            [:span.float-right rotated_icon]]))])))]]
+          [:div#deck.tab-pane.fade {:role "tabpanel"}
+            [:h5.mb-2 "Paste Decklist Below"]
+            [:textarea.form-control {
+              :rows 25
+              :on-input #(parsedeck! (-> % .-target .-value) @cards cardlist selected_name selected_rotated?)}]]]]]
+    [:div.col-sm-8
+      [:div.sticky-top.pt-2
+        [:div.row-fluid.d-flex.mb-2
+          [:span.w-50.h4 
+            [:span @selected_name]
+            [:span {:hidden (false? @selected_rotated?)}
+              [:span.fas.fa-sync-alt.text-danger.ml-2 {:title "Rotated"}]]]
+          [:select.form-control.w-50.ml-auto {:value @mwl :on-change #(reset! mwl (-> % .-target .-value))}
+            (for [mwl @mwls]
+              ^{:key (gensym)}[:option (:name mwl)])]]
+        (let [mwlcards (->> @mwls (filter #(= (:name %) @mwl)) first :cards)
+              cardset @cardlist
+              typeset (filter #(some #{(:code %)} (->> cardset (map :type_code) distinct)) @types)
+              id (filter #(= (:code %) "identity") @types)
+              colours @colours
+              cards @cards 
+              packs @packs
+              cycles @cycles]
+          (for [sc (->> @cardlist (map :side_code) distinct)]
+            ^{:key (gensym)}[:div
+              [:div.row-fluid.font-weight-bold (clojure.string/capitalize sc)]
+              [:div.row-fluid {:style {
+                :-webkit-column-gap "20px" :-webkit-column-count 3
+                :-moz-column-gap "20px" :-moz-column-count 3
+                :column-gap "20px" :column-count 3 }}
+                (for [tc (->> typeset (filter #(= (:side_code %) sc)) (apply merge id) (sort-by :position) (map :code))]
+                  ^{:key (gensym)}[:div {:style {:break-inside "avoid"}}
+                    [:div [:u (clojure.string/capitalize tc)]]
+                      (for [c (->> cardset (filter #(= (:side_code %) sc)) (filter #(= (:type_code %) tc)) (sort-by :position))]
+                        (card-div colours cards packs cycles mwlcards c))
+                    ])]]))]]])
+    
+(defn- timeline [mwl]
+  [:div.row
+    [:div.col
+      [:span "xx"]]])
     
 (defn App [] 
   (let [mwl (r/atom "Standard MWL 3.3")
@@ -99,77 +191,17 @@
     (fn []
       [:div.container-fluid.my-3
         [:div.row
-          [:div.col-sm-4 
-            [:div.row-fluid
-              [:ul.nav.nav-tabs.w-100.nav-fill {:role "tablist"}
-                [:li.nav-item
-                  [:a.nav-link.active {:data-toggle "tab" :href "#packs" :role "tab"} "Packs"]]
-                [:li.nav-item
-                  [:a.nav-link {:data-toggle "tab" :href "#deck" :role "tab"} "Deck"]]]
-              [:div.tab-content.w-100.py-2
-                [:div#packs.tab-pane.fade.show.active {:role "tabpanel"}
-                  [:div.list-group.w-100
-                    (doall (for [c (->> @cycles (sort-by :position))] ; reverse)]
-                      (let [packs (packs-in-cycle @packs (:code c))
-                            rotated_icon (if (:rotated c) [:i.fas.fa-sync-alt.text-danger {:title "Rotated"}])]
-                        ^{:key (gensym)}[:div.list-group-item
-                          [:div {
-                            :style {:cursor "pointer"}
-                            :on-click (fn []
-                              (reset! cardlist (filter #(some #{(:pack_code %)} (map :code packs)) @cards))
-                              (reset! selected_name (:name c))
-                              (reset! selected_rotated? (:rotated c)))
-                            }
-                            [:i.icon.mr-2 {:class (str "icon-" (:code c))}]
-                            [:span (:name c)]
-                            [:span.float-right rotated_icon]]
-                          (if (< 1 (:size c))
-                            (for [p packs]
-                              ^{:key (gensym)}[:div.pl-2 {
-                                :style {:cursor "pointer"} 
-                                :on-click (fn []
-                                  (reset! cardlist (filter #(= (:pack_code %) (:code p)) @cards))
-                                  (reset! selected_name (:name p))
-                                  (reset! selected_rotated? (:rotated c)))
-                                }
-                                  [:i.icon.icon-subroutine.mr-2] 
-                                  (:name p)
-                                  [:span.float-right rotated_icon]]))])))]]
-                [:div#deck.tab-pane.fade {:role "tabpanel"}
-                  [:h5.mb-2 "Paste Decklist Below"]
-                  [:textarea.form-control {
-                    :rows 25
-                    :on-input #(parsedeck! (-> % .-target .-value) @cards cardlist selected_name selected_rotated?)}]]]]]
-          [:div.col-sm-8
-            [:div.sticky-top.pt-2
-              [:div.row-fluid.d-flex.mb-2
-                [:span.w-50.h4 
-                  [:span @selected_name]
-                  [:span {:hidden (false? @selected_rotated?)}
-                    [:span.fas.fa-sync-alt.text-danger.ml-2 {:title "Rotated"}]]]
-                [:select.form-control.w-50.ml-auto {:value @mwl :on-change #(reset! mwl (-> % .-target .-value))}
-                  (for [mwl @mwls]
-                    ^{:key (gensym)}[:option (:name mwl)])]]
-              (let [mwlcards (->> @mwls (filter #(= (:name %) @mwl)) first :cards)
-                    cardset @cardlist
-                    typeset (filter #(some #{(:code %)} (->> cardset (map :type_code) distinct)) @types)
-                    id (filter #(= (:code %) "identity") @types)
-                    colours @colours
-                    cards @cards 
-                    packs @packs
-                    cycles @cycles]
-                (for [sc (->> @cardlist (map :side_code) distinct)]
-                  ^{:key (gensym)}[:div
-                    [:div.row-fluid.font-weight-bold (clojure.string/capitalize sc)]
-                    [:div.row-fluid {:style {
-                      :-webkit-column-gap "20px" :-webkit-column-count 3
-                      :-moz-column-gap "20px" :-moz-column-count 3
-                      :column-gap "20px" :column-count 3 }}
-                      (for [tc (->> typeset (filter #(= (:side_code %) sc)) (apply merge id) (sort-by :position) (map :code))]
-                        ^{:key (gensym)}[:div {:style {:break-inside "avoid"}}
-                          [:div [:u (clojure.string/capitalize tc)]]
-                            (for [c (->> cardset (filter #(= (:side_code %) sc)) (filter #(= (:type_code %) tc)) (sort-by :position))]
-                              (card-div colours cards packs cycles mwlcards c))
-                          ])]]))]]]])))
-
+          [:div.col
+            [:ul.nav.nav-tabs.w-100.nav-fill {:role "tablist"}
+              [:li.nav-item
+                [:a.nav-link.active {:data-toggle "tab" :href "#main" :role "tab"} "Main"]]
+              [:li.nav-item
+                [:a.nav-link {:data-toggle "tab" :href "#timeline" :role "tab"} "MWL / Rotation Timeline"]]]
+            
+            [:div.tab-content.w-100.py-2
+              [:div#main.tab-pane.fade.show.active {:role "tabpanel"}
+                (main mwl selected_name selected_rotated?)]
+              [:div#timeline.tab-pane.fade.show.active {:role "tabpanel"}
+                (timeline mwl)]]]]])))
+                          
 (r/render [App] (.getElementById js/document "app"))

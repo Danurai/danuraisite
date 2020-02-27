@@ -23,6 +23,17 @@
   "Remove the browser's localStorage value for the given `key`"
   [key]
   (.removeItem (.-localStorage js/window) key))
+  
+(defn normalise [ name ]
+  (-> name
+      (clojure.string/lower-case)
+      (clojure.string/replace #"[\u00e0-\u00e5]" "a")
+      (clojure.string/replace #"[\u00e8-\u00eb]" "e")
+      (clojure.string/replace #"[\u00ec-\u00ef]" "i")
+      (clojure.string/replace #"[\u00f2-\u00f6]" "o")
+      (clojure.string/replace #"[\u00f9-\u00fc]" "u")
+      (clojure.string/replace #"[\u015e-\u015f]" "s") ;Ş
+      (clojure.string/replace #"[\u0022|\s|\-|\_]" "")))
 
 (def cycles   (r/atom nil))
 (def packs    (r/atom nil))
@@ -70,19 +81,19 @@
   (let [factioncards (->> cards 
                           (filter #(contains? packs (:pack_code %)))
                           (filter #(= (:faction_code %) faction))
-                          (sort-by :title)
+                          (sort-by :slug) ;:title
                           dedupesc19
                           setqty)
         side (-> factioncards first :side_code)
         typecodes (->> types (sort-by :position) (map :code))]
         (apply concat
           (for [t typecodes]
-            (let [sector (->> factioncards
-                              (filter #(= (:type_code %) t)))]
+            (let [sector (->> factioncards (filter #(= (:type_code %) t)))]
               (if (and (not= t (last typecodes)) (< (count factioncards) 19))
                 sector
-                (if (< 0 (count sector))
-                  (concat sector (repeat (- 9 (mod (count sector) 9)) {:blank true :side side})))))))))
+                (if (< 0 (mod (count sector) 9))
+                  (concat sector (repeat (- 9 (mod (count sector) 9)) {:blank true :side side}))
+                  sector)))))))
                 
 (defn- initdata! []
   (reset! pwned (cljs.reader/read-string (get-item "nrpacks_owned")))
@@ -97,7 +108,7 @@
         (map 
           #(hash-map (:code %) (str "#" (:color %))) 
           (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
-    (reset! cardlist (-> (<! (http/get "/netrunner/api/cards"))   :body :data))))
+    (reset! cardlist (->> (<! (http/get "/netrunner/api/cards")) :body :data (map #(assoc % :slug (-> % :title normalise)))))))
           
 (defn add-owned-packs! [ packs pwned ]
   (reset! pwned (clojure.set/union @pwned (->> packs (map :code) set)))
