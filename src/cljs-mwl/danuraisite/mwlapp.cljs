@@ -109,14 +109,24 @@
           (repeat (:global_penalty cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])]
         (packtags cardcycles)]]))
         
-(defn- packlist [ cardset ]
+(defn- packlist [ cardset cards cycles packs ]
 ; Find all matching cards from @cards
 ; #core +Packs
 ; #revised core +Packs
 ; #SC19 + packs
-  [:div 
-    [:h5 "Packs Used"]
-    [:div (->> cardset (map :pack_code) distinct (clojure.string/join ", "))]])
+  (let [settitles (->> cardset (map :title) set)
+        alltitles (->> cards (filter #(contains? settitles (:title %))))
+        packcodes (->> alltitles (map :pack_code) distinct)
+        packs     (->> packs (filter #(contains? (set packcodes) (:code %))))]
+    [:div 
+      [:h5 "Packs Used"]
+      (for [p packs]
+        [:div {:key (gensym)}
+          [:div [:b (:name p)]]
+          (for [c (->> alltitles (filter #(= (:pack_code %) (:code p))) (map :title))]
+            [:div {:key (gensym)} c])])]))
+      ;[:div alltitles]
+      ;[:div (clojure.string/join ", " (map :name packs))]
   
 (defn- count-qty [ crds ]
   (->> crds
@@ -167,7 +177,7 @@
               :rows 25
               :on-input #(parsedeck! (-> % .-target .-value) @cards cardlist selected_name selected_rotated?)}]]]]]
     [:div.col-sm-9
-      [:div.sticky-top.pt-2
+      [:div.pt-2 ;sticky-top.pt-2
         [:div.row-fluid.d-flex.mb-2
           [:span.w-50.h4 
             [:span.mr-2 @selected_name]
@@ -203,7 +213,7 @@
                       (for [c (->> cardset (filter #(= (:side_code %) sc)) (filter #(= (:type_code %) tc)) (sort-by :position))]
                         (card-div colours cards packs cycles mwlcards c))
                     ])]])))
-        [:div.row-fluid (packlist @cardlist)]]]])
+        [:div.row-fluid (packlist @cardlist @cards @cycles @packs)]]]])
     
 
 (def tlapp (r/atom {:mwl 15 :pos 20}))
