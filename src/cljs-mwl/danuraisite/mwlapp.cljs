@@ -1,6 +1,7 @@
 (ns danuraisite.mwlapp
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require 
+    [goog.string :as gstring]
     [reagent.core :as r]
     [cljs-http.client :as http]
     [cljs.core.async :refer [<!]]))
@@ -15,6 +16,10 @@
 (def factions (r/atom nil))
 (def colours (r/atom nil))
 (def types (r/atom nil))
+
+(def rotations [
+  {:id 1 :cycle 20 :date "1-10-2018" :cycles #{1 2 4}}
+  {:id 2 :cycle 26 :date "27-12-2019" :cycles #{1 2 3 4 6 13 20}}])
 
 
 (defn normalise [ name ]
@@ -54,11 +59,12 @@
       
 (defn- parsedeck! [ decklist cards clist sname srot? ]
   (let [lines (re-seq #".+" decklist)]
+    (prn (second lines))
     (reset! sname (first lines))
     (reset! srot? false)
     (reset! clist 
       (apply conj 
-        [(-> (filter #(= (:title %) @sname) cards)
+        [(-> (filter #(= (:title %) (second lines)) cards)
             first
             (assoc :quantity 1))]
         (mapv (fn [[a b c d e]]
@@ -103,9 +109,23 @@
           (repeat (:global_penalty cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])]
         (packtags cardcycles)]]))
         
+(defn- packlist [ cardset ]
+; Find all matching cards from @cards
+; #core +Packs
+; #revised core +Packs
+; #SC19 + packs
+  [:div 
+    [:h5 "Packs Used"]
+    [:div (->> cardset (map :pack_code) distinct (clojure.string/join ", "))]])
+  
+(defn- count-qty [ crds ]
+  (->> crds
+       (map #(-> % :quantity int))
+       (apply +)))
+        
 (defn- main [mwl selected_name selected_rotated?]
   [:div.row
-    [:div.col-sm-4 
+    [:div.col-sm-3 
       [:div.row-fluid
         [:ul.nav.nav-tabs.w-100.nav-fill {:role "tablist"}
           [:li.nav-item
@@ -146,13 +166,14 @@
             [:textarea.form-control {
               :rows 25
               :on-input #(parsedeck! (-> % .-target .-value) @cards cardlist selected_name selected_rotated?)}]]]]]
-    [:div.col-sm-8
+    [:div.col-sm-9
       [:div.sticky-top.pt-2
         [:div.row-fluid.d-flex.mb-2
           [:span.w-50.h4 
-            [:span @selected_name]
+            [:span.mr-2 @selected_name]
+            [:span.mr-2 (str "(" (->> @cardlist count-qty) ")")]
             [:span {:hidden (false? @selected_rotated?)}
-              [:span.fas.fa-sync-alt.text-danger.ml-2 {:title "Rotated"}]]]
+              [:span.fas.fa-sync-alt.text-danger {:title "Rotated"}]]]
           [:select.form-control.w-50.ml-auto {:value @mwl :on-change #(reset! mwl (-> % .-target .-value))}
             (for [mwl @mwls]
               ^{:key (gensym)}[:option (:name mwl)])]]
@@ -164,25 +185,136 @@
               cards @cards 
               packs @packs
               cycles @cycles]
-          (for [sc (->> @cardlist (map :side_code) distinct)]
-            ^{:key (gensym)}[:div
-              [:div.row-fluid.font-weight-bold (clojure.string/capitalize sc)]
-              [:div.row-fluid {:style {
+          (doall (for [sc (->> @cardlist (map :side_code) distinct)]
+            [:div.row-fluid.mb-3 {:key (gensym)}
+              [:div
+                [:b.mr-2 (clojure.string/capitalize sc)]
+                [:span (str "(" (->> @cardlist (filter #(= (:side_code %) sc)) count-qty) ")")]]
+              [:div {:style {
                 :-webkit-column-gap "20px" :-webkit-column-count 3
                 :-moz-column-gap "20px" :-moz-column-count 3
                 :column-gap "20px" :column-count 3 }}
                 (for [tc (->> typeset (filter #(= (:side_code %) sc)) (apply merge id) (sort-by :position) (map :code))]
                   ^{:key (gensym)}[:div {:style {:break-inside "avoid"}}
-                    [:div [:u (clojure.string/capitalize tc)]]
+                    [:div 
+                      [:u 
+                        [:span.mr-2 (clojure.string/capitalize tc)]
+                        [:span (str "(" (->> cardset (filter #(= (:side_code %) sc)) (filter #(= (:type_code %) tc)) count-qty) ")")]]]
                       (for [c (->> cardset (filter #(= (:side_code %) sc)) (filter #(= (:type_code %) tc)) (sort-by :position))]
                         (card-div colours cards packs cycles mwlcards c))
-                    ])]]))]]])
+                    ])]])))
+        [:div.row-fluid (packlist @cardlist)]]]])
     
-(defn- timeline [mwl]
-  [:div.row
-    [:div.col
-      [:span "xx"]]])
+
+(def tlapp (r/atom {:mwl 15 :pos 20}))
+
+(defn- dedupecards [ cards ]
+  (filter (fn [c] (= (:code c) (->> cards (filter #(= (:title c) (:title %))) (map :code) (apply max-key int)))) cards))
+
+(defn- getmwlcards [mwls id cards]
+  (let [mwl (->> mwls (filter #(= (:id %) id)) first)
+        mwlset (->> mwl :cards keys (map name) set)]
+    (->> cards
+         (filter #(contains? mwlset (:code %)))
+         (dedupecards)
+         (sort-by :code)
+         (map #(let [k (-> % :code keyword)]
+                  (if (-> mwl :cards k :deck_limit zero?)
+                      (assoc % :banned true)
+                      (if (-> mwl :cards k :is_restricted (= 1))
+                          (assoc % :unicorn true)
+                          (if-let [ufc (-> mwl k :universal_faction_cost some?)]
+                              (assoc % :ufc ufc)
+                              (if-let [gp (-> mwl k :global_penalty some?)]
+                                (assoc % :global_penalty gp)
+                                (assoc % :k k))))))))))
+                                
+(defn parsedate [ d ]
+  (.parse js/Date d))    
+  
+(defn- cycleclass [ mwl cyc ]
+  (let [rot (get (->> rotations (filter #(<= (:cycle %) (:pos @tlapp))) last) :cycles #{})]
+    (if (contains? rot (:position cyc))
+        "border-danger text-muted bg-light"
+        (if (<= (:position cyc) (:pos @tlapp))
+            "border-success"
+            "text-muted bg-light"))))
     
+(defn- cyclerow [cycles mwl flt]
+  [:div.d-flex
+    (doall (for [cyc (->> cycles (filter flt) (sort-by :position))]
+      [:div.p-3.m-2.border.rounded.cycle {
+        :style {:cursor "pointer"}
+        :key (gensym)
+        :class (cycleclass mwl cyc)} 
+        (:name cyc)
+        ]))])
+      
+(defn card-link [ c ]
+  [:div.mb-1 {:key (:code c)}
+    [:a {
+      :href (str "https://netrunnerdb.com/en/card/" (:code c)) 
+      :target "_blank"
+      :data-code (:code c)} (:title c)]])
+      
+(defn- cycleswithdates [ packs cycles ]
+  (map 
+    (fn [c]
+      (assoc c :date_release (->> packs (filter #(= (:code c) (:cycle_code %))) (sort-by :position) (map :date_release) first)))
+    cycles))
+  
+(defn- timeline [mwls cycs packs cards]
+  (let [cycles (->> cycs (filter #(empty? (re-find #"(?i)draft|reprint|napd\smultiplayer" (:name %)))) (cycleswithdates packs))
+        mwlcards (getmwlcards mwls (:mwl @tlapp) cards)
+        mwl (->> mwls (filter #(= (:id %) (:mwl @tlapp))) first)]
+    [:div.row
+      [:div.col
+        [:div.my-3
+          [:input.anrslider {
+            :type "range" 
+            :min 1 
+            :max (->> cycles (map :position) (apply max)) 
+            :value (-> @tlapp :pos)
+            :on-change #(swap! tlapp assoc :pos (-> % .-target .-value int))}]
+          [:div [:span (str "#" (:pos @tlapp) ": up to ")][:span.h5 (->> cycles (take-while #(<= (:position %) (:pos @tlapp))) last :name)]]]
+        (cyclerow cycles mwl #(some? (re-find #"(?i)core" (:name %))))
+        (cyclerow cycles mwl #(and (= 1 (:size %)) (nil? (re-find #"(?i)core" (:name %)))))
+        (cyclerow cycles mwl #(> (:size %) 1))
+        
+        [:div.row.my-3
+          [:div.col
+            [:div.btn-group.btn-group-sm
+              (doall (for [mwl mwls]
+                [:button.btn.btn-outline-secondary {
+                  :key (gensym) 
+                  :class (if (= (:id mwl) (:mwl @tlapp)) "active")
+                  :on-click #(swap! tlapp assoc :mwl (:id mwl))} 
+                  [:div (:name mwl)]
+                  [:small.muted (:date_start mwl)]]))]]]
+        [:div.row
+          [:div.col-sm-6
+            [:h5 "Runner Cards"]
+            [:div.row
+              [:div.col-sm-6
+                [:div.mb-1 [:b "Restricted"] [:span.ml-2 "🦄"]]
+                (for [c (->> mwlcards (filter #(= (:side_code %) "runner")) (filter #(true? (:unicorn %))) (sort-by :title))]
+                  (card-link c))]
+              [:div.col-sm-6
+                [:div.mb-1 [:b "Banned"] [:i.fas.fa-times-circle.text-danger.ml-2]]
+                (for [c (->> mwlcards (filter #(= (:side_code %) "runner")) (filter #(true? (:banned %))) (sort-by :title))]
+                  (card-link c))]]]
+          [:div.col-sm-6
+            [:h5 "Corp Cards"]
+            [:div.row
+              [:div.col-sm-6
+                [:div.mb-1 [:b "Restricted"] [:span.ml-2 "🦄"]]
+                (for [c (->> mwlcards (filter #(= (:side_code %) "corp")) (filter #(true? (:unicorn %))) (sort-by :title))]
+                  (card-link c))]
+              [:div.col-sm-6
+                [:div.mb-1 [:b "Banned"] [:i.fas.fa-times-circle.text-danger.ml-2]]
+                (for [c (->> mwlcards (filter #(= (:side_code %) "corp")) (filter #(true? (:banned %))) (sort-by :title))]
+                  (card-link c))]]]]]]))
+      
 (defn App [] 
   (let [mwl (r/atom "Standard MWL 3.3")
        selected_name (r/atom "Core Set")
@@ -192,16 +324,18 @@
       [:div.container-fluid.my-3
         [:div.row
           [:div.col
+          ; Tablist
             [:ul.nav.nav-tabs.w-100.nav-fill {:role "tablist"}
               [:li.nav-item
-                [:a.nav-link.active {:data-toggle "tab" :href "#main" :role "tab"} "Main"]]
+                [:a.nav-link {:data-toggle "tab" :href "#main" :role "tab"} "Main"]]
               [:li.nav-item
-                [:a.nav-link {:data-toggle "tab" :href "#timeline" :role "tab"} "MWL / Rotation Timeline"]]]
-            
+                [:a.nav-link.active {:data-toggle "tab" :href "#timeline" :role "tab"} "MWL / Rotation Timeline"]]]
+          ; Tab Content 
             [:div.tab-content.w-100.py-2
-              [:div#main.tab-pane.fade.show.active {:role "tabpanel"}
+              [:div#main.tab-pane.fade {:role "tabpanel"}
                 (main mwl selected_name selected_rotated?)]
               [:div#timeline.tab-pane.fade.show.active {:role "tabpanel"}
-                (timeline mwl)]]]]])))
+                (timeline @mwls @cycles @packs @cards)
+                ]]]]])))
                           
 (r/render [App] (.getElementById js/document "app"))

@@ -8,6 +8,7 @@
       [:div#app]
       (h/include-js app)
       (h/include-js "/js/nrpopover.js")
+      (h/include-css "/css/anrmwl.css")
       (h/include-css "/css/netrunnerfont.css")]))
 
 (defn mwlpage [ req ]

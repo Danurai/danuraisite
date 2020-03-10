@@ -54,7 +54,8 @@
              [:username :text]
              [:password :text]
              [:admin    :boolean]
-             [:created  :date]]))
+             [:created  :date]]
+            {:conditional? true}))
         (j/insert! db :sqlite_sequence {:name "users" :seq 1000})
         (j/insert! db :users {:username "root" :password (creds/hash-bcrypt "admin") :admin true  :created (t/now)})
         (j/insert! db :users {:username "dan"  :password (creds/hash-bcrypt "user")  :admin false :created (t/now)})
@@ -68,7 +69,8 @@
              [:username :text]
              [:password :text]
              [:admin    :boolean]
-             [:created  :bigint]]))
+             [:created  :bigint]]
+            {:conditional? true}))
         (j/insert! db :users {:username "root" :password (creds/hash-bcrypt "admin") :admin true  :created (c/to-long (t/now))})
         (j/insert! db :users {:username "dan"  :password (creds/hash-bcrypt "user")  :admin false :created (c/to-long (t/now))})
         (catch Exception e (println (str "DB Error - Users: " e))))))
@@ -80,7 +82,8 @@
         [[:major    :int]
          [:minor    :int]
          [:note     :text]
-         [:released :bigint]]))
+         [:released :bigint]]
+        {:conditional? true}))
     (j/insert! db :version {:major 0 :minor 1 :note "dev" :released (c/to-long (t/now))})
     (catch Exception e (str "DB Error - version: " e))))
     
@@ -94,7 +97,8 @@
            [:data       :text]  ;json
            [:author     :integer]
            [:created    :bigint]
-           [:updated    :bigint]]))
+           [:updated    :bigint]]
+          {:conditional? true}))
       (j/insert! db :sqlite_sequence {:name "lugsparty" :seq 1000})
       (catch Exception e (println (str "DB Error - LUGS Party: " e))))
   ; Create Table in postgresql
@@ -106,7 +110,8 @@
            [:data       :text]  ;json
            [:author     :integer]
            [:created    :bigint]
-           [:updated    :bigint]]))
+           [:updated    :bigint]]
+          {:conditional? true}))
       (catch Exception e (println (str "DB Error - LUGS Party: " e))))))
                        
 (defn- create-tbl-donvictims []
@@ -119,7 +124,8 @@
            [:data       :text]  ;json
            [:author     :integer]
            [:created    :bigint]
-           [:updated    :bigint]]))
+           [:updated    :bigint]]
+          {:conditional? true}))
       (j/insert! db :sqlite_sequence {:name "donvictims" :seq 1000})
       (catch Exception e (println (str "DB Error - DoN Victims: " e))))
   ; Create Table in postgresql
@@ -131,7 +137,8 @@
            [:data       :text]  ;json
            [:author     :integer]
            [:created    :bigint]
-           [:updated    :bigint]]))
+           [:updated    :bigint]]
+          {:conditional? true}))
       (catch Exception e (println (str "DB Error - DoN Victims: " e))))))
     
 (defn create-db []

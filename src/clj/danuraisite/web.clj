@@ -110,9 +110,14 @@
   
 (defroutes anr-routes
   (GET "/api/:id" [id]
-    (if-let [f (io/resource (str "private/" id ".json"))]
-      (-> f slurp response (content-type "application/json"))
-      (-> "{\"data\": []}" response (content-type "application/json"))))
+    (-> (str "https://netrunnerdb.com/api/2.0/public/" id)
+        (http/get {:accept :json})
+        :body 
+        response
+        (content-type "application/json")))
+    ;(if-let [f (io/resource (str "private/" id ".json"))]
+    ;  (-> f slurp response (content-type "application/json"))
+    ;  (-> "{\"data\": []}" response (content-type "application/json"))))
   (GET "/mwl" [] pages/mwlpage)
   (GET "/nrf" [] pages/nrfpage))
   

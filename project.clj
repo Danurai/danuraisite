@@ -11,6 +11,9 @@
   :jar-name     "danuraisite.jar"
   :uberjar-name "danuraisite-standalone.jar"
   
+  :repl-options {:init-ns user
+                 :timeout 120000}
+  
   :dependencies [[org.clojure/clojure "1.10.0"]
                 [org.clojure/clojurescript "1.10.520"]
                 [org.clojure/core.async  "0.3.443"]
