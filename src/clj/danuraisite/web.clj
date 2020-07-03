@@ -106,8 +106,13 @@
     
 (defroutes colour-routes
   (GET "/hsl" [] pages/hsl)
-  (GET "/citadel" [] pages/citadel))
-  
+  (GET "/citadel" [] pages/citadel)
+	(GET "/paintlist" [] 
+		(response (slurp (io/resource "private/paintlist.json"))))
+	(GET "/painttbl" []
+		pages/painttbl))
+		
+		
 (defroutes anr-routes
   (GET "/api/:id" [id]
     (-> (str "https://netrunnerdb.com/api/2.0/public/" id)

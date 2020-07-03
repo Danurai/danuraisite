@@ -43,3 +43,17 @@
             [:div.mb-2 "Rotation Checker and Folder planner"]
           ]]]]))
       
+(defn painttbl [ req ]
+	(let [cols (-> "private/paintlist.json" io/resource slurp (json/read-str :key-fn keyword))]
+		(h/html5
+			pretty-head
+			[:div.container.my-3
+				[:table#tbl.table
+					[:thead [:tr [:th "Name"][:th "Range"][:th "OldGW"][:th "Hex"]]]
+					[:tbody
+						(for [clr cols]
+							[:tr [:td (:name clr)][:td (:range clr)][:td (:oldgw clr)][:td (:hex clr)]])]
+				]]
+			[:script "$(document).ready(function(){$('#tbl').DataTable({paging: false})});"]
+			(h/include-css "//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css")
+			(h/include-js "//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"))))
