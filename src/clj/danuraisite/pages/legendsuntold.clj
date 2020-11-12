@@ -41,7 +41,7 @@
                 [:label.btn.btn-outline-secondary [:input#outfitupgrade {:type "radio" :name "opt"} "Outfit"]]
                 [:label.btn.btn-outline-secondary [:input#kitupgrade {:type "radio" :name "opt"} "Kit"]]]]
             [:div#cardlist.row]]]]]
-    (h/include-js "/js/lugs.js?v=0.1")
+    (h/include-js "/js/lugs.js?v=0.2")
   ))
   
 (defn lugsicons [ req ]

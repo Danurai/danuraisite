@@ -1,4 +1,4 @@
-$.getJSON("/api/data/lugs",function(data) {
+$.getJSON("/api/data/lu",function(data) {
   var outp = '';
   $.each(data.icons, function (id, i) {
     outp = '<tr>'

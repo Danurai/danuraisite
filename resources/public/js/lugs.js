@@ -52,7 +52,7 @@ function write_char() {
   $('#hdata').html(outp);
 }
 
-$.getJSON("/api/data/lugs",function(data) {
+$.getJSON("/api/data/lu",function(data) {
   _keywords = data.keywords;
   _icons = TAFFY(data.icons);
   _cards = TAFFY(data.cards);

@@ -79,12 +79,12 @@
               (swap! apidata assoc :cards (map #(if (= (:hero %) id) (dissoc % :hero) %) (:cards @apidata)))))))
         
 (defn- resetapidata! []
-  (go (let [response (<! (http/get "/api/data/lugs"))]
+  (go (let [response (<! (http/get "/api/data/lu"))]
     (reset! apidata (:body response))
     (reset! fa-icons (->> response :body :icons (map #(hash-map (:name %) (:fa %))) (apply merge))))))
     
 (defn- resetparties! []
-  (go (let [response (<! (http/get "/lugs/api/parties"))]
+  (go (let [response (<! (http/get "/lu/api/parties"))]
     (if (= "false" (:body response))
         (reset! savedparties false)
         (reset! savedparties (map #(assoc % :data (js->clj (.parse js/JSON (:data %)) :keywordize-keys true)) (:body response)))))))
@@ -99,11 +99,11 @@
   (init!))
     
 (defn saveparty![ party ]
-  (go (let [response (<! (http/post "/lugs/party/save" {:form-params (assoc @party :data (.stringify js/JSON (clj->js (:heros (party-with-cards)))))}))]
+  (go (let [response (<! (http/post "/lu/party/save" {:form-params (assoc @party :data (.stringify js/JSON (clj->js (:heros (party-with-cards)))))}))]
     (resetparties!))))
         
 (defn deleteparty! [ party ]
-  (go (let [response (<! (http/post "/lugs/party/delete" {:form-params {:uid (:uid party)}}))]
+  (go (let [response (<! (http/post "/lu/party/delete" {:form-params {:uid (:uid party)}}))]
         (init!))))
   
 (defn- newparty! []

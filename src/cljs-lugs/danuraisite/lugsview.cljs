@@ -284,7 +284,7 @@
         [:div.row
           [:div.col-sm-5
             (if (false? @savedparties)
-              [:div "You must " [:a {:href "/lugs/party/login"} "Log in"] " to create and save parties"]
+              [:div "You must " [:a {:href "/lu/party/login"} "Log in"] " to create and save parties"]
               (case (:screen @ps)
                 :edit [editpane ps]
                 [loadpane ps]))
