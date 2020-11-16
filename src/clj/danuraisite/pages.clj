@@ -4,6 +4,8 @@
     [clojure.java.io :as io]
     [hiccup.page :as h]
     [cemerick.friend :as friend]
+    [clj-time.coerce :as tc]
+    [clj-time.format :as tf]
     [danuraisite.database :as db]
     [danuraisite.model :as model]))
 
@@ -15,12 +17,51 @@
 (load "pages/netrunner")
 ;(load "pages/apps")
 
+(def custom-formatter (tf/formatter "dd/MMM/yyyy"))
+
 (defn scorehome [ req ]
   (h/html5 
     pretty-head
     [:body
       (navbar req)
       [:div#app]
+      [:div.container-fluid.mb-3
+        [:div.row 
+          [:table.table.table-hover
+            [:thead 
+              [:tr
+                [:th.text-center "Del"]
+                [:th "Date"]
+                [:th "Scenario"]
+                [:th "Adversary"]
+                [:th "Diff."]
+                [:th "Spirits"]
+                [:th.text-center "Win?"]
+                [:th.text-center "Inv. Deck"]
+                [:th.text-center "Dahan"]
+                [:th.text-center "Blight"]
+                [:th.text-center "Score"]]]
+            [:tbody
+              (for [gm (db/getsiscores)]
+                [:tr 
+                  [:td.text-center [:button.btn.btn-sm.btn-danger {
+                    ;:on-click (if (.confirm js/window "Are you sure you want to delete this game log") )
+                    :title "Delete?"} 
+                    [:i.fas.fa-times-circle]]]
+                  [:td (tf/unparse custom-formatter (-> gm :date tc/from-long))]
+                  [:td (:scenario gm)]
+                  [:td (if (= "none" (:adversary gm)) "(None)" (str (:adversary gm) " (" (:advlvl gm) ")"))]
+                  [:td (:difficulty gm)]
+                  [:td (:spirits gm)]
+                  [:td.text-center (if (:win gm) [:i.fas.fa-check-circle.text-success][:i.fas.fa-times-circle.txt-danger])]
+                  [:td.text-center (:invdeck gm)]
+                  [:td.text-center (:dahan gm)]
+                  [:td.text-center (:blight gm)]
+                  [:td.text-center (:score gm)]
+                ]
+              )]]]
+        [:div.row 
+          [:canvas#drawing.border {:width "800px" :height "450px"}]]]
       (h/include-js "/js/compiled/scoresapp.js")]))
 
 (defn homepage [ req ]

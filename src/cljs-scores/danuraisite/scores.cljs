@@ -9,7 +9,7 @@
   (reset! app {
     :players 2
     :spirits (vec (concat (take 2 (->> sidata :spirits (map :name))) (repeat 2 "none")))
-    :blight true
+    ;:blight true
     :scenario "none"
     :adversary "none"
     :boards (:boards sidata)
@@ -112,11 +112,12 @@
             :value (-> @app :spirits (nth n)) 
             :on-change #(swap! app assoc-in [:spirits n] (-> % .-target .-value))}
             (for [spirit spirits]
-              [:option {:key (gensym)} spirit])]))]
+              [:option {:key (gensym)} spirit])]))
+        [:div (apply str "Boards: " (->> @app :boards (take (:players @app)) (map #(str "'" (clojure.string/upper-case %) "' "))))]]
       [:div.col-sm-6
         [:label "Scenario"]
         [:select.form-control.mb-1 {
-          :value (:scenario @app) 
+          :value (:scenario @app "None") 
           :on-change #(swap! app assoc :scenario (-> % .-target .-value))}
           (for [scen (->> sidata :scenarios (map :name))]
             [:option {:key (gensym)} scen])]
@@ -130,10 +131,10 @@
           [:label.my-auto.mr-1 "Lvl:"]
           [:select.form-control {
             :style {:width "auto"}
-            :value (if (:adversary @app) (:advlvl @app) "Base")
+            :value (:advlvl @app "Base")
             :on-change #(swap! app assoc :advlvl (-> % .-target .-value int))}
             (for [advlvl (range 7)] [:option {:key (gensym)} (if (= 0 advlvl) "Base" advlvl)])]]]]
-    [:div.row.border-top.border-bottom.my-2.py-2
+    [:div.row.border-top.my-2.py-2
       [:div.col
         [:div.form-inline
           [:label.mr-1.my-auto "Win?"]
@@ -149,10 +150,22 @@
           [:input.form-control.mr-2 {:type "number" :value (-> @app :score :blight) :on-change #(swap! app assoc-in [:score :blight] (-> % .-target .-value))}]
           [:div.h5.ml-auto  "Score: " (score)]
         ]]]
-    [:div.row
+    [:div.row.border-bottom..pb-2.mb-2
       [:div.col
-        [:div (apply str "Boards: " (->> @app :boards (take (:players @app)) (map #(str "'" (clojure.string/upper-case %) "' "))))]
-        [:canvas#drawing.border (if-let [node @dom-node] {:width "800px" :height "450px"})]]]])
+        (let [savedata (assoc (select-keys @app [:players :adversary :scenario :advlvl])
+                        :spirits (clojure.string/join ", " (take (:players @app) (:spirits @app)))
+                        :boards (clojure.string/join ", " (take (:players @app) (:boards @app)))
+                        :win (-> @app :score :win)
+                        :invdeck (-> @app :score :invdeck)
+                        :dahan (-> @app :score :dahan)
+                        :blight (-> @app :score :blight)
+                        :score (score)
+                        :difficulty (getdiff)
+          )] 
+          [:form
+            [:button.btn.btn-dark {
+              :on-click #(.post (js* "$") "/scores" (clj->js savedata))}
+              "Save Game Result"]])]]])
     
 (defn- draw_canvas [ canvas ]
   (let [ctx (.getContext canvas "2d")

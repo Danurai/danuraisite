@@ -133,7 +133,9 @@
 ;  (GET "/rklotr" [] pages/rklotr))
   
 (defroutes score-routes
-  (GET "/"   [] pages/scorehome))
+  (GET "/"   [] pages/scorehome)
+  (POST "/"  [] 
+    #(db/save-sidata (:form-params %))))
   
 ;; MAIN ROUTES
 ;;;;;;;;;;;;;;;;

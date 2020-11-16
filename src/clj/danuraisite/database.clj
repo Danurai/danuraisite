@@ -140,12 +140,31 @@
            [:updated    :bigint]]
           {:conditional? true}))
       (catch Exception e (println (str "DB Error - DoN Victims: " e))))))
+      
+(defn- create-tbl-siscores []
+  (j/db-do-commands db
+    (j/create-table-ddl :siscores
+      [[:players    :int]
+       [:spirits    :text]
+       [:boards     :text]
+       [:adversary  :text]
+       [:advlvl     :int]
+       [:scenario   :text]
+       [:difficulty :int]
+       [:win        :boolean]
+       [:invdeck    :int]
+       [:dahan      :int]
+       [:blight     :int]
+       [:score      :int]
+       [:date       :bigint]]
+      {:conditional? true})))
     
 (defn create-db []
   (create-tbl-users)
   (create-tbl-version)
   (create-tbl-donvictims)
   (create-tbl-lugsparty)
+  (create-tbl-siscores)
   )
   
   
@@ -217,3 +236,15 @@
 (defn get-lugs-party [ author uid ]
   (j/query db ["SELECT * FROM lugsparty WHERE author = ? AND uid = ? ORDER BY UPDATED DESC" author uid]))
          
+; Spirit Island Scores
+
+(defn save-sidata [ data ]
+  (j/insert! db :siscores (reduce-kv
+    #(if (contains? #{"score" "advlvl" "players" "blight" "invdeck" "dahan" "difficulty"} %2)
+         (assoc %1 %2 (read-string %3))
+         (assoc %1 %2 %3))
+    {} (assoc data :date (c/to-long (t/now)) ))
+  ))
+
+(defn getsiscores []
+  (j/query db ["SELECT * FROM siscores ORDER BY date DESC"]))
