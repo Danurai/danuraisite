@@ -226,11 +226,13 @@
   (let [qry {:data data :author author :name name :updated (c/to-long (t/now))}
         where-clause ["uid = ?" uid]]
     (prn "save party" uid name author data)
-    (j/with-db-transaction [t-con db]
-      (let [result (j/update! t-con :lugsparty qry where-clause)]
-        (if (zero? (first result))
-          (j/insert! t-con :lugsparty (assoc qry :created (c/to-long (t/now))))
-          result)))))
+    (if (nil? uid)
+        (j/insert! db :lugsparty (assoc qry :created (c/to-long (t/now))))
+        (j/with-db-transaction [t-con db]
+          (let [result (j/update! t-con :lugsparty qry where-clause)]
+            (if (zero? (first result))
+              (j/insert! t-con :lugsparty (assoc qry :created (c/to-long (t/now))))
+              result))))))
           
 (defn delete-party [ uid ]
   (j/delete! db :lugsparty ["uid = ?" uid]))
