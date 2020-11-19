@@ -1347,6 +1347,409 @@
 			]
 		},
 		{
+			"id": "WC-ST01",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST02",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST03",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST04",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST05",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST06",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST07",
+			"type": "Skill Talent",
+			"name": "Caving",
+			"background": "Underground",
+			"specialty": "Geology",
+			"abilities": [{
+					"name": "Climber",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": "Gain +1 to your Brawn for the current Test, or +2 if it is a Climb (Brawn) Test"
+				},
+				{
+					"name": "Listen To The Rock",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": "If the Party Sneaks then gain an additional +1 for each [undergound] to any Surprise Teat this Turn."
+				},
+				{
+					"name": "Cave Brother",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": "Gain +2 to your current Test on any Event that requires [Gas] or [Flood] or grant +2 for all Heroes on a Party Test on any Event that requires [Gas] or [Flood]"
+				}
+			]
+		},
+		{
+			"id": "WC-ST08",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST09",
+			"type": "Skill Talent",
+			"name": "Smithing",
+			"background": "Making",
+			"specialty": "Devices",
+			"abilities": [{
+					"name": "Fix",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": "Gain +1 to your Handle for yout current Test, or +2 if it is a Mend (Handle) Test."
+				},
+				{
+					"name": "Solid Construction",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": "Double the bonus from one Loot item taht you use in a Test."
+				},
+				{
+					"name": "Bladesinger",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Turn a [Strike] into a [Critical]"
+				}
+			]
+		},
+		{
+			"id": "WC-ST10",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": [],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST11",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": [],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST12",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": [],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST13",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": [],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST14",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": [],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST15",
+			"type": "Skill Talent",
+			"name": "",
+			"background": "",
+			"abilities": [{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": ""
+				},
+				{
+					"name": "",
+					"icons": [],
+					"cost": [],
+					"text": ""
+				}
+			]
+		},
+		{
+			"id": "WC-ST16",
+			"type": "Skill Talent",
+			"name": "Tenacious",
+			"background": "Tough",
+			"abilities": [{
+					"name": "Just a Scratch",
+					"icons": ["PlayAfterRolling"],
+					"cost": ["Drain"],
+					"text": "Prevent all [Damage] you are about to take from one source."
+				},
+				{
+					"name": "Survivor",
+					"icons": [],
+					"cost": ["Exhaust"],
+					"text": "Use during the Rest Phase to Restore all your Exhausted Talents and Heal all your Drained Talents. You may only use this Ability once per Adventure."
+				},
+				{
+					"name": "Flesh Wound",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Reduce the [Damage] you take from a [TradeBlows] result by +1[Damage]"
+				}
+			]
+		},
+		
+    {
 			"id": "GS-WT01",
 			"type": "Weapon Talent",
 			"name": "Close Fighting",
@@ -1706,6 +2109,57 @@
 					"text": "Play after a [PushedBack] result to cancel the Disadvantage for the next Hero's attack."
 				}
 			]
+		},
+		{
+			"id": "WC-WT10",
+			"type": "Weapon Talent",
+			"name": "Speed Strikes",
+			"specialty": "Axe",
+			"abilities": [{
+					"name": "Flurry",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Change your [TradeBlows] result into an [Advance] result."
+				},
+				{
+					"name": "Timed Strike",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "If your next attack this Combat results in a [Strike] or [Critical], deals +1 [Wound]."
+				}
+			]
+		},
+		{
+			"id": "WC-WT11",
+			"type": "Weapon Talent",
+			"name": "Openers",
+			"specialty": "Axe",
+			"abilities": [{
+					"name": "Charge",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "Gain Advantage on your next attack this Combat."
+				},
+				{
+					"name": "Mighty Throw",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "Use as a Ranged Attack. Perform a Ranged Attack with the Ae, gaining +1 [Wound] on a [Strike] or [Critical]. The Axe cannot be used again until the end of the Combat."
+				}
+			]
+		},
+		{
+			"id": "WC-OU01",
+			"type": "Outfit",
+			"specialty": "Outfit",
+			"basic": {
+				"name": "Decent Clothes",
+				"text": "Gain +1 to your Persuade (Charm) Tests."
+			},
+			"upgraded": {
+				"name": "Good Clothes",
+				"text": "Gain +1 to your Persuade (Charm) Tests.\nGan +1 to your Intrigue (Charm) Tests."
+			}
 		},
 		{
 			"id": "GS-OU01",

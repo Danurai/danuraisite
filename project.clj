@@ -185,7 +185,7 @@
                     [expectations "2.2.0-rc3"]
                     [binaryage/devtools "0.9.4"]
                     [figwheel-sidecar "0.5.14"]
-                    [cider/piggieback "0.5.2"]]
+                    [cider/piggieback "0.4.0"]]
       ;; need to add dev source path here to get user.clj loaded
       :source-paths ["src/clj" "dev"]
       ;; for CIDER
