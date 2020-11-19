@@ -57,8 +57,10 @@
              [:created  :date]]
             {:conditional? true}))
         (j/insert! db :sqlite_sequence {:name "users" :seq 1000})
-        (j/insert! db :users {:username "root" :password (creds/hash-bcrypt "admin") :admin true  :created (t/now)})
-        (j/insert! db :users {:username "dan"  :password (creds/hash-bcrypt "user")  :admin false :created (t/now)})
+        (if (empty? (j/query db ["select uid from users where username = ?" "root"]))
+          (j/insert! db :users {:username "root" :password (creds/hash-bcrypt "admin") :admin true  :created (t/now)}))
+        (if (empty? (j/query db ["select uid from users where username = ?" "dan"]))
+          (j/insert! db :users {:username "dan"  :password (creds/hash-bcrypt "user")  :admin false :created (t/now)}))
         (catch Exception e (println (str "DB Error - Users: " e))))
   ; Create User Table in postgresql
       (try
@@ -71,8 +73,10 @@
              [:admin    :boolean]
              [:created  :bigint]]
             {:conditional? true}))
-        (j/insert! db :users {:username "root" :password (creds/hash-bcrypt "admin") :admin true  :created (c/to-long (t/now))})
-        (j/insert! db :users {:username "dan"  :password (creds/hash-bcrypt "user")  :admin false :created (c/to-long (t/now))})
+        (if (empty? (j/query db ["select uid from users where username = ?" "root"]))
+          (j/insert! db :users {:username "root" :password (creds/hash-bcrypt "admin") :admin true  :created (c/to-long (t/now))}))
+        (if (empty? (j/query db ["select uid from users where username = ?" "root"]))
+          (j/insert! db :users {:username "dan"  :password (creds/hash-bcrypt "user")  :admin false :created (c/to-long (t/now))}))
         (catch Exception e (println (str "DB Error - Users: " e))))))
 
 (defn- create-tbl-version []

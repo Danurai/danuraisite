@@ -295,6 +295,21 @@
           ]
           [:div.col-sm-7
             [:div.sticky-top.pt-2
+              [:div
+                [:label.mr-3 "Filter by Set:"]
+                [:div.form-check.form-check-inline
+                  [:input.form-check-input {:type "checkbox"}]
+                  [:label.form-check-label "The Weeping Caves"]]
+                [:div.form-check.form-check-inline
+                  [:input.form-check-input {:type "checkbox"}]
+                  [:label.form-check-label "The Great Sewer"]]
+                [:div.form-check.form-check-inline
+                  [:input.form-check-input {:type "checkbox"}]
+                  [:label.form-check-label "Druid Expansion"]]
+                [:div.form-check.form-check-inline
+                  [:input.form-check-input {:type "checkbox"}]
+                  [:label.form-check-label "Alchemist Expansion"]]
+                ]
               [:div.mb-2
                 [:div.btn-group.btn-group-sm.d-flex
                   (doall (for [ct (->> @apidata :cards (map :type) distinct) :let [selected? (= (:cardlist @ps) ct)]]
