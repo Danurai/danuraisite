@@ -41,8 +41,8 @@
                 (c/to-long (t/now)))}))
 
 (defn dropuser [uid]
-  (j/delete! db :decklists ["author = ?" uid])
-  (j/delete! db :users ["uid = ?" uid]))
+  (j/delete! db :decklists ["author = ?" (read-string uid)])
+  (j/delete! db :users ["uid = ?" (read-string uid)]))
   
 (defn- create-tbl-users []
   (if (= (:subprotocol db) "sqlite") ; Split for AUTOINCREMENT / NEXTVAL
@@ -203,7 +203,7 @@
 (defn save-user-victim [ author data ] 
   (let [uid (:uid (json/read-str data :key-fn keyword))]
     (let [qry {:data data :author author :updated (c/to-long (t/now))}
-          where-clause ["uid = ?" uid]]
+          where-clause ["uid = ?" (read-string uid)]]
       (j/with-db-transaction [t-con db]
         (let [result (j/update! t-con :donvictims qry where-clause)]
           (if (zero? (first result))
@@ -215,10 +215,10 @@
   
 (defn get-victim [ vicuid ]
 ;; Should this also validate the logged in user? 
-  (first (j/query db ["SELECT * FROM donvictims WHERE uid = ?" vicuid])))  
+  (first (j/query db ["SELECT * FROM donvictims WHERE uid = ?" (read-string vicuid)])))  
   
 (defn remove-victim [ vicuid ]
-  (j/delete! db  :donvictims ["uid = ?" vicuid]))
+  (j/delete! db  :donvictims ["uid = ?" (read-string vicuid)]))
   
   
 ; Legends Untold: The Great Sewer
@@ -234,7 +234,7 @@
           result)))))
           
 (defn delete-party [ uid ]
-  (j/delete! db :lugsparty ["uid = ?" uid]))
+  (j/delete! db :lugsparty ["uid = ?" (read-string uid)]))
           
 (defn get-user-parties [ author ]
   (j/query db ["SELECT * FROM lugsparty WHERE author = ? ORDER BY UPDATED DESC" author]))
