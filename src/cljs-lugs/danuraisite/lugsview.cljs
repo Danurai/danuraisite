@@ -2,36 +2,48 @@
   (:require 
     [reagent.core :as r]
     [danuraisite.lugsmodel :refer 
-      [party apidata savedparties names limits fa-icons 
-       markdown party-with-cards 
+      [party apidata savedparties names limits sets fa-icons
+       markdown party-with-cards get-occupation
        selectcard! 
-       resetpage! setparty! saveparty! deleteparty! add-hero! delete-hero!]]))
+       resetparty! setparty! saveparty! deleteparty! add-hero! delete-hero!]]))
 
 (defn- card-header 
   ([ crd ]
-    [:span
+    [:span.mr-2
+      [:span.mr-2 (:name crd)]
       (if-let [specialty (:specialty crd)]
-        [:span.mr-2 {:title specialty :class (get @fa-icons specialty "fa fa-question text-warning")}])
-      [:span.mr-2 (:name crd)]])
+        [:i.fa-sm {:title specialty :class (get @fa-icons specialty "fa fa-question text-warning")}])])
   ([crd level]
-    (card-header (level crd))))
+    (card-header (assoc (level crd) :specialty (:specialty crd)))))
     
 (defn- card-id [ crd ]
-  [:span.text-muted {:style {:position "absolute" :top "0px" :right "5px" :font-size "0.5rem"}} (:id crd)])
+  [:span.text-muted {:style {:position "absolute" :bottom "0px" :right "5px" :font-size "0.5rem"}} (:id crd)])
     
-(defn- select-button [ ps crd ]
-  (if (some? (:hero @ps)) 
-    [:button.btn.btn-primary.btn-sm {
-      :class (if (:hero crd) "disabled")
-      :on-click #(selectcard! ps crd)}
-      (get-in @party [:heros (:hero crd) :name] "Select")]))
+    
+(defn- select-button [ crd ]
+  (let [hvec (reduce conj [nil] (-> @party :heros keys sort))
+        occupations (apply merge (map #(hash-map % (get-occupation %)) hvec))
+        max (-> hvec count)]
+    (if-not (nil? @party)
+      [:div.btn-group.btn-group-xs.mr-2.mb-1
+        (doall (for [n (range 1 max)
+                :let [id (-> hvec (.indexOf (:hero crd)))]]
+          [:button.btn.btn-outline-dark {
+            :key (gensym) 
+            :class (if (= n id) "active")
+            :on-click #(selectcard! (get hvec n) crd)} 
+            (if-let [occ (get occupations (get hvec n))]
+              (if (empty? occ)
+                  n
+                  [:span {:class (get @fa-icons (-> occ first :specialty))}])
+              n)]))])))
       
 ;; KIT
-(defn- item-row [ ps crd ]
+(defn- item-row [ crd ]
   ^{:key (gensym)}[:li.list-group-item
       [:div.row
         [:div.mb-2 (card-header crd)]
-        [:div (select-button ps crd)]
+        [:div (select-button crd)]
         [card-id crd]]
       [:div.card-deck
         (doall (for [lvl [:basic :upgraded] :let [iteml (lvl crd)]]
@@ -49,9 +61,9 @@
     [:span.mr-1 (:name ab)]
     [:span.my-auto.ml-auto
       (doall (for [ic (:icons ab)] 
-        ^{:key (gensym)}[:span.mr-1 {:title ic :class (get @fa-icons ic)}]))
+        [:span.mr-1 {:key (gensym) :title ic :class (get @fa-icons ic)}]))
       (doall (for [co (:cost ab)]
-          ^{:key (gensym)}[:span.mr-1 {:title co :class (get @fa-icons co)}]))]])
+        [:span.mr-1 {:key (gensym) :title co :class (get @fa-icons co)}]))]])
 
 (defn- talent-abilities 
   ([ crd hero? ]
@@ -65,13 +77,13 @@
   ([ crd ]
     (talent-abilities crd false)))
   
-(defn- talent-row [ ps crd ]
+(defn- talent-row [ crd ]
   ^{:key (gensym)}[:li.list-group-item
-      [:div.row
-        [:div.mb-2 (card-header crd)]
-        [:div (select-button ps crd)]
-        [card-id crd]]
-      (talent-abilities crd)])
+      [card-id crd]
+      [:div.d-flex.flex-wrap
+        (select-button crd)
+        (card-header crd)
+        [:div.w-100 (talent-abilities crd)]]])
 
 ;;;;;;;;;;;      
 ; WEAPON  ;
@@ -86,25 +98,23 @@
       ^{:key (gensym)}[:i {:class (get @fa-icons a)}]))]])
 
 (defn- attack-row [ atk ]
-  [:span
+  [:div
     (doall (for [[k v] (sort-by val > atk)]
       ^{:key (gensym)}[:span.rounded.border.border-secondary.mx-1.px-1 {:title (name k)}
         [:span.mr-1 v]
         [:i {:class (get @fa-icons (name k))}]]))])
       
-(defn weapon-row [ ps crd level ]
+(defn weapon-row [ crd level ]
   (let [bcrd (assoc (:basic crd) :specialty (:specialty crd))
         ucrd (assoc (:upgraded crd) :specialty (:specialty crd))]
 ;; If the active hero owns the weapon, show advanced for selection
-;; Option to show advanced stats
     ^{:key (gensym)}[:li.list-group-item
-      [:div
-        [:div.d-flex.mb-2 
-          (card-header bcrd)
-          (weapon-header crd :basic)
-          [:div (select-button ps crd)]]
-        (attack-row (:attack bcrd))
-        [card-id crd]]]))
+      [card-id crd]
+      [:div.d-flex {:style {:flex-wrap "wrap"}}
+        (select-button crd)
+        (card-header bcrd)
+        (weapon-header crd :basic)
+        [:div.ml-auto (attack-row (:attack bcrd))]]]))
  
 ;;;;;;;;;;;;;;; 
 ; OCCUPATION  ;
@@ -112,64 +122,71 @@
 
 (defn- knife []
   (let [crd (->> @apidata :cards (filter #(= (:id %) "GS-WE00")) first)]
-    [:span.text-muted.showpopover
-      [:i.ml-auto {:class (get @fa-icons "Knife")}]]))
+    [:span.text-muted.showpopover.px-1
+      [:i {:class (get @fa-icons "Knife")}]]))
 
   
-(defn- attribute-row [ attributes ]
-  [:span.rounded-lg.border.border-secondary.h-100.mx-auto
+(defn- attribute-row [ attrs ]
+  [:div
+    (for [[k v] attrs]
+      ^{:key (gensym)}[:span.rounded.border.border-secondary.mx-1.px-1 {:title (name k)}
+        [:span.mr-1 (-> k name (subs 0 2))]
+        [:b v]])])
+        
+(defn- attribute-rowx [ attributes ]
+  [:div
     (for [att attributes]
-      ^{:key (gensym)}[:span {:title (-> att key name)}
-        [:span.bg-secondary.text-light.px-2.border.border-secondary (-> att key name (subs 0 2) )][:span.px-2.text-center (-> att val)]]
+      [:span {:key (gensym) :title (-> att key name)}
+        [:span.px-1.border.border-secondary.bg-secondary.text-white.d-inline-block (-> att key name (subs 0 2) )]
+        [:span.px-1.border.border-secondary.d-inline-block (-> att val)]]
       )])
         
-(defn occupation-row [ ps crd ]
-  ^{:key (gensym)}[:li.list-group-item 
-    [:div.row
-      [:div.col-sm-3
-        [:div.mb-2 (card-header crd)]
-        [:div (select-button ps crd)]]
-      [:div.col-sm-9
-        [:div.d-flex.justify-content-around
-          (attribute-row (:attributes crd)) (knife)]]
-      [card-id crd]]])
+(defn occupation-row [ crd ]
+  [:li.list-group-item.pr-1 {:key (gensym)}
+    [card-id crd]
+    [:div.d-flex {:style {:flex-wrap "wrap"}}
+      (select-button crd)
+      (card-header crd)
+      [:div.ml-auto
+        (attribute-row (:attributes crd))]
+      ]])
         
 ;; Cards
 
-(defn- card-row [ ps crd ]
+(defn- card-row [ crd ]
   (case (:type crd)
-    "Occupation" (occupation-row ps crd)
-    "Weapon" (weapon-row ps crd :basic)
-    ("Skill Talent" "Weapon Talent") (talent-row ps crd)
-    ("Outfit" "Kit") (item-row ps crd)
+    "Occupation" (occupation-row crd)
+    "Weapon" (weapon-row crd :basic)
+    ("Skill Talent" "Weapon Talent") (talent-row crd)
+    ("Outfit" "Kit") (item-row crd)
     ^{:key (gensym)}[:li.list-group-item (:name crd)])
 )
 
 ;; Heroes 
 
 (defn- simple-card-row [ crd level ]
-  (case (:type crd)
-    "Occupation" 
-      ^{:key (gensym)}[:div.list-group-item.p-2
-        [:div.mb-1 (card-header crd) (card-id crd)]
-        [:div.d-flex (attribute-row (:attributes crd)) (knife)]]
+  ^{:key (gensym)}[:div.list-group-item.px-1.pt-1
+    (card-id crd)
+    (case (:type crd)
+      "Occupation" 
+        [:div.d-flex.flex-wrap
+          [:div (card-header crd)]
+          [:div.ml-auto (attribute-row (:attributes crd)) ]]
       "Weapon" 
-        ^{:key (gensym)}[:div.list-group-item.p-2
-          [:div.mb-1 (card-header crd level) (weapon-header crd level) (card-id crd)]
-          [:div.d-flex.justify-content-center (attack-row (-> crd level :attack))]]
+          [:div.d-flex.flex-wrap
+            [:div (card-header crd level) (weapon-header crd level)]
+            [:div.ml-auto (attack-row (-> crd level :attack))]]
       ("Weapon Talent" "Skill Talent")
-        ^{:key (gensym)}[:div.list-group-item.p-2
-          [:div.mb-1 (card-header crd) (card-id crd)]
-          [:small (talent-abilities crd "hero")]]        
-      nil))
+          [:div.d-flex.flex-wrap
+            (card-header crd)
+            [:small (talent-abilities crd "hero")]]        
+      nil)])
   
 (defn- hero-row [ ps hero ]
   (let [[id h] hero
         herocards (filter #(= (:hero %) id) (:cards @apidata))
-        oc (->> herocards (filter #(= (:type %) "Occupation")) first)
-        we (->> herocards (filter #(= (:type %) "Occupation")) first)
         ]
-  ^{:key id}[:li.list-group-item.mb-2.py-2 {:class (if (= (:hero @ps) id) "border-warning") :on-click #(swap! ps assoc :hero id)}
+  ^{:key id}[:li.list-group-item.mb-2.py-2
     [:button.btn.btn-sm.btn-light {
       :style {:position "absolute" :right "1px" :top "1px"}
       :data-toggle "modal" :data-target "#confirm-modal"
@@ -177,10 +194,9 @@
     [:div.d-flex.mb-2
       [:div.input-group.mr-1
         [:input.form-control {
-          :type "text" :value (:name h) 
+          :type "text" :value (:name h)
           :placeholder "Name"
-          :on-input #(swap! party assoc-in [:heros (:hero @ps) :name] (-> % .-target .-value))
-          :on-change #(swap! party assoc-in [:heros (:hero @ps) :name] (-> % .-target .-value))}]
+          :on-change #(swap! party assoc-in [:heros id :name] (-> % .-target .-value))}]
         (if (= 1 (-> @party :heros count))
           [:div.input-group-append
             [:div.input-group-text [:i.ra.ra-lg.ra-wolf-howl.my-auto {:title "Lone Wolf"}]]])]
@@ -193,16 +209,7 @@
     
 (defn- editpane [ ps ]
   [:div
-    [:div.d-flex.mb-2
-      [:h5.mt-auto "Heroes"]
-      [:button.btn.btn-sm.btn-light.ml-auto {
-        :class (if (> (-> @party :heros count) 3) "disabled") 
-        :on-click #(if (< (-> @party :heros count) 4) (add-hero!))}
-        "Add Hero to Party"]]
-    [:ul.list-group.mb-2
-      (doall (for [hero (:heros @party)]
-        (hero-row ps hero)))]
-    [:form 
+    [:form.form.mb-2 
       {:on-submit 
         (fn [e] 
           (.preventDefault e) 
@@ -219,17 +226,26 @@
           [:button.btn.btn-light.mr-2 {
             :on-click (fn [e]
               (.preventDefault e)
-              (resetpage! ps))} "Close"]
+              (resetparty!))} "Close"]
           [:button.btn.btn-light.mr-2 {
             :data-target "#confirm-modal" :data-toggle "modal" 
             :on-click (fn [e] 
               (.preventDefault e) 
               (swap! ps assoc :confirm {
                 :msg (str "Are you sure you want to discard changes to " (:name @party))
-                :fn #(resetpage! ps)}))} "Close"])
+                :fn #(resetparty!)}))} "Close"])
         [:button.btn.btn-warning {
           :class (if (= (party-with-cards) (:lastsave @ps)) "disabled")
-          :role "submit"} "Save"]]]])
+          :role "submit"} "Save"]]]
+    [:div.d-flex.mb-2
+      [:h5.my-2 "Heroes"]
+      [:button.btn.btn-sm.btn-outline-secondary.ml-auto {
+        :class (if (> (-> @party :heros count) 3) "disabled") 
+        :on-click #(if (< (-> @party :heros count) 4) (add-hero!))}
+        "Add Hero to Party"]]
+    [:ul.list-group.mb-2
+      (doall (for [hero (:heros @party)]
+        (hero-row ps hero)))]])
     
 (defn- loadpane [ ps ]
   @savedparties
@@ -257,7 +273,7 @@
                   :msg (str "Are you sure you want to delete " (:name p))
                   :fn (fn []
                     (deleteparty! p)
-                    (resetpage! ps))}))
+                    (resetparty!))}))
               }
               [:i.fas.fa-trash]]]]))]])
 
@@ -272,52 +288,54 @@
         [:div.modal-footer 
           [:button.btn.btn-secondary {:type "button" :data-dismiss "modal"} "Close"]
           [:button.btn.btn-danger {:type "button" :on-click (-> @ps :confirm :fn) :data-dismiss "modal"} "Confirm"]]]]])
-          
+
+(defn filter-cards [ flt ]
+  (->> @apidata 
+      :cards 
+      (filter #(= (:type %) (:cardlist flt))) 
+      (filter #(not= (:name %) "Knife"))
+      (filter #(contains? (:setlist flt) (-> % :id (subs 0 2))))    
+      (sort-by :id)))
 
 (defn Page []
-  (let [ps (r/atom {:cardlist "Occupation"})]
-    ;(setparty! ps nil)
-    ;(swap! ps assoc :hero (-> @party :heros first key))
+  (let [ps (r/atom {:cardlist "Skill Talent" :setlist (->> sets (map :id) set)})]
     (fn []
-      [:div.container-fluid.my-3
+      [:div.container-fluid.my-2
         [confirm-modal ps]
         [:div.row
-          [:div.col-sm-5
+          [:div.col-lg-6
             (if (false? @savedparties)
               [:div "You must " [:a {:href "/lu/party/login"} "Log in"] " to create and save parties"]
-              (case (:screen @ps)
-                :edit [editpane ps]
-                [loadpane ps]))
+              (if (nil? @party)
+                [loadpane ps]
+                [editpane ps]))
             ;[:div (str "ps: " @ps)]
             ;[:div (str "sp: " @savedparties)] 
+            ;[:div (str @party)]
             ;[:div (str "pwc: " (party-with-cards))]
             ;[:div (str "cards: " (:cards @apidata))]
           ]
-          [:div.col-sm-7
-            [:div.sticky-top.pt-2
-              [:div
-                [:label.mr-3 "Filter by Set:"]
-                [:div.form-check.form-check-inline
-                  [:input.form-check-input {:type "checkbox"}]
-                  [:label.form-check-label "The Weeping Caves"]]
-                [:div.form-check.form-check-inline
-                  [:input.form-check-input {:type "checkbox"}]
-                  [:label.form-check-label "The Great Sewer"]]
-                [:div.form-check.form-check-inline
-                  [:input.form-check-input {:type "checkbox"}]
-                  [:label.form-check-label "Druid Expansion"]]
-                [:div.form-check.form-check-inline
-                  [:input.form-check-input {:type "checkbox"}]
-                  [:label.form-check-label "Alchemist Expansion"]]
-                ]
-              [:div.mb-2
-                [:div.btn-group.btn-group-sm.d-flex
-                  (doall (for [ct (->> @apidata :cards (map :type) distinct) :let [selected? (= (:cardlist @ps) ct)]]
-                    ^{:key (gensym)}[:button.btn.btn-outline-dark.w-100 {
-                        :class (if selected? "active")
-                        :on-click #(swap! ps assoc :cardlist ct)} 
-                      ct]))]]
-              [:div
-                [:ul.list-group
-                  (doall (for [crd (->> @apidata :cards (filter #(= (:type %) (:cardlist @ps))) (filter #(not= (:name %) "Knife")) (sort-by :id))]
-                    (card-row ps crd)))]]]]]])))
+          [:div.col-lg-6
+            [:div.mb-2
+              ;[:div "Sets:"]
+              [:div (doall (for [set sets]
+                [:div.form-check.form-check-inline {
+                  :key (gensym)}
+                  [:input.form-check-input {
+                    :type "checkbox" 
+                    :checked (contains? (:setlist @ps) (:id set)) 
+                    :on-change #(if (contains? (:setlist @ps) (:id set)) 
+                                   (swap! ps update-in [:setlist] disj (:id set))
+                                   (swap! ps update-in [:setlist] conj (:id set)))}]
+                  [:label.form-check-label (:name set)]]))]]
+            [:div.mb-2
+              [:div.btn-group.btn-group-sm.d-flex
+                (doall (for [ct (->> @apidata :cards (map :type) distinct) :let [selected? (= (:cardlist @ps) ct)]]
+                  ^{:key (gensym)}[:button.btn.btn-outline-dark.w-100 {
+                      :class (if selected? "active")
+                      :on-click #(swap! ps assoc :cardlist ct)} 
+                    ct]))]]
+            [:div
+              [:ul.list-group
+                (doall (for [crd (filter-cards @ps)]
+                  (card-row crd)))]]]]])))
