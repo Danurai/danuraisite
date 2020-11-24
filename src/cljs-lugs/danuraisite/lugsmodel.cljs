@@ -10,13 +10,18 @@
 (def savedparties (r/atom {}))
 
     
-(def ^:const names ["Lagather" "Bjorn" "Helmdale" "Rhianna" "Musgrove" "Toad" "Felps" "Germintrude"])
-(def ^:const limits [
+(def names ["Lagather" "Bjorn" "Helmdale" "Rhianna" "Musgrove" "Toad" "Felps" "Germintrude"])
+(def limits [
   ["Weapons, Outfits and Kit: 1 Basic Weapon, Talents: 3"]
-  ["Weapons, Outfits and Kit: 2, Talents: 3"]])
-  
-(def fa-icons (r/atom nil))
+  ["Weapons, Outfits and Kit: 2, Talents: 3"]])       
+(def sets [
+  {:id "WC" :name "Weeping Caves"}
+  {:id "GS" :name "Great Sewer"}
+  {:id "AL" :name "Alchemist"}
+  {:id "DR" :name "Druid"}
+])
 
+(def fa-icons (r/atom nil))
 
 (defn- convert [fa-icons txt]
   (if-let [symbol (re-matches #"\[(\w+)\]" txt)]
@@ -37,7 +42,6 @@
       (re-seq #"\[\w+\]|\n|." )
       (map #(convert fa-icons %))
       makespan))
-      
 
 (defn party-with-cards []
   (assoc @party :heros
@@ -46,24 +50,34 @@
         (hash-map id 
                  (assoc h :cards (->> @apidata :cards (filter #(= (:hero %) id)) (map :id))))
       ) (:heros @party )))))
+
+
+(defn get-occupation [ hero ]
+  (if-not (nil? hero)
+    (->> @apidata
+         :cards 
+         (filter #(= (:type %) "Occupation"))
+         (filter #(= (:hero %) hero)))))
+    
       
-(defn updatecardsbyselection [ ps crd ]
+(defn- updatecardsbyselection [ hero crd ]
   (map (fn [c]
     (if (= (:type crd) "Occupation")
-        (if (= (:hero c) (:hero @ps))
+        (if (= (:hero c) hero)
           (dissoc c :hero)
           (if (= (:id c) (:id crd))
-              (assoc c :hero (:hero @ps))
+              (assoc c :hero hero)
               c))
       (if (= (:id c) (:id crd))
-          (if (= (:hero c) (:hero @ps))
+          (if (= (:hero c) hero)
               (dissoc c :hero)
-              (assoc c :hero (:hero @ps)))
+              (assoc c :hero hero))
           c))
     ) (:cards @apidata)))
       
-(defn selectcard! [ ps crd ]
-  (swap! apidata assoc :cards (updatecardsbyselection ps crd)))
+(defn selectcard! [ hero crd ]
+  (swap! apidata assoc :cards (updatecardsbyselection hero crd)))
+
 
 (defn add-hero! []
   (swap! party assoc-in [:heros (keyword (gensym "hero"))] {:name (rand-nth names) :lvl 1}))
@@ -93,14 +107,14 @@
   (resetapidata!)
   (resetparties!))
   
-(defn resetpage! [ ps ]
-  (reset! ps {:cardlist "Occupation"})
+(defn resetparty! []
   (reset! party nil)
   (init!))
     
 (defn saveparty![ party ]
   (go (let [response (<! (http/post "/lu/party/save" {:form-params (assoc @party :data (.stringify js/JSON (clj->js (:heros (party-with-cards)))))}))]
-    (resetparties!))))
+    (resetparties!)
+    )))
         
 (defn deleteparty! [ party ]
   (go (let [response (<! (http/post "/lu/party/delete" {:form-params {:uid (:uid party)}}))]
@@ -116,13 +130,12 @@
     :name (:name p) 
     :heros (->> p :data (map (fn [[id h]] (hash-map id (dissoc h :cards)))) (reduce merge))))
   (swap! apidata assoc :cards
-    (reduce (fn [cards [k h]]
-      (map
-        #(if (contains? (-> h :cards set) (:id %)) (assoc % :hero k) %)
-      cards)) (map #(dissoc % :hero) (:cards @apidata)) (-> p :data))))
+    (reduce 
+      (fn [cards [k h]]
+        (map #(if (contains? (-> h :cards set) (:id %)) (assoc % :hero k) %) cards))
+      (map #(dissoc % :hero) (:cards @apidata)) 
+      (-> p :data))))
 
 (defn setparty! [ ps p ]
   (if (nil? p) (newparty!) (loadparty! p))
-  (swap! ps assoc 
-    :screen :edit
-    :lastsave (party-with-cards)))
+  (swap! ps assoc :lastsave (party-with-cards)))
