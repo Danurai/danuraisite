@@ -11,9 +11,17 @@
 
     
 (def names ["Lagather" "Bjorn" "Helmdale" "Rhianna" "Musgrove" "Toad" "Felps" "Germintrude"])
-(def limits [
-  ["Weapons, Outfits and Kit: 1 Basic Weapon, Talents: 3"]
-  ["Weapons, Outfits and Kit: 2, Talents: 3"]])       
+(def levels [
+  {:upgrade 0 :talent 0}
+  {:upgrade 1 :talent 3}
+  {:upgrade 2 :talent 3}
+  {:upgrade 2 :talent 4}
+  {:upgrade 3 :talent 4}
+  {:upgrade 4 :talent 4}
+  {:upgrade 4 :talent 5}
+  {:upgrade 5 :talent 5}
+  {:upgrade 6 :talent 5}
+])
 (def sets [
   {:id "WC" :name "Weeping Caves"}
   {:id "GS" :name "Great Sewer"}
@@ -58,29 +66,44 @@
          :cards 
          (filter #(= (:type %) "Occupation"))
          (filter #(= (:hero %) hero)))))
+         
+(defn hero-upgrade-talent-count [ id ]
+  (let [n (->> @apidata :cards (filter #(= (:hero %) id)) (map :type) frequencies)]
+    (hash-map 
+      :upgrade (apply + (map n ["Weapon" "Outfit" "Kit" "Companion"]))
+      :talent (apply + (map n ["Skill Talent" "Weapon Talent"])))))
     
       
 (defn- updatecardsbyselection [ hero crd ]
-  (map (fn [c]
-    (if (= (:type crd) "Occupation")
-        (if (= (:hero c) hero)
-          (dissoc c :hero)
-          (if (= (:id c) (:id crd))
-              (assoc c :hero hero)
-              c))
-      (if (= (:id c) (:id crd))
-          (if (= (:hero c) hero)
-              (dissoc c :hero)
-              (assoc c :hero hero))
-          c))
-    ) (:cards @apidata)))
+  (map 
+    #(if (= (:id %) (:id crd))
+         (if (= (:hero %) hero)
+             (dissoc % :hero)
+             (assoc % :hero hero))
+         (if (and (= (:type crd) "Occupation") (= (:type %) "Occupation") (= (:hero %) hero))
+             (dissoc % :hero)
+             %)) (:cards @apidata)))
+    
+(defn upgrade-toggle! [ crd ]
+  (swap! apidata assoc :cards 
+    (map 
+      #(if (= (:id %) (:id crd))
+           (if (:upgrade? %)
+               (dissoc crd :upgrade?)
+               (assoc crd :upgrade? true))
+            %) (:cards @apidata))))
+            
+(defn hero-upgrade! [ [k v] crd ]
+  (if (contains? (-> @party :heros k :upgrades) (:id crd))
+      (swap! party update-in [:heros k :upgrades] disj (:id crd))
+      (swap! party update-in [:heros k :upgrades] conj (:id crd))))
       
 (defn selectcard! [ hero crd ]
   (swap! apidata assoc :cards (updatecardsbyselection hero crd)))
 
 
 (defn add-hero! []
-  (swap! party assoc-in [:heros (keyword (gensym "hero"))] {:name (rand-nth names) :lvl 1}))
+  (swap! party assoc-in [:heros (keyword (gensym "hero"))] {:name (rand-nth names) :lvl 1 :upgrades #{}}))
   
 (defn delete-hero! [ e ps id h ]
   (.stopPropagation e)
@@ -128,7 +151,7 @@
   (reset! party (hash-map 
     :uid (:uid p) 
     :name (:name p) 
-    :heros (->> p :data (map (fn [[id h]] (hash-map id (dissoc h :cards)))) (reduce merge))))
+    :heros (reduce-kv #(assoc %1 %2 (-> %3 (dissoc :cards) (assoc :upgrades (-> %3 :upgrades set)))) {} (:data p))))
   (swap! apidata assoc :cards
     (reduce 
       (fn [cards [k h]]
@@ -139,3 +162,5 @@
 (defn setparty! [ ps p ]
   (if (nil? p) (newparty!) (loadparty! p))
   (swap! ps assoc :lastsave (party-with-cards)))
+  
+(init!)
