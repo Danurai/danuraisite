@@ -3,9 +3,10 @@
     [reagent.core :as r]
     ;[reagent.dom.server :refer [render-to-string]]
     [danuraisite.lugsview :as view]
-    [danuraisite.lugsmodel :as model]))
+    ;[danuraisite.lugsmodel :as model]
+    ))
 
-(model/init!)
+;(model/init!)
 ;
 ;
 ;;(r/render [view/Page] (.getElementById js/document "app"))

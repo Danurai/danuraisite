@@ -226,7 +226,6 @@
 (defn save-party [ uid name data author ]
   (let [qry {:data data :author author :name name :updated (c/to-long (t/now))}
         where-clause ["uid = ?" (if (nil? uid) nil (read-string uid))]]
-    (prn "save party" uid name author data)
     (j/with-db-transaction [t-con db]
       (let [result (j/update! t-con :lugsparty qry where-clause)]
         (if (zero? (first result))

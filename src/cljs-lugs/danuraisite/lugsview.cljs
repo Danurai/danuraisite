@@ -2,24 +2,21 @@
   (:require 
     [reagent.core :as r]
     [danuraisite.lugsmodel :refer 
-      [party apidata savedparties names limits sets fa-icons
-       markdown party-with-cards get-occupation
+      [party apidata savedparties names levels sets fa-icons
+       markdown party-with-cards get-occupation hero-upgrade-talent-count
        selectcard! 
-       resetparty! setparty! saveparty! deleteparty! add-hero! delete-hero!]]))
+       resetparty! setparty! saveparty! deleteparty! add-hero! delete-hero! upgrade-toggle! hero-upgrade!]]))
 
-(defn- card-header 
-  ([ crd ]
-    [:span.mr-2
-      [:span.mr-2 (:name crd)]
-      (if-let [specialty (:specialty crd)]
-        [:i.fa-sm {:title specialty :class (get @fa-icons specialty "fa fa-question text-warning")}])])
-  ([crd level]
-    (card-header (assoc (level crd) :specialty (:specialty crd)))))
+(defn- card-header [ crd ]
+  (prn (:speciality crd))
+  [:span.mr-2
+    [:span.mr-2 (:name crd)]
+    (if-let [speciality (:speciality crd)]
+      [:i.fa-sm {:title speciality :class (get @fa-icons speciality "fa fa-question text-warning")}])])
     
 (defn- card-id [ crd ]
   [:span.text-muted {:style {:position "absolute" :bottom "0px" :right "5px" :font-size "0.5rem"}} (:id crd)])
-    
-    
+        
 (defn- select-button [ crd ]
   (let [hvec (reduce conj [nil] (-> @party :heros keys sort))
         occupations (apply merge (map #(hash-map % (get-occupation %)) hvec))
@@ -35,35 +32,31 @@
             (if-let [occ (get occupations (get hvec n))]
               (if (empty? occ)
                   n
-                  [:span {:class (get @fa-icons (-> occ first :specialty))}])
+                  [:span {:class (get @fa-icons (-> occ first :speciality))}])
               n)]))])))
       
-;; KIT
-(defn- item-row [ crd ]
-  ^{:key (gensym)}[:li.list-group-item
-      [:div.row
-        [:div.mb-2 (card-header crd)]
-        [:div (select-button crd)]
-        [card-id crd]]
-      [:div.card-deck
-        (doall (for [lvl [:basic :upgraded] :let [iteml (lvl crd)]]
-          ^{:key (gensym)}[:div.card
-            [:div.card-header.p-2 {:data-toggle "collapse" :data-target (str ".collapse-" (:id crd))}
-              [:div.mb-1 
-                [:b (:name iteml)]]]
-            [:div.card-body.collapse.wp-2 {:class (str "collapse-" (:id crd))}
-              [:div {:style {:white-space "pre-wrap"}} (markdown (:text iteml) @fa-icons)]]]))]])
+(defn- upgrade-btn [ crd ]
+  [:div.mr-2
+    [:button.btn.btn-xs{
+      :title "Upgrade"
+      :class (if (:upgrade? crd) "active btn-success" "btn-outline-primary")
+      :on-click #(upgrade-toggle! crd)} 
+      [:b (if (:upgrade? crd) "U" "B")]
+      ]])
+      
           
 ;; TALENTS
 
 (defn- ability-header [ ab ]
   [:div.d-flex
+    [:span
+      (doall (for [co (:cost ab)]
+        [:span.mr-1 {:key (gensym) :title co :class (get @fa-icons co)}]))]
     [:span.mr-1 (:name ab)]
     [:span.my-auto.ml-auto
       (doall (for [ic (:icons ab)] 
         [:span.mr-1 {:key (gensym) :title ic :class (get @fa-icons ic)}]))
-      (doall (for [co (:cost ab)]
-        [:span.mr-1 {:key (gensym) :title co :class (get @fa-icons co)}]))]])
+      ]])
 
 (defn- talent-abilities 
   ([ crd hero? ]
@@ -72,140 +65,196 @@
         ^{:key (gensym)}[:div.card 
           [:div.card-header.p-2 {:style {:white-space "nowrap" :cursor "pointer"} :data-toggle "collapse" :data-target (str ".collapse-" (:id crd) (if hero? "-h"))} (ability-header ab)]
           [:div.card-body.collapse.p-2 {:class (str "collapse-" (:id crd) (if hero? "-h"))} 
-            [:div (doall (for [co (:cost ab)] ^{:key (gensym)}[:span.mr-1 {:title co :class (get @fa-icons co)}]))]
+            ;[:div (doall (for [co (:cost ab)] ^{:key (gensym)}[:span.mr-1 {:title co :class (get @fa-icons co)}]))]
             [:div (-> ab :text (markdown @fa-icons))]]]))])
   ([ crd ]
     (talent-abilities crd false)))
   
 (defn- talent-row [ crd ]
-  ^{:key (gensym)}[:li.list-group-item
-      [card-id crd]
-      [:div.d-flex.flex-wrap
-        (select-button crd)
-        (card-header crd)
-        [:div.w-100 (talent-abilities crd)]]])
+  [:div.d-flex.flex-wrap
+    (select-button crd)
+    (card-header crd)
+    [:div.w-100 (talent-abilities crd)]])
 
 ;;;;;;;;;;;      
 ; WEAPON  ;
 ;;;;;;;;;;;
 
-(defn- weapon-header [ crd level ]
+;(defn- knife []
+;  (let [crd (->> @apidata :cards (filter #(= (:id %) "GS-WE00")) first)]
+;    [:span.text-muted.showpopover.px-1
+;      [:i {:class (get @fa-icons "Knife")}]]))
+
+(defn- weapon-header [ crd ]
   [:span.text-muted.mb-1.mr-2
     (if (:twohanded crd) [:span.mr-2 "2H"])
     (if (:melee crd) [:small.mr-1 {:class (re-find #".+(?=\stext-danger)|.+" (get @fa-icons "Melee"))}])
-    (if (:ammo (level crd)) [:small.mr-1 {:class (re-find #".+(?=\stext-danger)|.+" (get @fa-icons "Ranged"))}])
-    [:span.ml-1 (doall (for [a (:ammo (level crd))] 
-      ^{:key (gensym)}[:i {:class (get @fa-icons a)}]))]])
+    (if (:ammo crd) [:small.mr-1 {:class (re-find #".+(?=\stext-danger)|.+" (get @fa-icons "Ranged"))}])
+    [:span.ml-1 
+      (doall (for [a (:ammo crd)] 
+        [:i {:key (gensym) :class (get @fa-icons a)}]))]])
 
 (defn- attack-row [ atk ]
-  [:div
+  [:div.mt-auto
     (doall (for [[k v] (sort-by val > atk)]
       ^{:key (gensym)}[:span.rounded.border.border-secondary.mx-1.px-1 {:title (name k)}
         [:span.mr-1 v]
         [:i {:class (get @fa-icons (name k))}]]))])
       
 (defn weapon-row [ crd level ]
-  (let [bcrd (assoc (:basic crd) :specialty (:specialty crd))
-        ucrd (assoc (:upgraded crd) :specialty (:specialty crd))]
-;; If the active hero owns the weapon, show advanced for selection
-    ^{:key (gensym)}[:li.list-group-item
-      [card-id crd]
-      [:div.d-flex {:style {:flex-wrap "wrap"}}
-        (select-button crd)
-        (card-header bcrd)
-        (weapon-header crd :basic)
-        [:div.ml-auto (attack-row (:attack bcrd))]]]))
+  (let [lvl (if (:upgrade? crd) :upgraded :basic)
+        crd (merge crd (lvl crd))]
+    [:div.d-flex {:style {:flex-wrap "wrap"}}
+      (select-button crd)
+      (card-header crd)
+      (weapon-header crd)
+      [:div.d-flex.ml-auto (attack-row (:attack crd)) (upgrade-btn crd) ]]))
+      
+;;;;;;;     
+; KIT ;
+;;;;;;;
+
+(defn- item-row [ crd ]
+  (let [lvl (if (:upgrade? crd) :upgraded :basic)
+        crd (merge crd (lvl crd))]
+    [:div.d-flex.flex-wrap
+      [select-button crd]
+      [card-header crd]
+      [:div.ml-auto.d-flex
+        (if (some? (:attack crd)) (attack-row (:attack crd)))   
+        [upgrade-btn crd]]
+      [:div.w-100.text-center {:style {:white-space "pre-wrap"}} (-> crd :text (markdown @fa-icons))]]))
  
 ;;;;;;;;;;;;;;; 
 ; OCCUPATION  ;
 ;;;;;;;;;;;;;;;
 
-(defn- knife []
-  (let [crd (->> @apidata :cards (filter #(= (:id %) "GS-WE00")) first)]
-    [:span.text-muted.showpopover.px-1
-      [:i {:class (get @fa-icons "Knife")}]]))
-
-  
 (defn- attribute-row [ attrs ]
-  [:div
+  [:div.mt-auto
     (for [[k v] attrs]
-      ^{:key (gensym)}[:span.rounded.border.border-secondary.mx-1.px-1 {:title (name k)}
+      [:span.rounded.border.border-secondary.mx-1.px-1 {:key (gensym) :title (name k)}
         [:span.mr-1 (-> k name (subs 0 2))]
         [:b v]])])
         
-(defn- attribute-rowx [ attributes ]
-  [:div
-    (for [att attributes]
-      [:span {:key (gensym) :title (-> att key name)}
-        [:span.px-1.border.border-secondary.bg-secondary.text-white.d-inline-block (-> att key name (subs 0 2) )]
-        [:span.px-1.border.border-secondary.d-inline-block (-> att val)]]
-      )])
-        
 (defn occupation-row [ crd ]
-  [:li.list-group-item.pr-1 {:key (gensym)}
-    [card-id crd]
-    [:div.d-flex {:style {:flex-wrap "wrap"}}
-      (select-button crd)
-      (card-header crd)
-      [:div.ml-auto
-        (attribute-row (:attributes crd))]
-      ]])
+  [:div.d-flex {:style {:flex-wrap "wrap"}}
+    (select-button crd)
+    (card-header crd)
+    [:div.ml-auto (attribute-row (:attributes crd))]])
         
 ;; Cards
 
 (defn- card-row [ crd ]
-  (case (:type crd)
-    "Occupation" (occupation-row crd)
-    "Weapon" (weapon-row crd :basic)
-    ("Skill Talent" "Weapon Talent") (talent-row crd)
-    ("Outfit" "Kit") (item-row crd)
-    ^{:key (gensym)}[:li.list-group-item (:name crd)])
-)
+  [:li.list-group-item {:key (gensym)}
+    [card-id crd]
+    (case (:type crd)
+      "Occupation" (occupation-row crd)
+      "Weapon" (weapon-row crd :basic)
+      ("Skill Talent" "Weapon Talent") (talent-row crd)
+      ("Outfit" "Kit" "Companion") (item-row crd) 
+      [:div.d-flex (:name crd)])])
 
 ;; Heroes 
+(defn- hero-upgrade-btn [ hero crd ]
+  (let [upgrade? (contains? (-> hero val :upgrades) (:id crd))]
+    [:div.mr-2
+      [:button.btn.btn-xs {
+        :class (if upgrade? "btn-success" "btn-outline-primary")
+        :on-click #(hero-upgrade! hero crd)}
+        [:b (if upgrade? "U" "B")]]]
+      ))
+(defn- remove-btn [ hero crd ]
+  [:div.ml-2 [:button.btn.btn-xs.btn-light {
+    :title (str "Remove " (:name crd)) 
+    :on-click #(selectcard! hero crd)} 
+    [:i.text-secondary.fa-sm.fas.fa-times]
+    ]])
 
-(defn- simple-card-row [ crd level ]
-  ^{:key (gensym)}[:div.list-group-item.px-1.pt-1
-    (card-id crd)
+(defn- simple-card-row [ hero crd ]
+  (let [lvl (if (contains? (-> hero val :upgrades) (:id crd)) :upgraded :basic)
+        crd (if (-> crd :basic some?) (merge crd (lvl crd)) crd)] 
+  [:li.list-group-item {:key (gensym) :style {:position "relative"}}
+    ;(card-id crd)
     (case (:type crd)
       "Occupation" 
         [:div.d-flex.flex-wrap
-          [:div (card-header crd)]
-          [:div.ml-auto (attribute-row (:attributes crd)) ]]
+          [:div (attribute-row (:attributes crd)) ]
+          [:div.ml-auto (card-header crd)]]
       "Weapon" 
-          [:div.d-flex.flex-wrap
-            [:div (card-header crd level) (weapon-header crd level)]
-            [:div.ml-auto (attack-row (-> crd level :attack))]]
+        [:div.d-flex.flex-wrap
+          [:div (card-header crd) (weapon-header crd)]
+          [:div.d-flex.ml-auto 
+            (hero-upgrade-btn hero crd)
+            (attack-row (:attack crd))]
+          (remove-btn hero crd)]
       ("Weapon Talent" "Skill Talent")
-          [:div.d-flex.flex-wrap
-            (card-header crd)
-            [:small (talent-abilities crd "hero")]]        
-      nil)])
-  
+        [:div.d-flex.flex-wrap
+          [:div (card-header crd)]
+          [:div.ml-auto (remove-btn hero crd)]
+          [:div.w-100 [:small (talent-abilities crd "hero")]]]
+      ("Outfit" "Kit" "Companion")
+        [:div.d-flex.flex-wrap
+          (hero-upgrade-btn hero crd)
+          [:div (card-header crd)]
+          [:div.ml-auto (remove-btn hero crd)]
+          [:small.w-100.text-center {:style {:white-space "pre-wrap"}}(:text crd)]]
+      nil)]))
+    
+(defn- card-comparator [ crd ]
+  (str 
+    (.indexOf ["Occupation" "Outfit" "Kit" "Companion" "Weapon" "Weapon Talent" "Skill Talent"] (:type crd))
+    (:id crd)))
+    
+(defn count-limits [ id h lonewolf? levels ]
+  (let [card-counts (hero-upgrade-talent-count id)
+        totals (update card-counts :upgrade + (-> :upgrades h count))
+        limits (-> (levels (:lvl h))
+                    (update :upgrade + (if lonewolf? 1 0))
+                    (update :talent + (if lonewolf? 2 0)))]
+    [:div.mb-1.d-flex
+      [:span.mr-2.ml-auto
+        [:span "Upgrades: "]
+        [:b {:class (case (- (:upgrade limits) (:upgrade totals)) 0 "text-success" -1 "text-primary" "text-danger")}
+          (:upgrade totals)]
+        [:span (str "/" (:upgrade limits))]]
+      [:span.mr-2
+        [:span "Talents: "]
+        [:b {:class (case (- (:talent limits) (:talent totals)) 0 "text-success" -1 "text-primary" "text-danger")}
+          (:talent totals)]
+        [:span (str "/" (:talent limits))]]]))
+
 (defn- hero-row [ ps hero ]
   (let [[id h] hero
         herocards (filter #(= (:hero %) id) (:cards @apidata))
-        ]
-  ^{:key id}[:li.list-group-item.mb-2.py-2
+        lonewolf? (= 1 (-> @party :heros count))]
+  [:li.list-group-item.mb-2.py-2.pl-2 {:key id}
     [:button.btn.btn-sm.btn-light {
       :style {:position "absolute" :right "1px" :top "1px"}
       :data-toggle "modal" :data-target "#confirm-modal"
       :on-click #(delete-hero! % ps id h) :title "Delete"} "x"]
     [:div.d-flex.mb-2
-      [:div.input-group.mr-1
+      (if-let [occupation (filter #(= "Occupation" (:type %)) herocards)]
+        [:div.d-flex
+          [:b (card-header (first occupation))]
+          (attribute-row (-> occupation first :attributes))
+          ])
+      [:div.ml-auto [count-limits id h lonewolf? levels]]]
+    [:div.d-flex.mb-2
+      [:label.my-auto.mr-2 "Name"]
+      [:div.input-group.mr-2
         [:input.form-control {
           :type "text" :value (:name h)
           :placeholder "Name"
           :on-change #(swap! party assoc-in [:heros id :name] (-> % .-target .-value))}]
-        (if (= 1 (-> @party :heros count))
+        (if lonewolf?
           [:div.input-group-append
             [:div.input-group-text [:i.ra.ra-lg.ra-wolf-howl.my-auto {:title "Lone Wolf"}]]])]
+      [:label.my-auto.mr-2 "Level"]
       [:select.form-control.mr-2 {:style {:width "auto"} :value (-> h :lvl) :on-change #(swap! party assoc-in [:heros id :lvl] (-> % .-target .-value))}
         (for [n (range 1 10)] ^{:key (gensym)}[:option {:value n} n])]]
     [:ul.list-group
-      (doall (for [crd herocards]
-        (simple-card-row crd :basic)))]]))
-    
+      (doall (for [crd (->> herocards (filter #(not= "Occupation" (:type %))) (sort-by card-comparator))]
+        (simple-card-row hero crd)))]]))
     
 (defn- editpane [ ps ]
   [:div
@@ -298,7 +347,7 @@
       (sort-by :id)))
 
 (defn Page []
-  (let [ps (r/atom {:cardlist "Skill Talent" :setlist (->> sets (map :id) set)})]
+  (let [ps (r/atom {:cardlist "Occupation" :setlist (->> sets (map :id) set)})]
     (fn []
       [:div.container-fluid.my-2
         [confirm-modal ps]
@@ -317,7 +366,6 @@
           ]
           [:div.col-lg-6
             [:div.mb-2
-              ;[:div "Sets:"]
               [:div (doall (for [set sets]
                 [:div.form-check.form-check-inline {
                   :key (gensym)}
@@ -337,5 +385,5 @@
                     ct]))]]
             [:div
               [:ul.list-group
-                (doall (for [crd (filter-cards @ps)]
+                (doall (for [crd (sort-by card-comparator (filter-cards @ps))]
                   (card-row crd)))]]]]])))

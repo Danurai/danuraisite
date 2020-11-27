@@ -10,6 +10,7 @@
       ;[:div (db/get-user-parties (-> req model/get-authentications :uid))]
       [:div#app]
       (h/include-css "/css/rpg-awesome.min.css?v=1")
+      (h/include-css "/css/lugs.css?v=1")
       (h/include-js "/js/compiled/lugs-app.js")]))
   
 (defn lugsicons [ req ]
