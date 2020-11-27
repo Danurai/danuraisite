@@ -107,62 +107,62 @@
 		},
 		{
 			"name": "AnimalKen",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-paw"
 		},
 		{
 			"name": "Arcana",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-bolt"
 		},
 		{
 			"name": "Construction",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-gavel"
 		},
 		{
 			"name": "Devices",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-tools"
 		},
 		{
 			"name": "Engineering",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-cog"
 		},
 		{
 			"name": "Etiquette",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-hands-helping"
 		},
 		{
 			"name": "Faith",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-sun"
 		},
 		{
 			"name": "Fey",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "ra ra-fairy"
 		},
 		{
 			"name": "Geology",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "far fa-gem"
 		},
 		{
 			"name": "Herbology",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-leaf"
 		},
 		{
 			"name": "Perform",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-theater-masks"
 		},
 		{
 			"name": "Subterranean",
-			"type": "Specialty",
+			"type": "speciality",
 			"fa": "fas fa-icicles"
 		},
 		{
@@ -374,7 +374,7 @@
 	"cards": [{
 			"id": "GS-OC01",
 			"name": "Labourer",
-			"specialty": "Construction",
+			"speciality": "Construction",
       "type": "Occupation",
 			"attributes": {
 				"Brawn": 3,
@@ -388,7 +388,7 @@
 		{
 			"id": "GS-OC02",
 			"name": "Guttersnipe",
-			"specialty": "Devices",
+			"speciality": "Devices",
       "type": "Occupation",
 			"attributes": {
 				"Brawn": 2,
@@ -402,7 +402,7 @@
 		{
 			"id": "GS-OC03",
 			"name": "Performer",
-			"specialty": "Perform",
+			"speciality": "Perform",
       "type": "Occupation",
 			"attributes": {
 				"Brawn": 1,
@@ -416,7 +416,7 @@
 		{
 			"id": "GS-OC04",
 			"name": "Follower",
-			"specialty": "Faith",
+			"speciality": "Faith",
       "type": "Occupation",
 			"attributes": {
 				"Brawn": 1,
@@ -430,7 +430,7 @@
 		{
 			"id": "AL-OC01",
 			"name": "Alchemist",
-			"specialty": "AnimalKen",
+			"speciality": "AnimalKen",
       "type": "Occupation",
 			"attributes": {
 				"Brawn":  2,
@@ -444,7 +444,7 @@
 		{
 			"id": "DR-OC01",
 			"name": "Druid",
-			"specialty": "Herbology",
+			"speciality": "Herbology",
       "type": "Occupation",
 			"attributes": {
 				"Brawn":  1,
@@ -458,7 +458,7 @@
 		{
 			"id": "WC-OC01",
 			"name": "Farmhand",
-			"specialty": "Fey",
+			"speciality": "Fey",
       "type": "Occupation",
 			"attributes": {
 				"Brawn":  3,
@@ -472,7 +472,7 @@
 		{
 			"id": "WC-OC02",
 			"name": "Forgehand",
-			"specialty": "Engineering",
+			"speciality": "Engineering",
       "type": "Occupation",
 			"attributes": {
 				"Brawn":  2,
@@ -486,7 +486,7 @@
 		{
 			"id": "WC-OC03",
 			"name": "Evicted Noble",
-			"specialty": "Etiquette",
+			"speciality": "Etiquette",
       "type": "Occupation",
 			"attributes": {
 				"Brawn":  1,
@@ -500,7 +500,7 @@
 		{
 			"id": "WC-OC04",
 			"name": "Student",
-			"specialty": "Arcana",
+			"speciality": "Arcana",
       "type": "Occupation",
 			"attributes": {
 				"Brawn":  1,
@@ -514,7 +514,7 @@
 		{
 			"id": "GS-WE00",
       "name": "Knife",
-			"specialty": "Knife",
+			"speciality": "Knife",
 			"type": "Weapon",
 			"broken": {
 				"title": "No Effect",
@@ -547,7 +547,7 @@
 		{
 			"id": "GS-WE01",
       "name": "Spear",
-			"specialty": "Spear",
+			"speciality": "Spear",
 			"type": "Weapon",
       "melee": true,
 			"broken": {
@@ -587,7 +587,7 @@
 			"type": "Weapon",
       "twohanded": true,
       "melee": true,
-			"specialty": "Staff",
+			"speciality": "Staff",
 			"broken": {
 				"title": "Broken!",
 				"text": "The Staff snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -622,7 +622,7 @@
       "name": "Bow",
 			"type": "Weapon",
       "twohanded": true,
-			"specialty": "Bow",
+			"speciality": "Bow",
 			"broken": {
 				"title": "String Snapped!",
 				"text": "The Bow's string snaps, and you cannot use it until you spend [Time] during the Rest Phase to repair it."
@@ -658,7 +658,7 @@
       "name": "Axe",
 			"type": "Weapon",
       "melee": true,
-			"specialty": "Axe",
+			"speciality": "Axe",
 			"broken": {
 				"title": "Broken!",
 				"text": "The head of the axe comes away and it cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -694,7 +694,7 @@
 			"type": "Weapon",
       "melee": true,
       "twohanded": true,
-			"specialty": "Polearm",
+			"speciality": "Polearm",
 			"broken": {
 				"title": "Broken!",
 				"text": "The bill at the end has come away. The Weapon cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -728,7 +728,7 @@
 			"id": "GS-WE06",
       "name": "Javelin",
 			"type": "Weapon",
-			"specialty": "Javelin",
+			"speciality": "Javelin",
 			"broken": {
 				"title": "Shattered!",
 				"text": "Reduce Ammo by 1. You may spend [Time] during the Rest Phase to Restore each lost Ammo up to the maximum for the Weapon."
@@ -762,7 +762,7 @@
 			"id": "DR-WE01",
       "name": "Club",
 			"type": "Weapon",
-			"specialty": "Club",
+			"speciality": "Club",
       "Melee": true,
 			"broken": {
 				"title": "No Effect",
@@ -796,7 +796,7 @@
 		{
 			"id": "WC-WE01",
       "name": "Spear",
-			"specialty": "Spear",
+			"speciality": "Spear",
 			"type": "Weapon",
       "melee": true,
 			"broken": {
@@ -819,7 +819,7 @@
 			"upgraded": {
 				"name": "Spear",
 				"text": "An improved head and binding makes this spear more deadly.",
-        "ammo": ["Ammo"],
+        "ammo": ["Ammo","Ammo"],
 				"attack": {
 					"Critical": 15,
 					"Strike": 13,
@@ -836,7 +836,7 @@
 			"type": "Weapon",
       "twohanded": true,
       "melee": true,
-			"specialty": "Staff",
+			"speciality": "Staff",
 			"broken": {
 				"title": "Broken!",
 				"text": "The Staff snaps and cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -871,7 +871,7 @@
       "name": "Bow",
 			"type": "Weapon",
       "twohanded": true,
-			"specialty": "Bow",
+			"speciality": "Bow",
 			"broken": {
 				"title": "String Snapped!",
 				"text": "The Bow's string snaps, and you cannot use it until you spend [Time] during the Rest Phase to repair it."
@@ -907,7 +907,7 @@
       "name": "Axe",
 			"type": "Weapon",
       "melee": true,
-			"specialty": "Axe",
+			"speciality": "Axe",
 			"broken": {
 				"title": "Broken!",
 				"text": "The head of the axe comes away and it cannot be used until you spend [Time] [Time] during the Rest Phase to repair it."
@@ -942,7 +942,7 @@
 			"type": "Skill Talent",
 			"name": "Orator",
 			"background": "Belief",
-			"specialty": "Faith",
+			"speciality": "Faith",
 			"abilities": [{
 					"name": "Public Speaker",
 					"icons": [],
@@ -952,7 +952,7 @@
 				{
 					"name": "Resolute",
 					"icons": ["PlayAfterRolling"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Reroll any Will Test, ignoring Weakness for that reroll."
 				},
 				{
@@ -968,11 +968,11 @@
 			"type": "Skill Talent",
 			"name": "Believer",
 			"background": "Belief",
-			"specialty": "Faith",
+			"speciality": "Faith",
 			"abilities": [{
 					"name": "Guidance",
 					"icons": [],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Gain Mastery for your current Test."
 				},
 				{
@@ -1019,7 +1019,7 @@
 			"type": "Skill Talent",
 			"name": "Silver Tongued",
 			"background": "Negotiation",
-			"specialty": "Etiquette",
+			"speciality": "Etiquette",
 			"abilities": [{
 					"name": "Verbose",
 					"icons": [],
@@ -1035,7 +1035,7 @@
 				{
 					"name": "Restart Discussion",
 					"icons": ["PlayAfterRolling"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Use after a failed roll during and Encounter to reroll the Test again and take the new result."
 				}
 			]
@@ -1070,7 +1070,7 @@
 			"type": "Skill Talent",
 			"name": "Inventor",
 			"background": "Making",
-			"specialty": "Engineering",
+			"speciality": "Engineering",
 			"abilities": [{
 					"name": "Inventive",
 					"icons": [],
@@ -1121,7 +1121,7 @@
 			"type": "Skill Talent",
 			"name": "Fungi Expert",
 			"background": "Herbalism",
-			"specialty": "Herbology",
+			"speciality": "Herbology",
 			"abilities": [{
 					"name": "Fungal Feast",
 					"icons": ["Fungi"],
@@ -1162,7 +1162,7 @@
 				{
 					"name": "Deep Recall",
 					"icons": [],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Gain Mastery on your current non-combat Test."
 				}
 			]
@@ -1172,12 +1172,12 @@
 			"type": "Skill Talent",
 			"name": "Animal Catcher",
 			"background": "Animals",
-			"specialty": "AnimalKen",
+			"speciality": "AnimalKen",
 			"abilities": [{
 					"name": "Quick Snack",
 					"icons": ["Animal"],
 					"cost": ["Exhaust"],
-					"text": "You may Heal any Hero for [Wound]"
+					"text": "You may Heal any Hero for [Damage]"
 				},
 				{
 					"name": "Exterminator",
@@ -1223,7 +1223,7 @@
 			"type": "Skill Talent",
 			"name": "Explorer",
 			"background": "Underground",
-			"specialty": "Geology",
+			"speciality": "Geology",
 			"abilities": [{
 					"name": "Plan Ahead",
 					"icons": [],
@@ -1274,7 +1274,7 @@
 			"type": "Skill Talent",
 			"name": "Deep Knowledge",
 			"background": "Noble",
-			"specialty": "Subterranean",
+			"speciality": "Subterranean",
 			"abilities": [{
 					"name": "Finder of Shiny Rocks",
 					"icons": [],
@@ -1300,7 +1300,7 @@
 			"type": "Skill Talent",
 			"name": "Fey Companion",
 			"background": "Nature",
-			"specialty": "Fey",
+			"speciality": "Fey",
 			"abilities": [{
 					"name": "Find a Way Through",
 					"icons": ["PlayAfterRolling"],
@@ -1349,150 +1349,153 @@
 		{
 			"id": "WC-ST01",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Arcane Theory",
+			"background": "Arcana",
+			"speciality": "Arcana",
 			"abilities": [{
-					"name": "",
+					"name": "Read Arcana",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to your Reason for your current Test, or +2 if it is a Solve (Reason) Test."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Flint Flash",
+					"icons": ["Ranged"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Use as a Ranged Attack. The next X attacks by the Party in this Combat gain Advantage, where X is half the number of [Arcana] you have, rounded up."
 				},
 				{
-					"name": "",
+					"name": "Candle Call",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Create [Light] until the end of the Turn."
 				}
 			]
 		},
 		{
 			"id": "WC-ST02",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Helping Hands",
+			"background": "Arcana",
+      "speciality": "Arcana",
 			"abilities": [{
-					"name": "",
+					"name": "One Hand",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Add +1 to Handlee to any Hero's current Teast."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Many Fists",
+					"icons": ["Ranged"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Use as a Ranged Attack. Gain +1 to the roll for each [Arcana] you have. ([Strike] 15+, [PushedBack] 12+, [Miss] 8+, [Damage] <8, inflicts [Damage]."
 				},
 				{
-					"name": "",
+					"name": "Two Hands",
 					"icons": [],
-					"cost": ["Exhaust"],
-					"text": ""
+					"cost": ["Drain"],
+					"text": "Gain +3 on any Hero's Handle for their current Test."
 				}
 			]
 		},
 		{
 			"id": "WC-ST03",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Privileged",
+			"background": "Noble",
 			"abilities": [{
-					"name": "",
+					"name": "Manipulative",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to your Charm for yout current Test, or +2 if it is an Intrigue (Charm) Test."
 				},
 				{
-					"name": "",
+					"name": "Influence",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain _1 to your current Test in an Encounter for each [Etiquette] you have."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Fencing",
+					"icons": ["Melee","PlayAfterRolling"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Increase the Damage of a [Strike] or [Critical] by 1."
 				}
 			]
 		},
 		{
 			"id": "WC-ST04",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Nobility",
+			"background": "Noble",
 			"abilities": [{
-					"name": "",
-					"icons": [],
+					"name": "Assert",
+					"icons": ["Ranged","Melee"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Another Hero gains Advantage for their next attacj this Combat."
 				},
 				{
-					"name": "",
+					"name": "Inspire",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Another Hero may Restore one Exhausted Talent. May be used in Combat."
 				},
 				{
-					"name": "",
-					"icons": [],
-					"cost": ["Exhaust"],
-					"text": ""
+					"name": "Retreat",
+					"icons": ["Ranged"],
+					"cost": ["Drain"],
+					"text": "Play as your Ranged Attack. The current Combat ends immediately, and the Party Retreats to the previous Location at no Time cost."
 				}
 			]
 		},
 		{
 			"id": "WC-ST05",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Travelled",
+			"background": "Negotiator",
+			"speciality": "Perform",
 			"abilities": [{
-					"name": "",
+					"name": "Haggler",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to your Will for your current Test, or +2 if it is a Coerce (Will) Test."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Create Distraction",
+					"icons": ["Ranged"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Use as a Ranged Attack. All Foe Ranged Attacks gain Disadvantage this Round."
 				},
 				{
-					"name": "",
-					"icons": [],
-					"cost": ["Exhaust"],
-					"text": ""
+					"name": "Quick Talker",
+					"icons": ["PlayAfterRolling"],
+					"cost": ["Drain"],
+					"text": "Use during an Encounter to reroll the Test."
 				}
 			]
 		},
 		{
 			"id": "WC-ST06",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Born Leader",
+			"background": "Negotiator",
 			"abilities": [{
-					"name": "",
+					"name": "Organise",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to all Heroes for your current Party Test."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Lead by Example",
+					"icons": ["PlayAfterRolling"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Reroll your current Lead (Will) or Grit (Will) Test."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Motivate",
+					"icons": ["PlayAfterRolling"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Another Hero may reroll 1 die on their current Test. This cannot be used for scouting Tests."
 				}
 			]
 		},
@@ -1501,7 +1504,7 @@
 			"type": "Skill Talent",
 			"name": "Caving",
 			"background": "Underground",
-			"specialty": "Geology",
+			"speciality": "Geology",
 			"abilities": [{
 					"name": "Climber",
 					"icons": [],
@@ -1525,25 +1528,26 @@
 		{
 			"id": "WC-ST08",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Born Beneath",
+			"background": "Underground",
+			"speciality": "Subterranean",
 			"abilities": [{
-					"name": "",
+					"name": "Nimble",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to your Grace for your current Test, or _2 if it is a Move (Grace) Test."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Subterranean Scavenger",
+					"icons": ["Subterranean"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "After Resolving any card with [Subterranean], you may conduct a Careful Search in this Location at no Time cost."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Underground Escape",
+					"icons": ["Ranged","Melee"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "The current Combat ends at the end of this Combat round, and the Party Retreats to the previous Location at no Time cost."
 				}
 			]
 		},
@@ -1552,7 +1556,7 @@
 			"type": "Skill Talent",
 			"name": "Smithing",
 			"background": "Making",
-			"specialty": "Devices",
+			"speciality": "Devices",
 			"abilities": [{
 					"name": "Fix",
 					"icons": [],
@@ -1576,150 +1580,153 @@
 		{
 			"id": "WC-ST10",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Forgeborn",
+			"background": "Making",
 			"abilities": [{
-					"name": "",
+					"name": "Face the Fire",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to your Reason for your current Test, or +2 if it is a Grit (Will) Test."
 				},
 				{
-					"name": "",
+					"name": "Reforge",
 					"icons": [],
+					"cost": ["Exhaust","Time"],
+					"text": "Use during the Rest Phase. Discard any two Loot items to take a Loot item from the discard pile or fix a broken Kit or Weapon."
+				},
+				{
+					"name": "Steady Hand",
+					"icons": ["Ranged","Melee"],
 					"cost": ["Exhaust"],
-					"text": ""
-				},
-				{
-					"name": "",
-					"icons": [],
-					"cost": [],
-					"text": ""
+					"text": "Ignore Disadvantage for your next attack in this Combat."
 				}
 			]
 		},
 		{
 			"id": "WC-ST11",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Dependable",
+			"background": "Urban",
 			"abilities": [{
-					"name": "",
+					"name": "Party Worker",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "If you roll a Success at a Party Basic Test you may upgrade your result to a Critical Success."
 				},
 				{
-					"name": "",
+					"name": "Common Sense",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "If you fail a Test where you have Mastery, then reroll the Test with Mastery."
 				},
 				{
-					"name": "",
-					"icons": [],
-					"cost": [],
-					"text": ""
+					"name": "Committed",
+					"icons": ["PlayAfterRolling"],
+					"cost": ["Drain"],
+					"text": "Reroll one of your Basic Tests or Party Basic Tests."
 				}
 			]
 		},
 		{
 			"id": "WC-ST12",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Herdsman",
+			"background": "Animals",
+			"speciality": "AnimalKen",
 			"abilities": [{
-					"name": "",
+					"name": "Cattle Catcher",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to your Handle for your current Test, or +2 if it is a Throw (Handle) Test."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Calm the Herd",
+					"icons": ["Animal","PlayAfterRolling"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Reroll one of the dice on your current Test."
 				},
 				{
-					"name": "",
-					"icons": [],
-					"cost": [],
-					"text": ""
+					"name": "Spot Traces",
+					"icons": ["Animal","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "You may reroll the Surprise Test for the Party."
 				}
 			]
 		},
 		{
 			"id": "WC-ST13",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Fey Heritage",
+			"background": "Nature",
 			"abilities": [{
-					"name": "",
+					"name": "Keen Eyed",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 to your Reason for your current Test, or +2 if it is a Spot (Reason) Test."
 				},
 				{
-					"name": "",
+					"name": "Peer into the Future",
 					"icons": [],
+					"cost": ["Drain"],
+					"text": "Must be used in the Scouting Phase before the Scouting Test. You gain +2 to your Scouting and Surprise Tests for the rest of this Turn."
+				},
+				{
+					"name": "Fey Brethren",
+					"icons": ["Fey","PlayAfterRolling"],
 					"cost": ["Exhaust"],
-					"text": ""
-				},
-				{
-					"name": "",
-					"icons": [],
-					"cost": [],
-					"text": ""
+					"text": "You may reroll a Test against a card that has [Fey]."
 				}
 			]
 		},
 		{
 			"id": "WC-ST14",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Builder",
+			"background": "Urban",
+			"background": "Construction",
 			"abilities": [{
-					"name": "",
+					"name": "Find Flaw",
 					"icons": [],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +1 for each [Construction] you have for your current Test versus a Barrier."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Reuse Parts",
+					"icons": ["Engineering","Construction","Devices"],
+					"cost": ["Exhaust","Time"],
+					"text": "After successfully resolving any Obstacle or Barrier that has [Devices], [Construction] or [Engineering] speciality, perform a Careful Search immediately."
+				},
+				{
+					"name": "Strong Arm",
+					"icons": ["Melee","PlayAfterRolling"],
 					"cost": ["Exhaust"],
-					"text": ""
-				},
-				{
-					"name": "",
-					"icons": [],
-					"cost": [],
-					"text": ""
+					"text": "Change your [PushedBack] result into an [Advance] result."
 				}
 			]
 		},
 		{
 			"id": "WC-ST15",
 			"type": "Skill Talent",
-			"name": "",
-			"background": "",
+			"name": "Botanist",
+			"background": "Herbalism",
+			"speciality": "Herbology",
 			"abilities": [{
-					"name": "",
-					"icons": [],
+					"name": "Plant Lore",
+					"icons": ["Fungi"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "Gain +2 to your current non-combat Test in a location that has [Fungi]."
 				},
 				{
-					"name": "",
-					"icons": [],
+					"name": "Anti-venom",
+					"icons": ["Fungi"],
 					"cost": ["Exhaust"],
-					"text": ""
+					"text": "You may remove the [Poison] condition from all Heroes in the Party. This may not be used in Combat. This Ability is not affected by the [Poison] Condition."
 				},
 				{
-					"name": "",
-					"icons": [],
-					"cost": [],
-					"text": ""
+					"name": "Herbal Remedy",
+					"icons": ["Fungi"],
+					"cost": ["Exhaust"],
+					"text": "Heal any Hero for [Damage]. Cannot be used in Combat."
 				}
 			]
 		},
@@ -1748,12 +1755,315 @@
 				}
 			]
 		},
-		
+    {
+			"id": "WC-WT01",
+			"type": "Weapon Talent",
+			"name": "Hurl",
+			"speciality": "Spear",
+			"abilities": [{
+					"name": "Reactive throw",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "Remove Disadvantage on your next Ranged Attack this combat."
+				},
+				{
+					"name": "Driving Throw",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "If your Ranged Attack result is a [Strike] or [Critical], then increase its [Damage] by 1."
+				}
+			]
+		},
+    {
+			"id": "WC-WT02",
+			"type": "Weapon Talent",
+			"name": "Guard Stance",
+			"speciality": "Spear",
+			"abilities": [{
+					"name": "Using Reach",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "Remove Disadvantage and gain Advantage on your next attack this Combat. If your result is a [Fail] or [TradeBlows], then increase the [Damage] received by +1 [Damage]."
+				},
+				{
+					"name": "Parry and Trip",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Change your [PushedBack] result into an [Advance]."
+				}
+			]
+		},
+    {
+			"id": "WC-WT03",
+			"type": "Weapon Talent",
+			"name": "Aggressive Stance",
+			"speciality": "Spear",
+			"abilities": [{
+					"name": "Push Forward",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Use if you get a [TradeBlows] or [Strike] result to give the next Hero Advantage for their next attack this Combat."
+				},
+				{
+					"name": "Powerful Lunge",
+					"icons": ["Melee"],
+					"cost": ["Drain"],
+					"text": "Gain Advantage for your next attack this Combat. Your next attack inflicts +1 [Damage] on a [TradeBlows], [Strike] or [Critical] result."
+				}
+			]
+		},
+    {
+			"id": "WC-WT04",
+			"type": "Weapon Talent",
+			"name": "Momentum",
+			"speciality": "Staff",
+			"abilities": [{
+					"name": "Step and Strike",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Reduce the [Damage] you receive from a [TradeBlows] result by 1."
+				},
+				{
+					"name": "Back on Track",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "Remove Disadvantage from your next attack this Combat."
+				}
+			]
+		},
+    {
+			"id": "WC-WT05",
+			"type": "Weapon Talent",
+			"name": "Winding",
+			"speciality": "Staff",
+			"abilities": [{
+					"name": "Winding Strike",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Change a [TradeBlows] result into a [Strike]. The next Hero gains [Disadvantage] for their next attack this Combat."
+				},
+				{
+					"name": "Wind and Throw",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Increase the damage from your [TradeBlows] result by 1."
+				}
+			]
+		},
+    {
+			"id": "WC-WT06",
+			"type": "Weapon Talent",
+			"name": "Driving",
+			"speciality": "Staff",
+			"abilities": [{
+					"name": "Driving Strike",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Only usable if you get a [Strike] or [Critical] result. Immediately make an additional Melee Attack this Round after this attack."
+				},
+				{
+					"name": "Shattering Blow",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "If your next attack this Combat results in a [Strike] or [Critical], then increase the damage of that attack by +1 [Damage]."
+				}
+			]
+		},
+    {
+			"id": "WC-WT07",
+			"type": "Weapon Talent",
+			"name": "Quick Draw",
+			"speciality": "Bow",
+			"abilities": [{
+					"name": "Opening Volley",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "Only usable in the Engagement Round. You may make an additional Ranged Attack with your Bow this round."
+				},
+				{
+					"name": "Instinctive Shot",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "Remove Disadvantage on your next attack this Combat."
+				}
+			]
+		},
+    {
+			"id": "WC-WT08",
+			"type": "Weapon Talent",
+			"name": "Rapid Shot",
+			"speciality": "Bow",
+			"abilities": [{
+					"name": "Speed Shooting",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "You may make 2 additional Ranged Attacks with your Bow. You have Disadvantage on all of your attacks this Round."
+				},
+				{
+					"name": "Followup",
+					"icons": ["Ranged","PlayAfterRolling"],
+					"cost": ["Drain"],
+					"text": "Play immediately after your Ranged Attack to make another Ranged Attack with your Bow."
+				}
+			]
+		},
+    {
+			"id": "WC-WT09",
+			"type": "Weapon Talent",
+			"name": "Accurate",
+			"speciality": "Bow",
+			"abilities": [{
+					"name": "Aimed Shot",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "Gain Advantage on your next attack this Combat."
+				},
+				{
+					"name": "Wandsplitter",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "If your next attack is a [Strike] or [Critical] result, then increase the damage of that attack by +1 [Damage]."
+				}
+			]
+		},
+    {
+			"id": "WC-WT10",
+			"type": "Weapon Talent",
+			"name": "Openers",
+			"speciality": "Axe",
+			"abilities": [{
+					"name": "Charge",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "Gain Advantage on your next attack this Combat."
+				},
+				{
+					"name": "Mighty Throw",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "Use as your Ranged Attack. Perform a Ranged Attack with the Axe, gaining +1 [Damage] on a [Strike] or [Critical]. The Axe cannot be used again until the end of the Combat."
+				}
+			]
+		},
+		{
+			"id": "WC-WT11",
+			"type": "Weapon Talent",
+			"name": "Speed Strikes",
+			"speciality": "Axe",
+			"abilities": [{
+					"name": "Flurry",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Change your [TradeBlows] result into an [Advance] result."
+				},
+				{
+					"name": "Timed Strike",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "If your next attack this Combat results in a [Strike] or [Critical], deals +1 [Damage]."
+				}
+			]
+		},
+    {
+			"id": "WC-WT12",
+			"type": "Weapon Talent",
+			"name": "Power Strikes",
+			"speciality": "Axe",
+			"abilities": [{
+					"name": "Reckless",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "Ignore [PushedBack] or [Advance] results from your next attack this Combat."
+				},
+				{
+					"name": "Cleave",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Drain"],
+					"text": "Change your [TradeBlows] or [Advance] result into a [Strike]."
+				}
+			]
+		},
+    {
+			"id": "WC-WT13",
+			"type": "Weapon Talent",
+			"name": "Posturing",
+			"speciality": "Seax",
+			"abilities": [{
+					"name": "Lock Swords",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Reduce the [Damage] received from a [TradeBlows] result to both the Hero and the Creature by 1."
+				},
+				{
+					"name": "Backstab",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "Use ony if you have Advantage. If your next attack this Combat results in a [Strike] or [Critical], deal +1 [Damage]."
+				}
+			]
+		},
+    {
+			"id": "WC-WT14",
+			"type": "Weapon Talent",
+			"name": "Striking",
+			"speciality": "Seax",
+			"abilities": [{
+					"name": "Committed",
+					"icons": ["Melee"],
+					"cost": ["Drain"],
+					"text": "You may make an additional Melee Attack this Round."
+				},
+				{
+					"name": "Feint and Strike",
+					"icons": ["Melee"],
+					"cost": ["Exhaust"],
+					"text": "If your next attack this Combat results in a [Strike] or [Critical], deal 1 extra [Damage]. If you get a [Fail] increase the [Damage] you take by 1."
+				}
+			]
+		},
+    {
+			"id": "WC-WT15",
+			"type": "Weapon Talent",
+			"name": "Neutralising",
+			"speciality": "Saex",
+			"abilities": [{
+					"name": "Grapple",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Change your [TradeBlows] result into an [Advance]."
+				},
+				{
+					"name": "Strong Parry",
+					"icons": ["Melee","PlayAfterRolling"],
+					"cost": ["Exhaust"],
+					"text": "Reduce the [Damage] you received from a [TradeBlows] result by 1."
+				}
+			]
+		},
+    {
+			"id": "WC-WT16",
+			"type": "Weapon Talent",
+			"name": "Flexible",
+			"speciality": "Sling",
+			"abilities": [{
+					"name": "Power Shot",
+					"icons": ["Ranged"],
+					"cost": ["Exhaust"],
+					"text": "Increase the damage of your attack by +1 [Damage]."
+				},
+				{
+					"name": "Bombard",
+					"icons": ["Ranged"],
+					"cost": ["Drain"],
+					"text": "You may make two additional Ranged Attacks this Round with the Sling."
+				}
+			]
+		},
     {
 			"id": "GS-WT01",
 			"type": "Weapon Talent",
 			"name": "Close Fighting",
-			"specialty": "Spear",
+			"speciality": "Spear",
 			"abilities": [{
 					"name": "Charging Throw",
 					"icons": ["Ranged"],
@@ -1772,7 +2082,7 @@
 			"id": "GS-WT02",
 			"type": "Weapon Talent",
 			"name": "Team Work",
-			"specialty": "Spear",
+			"speciality": "Spear",
 			"abilities": [{
 					"name": "Reverse Strike",
 					"icons": ["Melee"],
@@ -1791,12 +2101,12 @@
 			"id": "GS-WT03",
 			"type": "Weapon Talent",
 			"name": "Manoeuvre",
-			"specialty": "Spear",
+			"speciality": "Spear",
 			"abilities": [{
 					"name": "Draw Them Out",
 					"icons": ["Melee"],
 					"cost": ["Exhaust"],
-					"text": "Gain Disadvantage on your next attack this Combat. Grant Advantage and +1 [Wound] to the next Hero to attack this combat."
+					"text": "Gain Disadvantage on your next attack this Combat. Grant Advantage and +1 [Damage] to the next Hero to attack this combat."
 				},
 				{
 					"name": "Push Forward",
@@ -1810,7 +2120,7 @@
 			"id": "GS-WT04",
 			"type": "Weapon Talent",
 			"name": "Pressure Foe",
-			"specialty": "Axe",
+			"speciality": "Axe",
 			"abilities": [{
 					"name": "Haft Punch",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1829,7 +2139,7 @@
 			"id": "GS-WT05",
 			"type": "Weapon Talent",
 			"name": "Furious",
-			"specialty": "Axe",
+			"speciality": "Axe",
 			"abilities": [{
 					"name": "Bloodlust",
 					"icons": ["Melee"],
@@ -1848,7 +2158,7 @@
 			"id": "GS-WT06",
 			"type": "Weapon Talent",
 			"name": "Vicious",
-			"specialty": "Axe",
+			"speciality": "Axe",
 			"abilities": [{
 					"name": "Over-Reach",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1858,7 +2168,7 @@
 				{
 					"name": "All Out Attack",
 					"icons": ["Melee", "PlayAfterRolling"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "You may continue to make Melee Attacks this round until you gain a [Fail] or [Miss] result."
 				}
 			]
@@ -1867,7 +2177,7 @@
 			"id": "GS-WT07",
 			"type": "Weapon Talent",
 			"name": "Awareness",
-			"specialty": "Bow",
+			"speciality": "Bow",
 			"abilities": [{
 					"name": "Reactive Shot",
 					"icons": ["Ranged"],
@@ -1886,7 +2196,7 @@
 			"id": "GS-WT08",
 			"type": "Weapon Talent",
 			"name": "Hunter",
-			"specialty": "Bow",
+			"speciality": "Bow",
 			"abilities": [{
 					"name": "Covered Retreat",
 					"icons": ["Ranged"],
@@ -1896,7 +2206,7 @@
 				{
 					"name": "Deadeye",
 					"icons": ["Ranged"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Ignore the negative Ranged modifier for a Foe for your next attack this Combat."
 				}
 			]
@@ -1905,7 +2215,7 @@
 			"id": "GS-WT09",
 			"type": "Weapon Talent",
 			"name": "Defensive",
-			"specialty": "Bow",
+			"speciality": "Bow",
 			"abilities": [{
 					"name": "Dive for Cover",
 					"icons": ["Ranged", "PlayAfterRolling"],
@@ -1924,7 +2234,7 @@
 			"id": "GS-WT10",
 			"type": "Weapon Talent",
 			"name": "Space Maker",
-			"specialty": "Staff",
+			"speciality": "Staff",
 			"abilities": [{
 					"name": "Keep Away",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1934,7 +2244,7 @@
 				{
 					"name": "Hold them Off",
 					"icons": ["Melee"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Play instead of your Melee Attack this Round to reduce the number of Creatures that can make Ranged Attacks by 2."
 				}
 			]
@@ -1943,7 +2253,7 @@
 			"id": "GS-WT11",
 			"type": "Weapon Talent",
 			"name": "Reaction",
-			"specialty": "Staff",
+			"speciality": "Staff",
 			"abilities": [{
 					"name": "Grounding",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1962,7 +2272,7 @@
 			"id": "GS-WT12",
 			"type": "Weapon Talent",
 			"name": "Aggression",
-			"specialty": "Staff",
+			"speciality": "Staff",
 			"abilities": [{
 					"name": "Quick Thrust",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -1972,7 +2282,7 @@
 				{
 					"name": "Slap Down",
 					"icons": ["Melee", "PlayAfterRolling"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Change your [TradeBlows] result into a [Critical] result."
 				}
 			]
@@ -1981,7 +2291,7 @@
 			"id": "GS-WT13",
 			"type": "Weapon Talent",
 			"name": "Blocking",
-			"specialty": "Polearm",
+			"speciality": "Polearm",
 			"abilities": [{
 					"name": "Take the Hit",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -2000,7 +2310,7 @@
 			"id": "GS-WT14",
 			"type": "Weapon Talent",
 			"name": "Push Forward",
-			"specialty": "Polearm",
+			"speciality": "Polearm",
 			"abilities": [{
 					"name": "Push Through",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -2010,7 +2320,7 @@
 				{
 					"name": "Beat Down",
 					"icons": ["Melee", "PlayAfterRolling"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Turn your [Advance] result into a [Critical] result."
 				}
 			]
@@ -2019,7 +2329,7 @@
 			"id": "GS-WT15",
 			"type": "Weapon Talent",
 			"name": "Leverage",
-			"specialty": "Polearm",
+			"speciality": "Polearm",
 			"abilities": [{
 					"name": "Overhead Hook",
 					"icons": ["Melee", "PlayAfterRolling"],
@@ -2030,7 +2340,7 @@
 					"name": "Overhead Cleave",
 					"icons": ["Melee"],
 					"cost": ["Exhaust"],
-					"text": "Increase the damagae inflicted by your attack by +1 [wound] for a [Strike] or [Critical] result. Treat a [Fail] result as a [Miss] result."
+					"text": "Increase the damagae inflicted by your attack by +1 [Damage] for a [Strike] or [Critical] result. Treat a [Fail] result as a [Miss] result."
 				}
 			]
 		},
@@ -2038,7 +2348,7 @@
 			"id": "GS-WT16",
 			"type": "Weapon Talent",
 			"name": "Focussed",
-			"specialty": "Javelin",
+			"speciality": "Javelin",
 			"abilities": [{
 					"name": "Aimed Throw",
 					"icons": ["Ranged"],
@@ -2057,7 +2367,7 @@
 			"id": "DR-WT01",
 			"type": "Weapon Talent",
 			"name": "Powerful",
-			"specialty": "Club",
+			"speciality": "Club",
 			"abilities": [{
 					"name": "Rain of Blows",
 					"icons": ["Melee","PlayAfterRolling"],
@@ -2076,7 +2386,7 @@
 			"id": "DR-WT02",
 			"type": "Weapon Talent",
 			"name": "Aggressive",
-			"specialty": "Club",
+			"speciality": "Club",
 			"abilities": [{
 					"name": "Breaker",
 					"icons": ["Melee","PlayAfterRolling"],
@@ -2095,7 +2405,7 @@
 			"id": "DR-WT03",
 			"type": "Weapon Talent",
 			"name": "Sly",
-			"specialty": "Club",
+			"speciality": "Club",
 			"abilities": [{
 					"name": "Turn Blow",
 					"icons": ["Melee","PlayAfterRolling"],
@@ -2111,47 +2421,9 @@
 			]
 		},
 		{
-			"id": "WC-WT10",
-			"type": "Weapon Talent",
-			"name": "Speed Strikes",
-			"specialty": "Axe",
-			"abilities": [{
-					"name": "Flurry",
-					"icons": ["Melee","PlayAfterRolling"],
-					"cost": ["Exhaust"],
-					"text": "Change your [TradeBlows] result into an [Advance] result."
-				},
-				{
-					"name": "Timed Strike",
-					"icons": ["Melee"],
-					"cost": ["Exhaust"],
-					"text": "If your next attack this Combat results in a [Strike] or [Critical], deals +1 [Wound]."
-				}
-			]
-		},
-		{
-			"id": "WC-WT11",
-			"type": "Weapon Talent",
-			"name": "Openers",
-			"specialty": "Axe",
-			"abilities": [{
-					"name": "Charge",
-					"icons": ["Melee"],
-					"cost": ["Exhaust"],
-					"text": "Gain Advantage on your next attack this Combat."
-				},
-				{
-					"name": "Mighty Throw",
-					"icons": ["Ranged"],
-					"cost": ["Exhaust"],
-					"text": "Use as a Ranged Attack. Perform a Ranged Attack with the Ae, gaining +1 [Wound] on a [Strike] or [Critical]. The Axe cannot be used again until the end of the Combat."
-				}
-			]
-		},
-		{
 			"id": "WC-OU01",
 			"type": "Outfit",
-			"specialty": "Outfit",
+			"speciality": "Outfit",
 			"basic": {
 				"name": "Decent Clothes",
 				"text": "Gain +1 to your Persuade (Charm) Tests."
@@ -2162,9 +2434,48 @@
 			}
 		},
 		{
+			"id": "WC-OU02",
+			"type": "Outfit",
+			"speciality": "Outfit",
+			"basic": {
+				"name": "Gambeson",
+				"text": "-1 to Creature Ranged Attacks."
+			},
+			"upgraded": {
+				"name": "Long Gambeson",
+				"text": "-1 to Creature Ranged Attacks.\nDisadvantage in Combat is -1 instead of -2.\n-1 to your Grace Tests."
+			}
+		},
+		{
+			"id": "WC-OU03",
+			"type": "Outfit",
+			"speciality": "Outfit",
+			"basic": {
+				"name": "Leather Jerkin",
+				"text": "Gain +1 to to your Move (Grace) Tests."
+			},
+			"upgraded": {
+				"name": "Soft Leather Tunic",
+				"text": "Gain +1 to to your Move (Grace) Tests.\nGain +1 to your Balance (Grace) Tests."
+			}
+		},
+		{
+			"id": "WC-OU04",
+			"type": "Outfit",
+			"speciality": "Outfit",
+			"basic": {
+				"name": "Apron",
+				"text": "Gain +1 to your Mend (Handle) Tests."
+			},
+			"upgraded": {
+				"name": "Apron with Tools",
+				"text": "Gain +1 to your Mend (Handle) Tests.\nGain +1 to your Probe (Handle) Tests."
+			}
+		},
+		{
 			"id": "GS-OU01",
 			"type": "Outfit",
-			"specialty": "Outfit",
+			"speciality": "Outfit",
 			"basic": {
 				"name": "Performer Clothes",
 				"text": "Gain +1 to your Bluff (Charm) Tests."
@@ -2177,7 +2488,7 @@
 		{
 			"id": "GS-OU02",
 			"type": "Outfit",
-			"specialty": "Outfit",
+			"speciality": "Outfit",
 			"basic": {
 				"name": "Burglar's Outfit",
 				"text": "Gain +1 to your Climb (Brawn) Tests."
@@ -2190,7 +2501,7 @@
 		{
 			"id": "GS-OU03",
 			"type": "Outfit",
-			"specialty": "Outfit",
+			"speciality": "Outfit",
 			"basic": {
 				"name": "Vestments",
 				"text": "Gain +1 to your Lead (Will) Tests."
@@ -2203,7 +2514,7 @@
 		{
 			"id": "GS-OU04",
 			"type": "Outfit",
-			"specialty": "Outfit",
+			"speciality": "Outfit",
 			"basic": {
 				"name": "Wool Tunic",
 				"text": "Gain +1 to your Brute (Brawn) Tests."
@@ -2216,7 +2527,7 @@
 		{
 			"id": "AL-OU01",
 			"type": "Outfit",
-			"specialty": "Outfit",
+			"speciality": "Outfit",
 			"basic": {
 				"name": "Pocketed Smock",
 				"text": "Gain +1 to your Identity (Reason) Tests."
@@ -2229,7 +2540,7 @@
 		{
 			"id": "DR-OU01",
 			"type": "Outfit",
-			"specialty": "Outfit",
+			"speciality": "Outfit",
 			"basic": {
 				"name": "Simple Robe",
 				"text": "Gain +1 to your Grit (Will) Tests."
@@ -2240,22 +2551,103 @@
 			}
 		},
 		{
-			"id": "GS-OU04",
-			"type": "Outfit",
-			"specialty": "Outfit",
+			"id": "WC-KI01",
+			"type": "Kit",
+			"speciality": "Kit",
+			"broken": {
+				"title": "Snapped!",
+				"text": "The rope has broken and cannot be used until you spend [Time] during the Rest Phase to repair it."
+			},
 			"basic": {
-				"name": "Wool Tunic",
-				"text": "Gain +1 to your Brute (Brawn) Tests."
+				"name": "Rope",
+				"text": "Gain +1 to your Climb (Brawn) Tests."
 			},
 			"upgraded": {
-				"name": "Thick Wool Tunic",
-				"text": "Gain +1 to your Brute (Brawn) Tests. -1 to Foe Ranged Attacks."
+				"name": "Climbing Kit",
+				"text": "Gain +1 to your Climb (Brawn) Tests.\nGain +1 to your Throw (Handle) Tests.\nYou may use Climb (Brawn) instead of Leap (Grace) for a Test."
+			}
+		},
+		{
+			"id": "WC-KI02",
+			"type": "Kit",
+			"speciality": "Kit",
+			"broken": {
+				"title": "No Effect",
+				"text": "This item cannot be broken."
+			},
+			"basic": {
+				"name": "Manual",
+				"text": "Gain +1 to your Identify (Reason) Tests."
+			},
+			"upgraded": {
+				"name": "Almanac",
+				"text": "Gain +1 to your Identify (Reason) Tests.\nGain +1 to your Solve (Reason) Tests.\nReroll 1 dice on any Test that has the [Arcane] Speciality."
+			}
+		},
+		{
+			"id": "WC-KI03",
+			"type": "Kit",
+			"speciality": "Kit",
+			"broken": {
+				"title": "Broken!",
+				"text": "The head has come away making it unusable. The item is Broken until you spend [Time][Time] during the Rest Phase to repair it."
+			},
+			"basic": {
+				"name": "Mattock",
+				"text": "Gain +1 to your Brute (Brawn) Tests.",
+        "attack": []
+			},
+			"upgraded": {
+				"name": "Pickaxe",
+				"text": "Gain +1 to your Brute (Brawn) Tests.\nGain +1 to your Move (Grace) Tests.",
+        "attack": {
+          "Critical": 15,
+          "Strike": 13,
+          "Advance": 12,
+          "TradeBlows": 9,
+          "PushedBack": 6,
+          "Fail": 5
+        }
+			}
+		},
+		{
+			"id": "WC-KI04",
+			"type": "Kit",
+			"speciality": "Kit",
+			"broken": {
+				"title": "No Effect",
+				"text": "This item cannot be broken."
+			},
+			"basic": {
+				"name": "Lucky Charm",
+				"text": "Gain +1 to your Bluff (Charm) Tests."
+			},
+			"upgraded": {
+				"name": "Fey Blessed Charm",
+				"text": "Gain +1 to your Bluff (Charm) Tests.\nGain +1 on any Test with [Fey].\nExhaust this kit to remove [Fear] from one Hero."
+			}
+		},
+		{
+			"id": "WC-KI05",
+			"type": "Kit",
+			"speciality": "Kit",
+			"broken": {
+				"title": "No Effect",
+				"text": "This item cannot be broken."
+			},
+			"basic": {
+				"name": "Hammer",
+				"text": "Gain +1 to your Mend (Handle) Tests."
+			},
+			"upgraded": {
+				"name": "Climbing Kit",
+				"text": "Gain +1 to your Mend (Handle) Tests.\nGain +1 to any Test with [Engineering].\nLegendary: Spend [Time] to repair an item broken through a critical failure."
 			}
 		},
 		{
 			"id": "GS-KI01",
 			"type": "Kit",
-			"specialty": "Kit",
+			"speciality": "Kit",
 			"broken": {
 				"title": "No Effect",
 				"text": "This item cannot be broken."
@@ -2272,7 +2664,7 @@
 		{
 			"id": "GS-KI02",
 			"type": "Kit",
-			"specialty": "Kit",
+			"speciality": "Kit",
 			"broken": {
 				"title": "Broken!",
 				"text": "The musical instrument is broken and cannot be used until you spend [Time] during the Rest Phase to repair it."
@@ -2289,7 +2681,7 @@
 		{
 			"id": "GS-KI03",
 			"type": "Kit",
-			"specialty": "Kit",
+			"speciality": "Kit",
 			"broken": {
 				"title": "Broken!",
 				"text": "The pole has snapped and cannot be used until you spend [Time] during the Rest Phase to repair it."
@@ -2314,7 +2706,7 @@
 		{
 			"id": "GS-KI04",
 			"type": "Kit",
-			"specialty": "Kit",
+			"speciality": "Kit",
 			"broken": {
 				"title": "No Effect",
 				"text": "This item cannot be broken."
@@ -2331,7 +2723,7 @@
 		{
 			"id": "GS-KI05",
 			"type": "Kit",
-			"specialty": "Kit",
+			"speciality": "Kit",
 			"broken": {
 				"title": "Burst!",
 				"text": "The waterskin is leaking and cannot be used until you spend [Time] during the Rest Phase to sew and repair it."
@@ -2348,7 +2740,7 @@
 		{
 			"id": "AL-KI01",
 			"type": "Kit",
-			"specialty": "Kit",
+			"speciality": "Kit",
 			"broken": {
 				"title": "No Effect!",
 				"text": "This item cannot be broken."
@@ -2392,7 +2784,7 @@
 			"type": "Skill Talent",
 			"name": "Celti Teaching",
 			"background": "Druiach",
-      "specialty": "AnimalKen",
+      "speciality": "AnimalKen",
 			"abilities": [{
 					"name": "Druiach Lore",
 					"icons": ["Reptile","Animal","Insect"],
@@ -2408,7 +2800,7 @@
 				{
 					"name": "Nature's Blessing",
 					"icons": ["Reptile","Animal","Insect"],
-					"cost": "Drain",
+					"cost": ["Drain"],
 					"text": "Heal a Hero for [Health] for each [AnimalKen] you have. This Talent may only be Healed by Camping."
 				}
 			]
@@ -2468,7 +2860,7 @@
 			"type": "Skill Talent",
 			"name": "Tincture Tinkerer",
 			"background": "Herbalism",
-      "specialty": "Herbology",
+      "speciality": "Herbology",
 			"abilities": [{
 					"name": "Identify Dosage",
 					"icons": ["PlayAfterRolling"],
@@ -2479,7 +2871,7 @@
 					"name": "Brew Draft",
 					"icons": ["Fungi"],
 					"cost": ["Exhaust","Time"],
-					"text": "Heal a Hero for [Wound] for each [Herbology] you have. This Ability cannot be used in Combat."
+					"text": "Heal a Hero for [Damage] for each [Herbology] you have. This Ability cannot be used in Combat."
 				},
 				{
 					"name": "Fungi Ken",
@@ -2492,7 +2884,7 @@
     {
       "id": "DR-CO01",
       "type": "Companion",
-      "specialty": "Companion",
+      "speciality": "Companion",
       "broken": {
         "title": "Scared!",
         "text": "Your cat flees and returns to you during the next Rest Phase. You cannot use this card until then."
@@ -2509,7 +2901,7 @@
     {
       "id": "DR-CO02",
       "type": "Companion",
-      "specialty": "Companion",
+      "speciality": "Companion",
       "broken": {
         "title": "Scared!",
         "text": "Your raven flees and returns to you during the next Rest Phase. You cannot use this card until then."
