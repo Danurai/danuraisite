@@ -1,0 +1,61 @@
+.h0, .h1, .h2, .h3, .h4, .h5 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.h0 {
+    background-color: sienna;
+    color: whitesmoke;
+    padding: .25rem;
+    font-size: large;
+}
+.h1, .h3 {
+    color: darkorange;
+}
+
+.h2 {
+    background-color: darkorange;
+    color: whitesmoke;
+    padding: .25rem;
+    font-size: large;
+}
+.bg-silver {
+    background-color: silver;
+    padding-left: 0.25rem;
+}
+.info-block {
+    background-color: #2b0c00;
+    color: whitesmoke;
+}
+.labels {
+    text-transform: uppercase;
+    border: 1px solid darkorange;
+    font-weight: bold;
+    padding-left: .2rem;
+    font-size: .9em;
+    position: relative;
+}
+.stat-block thead, .stat-block th, .active-skill {
+    background-color: darkorange;
+    font-weight: bold;
+}
+
+.range-symbol {
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.125rem;
+}
+
+th {
+    background-color: silver;
+}
+
+ul {
+    list-style-type: none;
+}
+ul.fireteams {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+li:before {
+    content: "- ";
+}
