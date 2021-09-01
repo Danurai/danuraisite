@@ -9,7 +9,7 @@
     [danuraisite.database :as db]
     [danuraisite.model :as model]))
 
-(load "pages/common")        
+(load "pages/common")      
 (load "pages/admin")
 (load "pages/legendsuntold")
 (load "pages/colour")
