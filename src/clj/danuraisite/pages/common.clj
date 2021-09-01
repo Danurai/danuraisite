@@ -80,7 +80,8 @@
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/netrunner/mwl"} "MWL Checker"]
               [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]
-          (navlink (:uri req) "/scores" "Scores")]
+          (navlink (:uri req) "/scores" "Scores")
+          (navlink (:uri req) "/killteam" "Kill Team")]
     ;; Login Icon
           [:span.nav-item.dropdown
             [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href="#" :role "button" :data-toggle "dropdown" :aria-haspopup "true" :aria-expanded "false"}

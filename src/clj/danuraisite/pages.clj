@@ -98,3 +98,13 @@
 			[:script "$(document).ready(function(){$('#tbl').DataTable({paging: false})});"]
 			(h/include-css "//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css")
 			(h/include-js "//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"))))
+
+(defn killteam [ req ]
+  (h/html5
+    pretty-head
+    [:body
+      (navbar req)
+      [:div#app]]
+    (h/include-js "/js/compiled/kt-app.js")
+    (h/include-css "/css/rpg-awesome.min.css?v=1")
+    (h/include-css "/css/kt.css")))
