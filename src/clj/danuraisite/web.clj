@@ -148,6 +148,7 @@
   (context "/netrunner" [] anr-routes)
   ;(context "/apps"  [] dsapp-routes)
   (context "/scores" [] score-routes)
+  (GET     "/killteam" [] pages/killteam)
 ; ADMIN
   (context "/:id/login" [id]
     (friend/wrap-authorize
