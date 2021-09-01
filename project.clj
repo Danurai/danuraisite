@@ -145,7 +145,6 @@
           :output-to "resources/public/js/compiled/kasei-app.js"
           :output-dir "resources/public/js/compiled/prd-out-kasei"
           :optimizations :advanced :pretty-print false}}
-          
       :scores-dev {
         :source-paths ["src/cljs-scores"]
         :figwheel true
@@ -161,6 +160,23 @@
           :main      danuraisite.scores
           :output-to "resources/public/js/compiled/scoresapp.js"
           :output-dir "resources/public/js/compiled/prd-out-scores"
+          :optimizations :advanced :pretty-print false}}
+        
+      :kt-dev {
+        :source-paths ["src/cljs-kt"]
+        :figwheel true
+        :compiler {
+          :main       danuraisite.kt
+          :asset-path "/js/compiled/out-kt"
+          :output-to  "resources/public/js/compiled/kt-app.js"
+          :output-dir "resources/public/js/compiled/out-kt"
+          :preloads [devtools.preload]}}
+      :kt-prod {
+        :source-paths ["src/cljs-kt"]
+        :compiler {
+          :main      danuraisite.kt
+          :output-to "resources/public/js/compiled/kt-app.js"
+          :output-dir "resources/public/js/compiled/prd-out-kt"
           :optimizations :advanced :pretty-print false}}
       }}
 
@@ -185,12 +201,12 @@
                     [expectations "2.2.0-rc3"]
                     [binaryage/devtools "0.9.4"]
                     [figwheel-sidecar "0.5.14"]
-                    [cider/piggieback "0.4.0"]]
+                    [com.cemerick/piggieback "0.2.2"]]
       ;; need to add dev source path here to get user.clj loaded
       :source-paths ["src/clj" "dev"]
       ;; for CIDER
       ;; :plugins [[cider/cider-nrepl "0.12.0"]]
-      :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
+      :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
       ;; need to add the compliled assets to the :clean-targets
       :clean-targets ^{:protect false} ["resources/public/js/compiled" :target-path]
     }
