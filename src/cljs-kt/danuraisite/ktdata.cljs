@@ -7,13 +7,13 @@
     :labels ["Craftworld" "Aeldari" "Asuryani" "<CRAFTWORLD>"]
     :fireteams [{
             :name "Guardian Defender"
-            :archetype ["Security" "Recon"]
+            :archetypes ["Security" "Recon"]
         },{
             :name "Storm Guardian"
-            :archetype ["Seek and Destroy" "Recon"]
+            :archetypes ["Seek and Destroy" "Recon"]
         },{
             :name "Ranger"
-            :archetype ["Seek and Destroy" "Recon"]
+            :archetypes ["Seek and Destroy" "Recon"]
         },{
             :name "Dire Avenger"
             :archetypes ["Seek and Destroy" "Security" "Recon"]

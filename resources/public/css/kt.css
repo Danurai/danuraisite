@@ -3,9 +3,9 @@
     font-weight: bold;
 }
 .h0 {
-    background-color: sienna;
+    background-color: #564632;
     color: whitesmoke;
-    padding: .25rem;
+    padding: 0 .25rem;
     font-size: large;
 }
 .h1, .h3 {
@@ -49,13 +49,13 @@ th {
     background-color: silver;
 }
 
-ul {
+#app ul {
     list-style-type: none;
 }
-ul.fireteams {
+#app ul.fireteams {
     font-weight: bold;
     text-transform: uppercase;
 }
-li:before {
+#app li:before {
     content: "- ";
 }

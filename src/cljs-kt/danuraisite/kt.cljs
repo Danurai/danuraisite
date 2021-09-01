@@ -31,15 +31,15 @@
                 [:div.col-sm-4
                     [:table.table.table-sm.table-hover.table-borderless.stat-block.text-center.mb-0
                         [:thead [:tr [:th "M"] [:th "APL"] [:th "GA"]]]
-                        [:tr 
+                        [:tbody [:tr 
                             [:td [:span (-> stats :m first)] [:svg.range-symbol (-> stats :m last range-symbols)]]    
                             [:td (:apl stats)]    
-                            [:td (:ga stats)]]
+                            [:td (:ga stats)]]]
                         [:thead [:tr [:th "DF"] [:th "SV"] [:th "W"]]]
-                        [:tr
+                        [:tbody [:tr
                             [:td (:df stats)]    
                             [:td (str (:sv stats) "+")]    
-                            [:td (:w stats)]]]]]
+                            [:td (:w stats)]]]]]]
             [:div.row.py-2
                 [:table.table.table-sm.table-striped.table-hover.table-borderless.text-center
                     [:thead
@@ -68,13 +68,14 @@
                             [:span.mr-1.me-1 [:b (-> a :name (str ":"))]]
                             [:span (:text a)]])]]
             [:div.row.labels
-                [:span    (clojure.string/join ", "
+                [:div
+                    (clojure.string/join ", "
                         (remove nil?
                             (apply conj 
                                 (:labels ktd)
                                 (if (:leader op) "LEADER")
                                 (:labels op))))]
-                [:div {:style {:position "absolute" :bottom 0 :right 0}}
+                [:div {:style {:position "absolute" :bottom 0 :right 0 :width "auto"}}
                     (for [s (-> op :skills keys)]
                         [:div.d-inline-block.p-1.mr-1.me-1.border
                             {:key (gensym) :class (if (-> op :skills s) "active-skill" "bg-white")}   
@@ -88,6 +89,22 @@
         (for [op (:operatives ft)]
             (operative op ft ktd))])
 
+(defn ployelement [ ploy ]
+    [:div.mb-3 {:key (gensym)}
+        [:div.h0.d-flex.justify-content-between
+            [:div (:name ploy)]
+            [:div.me-1 (str (:cp ploy) "CP")]]
+        [:div (:text ploy)]])
+
+(defn ploycontainer [ {:keys [strategic tactical]} ]
+    [:div.row
+        (map 
+            (fn [[name ploys]]
+                [:div.col-sm-6 {:key (gensym)}
+                    [:div.h3 name]
+                    (for [ sp ploys ] (ployelement sp) )])
+            [["Strategic Ploys" strategic] ["Tactical Ploys" tactical]])])
+
 (def numbers ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten"])
 (defn killteamcontainer [ kt ]
     [:div 
@@ -100,8 +117,12 @@
                     (for [ft (:fireteams kt)]
                         [:li {:key (gensym)} (:name ft)])]
                 ])
-        (for [ ft (:fireteams kt)]
-            (fireteam ft (dissoc kt :fireteams)))])
+        ;; Fire Teams
+        [:div.mb-3 (for [ ft (:fireteams kt)] (fireteam ft (dissoc kt :fireteams)))]
+        ;; Ploys
+        (ploycontainer (:ploys kt))
+        ;; Equipment
+        ])
 
 (defn page []
     [:div.container
