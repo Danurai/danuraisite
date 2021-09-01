@@ -194,7 +194,9 @@
                   "compile" ["cljsbuild" "once" "don-prod"] 
                   "compile" ["cljsbuild" "once" "mwl-prod"] 
                   "compile" ["cljsbuild" "once" "scores-prod"]
-                  "compile" ["cljsbuild" "once" "nrf-prod"] ]
+                  "compile" ["cljsbuild" "once" "nrf-prod"] 
+                  "compile" ["cljsbuild" "once" "kt-prod"] 
+                  ]
     }
     :dev {
       :dependencies [[reloaded.repl "0.2.4"]
