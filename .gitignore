@@ -6,6 +6,7 @@ pom.xml.asc
 /lib/
 /classes/
 /target/
+/resources/public/js/compiled
 /checkouts/
 .lein-deps-sum
 .lein-repl-history

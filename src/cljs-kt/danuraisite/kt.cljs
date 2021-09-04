@@ -43,12 +43,12 @@
             [:div.row.py-2
                 [:table.table.table-sm.table-striped.table-hover.table-borderless.text-center
                     [:thead
-                        [:tr [:th ""] [:th.text-left "NAME"] [:th "A"] [:th "BS/WS"] [:th "D"] [:th "SA"] [:th "I"] ]]
+                        [:tr [:th ""] [:th.text-start "NAME"] [:th "A"] [:th "BS/WS"] [:th "D"] [:th "SA"] [:th "I"] ]]
                     [:tbody
                         (for [w (:weapons op)]
                             [:tr {:key (gensym)}
                                 [:td (-> w :type op-symbol)]
-                                [:td.text-left (:name w)]
+                                [:td.text-start (:name w)]
                                 [:td (:a w)]
                                 [:td (str (:bsws w) "+")]
                                 [:td (str (-> w :d first) "/" (-> w :d last))]
