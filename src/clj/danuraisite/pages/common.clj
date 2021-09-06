@@ -38,19 +38,18 @@
     ])
     
   
-    (defn- navlink [ uri linkuri linkname ]
-      [:li.nav-item {:class (if (= uri linkuri) "active")}
-        [:a.nav-link {:href linkuri} linkname]])
-      
-    
+(defn- navlink [ uri linkuri linkname ]
+  [:li.nav-item {:class (if (= uri linkuri) "active")}
+    [:a.nav-link {:href linkuri} linkname]])
+  
+
     (defn navbar [req]
       [:nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {:style "z-index: 1021;"}
         [:div.container-fluid
         ;; Home Brand with Icon
-          [:a.navbar-brand.mb-0.h1 {:href "/"}
-            "Home"]
+          [:a.navbar-brand.mb-0.h1 {:href "/"} "Home"]
         ;; Collapse Button for smaller viewports
-          [:button.navbar-toggler {:type "button" :data-toggle "collapse" :data-target "#navbarSupportedContent" 
+          [:button.navbar-toggler {:type "button" :data-bs-toggle "collapse" :data-bs-target "#navbarSupportedContent" 
                                 :aria-controls "navbarSupportedContent" :aria-label "Toggle Navigation" :aria-expanded "false"}
             [:span.navbar-toggler-icon]]
         ;; Collapsable Content
@@ -87,4 +86,4 @@
                       [:a.dropdown-item {:href "/logout"} "Logout"]]
                     [:div.dropdown-menu {:aria-labelledby "userDropdown"}
                       [:a.dropdown-item {:href (str (if (= "/" (:uri req)) "" (:uri req)) "/login")} "Login"]])]]]])      
-    
+      

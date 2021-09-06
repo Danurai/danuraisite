@@ -1,6 +1,7 @@
 (ns danuraisite.kt
     (:require 
       [reagent.core :as r]
+      [cljs.reader :refer [read-string]]
       [danuraisite.ktdata :refer [data]]))
 
 (def killteamdata (r/atom (first data)))
@@ -22,13 +23,13 @@
 (def numbers ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten"])
 
 (defn- markup [& args]
-        [:span {:dangerouslySetInnerHTML {:__html
-            (-> (apply str args) 
-                (clojure.string/replace #"\[\[" "<span class=\"keyword\">")
-                (clojure.string/replace #"\]\]" "</span>")
-                (clojure.string/replace #"\[(\d)\]" #(str "<svg class=\"range-symbol\">" (get range-symbols-html (-> %1 last cljs.reader/read-string)) "</svg>"))
-                (clojure.string/replace #"\*(.+?)\*" #(str "<b>" (last %1) "</b>"))
-                )}}])
+    [:span {:dangerouslySetInnerHTML {:__html
+        (-> (apply str args) 
+            (clojure.string/replace #"\[\[" "<span class=\"keyword\">")
+            (clojure.string/replace #"\]\]" "</span>")
+            (clojure.string/replace #"\[(\d)\]" #(str "<svg class=\"range-symbol\">" (get range-symbols-html (-> %1 last read-string)) "</svg>"))
+            (clojure.string/replace #"\*(.+?)\*" #(str "<b>" (last %1) "</b>"))
+            )}}])
 
 (defn op-symbol 
     ([ sym class ]
@@ -198,7 +199,7 @@
 
 (defn page []
     [:div.container
-        [:select.h0.w-100.mb-3 {:on-change (fn [ele] (reset! killteamdata (->> data (filter #(= (:id %) (-> ele .-target .-value cljs.reader/read-string))) first)))}
+        [:select.h0.w-100.mb-3 {:on-change (fn [ele] (reset! killteamdata (->> data (filter #(= (:id %) (-> ele .-target .-value read-string))) first)))}
             (for [kt data] [:option {:key (:id kt) :value (:id kt)} (:name kt)])]
         [killteamcontainer @killteamdata]])
 
