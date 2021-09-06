@@ -1,7 +1,7 @@
 (ns danuraisite.ktdata)
 
 (def data [{
-        :id 7
+        :id "craftworlds"
         :name "Craftworlds"
         :killteamname "Craftworld"
         :fireteamcount 2
@@ -149,7 +149,7 @@
                                 :a 4
                                 :bsws 2
                                 :d [3 4]
-                                :sa ["Rng 6"]
+                                :sa ["Rng [6]"]
                                 :i ["Rending"]
                             }, {
                                 :type "ranged"
@@ -244,7 +244,7 @@
         ]
   
     },{
-        :id 8
+        :id "drukhari"
         :name "Drukhari"
         :killteamname "Commorrite"
         :labels ["Drukhari" "Commorrite"]
@@ -303,7 +303,7 @@
                 }]
         }]
     },{
-        :id 9
+        :id "harlequins"
         :name "Harlequins"
         :labels []
         :fireteams [{

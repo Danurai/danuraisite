@@ -1,23 +1,22 @@
 (ns danuraisite.kt
     (:require 
       [reagent.core :as r]
-      [cljs.reader :refer [read-string]]
       [danuraisite.ktdata :refer [data]]))
 
 (def killteamdata (r/atom (first data)))
 
 (def range-symbols {
-    1   [:polygon {:points "8,2 16,15 2,15" :style {:fill "black"}}]
-    2   [:circle {:cx "50%" :cy "50%" :r "40%" :stroke "black" :stroke-width "2" :fill "transparent"}]
-    3   [:rect {:x "10%" :y "10%":width "80%" :height "80%" :style {:fill "midnightblue"}}]
-    6   [:polygon {:points "9,2 16,7 14,15 4,15, 2,7" :style {:fill "darkred"}}]
+    "1"   [:polygon {:points "8,2 16,15 2,15" :style {:fill "black"}}]
+    "2"   [:circle {:cx "50%" :cy "50%" :r "40%" :stroke "black" :stroke-width "2" :fill "transparent"}]
+    "3"   [:rect {:x "10%" :y "10%":width "80%" :height "80%" :style {:fill "midnightblue"}}]
+    "6"   [:polygon {:points "9,2 16,7 14,15 4,15, 2,7" :style {:fill "darkred"}}]
 })
 
 (def range-symbols-html {
-    1   "<polygon points=\"8,2 16,15 2,15\" style=\"fill: black;\" />"
-    2   "<circle cx=\"50%\" cy=\"50%\" r=\"40%\" stroke=\"black\" stroke-width=\"2\" fill=\"transparent\" />"
-    3   "<rect x=\"10%\" y=\"10%\"width=\"80%\" height=\"80%\" style=\"fill: midnightblue;\" />"
-    6   "<polygon points=\"9,2 16,7 14,15 4,15, 2,7\" style=\"fill: darkred;\" />"
+    "1"   "<polygon points=\"8,2 16,15 2,15\" style=\"fill: black;\" />"
+    "2"   "<circle cx=\"50%\" cy=\"50%\" r=\"40%\" stroke=\"black\" stroke-width=\"2\" fill=\"transparent\" />"
+    "3"   "<rect x=\"10%\" y=\"10%\"width=\"80%\" height=\"80%\" style=\"fill: midnightblue;\" />"
+    "6"   "<polygon points=\"9,2 16,7 14,15 4,15, 2,7\" style=\"fill: darkred;\" />"
 })
 
 (def numbers ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten"])
@@ -27,7 +26,7 @@
         (-> (apply str args) 
             (clojure.string/replace #"\[\[" "<span class=\"keyword\">")
             (clojure.string/replace #"\]\]" "</span>")
-            (clojure.string/replace #"\[(\d)\]" #(str "<svg class=\"range-symbol\">" (get range-symbols-html (-> %1 last read-string)) "</svg>"))
+            (clojure.string/replace #"\[(\d)\]" #(str "<svg class=\"range-symbol\">" (get range-symbols-html (-> %1 last)) "</svg>"))
             (clojure.string/replace #"\*(.+?)\*" #(str "<b>" (last %1) "</b>"))
             )}}])
 
@@ -53,7 +52,7 @@
                     [:table.table.table-sm.table-hover.table-borderless.stat-block.text-center.mb-0
                         [:thead [:tr [:th "M"] [:th "APL"] [:th "GA"]]]
                         [:tbody [:tr 
-                            [:td [:span (-> stats :m first)] [:svg.range-symbol (-> stats :m last range-symbols)]]    
+                            [:td [:span (-> stats :m first)] [:svg.range-symbol (-> stats :m last str range-symbols)]]    
                             [:td (:apl stats)]    
                             [:td (:ga stats)]]]
                         [:thead [:tr [:th "DF"] [:th "SV"] [:th "W"]]]
@@ -73,7 +72,7 @@
                                 [:td (:a w)]
                                 [:td (str (:bsws w) "+")]
                                 [:td (str (-> w :d first) "/" (-> w :d last))]
-                                [:td (clojure.string/join "," (:sa w))]
+                                [:td (markup (clojure.string/join "," (:sa w)))]
                                 [:td (clojure.string/join "," (:i w))]])]]]
             [:div.row {:style {:min-height "5rem"}}
                 [:div.col-sm-6.mb-3
@@ -199,7 +198,7 @@
 
 (defn page []
     [:div.container
-        [:select.h0.w-100.mb-3 {:on-change (fn [ele] (reset! killteamdata (->> data (filter #(= (:id %) (-> ele .-target .-value read-string))) first)))}
+        [:select.h0.w-100.mb-3 {:on-change (fn [ele] (-> ele .-target .-value prn) (reset! killteamdata (->> data (filter #(= (:id %) (-> ele .-target .-value))) first)))}
             (for [kt data] [:option {:key (:id kt) :value (:id kt)} (:name kt)])]
         [killteamcontainer @killteamdata]])
 
