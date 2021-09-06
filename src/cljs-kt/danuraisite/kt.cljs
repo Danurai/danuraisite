@@ -22,7 +22,6 @@
 (def numbers ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten"])
 
 (defn- markup [& args]
-    (prn (apply str args) )
     [:span {:dangerouslySetInnerHTML {:__html
         (-> (apply str args) 
             (clojure.string/replace #"\[\[" "<span class=\"keyword\">")
