@@ -1,12 +1,12 @@
-.h0, .h1, .h2, .h3, .h4, .h5 {
+.h0, .h1, .h2, .h3, .h4, .h5, .keyword {
     text-transform: uppercase;
     font-weight: bold;
 }
 .h0 {
     background-color: #564632;
     color: whitesmoke;
-    padding: 0 .25rem;
-    font-size: large;
+    padding: 0 .25em;
+    font-size:x-large;
 }
 .h1, .h3 {
     color: darkorange;
@@ -15,12 +15,12 @@
 .h2 {
     background-color: darkorange;
     color: whitesmoke;
-    padding: .25rem;
+    padding: .25em;
     font-size: large;
 }
 .bg-silver {
     background-color: silver;
-    padding-left: 0.25rem;
+    padding-left: 0.25em;
 }
 .info-block {
     background-color: #2b0c00;
@@ -30,7 +30,7 @@
     text-transform: uppercase;
     border: 1px solid darkorange;
     font-weight: bold;
-    padding-left: .2rem;
+    padding-left: .2em;
     font-size: .9em;
     position: relative;
 }
@@ -40,22 +40,74 @@
 }
 
 .range-symbol {
-    width: 1rem;
-    height: 1rem;
-    margin: 0 0.125rem;
+    width: 1em;
+    height: 1em;
+    margin: 0 0.125em;
 }
 
 th {
     background-color: silver;
 }
 
-#app ul {
+#app ul.fireteams {
     list-style-type: none;
 }
-#app ul.fireteams {
+#app ul.fireteams, #app ul.operatives {
     font-weight: bold;
     text-transform: uppercase;
 }
-#app li:before {
+#app ul.fireteams li:before {
     content: "- ";
+}
+
+.options {
+    text-transform: initial;
+    font-weight: initial;
+}
+
+.skills {
+    position: absolute;
+    right: 0;
+    bottom: -.75em;
+    width: auto;
+}
+.arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    display: inline-block;
+    margin-left: -1em;
+    position: relative;
+    color: whitesmoke;
+}
+.arrow.arrow-up {
+    border-width: 0 1.5em 3em 1.5em;
+    border-color: transparent transparent #795e48 transparent;
+}
+.arrow.arrow.arrow-up.active {
+    border-color: transparent transparent darkorange transparent;
+    color: black;
+}
+.arrow.arrow-up span {
+    position: absolute;
+    bottom: -2.8em;
+    text-align: center;
+    left: -1.5em;
+    width: 3em;
+}
+
+.arrow.arrow-down {
+    border-width: 3em 1.5em 0 1.5em;
+    border-color: #795e48 transparent transparent transparent;
+}
+.arrow.arrow-down span {
+    position: absolute;
+    bottom: 1.3em;
+    left: -1.5em;
+    text-align: center;
+    width: 3em;
+}
+.arrow.arrow.arrow-down.active {
+    border-color: darkorange transparent transparent transparent;
+    color: black;
 }
