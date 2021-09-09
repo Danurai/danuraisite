@@ -41,6 +41,12 @@
     ([ sym ]
         (op-symbol sym "")))
 
+
+(defn- abilityele [ a ] 
+    [:div.mb-2 {:key (gensym)}
+        [:span.mr-1.me-1 [:b (-> a :name (str (if (:cost a) (str " (" (:cost a) "AP)" )) ":"))]]
+        (-> a :text markup)])
+
 (defn operative [ op ft ktd ]
     (let [stats (:stats op)]
         [:div.mb-2 {:key (gensym)}
@@ -72,21 +78,15 @@
                                 [:td (:a w)]
                                 [:td (str (:bsws w) "+")]
                                 [:td (str (-> w :d first) "/" (-> w :d last))]
-                                [:td (markup (clojure.string/join "," (:sa w)))]
-                                [:td (clojure.string/join "," (:i w))]])]]]
+                                [:td (markup (clojure.string/join ", " (:sa w)))]
+                                [:td (clojure.string/join ", " (:i w))]])]]]
             [:div.row {:style {:min-height "5rem"}}
                 [:div.col-sm-6.mb-3
                     [:div.row.bg-silver.mr-1 [:div.h5 "Abilities"]]
-                    (for [a (:abilities op)] 
-                        [:div.mb-2 {:key (gensym)}
-                            [:span.mr-1.me-1 [:b (-> a :name (str ":"))]]
-                            (-> a :text markup)])]
+                    (for [a (:abilities op)] (abilityele a))]
                 [:div.col-sm-6
                     [:div.row.bg-silver [:div.h5 "Unique Actions"]]
-                    (for [a (:uniqueactions op)] 
-                        [:div {:key (gensym)}
-                            [:span.mr-1.me-1 [:b (-> a :name (str (if (:cost a) (str " (" (:cost a) "AP)" )) ":"))]]
-                            (-> a :text markup)])]]
+                    (for [a (:uniqueactions op)] (abilityele a))]]
             [:div.row.labels
                 [:div
                     (clojure.string/join ", "
@@ -108,11 +108,12 @@
 
 (defn- optionlist [ options ]
     (let [n (-> options count (- 1))]
-        (clojure.string/capitalize (str 
-            (->> options (take n) (clojure.string/join ", "))
-            " or " 
-            (last options)
-            "."))))
+        (if (= n 0)
+            (clojure.string/capitalize (first options))
+            (clojure.string/capitalize (str 
+                (->> options (take n) (clojure.string/join ", "))
+                " or " 
+                (last options))))))
 (defn- opname [ ft op ]
     (or (:altname op)
         (str (:name ft) " " (:role op))))
@@ -178,6 +179,43 @@
                     (for [ sp ploys ] (ployelement sp) )])
             [["Strategic Ploys" strategic] ["Tactical Ploys" tactical]])])
 
+
+
+(defn equipmentitem [ e ]
+    [:div.mb-3.bg-light.m-2 {:key (gensym)}
+        [:div.fs-5 {:style {:font-family "courier"}} (str (:name e) " [" (:cost e) "EP]")] 
+        [:div.mb-1 (markup
+            (if-let [restriction (:restriction e)] 
+                (str (optionlist (map #(str "[[" % "]]") restriction)) " only. "))
+            (if-let [type (:type e)]
+                (str "The operative gains the following " 
+                    (get {"combat" "melee attack" "ranged" "ranged attack" "ability" "ability"} type)
+                     " for the battle:")
+                (:text e)))]
+        (case (:type e)
+            ("combat" "ranged")
+                (let [w (:weapon e)]
+                    [:div 
+                        [:table.table.table-sm
+                            [:thead [:tr [:th "Name"] [:th "A"] [:th (if (-> e :type (= "combat")) "WS" "BS")] [:th "D"] ]]
+                            [:tbody [:tr [:td (:name w)] [:td (:a w)] [:td (str (:bsws w) "+")] [:td (str (-> w :d first) "/" (-> w :d last))]]]]
+                        (if-let [sa (:sa w)]
+                            [:table.table.table-sm
+                                [:thead [:tr [:th "Special Rules"]]]
+                                [:tbody [:tr [:td (->> sa (clojure.string/join ", ") markup)]]]])])
+            "ability" (abilityele (assoc (:ability e) :name (:name e)))
+            nil)
+        ])
+
+(defn equipmentcontainer [ ktd ]
+    (let [{:keys [:equipmentexclusions equipment]} ktd]
+        [:div.row
+            [:div.h3 "Equipment"]
+            [:div.mb-3 (markup "[[" (:name ktd) "]] operatives")]
+            [:div {:style {:column-count 2}} 
+                (for [equip equipment]
+                    (equipmentitem equip))]]))
+
 (defn killteamcontainer [ kt ]
     [:div 
         (if-let [ftc (:fireteamcount kt)]
@@ -193,7 +231,7 @@
         [:div.mb-3 (for [ ft (:fireteams kt)] (killteamoperatives ft (dissoc kt :fireteams)))]
         ;; Ploys
         (ploycontainer (:ploys kt))
-        ;; Equipment
+        (equipmentcontainer (dissoc kt :fireteams))
         ])
 
 (defn page []
