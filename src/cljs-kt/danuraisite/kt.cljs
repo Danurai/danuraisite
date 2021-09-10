@@ -3,7 +3,7 @@
       [reagent.core :as r]
       [danuraisite.ktdata :refer [data]]))
 
-(def killteamdata (r/atom (first data)))
+(def killteamdata (r/atom (last data)))
 
 (def range-symbols {
     "1"   [:polygon {:points "8,2 16,15 2,15" :style {:fill "black"}}]
@@ -22,13 +22,15 @@
 (def numbers ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten"])
 
 (defn- markup [& args]
-    [:span {:dangerouslySetInnerHTML {:__html
-        (-> (apply str args) 
-            (clojure.string/replace #"\[\[" "<span class=\"keyword\">")
-            (clojure.string/replace #"\]\]" "</span>")
-            (clojure.string/replace #"\[(\d)\]" #(str "<svg class=\"range-symbol\">" (get range-symbols-html (-> %1 last)) "</svg>"))
-            (clojure.string/replace #"\*(.+?)\*" #(str "<b>" (last %1) "</b>"))
-            )}}])
+    (if (empty? (apply str args)) 
+        [:span "-"]
+        [:span {:dangerouslySetInnerHTML {:__html
+            (-> (apply str args) 
+                (clojure.string/replace #"\[\[" "<span class=\"keyword\">")
+                (clojure.string/replace #"\]\]" "</span>")
+                (clojure.string/replace #"\[(\d)\]" #(str "<svg class=\"range-symbol\">" (get range-symbols-html (-> %1 last)) "</svg>"))
+                (clojure.string/replace #"\*(.+?)\*" #(str "<b>" (last %1) "</b>"))
+                )}}]))
 
 (defn op-symbol 
     ([ sym class ]
@@ -47,9 +49,30 @@
         [:span.mr-1.me-1 [:b (-> a :name (str (if (:cost a) (str " (" (:cost a) "AP)" )) ":"))]]
         (-> a :text markup)])
 
+(defn weapons-table [ weapons ]
+    [:table.table.table-sm.table-striped.table-hover.table-borderless.text-center
+        [:thead
+            [:tr [:th ""] [:th.text-start "NAME"] [:th "A"] [:th "BS/WS"] [:th "D"] [:th "SA"] [:th "!"] ]]
+        [:tbody
+            (for [w weapons]
+                (if-let [ammo (:ammo w)]
+                    [:tr {:key (gensym)}
+                        [:td (-> w :type op-symbol)]
+                        [:td.text-start {:col-span 6} 
+                            [:span (:name w) " "]
+                            [:em "Each time this weapon is selected to make a shooting attack with, select one of the profiles below to use."]]]
+                    [:tr {:key (gensym)}    
+                        [:td (-> w :type op-symbol)]
+                        [:td.text-start (str (if (-> w :type (= "ammo")) "- ") (:name w))]
+                        [:td (:a w)]
+                        [:td (str (:bsws w) "+")]
+                        [:td (str (-> w :d first) "/" (-> w :d last))]
+                        [:td (markup (clojure.string/join ", " (:sa w)))]
+                        [:td (markup (clojure.string/join ", " (:i w)))]]))]])
+
 (defn operative [ op ft ktd ]
     (let [stats (:stats op)]
-        [:div.mb-2 {:key (gensym)}
+        [:div.my-3 {:key (gensym)}
             [:div.row.border
                 [:div.col-sm-8.info-block.mb-2
                     [:div.h5.text-center (or (:altname op) (str (:name ft) " [" (:role op) "]"))]
@@ -66,34 +89,27 @@
                             [:td (:df stats)]    
                             [:td (str (:sv stats) "+")]    
                             [:td (:w stats)]]]]]]
-            [:div.row.py-2
-                [:table.table.table-sm.table-striped.table-hover.table-borderless.text-center
-                    [:thead
-                        [:tr [:th ""] [:th.text-start "NAME"] [:th "A"] [:th "BS/WS"] [:th "D"] [:th "SA"] [:th "I"] ]]
-                    [:tbody
-                        (for [w (:weapons op)]
-                            [:tr {:key (gensym)}
-                                [:td (-> w :type op-symbol)]
-                                [:td.text-start (:name w)]
-                                [:td (:a w)]
-                                [:td (str (:bsws w) "+")]
-                                [:td (str (-> w :d first) "/" (-> w :d last))]
-                                [:td (markup (clojure.string/join ", " (:sa w)))]
-                                [:td (clojure.string/join ", " (:i w))]])]]]
+            [:div.row.py-2 (weapons-table (:weapons op))]
             [:div.row {:style {:min-height "5rem"}}
-                [:div.col-sm-6.mb-3
-                    [:div.row.bg-silver.mr-1 [:div.h5 "Abilities"]]
-                    (for [a (:abilities op)] (abilityele a))]
-                [:div.col-sm-6
-                    [:div.row.bg-silver [:div.h5 "Unique Actions"]]
-                    (for [a (:uniqueactions op)] (abilityele a))]]
+                (let [abilities (:abilities op)]
+                    [:div.col.mb-3
+                        [:div.row.bg-silver.mr-1 [:div.h5 "Abilities"]]
+                        (if (-> abilities count (= 0))
+                            [:div "-"]
+                            (for [a abilities] (abilityele a)))])
+                (let [uniqueactions (:uniqueactions op)]
+                    [:div.col.mb-3
+                        [:div.row.bg-silver.mr-1 [:div.h5 "Unique Actions"]]
+                        (if (-> uniqueactions count (= 0))
+                            [:div "-"]
+                            (for [ua uniqueactions] (abilityele ua)))])]
             [:div.row.labels
                 [:div
                     (clojure.string/join ", "
                         (remove nil?
                             (apply conj 
                                 (:labels ktd)
-                                (if (and (:leader op) (-> op :name (not= "LEADER"))) "LEADER")
+                                (if (and (:leader op) (-> op :role (not= "Leader"))) "LEADER")
                                 (:name ft)
                                 [(:role op)])))]
                 [:div.skills {}
@@ -106,7 +122,7 @@
                     [:div.arrow.arrow-down {:class (if (-> op :skills :move) "active")}
                         [:span [:i.fas.fa-lg.fa-angle-double-down]]]]]]))
 
-(defn- optionlist [ options ]
+(defn- orlist [ options ]
     (let [n (-> options count (- 1))]
         (if (= n 0)
             (clojure.string/capitalize (first options))
@@ -114,6 +130,18 @@
                 (->> options (take n) (clojure.string/join ", "))
                 " or " 
                 (last options))))))
+
+(defn optionlist [ options ]
+    [:ul
+        (for [opt options]
+            (if (vector? opt) 
+                [:li {:key (gensym)} (orlist opt)]
+                (if (map? opt)
+                    (case (-> opt first key)
+                        :oneoptionfromeach [:li "One option from each of the following:" (optionlist (-> opt first val))]
+                        :and [:li (clojure.string/join "; " (-> opt first val))])
+                )))])
+
 (defn- opname [ ft op ]
     (or (:altname op)
         (str (:name ft) " " (:role op))))
@@ -131,24 +159,35 @@
                                 " equipped with "
                                 (if-let [base (-> op :equipment :base)] (clojure.string/lower-case (str (clojure.string/join ", " base) " and ")))
                                 "one of the following options:") 
-                                [:ul [:li (optionlist options)]]])])]]))
+                                (optionlist options)])])]]))
 
-(defn fireteamlimits [ ft ]
+(defn teamlimits [ ft ]
     (let [base (->> ft :operatives (filter :base) first)
-          req  (->> ft :operatives (filter :reqrole))]
+          req  (->> ft :operatives (filter :reqrole))
+          ktlimit (->> ft :operatives (map :ktlimit) (remove nil?) count (< 0))
+          ftlimit (->> ft :operatives (map :ftlimit) (remove nil?) count (< 0))
+          ]
         [:div.mb-3 
-            [:span.me-1 (markup "Other than [[" (opname ft base) "]] operatives, your kill team can only include each operative above once.")]
+            [:span.me-1 (markup "Other than [[" (opname ft base) "]] operatives, your " (if ftlimit "fire" (if ktlimit "kill")) " team can only include each operative above once.")]
             (for [r req]
                 [:span {:key (gensym)} (markup "Your kill team can only include a [[" (opname ft r) "]] operative if it also includes one [[" (opname ft (->> ft :operatives (filter #(= (:role %) (:reqrole r))) first)) "]] operative." )])
         ]))
 (defn fireteamleader [ ft ]
     (let [base (->> ft :operatives (filter :base) first)
           leader (->> ft :operatives (filter :leader) first)]
-        [:div.mb-3 (markup "If your kill team does not include any other [[leader]] operatives, instead of selecting one [[" (opname ft base) "]] operative for one [[" (:name ft) "]] fire team, you can select one [[" (opname ft leader) "]] operative.")]))
+        [:div.mb-3 
+            [:div (markup "If your kill team does not include any other [[leader]] operatives, instead of selecting one [[" 
+                            (opname ft base) "]] operative for one [[" (:name ft) "]] fire team, you can select one [[" (opname ft leader) "]] operative"
+                            (if (-> leader :equipment :options)
+                                (str " equipped with "
+                                    (if-let [base (-> leader :equipment :base)] (clojure.string/lower-case (str (clojure.string/join ", " base) " and ")))
+                                    "one of the following options:")))]
+            (if-let [options (-> leader :equipment :options)] (optionlist options))]))
+
 (defn fireteaminfo [ ft ]
     [:div.mb-3
         (fireteamroles ft)
-        (if (-> ft :operatives count (> 2)) (fireteamlimits ft))
+        ;(if (-> ft :operatives count (> 2)) (teamlimits ft))
         (fireteamleader ft)])
 
 
@@ -182,11 +221,11 @@
 
 
 (defn equipmentitem [ e ]
-    [:div.mb-3.bg-light.m-2 {:key (gensym)}
+    [:div.mb-3.bg-light.m-2.equipment {:key (gensym)}
         [:div.fs-5 {:style {:font-family "courier"}} (str (:name e) " [" (:cost e) "EP]")] 
         [:div.mb-1 (markup
             (if-let [restriction (:restriction e)] 
-                (str (optionlist (map #(str "[[" % "]]") restriction)) " only. "))
+                (str (orlist (map #(str "[[" % "]]") restriction)) " only. "))
             (if-let [type (:type e)]
                 (str "The operative gains the following " 
                     (get {"combat" "melee attack" "ranged" "ranged attack" "ability" "ability"} type)
@@ -202,7 +241,11 @@
                         (if-let [sa (:sa w)]
                             [:table.table.table-sm
                                 [:thead [:tr [:th "Special Rules"]]]
-                                [:tbody [:tr [:td (->> sa (clojure.string/join ", ") markup)]]]])])
+                                [:tbody [:tr [:td (->> sa (clojure.string/join ", ") markup)]]]])
+                        (if-let [i (:i w)]
+                            [:table.table.table-sm
+                                [:thead [:tr [:th "i"]]]
+                                [:tbody [:tr [:td (->> i (clojure.string/join ", ") markup)]]]])])
             "ability" (abilityele (assoc (:ability e) :name (:name e)))
             nil)
         ])
