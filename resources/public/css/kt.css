@@ -111,3 +111,11 @@ th {
     border-color: darkorange transparent transparent transparent;
     color: black;
 }
+
+.equipment {
+    break-inside: avoid;
+}
+
+.equipmentitem thead {
+    background-color: lightslategrey;
+}
