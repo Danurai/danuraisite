@@ -3,7 +3,7 @@
       [reagent.core :as r]
       [danuraisite.ktdata :refer [data]]))
 
-(def killteamdata (r/atom (last data)))
+(def killteamdata (r/atom (first data)))
 
 (def range-symbols {
     "1"   [:polygon {:points "8,2 16,15 2,15" :style {:fill "black"}}]
@@ -138,8 +138,8 @@
                 [:li {:key (gensym)} (orlist opt)]
                 (if (map? opt)
                     (case (-> opt first key)
-                        :oneoptionfromeach [:li "One option from each of the following:" (optionlist (-> opt first val))]
-                        :and [:li (clojure.string/join "; " (-> opt first val))])
+                        :oneoptionfromeach [:li  {:key (gensym)} "One option from each of the following:" (optionlist (-> opt first val))]
+                        :and [:li  {:key (gensym)} (clojure.string/join "; " (-> opt first val))])
                 )))])
 
 (defn- opname [ ft op ]
