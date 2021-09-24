@@ -11,22 +11,14 @@
 			{
 				"name": "Tactical Marine",
 				"oplimit": 6,
-				"operatives": [
-					{}
-				]
+				"operatives": []
 			}
 		],
 		"ploys": {
-			"tactical": [
-				{}
-			],
-			"strategic": [
-				{}
-			]
+			"tactical": [],
+			"strategic": []
 		},
-		"equipment": [
-			{}
-		]
+		"equipment": []
 	},
 	{
 		"id": "craftworlds",
@@ -73,13 +65,13 @@
 									3,
 									4
 								],
-								"sa": [],
+								"sr": [],
 								"i": [
 									"Rending"
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 3,
@@ -87,7 +79,7 @@
 									2,
 									3
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							}
 						],
@@ -125,13 +117,13 @@
 									3,
 									4
 								],
-								"sa": [],
+								"sr": [],
 								"i": [
 									"Rending"
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 3,
@@ -139,7 +131,7 @@
 									2,
 									3
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							}
 						],
@@ -200,7 +192,7 @@
 									3,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"Blast [2]"
 								]
@@ -214,7 +206,7 @@
 									5,
 									7
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"AP1"
 								]
@@ -228,7 +220,7 @@
 									6,
 									7
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"AP2"
 								]
@@ -242,7 +234,7 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"Ceaseless",
 									"Fusillade"
@@ -257,7 +249,7 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"Fusillade"
 								],
@@ -274,7 +266,7 @@
 									5,
 									6
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"AP1"
 								],
@@ -325,13 +317,13 @@
 									3,
 									4
 								],
-								"sa": [],
+								"sr": [],
 								"i": [
 									"Rending"
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 2,
@@ -339,7 +331,7 @@
 									2,
 									3
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							}
 						],
@@ -387,7 +379,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]"
 								],
 								"i": [
@@ -395,7 +387,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Storm Guardian Blades",
 								"a": 4,
 								"bsws": 3,
@@ -448,7 +440,7 @@
 									2,
 									2
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]",
 									"Torrent [2]"
 								],
@@ -463,7 +455,7 @@
 									6,
 									3
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]",
 									"AP2"
 								],
@@ -472,7 +464,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 3,
@@ -480,7 +472,7 @@
 									2,
 									3
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							}
 						],
@@ -516,7 +508,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]"
 								],
 								"i": [
@@ -524,7 +516,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Storm Guardian Blades",
 								"a": 4,
 								"bsws": 2,
@@ -576,7 +568,7 @@
 									3,
 									3
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"Silent"
 								],
@@ -593,7 +585,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]"
 								],
 								"i": [
@@ -601,7 +593,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 3,
@@ -649,7 +641,7 @@
 									3,
 									3
 								],
-								"sa": [
+								"sr": [
 									"Heavy",
 									"Silent",
 									"Balanced"
@@ -667,7 +659,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]"
 								],
 								"i": [
@@ -675,7 +667,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 2,
@@ -737,7 +729,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Balanced"
 								],
 								"i": [
@@ -745,7 +737,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 3,
@@ -753,7 +745,7 @@
 									2,
 									3
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							}
 						],
@@ -825,7 +817,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Balanced"
 								],
 								"i": [
@@ -841,7 +833,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]"
 								],
 								"i": [
@@ -857,7 +849,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Relentless"
 								],
 								"i": [
@@ -865,7 +857,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Diresword",
 								"a": 4,
 								"bsws": 2,
@@ -873,7 +865,7 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Lethal 5+"
 								],
 								"i": [
@@ -881,7 +873,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Fists",
 								"a": 3,
 								"bsws": 2,
@@ -889,11 +881,11 @@
 									2,
 									3
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Power weapon",
 								"a": 4,
 								"bsws": 2,
@@ -901,7 +893,7 @@
 									4,
 									6
 								],
-								"sa": [
+								"sr": [
 									"Lethal 5+"
 								],
 								"i": []
@@ -990,7 +982,7 @@
 				"restriction": [
 					"Dire Avenger"
 				],
-				"type": "combat",
+				"type": "melee",
 				"weapon": {
 					"name": "Weaponised Panoply",
 					"a": 3,
@@ -1036,11 +1028,12 @@
 				"type": "ability",
 				"ability": {
 					"name": "Wraitbone Talisman",
-					"text": "Once per battle, when this operative is fighting in combat, making a shooting attack, or ashooting attack is being made against it, you can use the Commans Re-roll Tactical Ploy without spending any CP."
+					"text": "Once per battle, when this operative is fighting in combat, making a shooting attack, or a shooting attack is being made against it, you can use the Command Re-roll Tactical Ploy without spending any CP."
 				}
 			},
 			{
 				"name": "Celestial Shield",
+				"cost": 2,
 				"restriction": [
 					"Guardian Defender",
 					"Storm Guardian"
@@ -1063,7 +1056,7 @@
 						3,
 						4
 					],
-					"sa": [
+					"sr": [
 						"Rng [6]",
 						"Blast [1]",
 						"Limited",
@@ -1191,11 +1184,17 @@
 					}
 				]
 			}
-		]
+		],
+		"ploys": {
+			"strategic": [],
+			"tactical": []
+		},
+		"equipment": []
 	},
 	{
 		"id": "harlequins",
 		"name": "Harlequins",
+		"killteamname": "Troupe",
 		"labels": [
 			"Troupe",
 			"Aeldari",
@@ -1250,7 +1249,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]"
 								],
 								"i": [
@@ -1258,7 +1257,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's blade",
 								"a": 5,
 								"bsws": 3,
@@ -1266,13 +1265,13 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Balanced"
 								],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's caress",
 								"a": 5,
 								"bsws": 4,
@@ -1280,11 +1279,11 @@
 									5,
 									6
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's embrace",
 								"a": 5,
 								"bsws": 3,
@@ -1292,13 +1291,13 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Brutal"
 								],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's kiss",
 								"a": 5,
 								"bsws": 3,
@@ -1306,7 +1305,7 @@
 									3,
 									7
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							}
 						],
@@ -1317,7 +1316,7 @@
 							},
 							{
 								"name": "Flip Belt:",
-								"text": "Each time this operative performs an action in which it moves, it moves as though it xan [[fly]] and automatically passes jump tests."
+								"text": "Each time this operative performs an action in which it moves, it moves as though it can [[fly]] and automatically passes jump tests."
 							}
 						],
 						"uniqueactions": [],
@@ -1366,7 +1365,7 @@
 									5,
 									3
 								],
-								"sa": [
+								"sr": [
 									"Rng [3]",
 									"AP2"
 								],
@@ -1383,7 +1382,7 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]",
 									"AP1"
 								],
@@ -1392,7 +1391,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's blade",
 								"a": 5,
 								"bsws": 3,
@@ -1400,13 +1399,13 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Balanced"
 								],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's caress",
 								"a": 5,
 								"bsws": 4,
@@ -1414,11 +1413,11 @@
 									5,
 									6
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's embrace",
 								"a": 5,
 								"bsws": 3,
@@ -1426,13 +1425,13 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Brutal"
 								],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's kiss",
 								"a": 5,
 								"bsws": 3,
@@ -1440,7 +1439,7 @@
 									3,
 									7
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							}
 						],
@@ -1451,7 +1450,7 @@
 							},
 							{
 								"name": "Flip Belt:",
-								"text": "Each time this operative performs an action in which it moves, it moves as though it xan [[fly]] and automatically passes jump tests."
+								"text": "Each time this operative performs an action in which it moves, it moves as though it can [[fly]] and automatically passes jump tests."
 							}
 						],
 						"uniqueactions": [],
@@ -1503,7 +1502,7 @@
 									5,
 									3
 								],
-								"sa": [
+								"sr": [
 									"Rng [3]",
 									"AP2"
 								],
@@ -1520,7 +1519,7 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]",
 									"AP1"
 								],
@@ -1537,7 +1536,7 @@
 									3,
 									4
 								],
-								"sa": [
+								"sr": [
 									"Rng [6]"
 								],
 								"i": [
@@ -1545,7 +1544,7 @@
 								]
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's blade",
 								"a": 5,
 								"bsws": 2,
@@ -1553,13 +1552,13 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Balanced"
 								],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's caress",
 								"a": 5,
 								"bsws": 3,
@@ -1567,11 +1566,11 @@
 									5,
 									6
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's embrace",
 								"a": 5,
 								"bsws": 2,
@@ -1579,13 +1578,13 @@
 									4,
 									5
 								],
-								"sa": [
+								"sr": [
 									"Brutal"
 								],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Harlequin's kiss",
 								"a": 5,
 								"bsws": 2,
@@ -1593,11 +1592,11 @@
 									3,
 									7
 								],
-								"sa": [],
+								"sr": [],
 								"i": []
 							},
 							{
-								"type": "combat",
+								"type": "melee",
 								"name": "Power weapon",
 								"a": 5,
 								"bsws": 2,
@@ -1605,7 +1604,7 @@
 									4,
 									6
 								],
-								"sa": [
+								"sr": [
 									"Lethal 5+"
 								],
 								"i": []
@@ -1638,7 +1637,7 @@
 					"faction": "TROUPE",
 					"name": "Rising Crescendo",
 					"cp": 1,
-					"text": "Until the end of the Turning Point, each time a friendly [[TROUPE]] operative is activated: <ul><li>it can perform a *Dash* and *Charge* actions while withini Engagement Range of enemy operatives.</li><li>Each tim it performs a *Normal Move*, *Fall Back*, *Dash* or *Charge* action during that activation, it can move and additional [1]"
+					"text": "Until the end of the Turning Point, each time a friendly [[TROUPE]] operative is activated:\n It can perform a *Dash* and *Charge* actions while within Engagement Range of enemy operatives.\n- Each time it performs a *Normal Move*, *Fall Back*, *Dash* or *Charge* action during that activation, it can move and additional [1]"
 				},
 				{
 					"faction": "TROUPE",
@@ -1650,7 +1649,7 @@
 					"faction": "TROUPE",
 					"name": "Prismatic Blur",
 					"cp": 1,
-					"text": "Until the end of the Turning Point, each time a friendly [[TROUPE]] operative performas a *Normal Move*, *Fall Back* or *Charge* action, it is a prismatic blur. While it is a prismatic blur:<li>Each time a shooting attack is made against that operative, in the Roll Defence Dice step of that shooting attack, you can re-roll one of your Defence Dice</li><li>Each time that operative fights in combat, in the Resolve Successful Hits step of that combat, each time your opponent strikes with a normal hit, you can roll one D6: on a 4+ treat that strike as a parry instead."
+					"text": "Until the end of the Turning Point, each time a friendly [[TROUPE]] operative performs a *Normal Move*, *Fall Back* or *Charge* action, it is a prismatic blur. While it is a prismatic blur:\n- Each time a shooting attack is made against that operative, in the Roll Defence Dice step of that shooting attack, you can re-roll one of your Defence Dice\n- Each time that operative fights in combat, in the Resolve Successful Hits step of that combat, each time your opponent strikes with a normal hit, you can roll one D6: on a 4+ treat that strike as a parry instead."
 				}
 			],
 			"tactical": [
@@ -1709,7 +1708,7 @@
 				"type": "ability",
 				"ability": {
 					"name": "Wraitbone Talisman",
-					"text": "Once per battle, when this operative is fighting in combat, making a shooting attack, or ashooting attack is being made against it, you can use the Commans Re-roll Tactical Ploy without spending any CP."
+					"text": "Once per battle, when this operative is fighting in combat, making a shooting attack, or a shooting attack is being made against it, you can use the Command Re-roll Tactical Ploy without spending any CP."
 				}
 			},
 			{
@@ -1724,7 +1723,7 @@
 						3,
 						4
 					],
-					"sa": [
+					"sr": [
 						"Rng [6]",
 						"Limited",
 						"Blast [2]",
