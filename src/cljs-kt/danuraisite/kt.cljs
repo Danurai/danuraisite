@@ -55,7 +55,7 @@
 (defn weapons-table [ weapons ]
 		[:table.table.table-sm.table-striped.table-hover.table-borderless.text-center
 				[:thead
-						[:tr [:th ""] [:th.text-start "NAME"] [:th "A"] [:th "BS/WS"] [:th "D"] [:th "SA"] [:th "!"] ]]
+						[:tr [:th ""] [:th.text-start "NAME"] [:th "A"] [:th "BS/WS"] [:th "D"] [:th "SR"] [:th "!"] ]]
 				[:tbody
 						(for [w weapons]
 								(if-let [ammo (:ammo w)]
@@ -70,7 +70,7 @@
 												[:td (:a w)]
 												[:td (str (:bsws w) "+")]
 												[:td (str (-> w :d first) "/" (-> w :d last))]
-												[:td (markup (clojure.string/join ", " (:sa w)))]
+												[:td (markup (clojure.string/join ", " (:sr w)))]
 												[:td (markup (clojure.string/join ", " (:i w)))]]))]])
 
 (defn operative [ op ft ktd ]
@@ -231,20 +231,20 @@
 								(str (orlist (map #(str "[[" % "]]") restriction)) " only. "))
 						(if-let [type (:type e)]
 								(str "The operative gains the following " 
-										(get {"combat" "melee attack" "ranged" "ranged attack" "ability" "ability"} type)
+										(get {"melee" "melee attack" "ranged" "ranged attack" "ability" "ability"} type)
 										 " for the battle:")
 								(:text e)))]
 				(case (:type e)
-						("combat" "ranged")
+						("melee" "ranged")
 								(let [w (:weapon e)]
 										[:div 
 												[:table.table.table-sm
-														[:thead [:tr [:th "Name"] [:th "A"] [:th (if (-> e :type (= "combat")) "WS" "BS")] [:th "D"] ]]
+														[:thead [:tr [:th "Name"] [:th "A"] [:th (if (-> e :type (= "melee")) "WS" "BS")] [:th "D"] ]]
 														[:tbody [:tr [:td (:name w)] [:td (:a w)] [:td (str (:bsws w) "+")] [:td (str (-> w :d first) "/" (-> w :d last))]]]]
-												(if-let [sa (:sa w)]
+												(if-let [sr (:sr w)]
 														[:table.table.table-sm
 																[:thead [:tr [:th "Special Rules"]]]
-																[:tbody [:tr [:td (->> sa (clojure.string/join ", ") markup)]]]])
+																[:tbody [:tr [:td (->> sr (clojure.string/join ", ") markup)]]]])
 												(if-let [i (:i w)]
 														[:table.table.table-sm
 																[:thead [:tr [:th "i"]]]
