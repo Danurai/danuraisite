@@ -38,7 +38,7 @@
 (defn op-symbol 
 		([ sym class ]
 				(case sym
-						"combat"  [:i.ra.ra-crossed-swords {:class class}]
+						("melee" "combat")  [:i.ra.ra-crossed-swords {:class class}]
 						"ranged"  [:i.fa.fa-crosshairs {:class class}]
 						"defense" [:i.fa.fa-shield-alt {:class class}]
 						"move"    [:i.fas.fa-angle-double-down {:class class}]
@@ -290,8 +290,7 @@
 
 
 
-(go (let [response (<! (http/get "/api/data/kt2data"))] 
+(go (let [response (<! (http/get "/api/data/kt2data"))]
 	(reset! data (:body response))
-	(prn (first @data))
-	(swap! killteamdata (second @data))
+	(swap! killteamdata (-> response :body first))
 	(r/render [page] (.getElementById js/document "app")))) 
