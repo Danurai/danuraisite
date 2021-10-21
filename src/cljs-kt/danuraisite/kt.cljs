@@ -84,7 +84,7 @@
 										[:table.table.table-sm.table-hover.table-borderless.stat-block.text-center.mb-0
 												[:thead [:tr [:th "M"] [:th "APL"] [:th "GA"]]]
 												[:tbody [:tr 
-														[:td [:span (-> stats :m first)] [:svg.range-symbol (-> stats :m last str range-symbols)]]    
+														[:td [:span (:m stats)] [:svg.range-symbol (range-symbols "2")]]    
 														[:td (:apl stats)]    
 														[:td (:ga stats)]]]
 												[:thead [:tr [:th "DF"] [:th "SV"] [:th "W"]]]
@@ -118,11 +118,11 @@
 								[:div.skills {}
 										[:div.arrow.arrow-up {:class (if (-> op :skills :combat) "active")}
 												[:span [:i.ra.fa-lg.ra-crossed-swords]]]
-										[:div.arrow.arrow-down {:class (if (-> op :skills :defense) "active")}
+										[:div.arrow.arrow-down {:class (if (-> op :skills :staunch) "active")}
 												[:span [:i.fas.fa-lg.fa-shield-alt]]]
-										[:div.arrow.arrow-up {:class (if (-> op :skills :ranged) "active")}
+										[:div.arrow.arrow-up {:class (if (-> op :skills :marksman) "active")}
 												[:span [:i.fas.fa-lg.fa-crosshairs]]]
-										[:div.arrow.arrow-down {:class (if (-> op :skills :move) "active")}
+										[:div.arrow.arrow-down {:class (if (-> op :skills :scout) "active")}
 												[:span [:i.fas.fa-lg.fa-angle-double-down]]]]]]))
 
 (defn- orlist [ options ]
@@ -144,25 +144,49 @@
 												:oneoptionfromeach [:li {:key (gensym)} "One option from each of the following:" (optionlist (-> opt first val))]
 												:and [:li {:key (gensym)} (clojure.string/join "; " (-> opt first val))])
 								)))])
+(defn a-or-an [ noun ]
+		(if (contains? #{\A \E \I \O \U} (clojure.string/upper-case (first noun)))
+		"An"
+		"A"
+	))
 
 (defn- opname [ ft op ]
 		(or (:altname op)
 				(str (:name ft) " " (:role op))))
-(defn fireteamroles [ ft ]
-		(if (-> ft :operatives count (< 3))
-				[:div.mb-3 (markup "A [[" (:name ft) "]] fire team includes " (-> ft :oplimit numbers) " [[" (->> ft :operatives (filter :base) first (opname ft)) "]] operatives.")]
-				[:div 
-						[:div (markup "A [[" (:name ft) "]] fire team includes " (-> ft :oplimit numbers) " [[" (:name ft) "]] operatives selected from the following list:")]
-						[:ul.operatives
-								(for [op (->> ft :operatives (remove :leader))]
-										[:li {:key (gensym)} (str (:name ft) " " (:role op))
-												(if-let [options (-> op :equipment :options)] 
-														[:span.options (str
-																(if (and (-> op :leader nil?) (-> op :ktlimit nil?)) " each separately")
-																" equipped with "
-																(if-let [base (-> op :equipment :base)] (clojure.string/lower-case (str (clojure.string/join ", " base) " and ")))
-																"one of the following options:") 
-																(optionlist options)])])]]))
+
+(defn- oplistitem [ op ft ]
+	[:li {:key (gensym)} 
+		(str (:name ft) " " (:role op))
+		(if-let [options (-> op :equipment :options)] 
+				[:span.options (str
+						(if (and (-> op :leader nil?) (-> op :ktlimit nil?)) " each separately")
+						" equipped with "
+						(if-let [base (-> op :equipment :base)] (clojure.string/lower-case (str (clojure.string/join ", " base) " and ")))
+						"one of the following options:") 
+						(optionlist options)])])
+
+(defn fireteamroles [ ft ftcount ]
+		(if (= 1 ftcount)
+			[:div
+				[:div (apply markup
+								"It also includes " 
+								(- (:oplimit ft) 1)
+								" [[" (:name ft) " "
+								(if (-> ft :operatives count (< 3))
+									(-> ft :operatives first :role))
+								"]] operatives"
+								(if (-> ft :operatives count (> 2))
+									" selected from the following list:"
+									"."))]
+					(when (-> ft :operatives count (> 2))
+							(for [op (->> ft :operatives (remove :leader))] [oplistitem op ft])
+							)]
+			(if (-> ft :operatives count (< 3))
+					[:div.mb-3 (markup (-> ft :name a-or-an) " [[" (:name ft) "]] fire team includes " (-> ft :oplimit numbers) " [[" (->> ft :operatives (filter :base) first (opname ft)) "]] operatives.")]
+					[:div 
+							[:div (markup "A [[" (:name ft) "]] fire team includes " (-> ft :oplimit numbers) " [[" (:name ft) "]] operatives selected from the following list:")]
+							[:ul.operatives
+									(for [op (->> ft :operatives (remove :leader))] [oplistitem op ft])]])))
 
 (defn teamlimits [ ft ]
 		(let [base (->> ft :operatives (filter :base) first)
@@ -175,7 +199,7 @@
 						(for [r req]
 								[:span {:key (gensym)} (markup "Your kill team can only include a [[" (opname ft r) "]] operative if it also includes one [[" (opname ft (->> ft :operatives (filter #(= (:role %) (:reqrole r))) first)) "]] operative." )])
 				]))
-(defn fireteamleader [ ft ]
+(defn fireteamleader [ ft ftcount ]
 		(let [base (->> ft :operatives (filter :base) first)
 					leader (->> ft :operatives (filter :leader) first)]
 				[:div.mb-3 
@@ -187,18 +211,18 @@
 																		"one of the following options:")))]
 						(if-let [options (-> leader :equipment :options)] (optionlist options))]))
 
-(defn fireteaminfo [ ft ]
+(defn fireteaminfo [ ft ktd ]
+	(let [ftcount (:fireteamcount ktd)]
 		[:div.mb-3
-				(fireteamroles ft)
-				;(if (-> ft :operatives count (> 2)) (teamlimits ft))
-				(fireteamleader ft)])
+				(fireteamroles ft ftcount)
+				(fireteamleader ft ftcount)]))
 
 
-(defn fireteam [ ft ]; ktd ]
+(defn fireteam [ ft ktd ]
 		[:div {:key (gensym)}
 				[:div.h2 (str "Archetype: " (->> ft :archetypes (clojure.string/join " / ")))]
 				[:div.h3 (str (:name ft) " Fire Team")]
-				(fireteaminfo ft)])
+				(fireteaminfo ft ktd)])
 
 (defn killteamoperatives [ ft ktd ]
 		[:div.py-3 {:key (gensym)}
@@ -267,13 +291,13 @@
 				(if-let [ftc (:fireteamcount kt)]
 						[:div 
 								[:div.h1 (-> kt :killteamname (str " Kill Team"))]
-								[:div (markup "A [[" (:killteamname kt) "]] kill team consists of " (numbers ftc ftc) " fire teams selected from the following list:")]
+								[:div (markup (-> kt :killteamname a-or-an) " [[" (:killteamname kt) "]] kill team consists of " (numbers ftc ftc) " fire teams selected from the following list:")]
 								[:ul.fireteams 
 										(for [ft (:fireteams kt)]
 												[:li {:key (gensym)} (:name ft)])]
 								])
 				;; Fire Teams
-				[:div.mb-3 (for [ ft (:fireteams kt)] (fireteam ft))] ; (dissoc kt :fireteams)))]
+				[:div.mb-3 (for [ ft (:fireteams kt)] (fireteam ft (dissoc kt :fireteams)))]
 				[:div.mb-3 (for [ ft (:fireteams kt)] (killteamoperatives ft (dissoc kt :fireteams)))]
 				;; Ploys
 				(ploycontainer (:ploys kt))
@@ -282,15 +306,14 @@
 
 (defn page []
 	@data
+	@killteamdata
 	[:div.container
 			[:select.h0.w-100.mb-3 {:on-change (fn [ele] (-> ele .-target .-value prn) (reset! killteamdata (->> @data (filter #(= (:id %) (-> ele .-target .-value))) first)))}
 					(for [kt @data] [:option {:key (:id kt) :value (:id kt)} (:name kt)])]
 			[killteamcontainer @killteamdata]
 			])
 
-
-
 (go (let [response (<! (http/get "/api/data/kt2data"))]
 	(reset! data (:body response))
-	(swap! killteamdata (-> response :body first))
+	(reset! killteamdata (first @data))
 	(r/render [page] (.getElementById js/document "app")))) 
