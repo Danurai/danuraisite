@@ -315,5 +315,6 @@
 
 (go (let [response (<! (http/get "/api/data/kt2data"))]
 	(reset! data (:body response))
+
 	(reset! killteamdata (first @data))
 	(r/render [page] (.getElementById js/document "app")))) 
