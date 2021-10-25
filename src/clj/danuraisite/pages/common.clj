@@ -75,7 +75,11 @@
                   [:a.dropdown-item {:href "/netrunner/mwl"} "MWL Checker"]
                   [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]
               (navlink (:uri req) "/scores" "Scores")
-              (navlink (:uri req) "/killteam" "Kill Team")]
+              [:li.nav-item.dropdown
+                [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Kill Team"]
+                [:div.dropdown-menu
+                  [:a.dropdown-item {:href "/killteam/compendium"} "Compendium Reference"]
+                  [:a.dropdown-item {:href "/killteam/specops"} "Spec Ops Dataslate"]]]]
         ;; Login Icon
             [:span.nav-item.dropdown.ms-auto
               [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href="#" :role "button" :data-bs-toggle "dropdown"} [:i.fas.fa-user]]
