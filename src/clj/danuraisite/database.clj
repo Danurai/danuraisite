@@ -43,6 +43,14 @@
 (defn dropuser [uid]
   (j/delete! db :decklists ["author = ?" (read-string uid)])
   (j/delete! db :users ["uid = ?" (read-string uid)]))
+
+(defn create-sequence [ name ]
+  (if (-> db :subprotocol (= "sqlite"))
+    (if (empty? (j/query db ["select seq from sqlite_sequence where name = ?" name]))
+      (j/insert! db :sqlite_sequence {:name name :seq 1000}))
+    (try 
+      (j/db-do-commands db [(str "create sequence " name "_uid_seq minvalue 1000")])
+      (catch Exception e (println (str "Sequence for " name " already exists"))))))
   
 (defn- create-tbl-users []
   (if (= (:subprotocol db) "sqlite") ; Split for AUTOINCREMENT / NEXTVAL
@@ -56,7 +64,7 @@
              [:admin    :boolean]
              [:created  :date]]
             {:conditional? true}))
-        (j/insert! db :sqlite_sequence {:name "users" :seq 1000})
+        (create-sequence "users")
         (if (empty? (j/query db ["select uid from users where username = ?" "root"]))
           (j/insert! db :users {:username "root" :password (creds/hash-bcrypt "admin") :admin true  :created (t/now)}))
         (if (empty? (j/query db ["select uid from users where username = ?" "dan"]))
@@ -103,7 +111,7 @@
            [:created    :bigint]
            [:updated    :bigint]]
           {:conditional? true}))
-      (j/insert! db :sqlite_sequence {:name "lugsparty" :seq 1000})
+      (create-sequence "lugsparty")
       (catch Exception e (println (str "DB Error - LUGS Party: " e))))
   ; Create Table in postgresql
     (try
@@ -131,7 +139,7 @@
            [:created    :bigint]
            [:updated    :bigint]]
           {:conditional? true}))
-      (j/insert! db :sqlite_sequence {:name "donvictims" :seq 1000})
+      (create-sequence "donvictims")
       (catch Exception e (println (str "DB Error - DoN Victims: " e))))
   ; Create Table in postgresql
     (try
@@ -163,13 +171,113 @@
        [:score      :int]
        [:date       :bigint]]
       {:conditional? true})))
+
+(defn- create-tbl-specops []
+  (if (= (:subprotocol db) "sqlite") ; Split for AUTOINCREMENT / NEXTVAL
+  ; Create table in SQLITE
+    (try
+      (j/db-do-commands db
+        (j/create-table-ddl :specops
+          [
+            [:uid        :integer :primary :key :AUTOINCREMENT]
+            [:name       :text]
+            [:faction    :text]
+            [:selectable :text]
+            [:base       :text]
+            [:history    :text]
+            [:quirks     :text]
+            [:assetcap   :text]
+            [:notes      :text]
+            [:author     :integer]
+            [:created    :bigint]
+            [:updated    :bigint]]
+          {:conditional? true}))
+      (create-sequence "specops")
+      (catch Exception e (println (str "DB Error - SpecOps: " e))))
+  ; Create Table in postgresql
+    (try
+      (j/db-do-commands db ["create sequence specops_uid_seq minvalue 1000"])
+      (j/db-do-commands db
+        (j/create-table-ddl :specops
+          [
+            [:uid        :int :default "nextval ('specops_uid_seq')"]
+            [:name       :text]
+            [:faction    :text]
+            [:selectable :text]
+            [:base       :text]
+            [:history    :text]
+            [:quirks     :text]
+            [:assetcap   :text]
+            [:notes      :text]
+            [:author     :integer]
+            [:created    :bigint]
+            [:updated    :bigint]]
+          {:conditional? true}))
+      (catch Exception e (println (str "DB Error - SpecOps: " e))))))
     
+(defn- create-tbl-specops-requisitions []
+  (create-sequence "specops_requisitions")
+  (j/db-do-commands db
+    (j/create-table-ddl :specops_requisitions
+      (apply conj [
+        (if (-> db :subprotocol (= "sqlite"))
+            [:uid :integer :primary :key :AUTOINCREMENT]
+            [:uid :integer :default "nextval ('specops_requisitions_uid_seq')"])
+        ]
+        [
+          [:specop  :integer]
+          [:type    :text]
+          [:value   :text]
+          [:note    :text]
+          [:sort    :integer]
+          [:created :bigint]])
+      {:conditional? true})))
+    
+(defn- create-tbl-specops-specops []
+  (create-sequence "specops_specops")
+  (j/db-do-commands db
+    (j/create-table-ddl :specops_specops
+      (apply conj [
+        (if (-> db :subprotocol (= "sqlite"))
+            [:uid :integer :primary :key :AUTOINCREMENT]
+            [:uid :integer :default "nextval ('specops_specops_uid_seq')"])
+        ]
+        [
+          [:specop    :integer]
+          [:name      :text]
+          [:progress  :integer]
+          [:rp        :integer]
+          [:note      :text]
+          [:created   :bigint]])
+      {:conditional? true})))
+    
+(defn- create-tbl-specops-equipment []
+  (create-sequence "specops_equipment")
+  (j/db-do-commands db
+    (j/create-table-ddl :specops_equipment
+      (apply conj [
+        (if (-> db :subprotocol (= "sqlite"))
+            [:uid :integer :primary :key :AUTOINCREMENT]
+            [:uid :integer :default "nextval ('specops_equipment_uid_seq')"])
+        ]
+        [
+          [:specop    :integer]
+          [:name      :text]
+          [:ep        :integer]
+          [:note      :text]
+          [:created   :bigint]])
+      {:conditional? true})))
+
 (defn create-db []
   (create-tbl-users)
   (create-tbl-version)
   (create-tbl-donvictims)
   (create-tbl-lugsparty)
   (create-tbl-siscores)
+  (create-tbl-specops)
+  (create-tbl-specops-requisitions)
+  (create-tbl-specops-specops)
+  (create-tbl-specops-equipment)
   )
   
   
@@ -253,3 +361,40 @@
 
 (defn getsiscores []
   (j/query db ["SELECT * FROM siscores ORDER BY date DESC"]))
+
+(defn save-specops [ data ]
+  (let [timestamp    (c/to-long (t/now))
+        qry          (dissoc data :uid) 
+        where-clause ["uid = ?" (if (-> data :uid empty?) nil (-> data :uid read-string))]]
+    (j/with-db-transaction [t-con db]
+      (let [result (j/update! t-con :specops (assoc qry :updated timestamp) where-clause)]
+        (if (zero? (first result))
+          (j/insert! t-con :specops (assoc qry  :created timestamp :updated timestamp))
+          [data])))))
+
+(defn getspecops [ ]
+  (j/query db ["SELECT * from specops ORDER BY UPDATED DESC"]))
+
+(defn getspecop [ uid ]
+  (j/query db ["SELECT * from specops where uid = ? ORDER BY UPDATED DESC" (read-string uid)]))
+
+(defn getrequisitions [ uid ]
+  (j/query db ["SELECT * from specops_requisitions where specop = ? order by created desc" (read-string uid)]))
+
+(defn save-requisition [ data ]
+  (j/insert! db :specops_requisitions (assoc data :created (c/to-long (t/now)))))
+
+(defn save-specops-specop [ data ]
+  (j/insert! db :specops_specops (assoc data :created (c/to-long (t/now)))))
+
+(defn update-specops-specop [ data ]
+  (j/db-do-commands db [(str "UPDATE specops_specops set progress = " (:progress data) " where uid = " (-> data :uid read-string))] ))
+
+(defn getspecopsspecops [ uid ]
+  (j/query db ["SELECT * from specops_specops WHERE specop = ? ORDER BY created DESC" uid]))
+
+(defn save-specops-equipment [ data ]
+  (j/insert! db :specops_equipment (assoc data :created (c/to-long (t/now)))))
+
+(defn getspecopsequipment [ uid ]
+  (j/query db ["SELECT * FROM specops_equipment WHERE specop = ? ORDER BY CREATED DESC" (read-string uid)]))

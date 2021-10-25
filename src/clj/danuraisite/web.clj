@@ -136,11 +136,38 @@
   (GET "/"   [] pages/scorehome)
   (POST "/"  [] 
     #(db/save-sidata (:form-params %))))
-  
+
+(defn specopssave [ req ]
+  (let [uid (db/save-specops (:params req))]
+    (redirect (str "/killteam/specops/" (-> uid first vals first)))))
+(defn specopsaddreq [ req ]
+  (db/save-requisition (:params req) )
+  (redirect (str "/killteam/specops/" (-> req :params :specop))))
+(defn specopsaddspecop [ req ]
+  (db/save-specops-specop (:params req) )
+  (redirect (str "/killteam/specops/" (-> req :params :specop) "?specops")))
+(defn specopupdatespecop [ req ]
+  (db/update-specops-specop (:params req) )
+  (redirect (str "/killteam/specops/" (-> req :params :specop) "?specops")))
+(defn specopsaddequipment [ req ]
+  (db/save-specops-equipment (:params req) )
+  (redirect (str "/killteam/specops/" (-> req :params :specop) "?equipment")))
+
+(defroutes killteamroutes
+  (GET "/"              [] pages/killteam) 
+  (GET "/compendium"    [] pages/killteam)
+  (GET "/specops"       [] pages/kt2dataslate)
+  (GET "/specops/:id"   [] pages/kt2dataslate)
+  (POST "/specops/save" [] specopssave )
+  (POST "/specops/addrequisition" [] specopsaddreq )
+  (POST "/specops/addspecop" [] specopsaddspecop )
+  (POST "/specops/updatespecop" [] specopupdatespecop )
+  (POST "/specops/addequipment" [] specopsaddequipment )
+  )
 ;; MAIN ROUTES
 ;;;;;;;;;;;;;;;;
 (defroutes app-routes
-  (GET     "/"         [] pages/homepage)
+  (GET     "/"          [] pages/homepage)
   (context "/api"       [] api-routes)
   (context "/lu"        [] lu-routes)
   (context "/colours"   [] colour-routes)
@@ -148,7 +175,9 @@
   (context "/netrunner" [] anr-routes)
   ;(context "/apps"  [] dsapp-routes)
   (context "/scores" [] score-routes)
-  (GET     "/killteam" [] pages/killteam)
+  (context "/killteam"  []
+    (friend/wrap-authorize killteamroutes #{::db/user})
+  )
 ; ADMIN
   (context "/:id/login" [id]
     (friend/wrap-authorize
