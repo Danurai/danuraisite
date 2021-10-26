@@ -21,7 +21,7 @@
                   [:div.form-group
                     [:label {:for "password"} "Password"]
                     [:input.form-control {:type "password" :name "password" :placeholder "Password"}]]
-                  [:button.btn.btn-warning.mr-2 {:type "submit"} "Login"]]]
+                  [:button.btn.btn-warning.my-2 {:type "submit"} "Login"]]]
               [:div#registertab.tab-pane.fade {:role "tabpanel"}
                 [:form.needs-validation.was-validated {:action "register" :method "post" :novalidate true}
                   [:div.form-group

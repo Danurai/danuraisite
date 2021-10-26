@@ -43,51 +43,51 @@
     [:a.nav-link {:href linkuri} linkname]])
   
 
-    (defn navbar [req]
-      [:nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {:style "z-index: 1021;"}
-        [:div.container-fluid
-        ;; Home Brand with Icon
-          [:a.navbar-brand.mb-0.h1 {:href "/"} "Home"]
-        ;; Collapse Button for smaller viewports
-          [:button.navbar-toggler {:type "button" :data-bs-toggle "collapse" :data-bs-target "#navbarSupportedContent" 
-                                :aria-controls "navbarSupportedContent" :aria-label "Toggle Navigation" :aria-expanded "false"}
-            [:span.navbar-toggler-icon]]
-        ;; Collapsable Content
-          [:div#navbarSupportedContent.collapse.navbar-collapse
-        ;; List of Links
-            [:ul.navbar-nav
-              [:li.nav-item.dropdown
-                [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "LUGS"]
-                [:div.dropdown-menu
-                  ;[:a.dropdown-item {:href "/lu"} "Sheets"]
-                  [:a.dropdown-item {:href "/lu/party"} "Party"]
-                  [:a.dropdown-item {:href "/lu/icons"} "Icons"]
-                  [:a.dropdown-item {:href "/lu/api"} "API"]]]
-              [:li.nav-item.dropdown
-                [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Colours"]
-                [:div.dropdown-menu
-                  [:a.dropdown-item {:href "/colours/hsl"} "HSL Demo"]
-                  [:a.dropdown-item {:href "/colours/citadel"} "Citadel Colour Range"]]]
-              (navlink (:uri req) "/don" "DoN Sheets")
-              [:li.nav-item.dropdown
-                [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Netrunner"]
-                [:div.dropdown-menu
-                  [:a.dropdown-item {:href "/netrunner/mwl"} "MWL Checker"]
-                  [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]
-              (navlink (:uri req) "/scores" "Scores")
-              [:li.nav-item.dropdown
-                [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Kill Team"]
-                [:div.dropdown-menu
-                  [:a.dropdown-item {:href "/killteam/compendium"} "Compendium Reference"]
-                  [:a.dropdown-item {:href "/killteam/specops"} "Spec Ops Dataslate"]]]]
-        ;; Login Icon
-            [:span.nav-item.dropdown.ms-auto
-              [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href="#" :role "button" :data-bs-toggle "dropdown"} [:i.fas.fa-user]]
-                  (if-let [identity (friend/identity req)]
-                    [:div.dropdown-menu {:aria-labelledby "userDropdown"}
-                      (if (friend/authorized? #{::db/admin} (friend/identity req))
-                        [:a.dropdown-item {:href "/admin"} "Admin Console"])
-                      [:a.dropdown-item {:href "/logout"} "Logout"]]
-                    [:div.dropdown-menu {:aria-labelledby "userDropdown"}
-                      [:a.dropdown-item {:href (str (if (= "/" (:uri req)) "" (:uri req)) "/login")} "Login"]])]]]])      
-      
+(defn navbar [req]
+  [:nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {:style "z-index: 1021;"}
+    [:div.container-fluid
+    ;; Home Brand with Icon
+      [:a.navbar-brand.mb-0.h1 {:href "/"} "Home"]
+    ;; Collapse Button for smaller viewports
+      [:button.navbar-toggler {:type "button" :data-bs-toggle "collapse" :data-bs-target "#navbarSupportedContent" 
+                            :aria-controls "navbarSupportedContent" :aria-label "Toggle Navigation" :aria-expanded "false"}
+        [:span.navbar-toggler-icon]]
+    ;; Collapsable Content
+      [:div#navbarSupportedContent.collapse.navbar-collapse
+    ;; List of Links
+        [:ul.navbar-nav
+          [:li.nav-item.dropdown
+            [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "LUGS"]
+            [:div.dropdown-menu
+              ;[:a.dropdown-item {:href "/lu"} "Sheets"]
+              [:a.dropdown-item {:href "/lu/party"} "Party"]
+              [:a.dropdown-item {:href "/lu/icons"} "Icons"]
+              [:a.dropdown-item {:href "/lu/api"} "API"]]]
+          [:li.nav-item.dropdown
+            [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Colours"]
+            [:div.dropdown-menu
+              [:a.dropdown-item {:href "/colours/hsl"} "HSL Demo"]
+              [:a.dropdown-item {:href "/colours/citadel"} "Citadel Colour Range"]]]
+          (navlink (:uri req) "/don" "DoN Sheets")
+          [:li.nav-item.dropdown
+            [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Netrunner"]
+            [:div.dropdown-menu
+              [:a.dropdown-item {:href "/netrunner/mwl"} "MWL Checker"]
+              [:a.dropdown-item {:href "/netrunner/nrf"} "Virtual Folder"]]]
+          (navlink (:uri req) "/scores" "Scores")
+          [:li.nav-item.dropdown
+            [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Kill Team"]
+            [:div.dropdown-menu
+              [:a.dropdown-item {:href "/killteam/compendium"} "Compendium Reference"]
+              [:a.dropdown-item {:href "/killteam/specops"} "Spec Ops Dataslate"]]]]
+    ;; Login Icon
+        [:span.nav-item.dropdown.ms-auto
+          [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href "#" :role "button" :data-bs-toggle "dropdown"} [:i.fas.fa-user]]
+              (if-let [identity (friend/identity req)]
+                [:div.dropdown-menu {:aria-labelledby "userDropdown"}
+                  (if (friend/authorized? #{::db/admin} (friend/identity req))
+                    [:a.dropdown-item {:href "/admin"} "Admin Console"])
+                  [:a.dropdown-item {:href "/logout"} "Logout"]]
+                [:div.dropdown-menu {:aria-labelledby "userDropdown"}
+                  [:a.dropdown-item {:href (str (if (= "/" (:uri req)) "" (:uri req)) "/login")} "Login"]])]]]])      
+  

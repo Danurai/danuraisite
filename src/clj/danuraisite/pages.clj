@@ -135,6 +135,7 @@
       [:body
         (navbar req)
         [:div.container.my-3
+          [:div uid]
           [:div.row
             [:div.col-sm-3
               [:h5.text-center "Saved Spec Ops"]
@@ -192,7 +193,7 @@
                           [:div.d-flex.mb-2
                             [:h5 "Add Requisition"]
                             [:button.btn-sm.btn-warning.ms-auto {:role "submit"} "Add"]]
-                          [:input {:hidden true :name "specop" :value uid}]
+                          [:input {:hidden true :name "specop" :type "number" :readonly true :value uid}]
                           [:div.row 
                             [:div.col-sm-3 
                               [:select.form-select {:name "type"}
@@ -215,11 +216,11 @@
                         [:form.mb-2 {:action "/killteam/specops/addspecop" :method "POST"}
                           [:div.d-flex.mb-2
                             [:h5 "Add Spec Op"]
-                            [:button.btn-sm.btn-warning.ms-auto {:role "submit" :disabled (and (-> specops count (> 0)) (->> specops (map :progress) (apply min 0) (> 6)))} "Add"]]
-                          [:input {:hidden true :name "specop" :value uid}]
-                          [:input {:hidden true :name "progress":value 0}]
+                            [:button.btn-sm.btn-warning.ms-auto {:role "submit" :disabled (and (-> specops count (> 0)) (->> specops (map :progress) (apply min 6) (> 5)))} "Add"]]
+                          [:input {:hidden true :type "number" :readonly true :name "specop" :value uid}]
+                          [:input {:hidden true :type "number" :readonly true :name "progress":value 0}]
                           [:div.row
-                            [:div.col-sm-5 [:input.form-control {:type "text" :placeholder "Spec Op Name" :name "name"}]]
+                            [:div.col-sm-5 [:input.form-control {:type "text" :placeholder "Spec Op Name" :name "name" :required true}]]
                             [:div.col-sm-2 [:div.input-group [:span.input-group-text "RP"] [:input.form-control {:type "number" :placeholder "RP" :name "rp" :value 1}]]]
                             [:div.col-sm-5 [:input.form-control {:type "text" :placeholder "Notes" :name "note"}]]]]
                         [:div [:b "Spec Op History"]]
@@ -250,9 +251,9 @@
                           [:div.d-flex.mb-2
                             [:h5 "Add Equipment"]
                             [:button.btn-sm.btn-warning.ms-auto {:role "submit" :disabled (= 0 (get-ep requisitions equipment))} "Add"]]
-                          [:input {:hidden true :name "specop" :value uid}]
+                          [:input {:hidden true :name "specop" :type "number" :readonly true :value uid}]
                           [:div.row
-                            [:div.col-sm-8 [:input.form-control {:type "text" :placeholder "Equipment Item" :name "name"}]]
+                            [:div.col-sm-8 [:input.form-control {:type "text" :placeholder "Equipment Item" :name "name" :required true}]]
                             [:div.col-sm-4 [:div.input-group [:span.input-group-text "EP"] [:input.form-control {:type "number" :name "ep" :value 1}]]]]]
                         [:div [:b "Stash"]]
                         [:ul.list-group.list-group-flush

@@ -176,7 +176,9 @@
   ;(context "/apps"  [] dsapp-routes)
   (context "/scores" [] score-routes)
   (context "/killteam"  []
-    (friend/wrap-authorize killteamroutes #{::db/user})
+    ;(friend/wrap-authorize 
+      killteamroutes 
+      ;#{::db/user})
   )
 ; ADMIN
   (context "/:id/login" [id]
