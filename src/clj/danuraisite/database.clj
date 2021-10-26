@@ -381,11 +381,20 @@
 (defn getrequisitions [ uid ]
   (j/query db ["SELECT * from specops_requisitions where specop = ? order by created desc" (read-string uid)]))
 
+(defn- cast-field-toint [ data field ]
+  (assoc data field (-> data field read-string) ))
+(defn- add-field-date [ data field ]
+  (assoc data field (c/to-long (t/now)) ))
+
 (defn save-requisition [ data ]
-  (j/insert! db :specops_requisitions (assoc data :created (c/to-long (t/now)))))
+  (let [qry (-> data (cast-field-toint :specop) (add-field-date :created))]
+    (prn qry)
+    (j/insert! db :specops_requisitions qry)))
 
 (defn save-specops-specop [ data ]
-  (j/insert! db :specops_specops (assoc data :created (c/to-long (t/now)))))
+  (let [qry (-> data (cast-field-toint :specop) (cast-field-toint :progress) (cast-field-toint :rp) (add-field-date :created))]
+    (prn qry)
+    (j/insert! db :specops_specops qry)))
 
 (defn update-specops-specop [ data ]
   (j/db-do-commands db [(str "UPDATE specops_specops set progress = " (:progress data) " where uid = " (-> data :uid read-string))] ))
@@ -394,7 +403,9 @@
   (j/query db ["SELECT * from specops_specops WHERE specop = ? ORDER BY created DESC" (read-string uid)]))
 
 (defn save-specops-equipment [ data ]
-  (j/insert! db :specops_equipment (assoc data :created (c/to-long (t/now)))))
+  (let [qry (-> data (cast-field-toint :specop) (cast-field-toint :ep) (add-field-date :created))]
+    (prn qry)
+    (j/insert! db :specops_equipment qry)))
 
 (defn getspecopsequipment [ uid ]
   (j/query db ["SELECT * FROM specops_equipment WHERE specop = ? ORDER BY CREATED DESC" (read-string uid)]))
