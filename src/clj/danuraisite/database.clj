@@ -391,7 +391,7 @@
   (j/db-do-commands db [(str "UPDATE specops_specops set progress = " (:progress data) " where uid = " (-> data :uid read-string))] ))
 
 (defn getspecopsspecops [ uid ]
-  (j/query db ["SELECT * from specops_specops WHERE specop = ? ORDER BY created DESC" uid]))
+  (j/query db ["SELECT * from specops_specops WHERE specop = ? ORDER BY created DESC" (read-string uid)]))
 
 (defn save-specops-equipment [ data ]
   (j/insert! db :specops_equipment (assoc data :created (c/to-long (t/now)))))
