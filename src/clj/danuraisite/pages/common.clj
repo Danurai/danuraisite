@@ -27,10 +27,10 @@
     
   
   ;; Bootstrap Select
-    [:link {:rel "stylesheet" :href "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.8/css/bootstrap-select.css" :integrity "sha256-OejstTtgpWqwtX/gwUbICEQz8wbdVWpVrCwqZ29apg4=" :crossorigin "anonymous"}]
-    [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.8/js/bootstrap-select.js" :integrity "sha256-/X1l5JQfBqlJ1nW6V8EhZJsnDycL6ocQDWd531nF2EI=" :crossorigin "anonymous"}]
-  ;; Font Awesome
+    [:link {:rel "stylesheet" :href "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"}]
+    [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"}]
     [:script {:defer true :src "https://use.fontawesome.com/releases/v5.6.3/js/all.js"}]
+    ;[:script "$.fn.selectpicker.Constructor.BootstrapVersion = '4';"]
   ;; fonts
     [:link {:href "https://fonts.googleapis.com/css?family=Orbitron|Exo+2|Eczar|Special+Elite&display=swap" :rel "stylesheet"}]
   ;; Site Specific
@@ -67,7 +67,8 @@
             [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Colours"]
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/colours/hsl"} "HSL Demo"]
-              [:a.dropdown-item {:href "/colours/citadel"} "Citadel Colour Range"]]]
+              [:a.dropdown-item {:href "/colours/paintranges"} "Paint Ranges"]
+              [:a.dropdown-item {:href "/colours/citadel-old"} "Citadel (old)"]]]
           (navlink (:uri req) "/don" "DoN Sheets")
           [:li.nav-item.dropdown
             [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Netrunner"]

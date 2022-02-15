@@ -12,7 +12,24 @@
           [:div#app]]
        (h/include-js "/js/compiled/hsl-app.js")])))
      
-(defn citadel [ req ]
+(defn paintranges [ req ]
+  (h/html5
+    pretty-head
+    [:body
+      (navbar req)
+      [:div.container.my-3
+        [:div#comparison.d-flex.mb-2]
+        [:div
+          [:table#colourtable]]]
+      (h/include-css "//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css")
+      (h/include-js  "//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js")
+      ;<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+      ;<script type="text/javascript" src="DataTables/datatables.min.js"></script>
+      (h/include-js  "/js/paintchart2.js")
+      (h/include-css "/css/colour.css")
+      ]))
+
+(defn citadel-old [ req ]
   (h/html5 
     pretty-head
     [:style ".sample { cursor: pointer;} .sortable { cursor: pointer;}"]
