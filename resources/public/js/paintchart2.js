@@ -13,15 +13,31 @@ $.getJSON("/colours/api/json", function (data) {
 			{ title: "Brand", data: "brand" },
 			{ title: "Range", data: "range" },
 			{ title: "Name",  data: "name" },
-			{ title: "Hex / RGB",   data: "hex" , className: "hexcode text-center" }
+			{ title: "Hex" , data: "hex", className: "hexcode text-center" },
+			{ title: "Colour" , data: "hex", width: '20%', className: "text-center"}
 		],
 		'rowCallback': function( row, data, index) {
-			$(row).find('td:eq(4)').css('background', data.hex);
-			$(row).find('td:eq(4)').text(data.hex + " / (" + hexToRgb(data.hex) + ")" );
-			$(row).find('td:eq(4)').css('color', fontcolour(data.hex));
+			$(row).find('td:eq(4)').text(data.hex + (data.hex2 != null ? ' - ' + data.hex2 : ''));
+			$(row).find('td:eq(5)').text('');
+			$(row).find('td:eq(5)').css('background', get_background( data ));
+			$(row).find('td:eq(5)').css('color', fontcolour(data.hex));
 		}
 	});
 });
+
+function get_background (data) {
+	if (data.metallic) {
+		if (data.hex1 != null) {
+			return 'radial-gradient(ellipse, ' + data.hex + ', ' + data.hex1 + ' 50%, ' + data.hex2 + ' 100%)' 
+		} else {
+			return 'radial-gradient(ellipse, ' + data.hex + ', ' + data.hex2 + ')' 
+		}
+	} else if (data.transparent) {
+		return 'linear-gradient(to right, ' + data.hex + ', ' + data.hex2 + ")"
+	} else {
+		return data.hex
+	}
+}
 
 $('#colourtable').on('click', 'tr', function () {
 	_compare.push( dt.row(this).data() );
@@ -34,7 +50,7 @@ function compare_row () {
 	_compare.forEach( d => {
 		let $div = $('<div>');
 		$div.addClass("colourbox");
-		$div.css('background', d.hex);
+		$div.css('background', get_background( d ));
 		$div.css('color', fontcolour(d.hex));
 		$div.append('<div>' + d.code + '</div>');
 		$div.append('<div class="small">' + d.brand + ': ' + d.range + '</div>');

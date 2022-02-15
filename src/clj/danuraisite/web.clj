@@ -104,6 +104,11 @@
   (POST "/remove" [ uid ]
     (response (db/remove-victim uid))))
     
+(defn- get_all_colours []
+  (apply concat (map #(json/read-str
+          (slurp (io/resource (str "private/colour_"  % ".json")))
+          :key-fn keyword) ["proacryl" "citadel"] )))
+
 (defroutes colour-routes
   (GET "/hsl" [] pages/hsl)
   (GET "/paintranges" [] pages/paintranges)
@@ -111,7 +116,10 @@
 	(GET "/paintlist" [] 
 		(response (slurp (io/resource "private/paintlist.json"))))
 	(GET "/api/json" [] 
-		(response (slurp (io/resource "private/colour_proacryl.json"))))
+    (-> (get_all_colours)
+        json/write-str
+        response
+        (content-type "application/json")))
 	(GET "/painttbl" []
 		pages/painttbl))
 		
