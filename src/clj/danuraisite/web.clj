@@ -106,9 +106,12 @@
     
 (defroutes colour-routes
   (GET "/hsl" [] pages/hsl)
-  (GET "/citadel" [] pages/citadel)
+  (GET "/paintranges" [] pages/paintranges)
+  (GET "/citadel-old" [] pages/citadel-old)
 	(GET "/paintlist" [] 
 		(response (slurp (io/resource "private/paintlist.json"))))
+	(GET "/api/json" [] 
+		(response (slurp (io/resource "private/colour_proacryl.json"))))
 	(GET "/painttbl" []
 		pages/painttbl))
 		
