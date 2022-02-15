@@ -2,8 +2,6 @@ let _compare = [];
 let dt;
 
 $.getJSON("/colours/api/json", function (data) {
-	_compare = [data[0]];
-	compare_row();
 	dt = $('#colourtable').DataTable({
 		searching: true,
 		pageLength: 25,
@@ -13,8 +11,8 @@ $.getJSON("/colours/api/json", function (data) {
 			{ title: "Brand", data: "brand" },
 			{ title: "Range", data: "range" },
 			{ title: "Name",  data: "name" },
-			{ title: "Hex" , data: "hex", className: "hexcode text-center" },
-			{ title: "Colour" , data: "hex", width: '20%', className: "text-center"}
+			{ title: "Hex" , data: "hex", className: "text-center" },
+			{ title: "Colour" , data: "hex", width: '20%', className: "hexcode text-center"}
 		],
 		'rowCallback': function( row, data, index) {
 			$(row).find('td:eq(4)').text(data.hex + (data.hex2 != null ? ' - ' + data.hex2 : ''));
@@ -56,7 +54,7 @@ function compare_row () {
 		$div.append('<div class="small">' + d.brand + ': ' + d.range + '</div>');
 		$div.append('<span class="removecolour" data-code="' + d.code + '"><i class="fas fa-times-circle"></span>')
 		$div.append('<h5>' + d.name + '</h5>');
-		$div.append('<div>' + d.hex + '</div>');
+		$div.append('<div>' + d.hex +  (d.hex2 != null ? ' - ' + d.hex2 : '') + '</div>');
 		$comp.append($div);
 	});
 }
