@@ -1,0 +1,30 @@
+#comparison {
+	position: sticky;
+	top: 0;
+	padding: .25rem;
+	background: white;
+	z-index: 99;
+}
+
+.hexcode {
+	cursor: pointer;
+}
+
+.colourbox {
+	min-height: 7em;
+	text-align: center;
+	flex-direction: row;
+	flex-grow: 1;
+	position: sticky;
+}
+
+.removecolour {
+	position: absolute;
+	right: .25em;
+	top: .25em;
+	opacity: .3s;
+	transition: opacity 0.5s;
+	cursor: pointer;
+}
+
+.colourbox:hover .removecolour {opacity: 1};
