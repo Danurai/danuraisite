@@ -4,6 +4,7 @@
 	padding: .25rem;
 	background: white;
 	z-index: 99;
+	min-height: 7em;
 }
 
 .hexcode {
