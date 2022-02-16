@@ -104,10 +104,26 @@
   (POST "/remove" [ uid ]
     (response (db/remove-victim uid))))
     
+(defn- update-or-append [ colours newcolour ]
+  (let [names (map :name colours)]
+    (if (contains? (set names) (:name newcolour))
+        (map 
+          #(if (= (:name %) (:name newcolour))
+            (assoc % :oldgw (:oldgw newcolour))
+            %) colours)
+        (conj colours (assoc newcolour :brand "Old Citadel" :code (gensym "OC") )))))
+
 (defn- get_all_colours []
-  (apply concat (map #(json/read-str
-          (slurp (io/resource (str "private/colour_"  % ".json")))
-          :key-fn keyword) ["proacryl" "citadel"] )))
+  (let [oldgw       (->> (-> "private/paintlist.json" io/resource slurp (json/read-str :key-fn keyword))
+                        (filter :oldgw)
+                        (map 
+                          #(if (re-find #"(?i)\(metal\)" (:name %))
+                                (assoc % :metallic true :name (clojure.string/replace (:name %) #"(?i)\(metal\)" ""))
+                                %)))
+        allcolours  (apply concat (map #(json/read-str
+                      (slurp (io/resource (str "private/colour_"  % ".json")))
+                      :key-fn keyword) ["proacryl" "citadel"] ))]
+    (reduce update-or-append allcolours oldgw)))
 
 (defroutes colour-routes
   (GET "/hsl" [] pages/hsl)
