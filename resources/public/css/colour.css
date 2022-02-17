@@ -29,3 +29,7 @@
 }
 
 .colourbox:hover .removecolour {opacity: 1};
+
+.filter-label svg:hover {
+	cursor: pointer;
+}
