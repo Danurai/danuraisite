@@ -1,0 +1,352 @@
+[
+  {
+    "code": "229",
+    "name": "Nature White",
+    "hex": "#faf4e3",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "006",
+    "name": "Zinc Yellow",
+    "hex": "#fff713",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "115",
+    "name": "Vanilla Pastel",
+    "hex": "#ffeb91",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "009",
+    "name": "Sahara Beige Pastel",
+    "hex": "#FCC352",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "085",
+    "name": "Dare Orange",
+    "hex": "#ee7620",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "013",
+    "name": "SWET 100 Traffic Red",
+    "hex": "#d51023",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "086",
+    "name": "Burgundy",
+    "hex": "#6a192c",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "161",
+    "name": "Shock Blue Middle",
+    "hex": "#00a2e2",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "230",
+    "name": "Shock Blue",
+    "hex": "#0083ba",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "204",
+    "name": "True Blue",
+    "hex": "#004b9a",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "027",
+    "name": "Petrol",
+    "hex": "#01446F",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "043",
+    "name": "Violet Dark",
+    "hex": "#1D1056",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "042",
+    "name": "Currant",
+    "hex": "#56407e",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "231",
+    "name": "Fuchsia Pink",
+    "hex": "#d36aa2",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "200",
+    "name": "Neon Pink",
+    "hex": "#ED5494",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "232",
+    "name": "Magenta",
+    "hex": "#b71d5b",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "233",
+    "name": "Purple Violet",
+    "hex": "#74324a",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "206",
+    "name": "Lagoon Blue",
+    "hex": "#009994",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "234",
+    "name": "Calypso Middle",
+    "hex": "#70BD8F",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "235",
+    "name": "Turquoise",
+    "hex": "#00794d",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "236",
+    "name": "Poison Green",
+    "hex": "#dedd2e",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "221",
+    "name": "Grasshopper",
+    "hex": "#b1cc35",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "222",
+    "name": "KACAO77 UNIVERSES Green",
+    "hex": "#4BAC43",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "096",
+    "name": "Mister Green",
+    "hex": "#00632e",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "145",
+    "name": "Future Green",
+    "hex": "#004811",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "205",
+    "name": "Amazonas Light",
+    "hex": "#799B7A",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "208",
+    "name": "Ocher Brown Light",
+    "hex": "#d68307",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "010",
+    "name": "Lobster",
+    "hex": "#BE3219",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "092",
+    "name": "Hazelnut Brown",
+    "hex": "#391602",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "237",
+    "name": "Grey Blue Light",
+    "hex": "#bdbcbb",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "238",
+    "name": "Grey Blue Dark",
+    "hex": "#6e7172",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "160",
+    "name": "Signal White",
+    "hex": "#FFFFFF",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "180",
+    "name": "Signal Black",
+    "hex": "#000000",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "117",
+    "name": "Peach Pastel",
+    "hex": "#F4A981",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "207",
+    "name": "Skin Pastel",
+    "hex": "#FAC0BC",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "020",
+    "name": "Lago Blue Pastel",
+    "hex": "#7FB5C1",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "201",
+    "name": "Lilac Pastel",
+    "hex": "#CCA9D1",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "202",
+    "name": "Ceramic Light Pastel",
+    "hex": "#66B8E8",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "209",
+    "name": "Blue Violet Pastel",
+    "hex": "#739AD1",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "203",
+    "name": "Cool Grey Pastel",
+    "hex": "#808A94",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "220",
+    "name": "Neon Yellow Fluorescent",
+    "hex": "#F5E700",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "218",
+    "name": "Neon Orange Fluorescent",
+    "hex": "#ED6501",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "217",
+    "name": "Neon Pink Fluorescent",
+    "hex": "#E50075",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "219",
+    "name": "Neon Green Fluorescent",
+    "hex": "#37AA31",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "223",
+    "name": "Metallic Black",
+    "hex": "#21221C",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "224",
+    "name": "Metallic Blue",
+    "hex": "#43548C",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "225",
+    "name": "Metallic Pink",
+    "hex": "#BC457B",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "226",
+    "name": "Metallic Light Green",
+    "hex": "#688D2E",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "227",
+    "name": "Metallic Silver",
+    "hex": "#AAAAAA",
+    "brand": "Molotow",
+    "range": "Classic"
+  },
+  {
+    "code": "228",
+    "name": "Metallic Gold",
+    "hex": "#AB8D4F",
+    "brand": "Molotow",
+    "range": "Classic"
+  }
+]
