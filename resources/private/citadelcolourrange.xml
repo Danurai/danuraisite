@@ -1465,5 +1465,282 @@
 <img class="test-img-prod4220127 record-spotlight__item-image" data-name="/Dry-Golden-Griffon-2019" alt="Golden Griffon" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189952014_dryGoldenGriffon.svg"></img>
 </span>
 </li>
-</ul>
+
+<li class="record-spotlight__item-wrapper">
+	<span data-test="record-prod4210424" class="recordItem record-spotlight__item" data-name="/Shade-Casandora-Yellow-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Casandora Yellow (2019)&quot;,&quot;id&quot;:&quot;99189953021&quot;,&quot;position&quot;:1,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Casandora Yellow">
+		<img class="test-img-prod4210424 record-spotlight__item-image" data-name="/Shade-Casandora-Yellow-2019" alt="Casandora Yellow" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953021_shadeCasandoraYellow.svg"></img>
+	</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210428" class="recordItem record-spotlight__item" data-name="/Shade-Fuegan-Orange-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Fuegan Orange (2019)&quot;,&quot;id&quot;:&quot;99189953023&quot;,&quot;position&quot;:2,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Fuegan Orange">
+<img class="test-img-prod4210428 record-spotlight__item-image" data-name="/Shade-Fuegan-Orange-2019" alt="Fuegan Orange" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953023_shadeFueganOrange.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210423" class="recordItem record-spotlight__item" data-name="/Shade-Carroburg-Crimson-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Carroburg Crimson (2019)&quot;,&quot;id&quot;:&quot;99189953016&quot;,&quot;position&quot;:3,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Carroburg Crimson">
+<img class="test-img-prod4210423 record-spotlight__item-image" data-name="/Shade-Carroburg-Crimson-2019" alt="Carroburg Crimson" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953016_shadeCarroburgCrimson.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210427" class="recordItem record-spotlight__item" data-name="/Shade-Druchii-Violet-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Druchii Violet (2019)&quot;,&quot;id&quot;:&quot;99189953019&quot;,&quot;position&quot;:4,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Druchii Violet">
+<img class="test-img-prod4210427 record-spotlight__item-image" data-name="/Shade-Druchii-Violet-2019" alt="Druchii Violet" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953019_shadeDruchiiViolet.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210426" class="recordItem record-spotlight__item" data-name="/Shade-Drakenhof-Nightshade-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Drakenhof Nightshade (2019)&quot;,&quot;id&quot;:&quot;99189953020&quot;,&quot;position&quot;:5,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Drakenhof Nightshade">
+<img class="test-img-prod4210426 record-spotlight__item-image" data-name="/Shade-Drakenhof-Nightshade-2019" alt="Drakenhof Nightshade" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953020_shadeDrakenhofNightshade.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210425" class="recordItem record-spotlight__item" data-name="/Shade-Coelia-Greenshade-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Coelia Greenshade (2019)&quot;,&quot;id&quot;:&quot;99189953025&quot;,&quot;position&quot;:6,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Coelia Greenshade">
+<img class="test-img-prod4210425 record-spotlight__item-image" data-name="/Shade-Coelia-Greenshade-2019" alt="Coelia Greenshade" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953025_shadeCoeliaGreenshade.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210422" class="recordItem record-spotlight__item" data-name="/Shade-Biel-Tan-Green-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Biel-Tan Green (2019)&quot;,&quot;id&quot;:&quot;99189953022&quot;,&quot;position&quot;:7,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Biel-Tan Green">
+<img class="test-img-prod4210422 record-spotlight__item-image" data-name="/Shade-Biel-Tan-Green-2019" alt="Biel-Tan Green" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953022_shadeBielTanGreen.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210421" class="recordItem record-spotlight__item" data-name="/Shade-Athonian-Camoshade-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Athonian Camoshade (2019)&quot;,&quot;id&quot;:&quot;99189953024&quot;,&quot;position&quot;:8,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Athonian Camoshade">
+<img class="test-img-prod4210421 record-spotlight__item-image" data-name="/Shade-Athonian-Camoshade-2019" alt="Athonian Camoshade" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953024_shadeAthonianCamoshade.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210433" class="recordItem record-spotlight__item" data-name="/Shade-Seraphim-Sepia-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Seraphim Sepia (2019)&quot;,&quot;id&quot;:&quot;99189953026&quot;,&quot;position&quot;:9,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Seraphim Sepia">
+<img class="test-img-prod4210433 record-spotlight__item-image" data-name="/Shade-Seraphim-Sepia-2019" alt="Seraphim Sepia" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953026_shadeSeraphimSepia.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4220120" class="recordItem record-spotlight__item" data-name="/Shade-Agrax-Earthshade-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Agrax Earthshade (2019)&quot;,&quot;id&quot;:&quot;99189953018&quot;,&quot;position&quot;:10,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Agrax Earthshade">
+<img class="test-img-prod4220120 record-spotlight__item-image" data-name="/Shade-Agrax-Earthshade-2019" alt="Agrax Earthshade" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953018_shadeAgraxEarthshade.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210429" class="recordItem record-spotlight__item" data-name="/Shade-Nuln-Oil-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Nuln Oil (2019)&quot;,&quot;id&quot;:&quot;99189953017&quot;,&quot;position&quot;:11,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Nuln Oil">
+<img class="test-img-prod4210429 record-spotlight__item-image" data-name="/Shade-Nuln-Oil-2019" alt="Nuln Oil" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953017_shadeNulnOil.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210432" class="recordItem record-spotlight__item" data-name="/Shade-Reikland-Fleshshade-Gloss-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Reikland Fleshshade Gloss (2019)&quot;,&quot;id&quot;:&quot;99189953035&quot;,&quot;position&quot;:12,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Reikland Fleshshade Gloss">
+<img class="test-img-prod4210432 record-spotlight__item-image" data-name="/Shade-Reikland-Fleshshade-Gloss-2019" alt="Reikland Fleshshade Gloss" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953035_shadeReiklandFleshshadeGloss.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210431" class="recordItem record-spotlight__item" data-name="/Shade-Reikland-Fleshshade-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Reikland Fleshshade (2019)&quot;,&quot;id&quot;:&quot;99189953027&quot;,&quot;position&quot;:13,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Reikland Fleshshade">
+<img class="test-img-prod4210431 record-spotlight__item-image" data-name="/Shade-Reikland-Fleshshade-2019" alt="Reikland Fleshshade" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953027_shadeReiklandFleshshade.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210420" class="recordItem record-spotlight__item" data-name="/Shade-Agrax-Earthshade-Gloss-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Agrax Earthshade Gloss (2019)&quot;,&quot;id&quot;:&quot;99189953034&quot;,&quot;position&quot;:14,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Agrax Earthshade Gloss">
+<img class="test-img-prod4210420 record-spotlight__item-image" data-name="/Shade-Agrax-Earthshade-Gloss-2019" alt="Agrax Earthshade Gloss" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953034_shadeAgraxEarthshadeGloss.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210430" class="recordItem record-spotlight__item" data-name="/Shade-Nuln-Oil-Gloss-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Nuln Oil Gloss (2019)&quot;,&quot;id&quot;:&quot;99189953033&quot;,&quot;position&quot;:15,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Nuln Oil Gloss">
+<img class="test-img-prod4210430 record-spotlight__item-image" data-name="/Shade-Nuln-Oil-Gloss-2019" alt="Nuln Oil Gloss" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953033_shadeNulnOilGloss.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4480164" class="recordItem record-spotlight__item" data-name="/Shade-Cryptek-Armourshade-Gloss-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Shade: Cryptek Armourshade Gloss (2020)&quot;,&quot;id&quot;:&quot;99189953038&quot;,&quot;position&quot;:16,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Cryptek Armourshade Gloss">
+<img class="test-img-prod4480164 record-spotlight__item-image" data-name="/Shade-Cryptek-Armourshade-Gloss-2020" alt="Cryptek Armourshade Gloss" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189953038_shadeCryptekArmourshadeGloss.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4500147" class="recordItem record-spotlight__item" data-name="/Runelord-Brass-Spray-Paint-global" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;18.00&quot;,&quot;name&quot;:&quot;Spray: Runelord Brass Spray Paint UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999061&quot;,&quot;position&quot;:1,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Runelord Brass">
+<img class="test-img-prod4500147 record-spotlight__item-image" data-name="/Runelord-Brass-Spray-Paint-global" alt="Runelord Brass" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999061_sprayRunelordBrass_GLOB.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540258" class="recordItem record-spotlight__item" data-name="/Retributor-Armour-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;18.00&quot;,&quot;name&quot;:&quot;Spray: Retributor Armour Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999100&quot;,&quot;position&quot;:2,&quot;category&quot;:&quot;GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Retributor Armour">
+<img class="test-img-prod4540258 record-spotlight__item-image" data-name="/Retributor-Armour-Spray-UK-ROW-2020" alt="Retributor Armour" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999044_sprayRetributorArmour.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540248" class="recordItem record-spotlight__item" data-name="/Chaos-Black-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;11.00&quot;,&quot;name&quot;:&quot;Spray: Chaos Black Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999065&quot;,&quot;position&quot;:3,&quot;category&quot;:&quot;GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Chaos Black">
+<img class="test-img-prod4540248 record-spotlight__item-image" data-name="/Chaos-Black-Spray-UK-ROW-2020" alt="Chaos Black" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999042_sprayChaosBlack.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540255" class="recordItem record-spotlight__item" data-name="/Mechanicus-Standard-Grey-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Mechanicus Standard Grey Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999073&quot;,&quot;position&quot;:4,&quot;category&quot;:&quot;GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Mechanicus Standard Grey">
+<img class="test-img-prod4540255 record-spotlight__item-image" data-name="/Mechanicus-Standard-Grey-Spray-UK-ROW-2020" alt="Mechanicus Standard Grey" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999050_sprayMechanicusStandardGrey.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540253" class="recordItem record-spotlight__item" data-name="/Leadbelcher-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Leadbelcher Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999097&quot;,&quot;position&quot;:5,&quot;category&quot;:&quot;GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Leadbelcher">
+<img class="test-img-prod4540253 record-spotlight__item-image" data-name="/Leadbelcher-Spray-UK-ROW-2020" alt="Leadbelcher" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999051_sprayLeadbelcher.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540257" class="recordItem record-spotlight__item" data-name="/Munitorum-Varnish-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Munitorum Varnish: UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999093&quot;,&quot;position&quot;:6,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Munitorum Varnish">
+<img class="test-img-prod4540257 record-spotlight__item-image" data-name="/Munitorum-Varnish-UK-ROW-2020" alt="Munitorum Varnish" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999058_sprayMunitorumVarnish.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540256" class="recordItem record-spotlight__item" data-name="/Mephiston-Red-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Mephiston Red Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999072&quot;,&quot;position&quot;:7,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Mephiston Red">
+<img class="test-img-prod4540256 record-spotlight__item-image" data-name="/Mephiston-Red-Spray-UK-ROW-2020" alt="Mephiston Red" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999045_sprayMephistonRed.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540254" class="recordItem record-spotlight__item" data-name="/Macragge-Blue-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Macragge Blue Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999069&quot;,&quot;position&quot;:8,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Macragge Blue">
+<img class="test-img-prod4540254 record-spotlight__item-image" data-name="/Macragge-Blue-Spray-UK-ROW-2020" alt="Macragge Blue" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999046_sprayMacraggeBlue.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540259" class="recordItem record-spotlight__item" data-name="/Zandri-Dust-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Zandri Dust Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999096&quot;,&quot;position&quot;:9,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Zandri Dust">
+<img class="test-img-prod4540259 record-spotlight__item-image" data-name="/Zandri-Dust-Spray-UK-ROW-2020" alt="Zandri Dust" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999048_sprayZandriDust.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540252" class="recordItem record-spotlight__item" data-name="/Corax-White-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;11.00&quot;,&quot;name&quot;:&quot;Spray: Corax White Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999089&quot;,&quot;position&quot;:10,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Corax White">
+<img class="test-img-prod4540252 record-spotlight__item-image" data-name="/Corax-White-Spray-UK-ROW-2020" alt="Corax White" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999041_sprayCoraxWhite.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540249" class="recordItem record-spotlight__item" data-name="/Death-Guard-Green-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Citadel Death Guard Green Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999070&quot;,&quot;position&quot;:11,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Death Guard Green">
+<img class="test-img-prod4540249 record-spotlight__item-image" data-name="/Death-Guard-Green-Spray-UK-ROW-2020" alt="Death Guard Green" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999057_sprayDeathGuardGreen.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540250" class="recordItem record-spotlight__item" data-name="/Grey-Seer-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Citadel Grey Seer Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999063&quot;,&quot;position&quot;:12,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Grey Seer">
+<img class="test-img-prod4540250 record-spotlight__item-image" data-name="/Grey-Seer-Spray-UK-ROW-2020" alt="Grey Seer" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999060_sprayGreySeer.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4540251" class="recordItem record-spotlight__item" data-name="/Wraithbone-Spray-UK-ROW-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;12.50&quot;,&quot;name&quot;:&quot;Spray: Citadel Wraithbone Spray UK/ROW (2020)&quot;,&quot;id&quot;:&quot;99209999062&quot;,&quot;position&quot;:13,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Wraithbone">
+<img class="test-img-prod4540251 record-spotlight__item-image" data-name="/Wraithbone-Spray-UK-ROW-2020" alt="Wraithbone" src="https://www.games-workshop.com/resources/catalog/product/600x620/99209999059_sprayWraithBone.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190191" class="recordItem record-spotlight__item" data-name="/Technical-Armageddon-Dust-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Armageddon Dust (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956044&quot;,&quot;position&quot;:1,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Armageddon Dust">
+<img class="test-img-prod4190191 record-spotlight__item-image" data-name="/Technical-Armageddon-Dust-2019" alt="Armageddon Dust" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956044_technicalArmageddonDust.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190192" class="recordItem record-spotlight__item" data-name="/Technical-Armageddon-Dunes-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Armageddon Dunes (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956045&quot;,&quot;position&quot;:2,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Armageddon Dunes">
+<img class="test-img-prod4190192 record-spotlight__item-image" data-name="/Technical-Armageddon-Dunes-2019" alt="Armageddon Dunes" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956045_technicalArmageddonDunes.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190185" class="recordItem record-spotlight__item" data-name="/Technical-Agrellan-Earth-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Agrellan Earth (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956038&quot;,&quot;position&quot;:3,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Agrellan Earth">
+<img class="test-img-prod4190185 record-spotlight__item-image" data-name="/Technical-Agrellan-Earth-2019" alt="Agrellan Earth" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956038_technicalAgrellanEarth.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190186" class="recordItem record-spotlight__item" data-name="/Technical-Agrellan-Badland-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Agrellan Badland (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956039&quot;,&quot;position&quot;:4,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Agrellan Badland">
+<img class="test-img-prod4190186 record-spotlight__item-image" data-name="/Technical-Agrellan-Badland-2019" alt="Agrellan Badland" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956039_technicalAgrellanBadland.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190187" class="recordItem record-spotlight__item" data-name="/Technical-Martian-Ironearth-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Martian Ironearth (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956040&quot;,&quot;position&quot;:5,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Martian Ironearth">
+<img class="test-img-prod4190187 record-spotlight__item-image" data-name="/Technical-Martian-Ironearth-2019" alt="Martian Ironearth" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956040_technicalMartianIronearth.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190188" class="recordItem record-spotlight__item" data-name="/Technical-Martian-Ironcrust-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Martian Ironcrust (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956041&quot;,&quot;position&quot;:6,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Martian Ironcrust">
+<img class="test-img-prod4190188 record-spotlight__item-image" data-name="/Technical-Martian-Ironcrust-2019" alt="Martian Ironcrust" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956041_technicalMartianIroncrust.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190189" class="recordItem record-spotlight__item" data-name="/Technical-Stirland-Mud-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Stirland Mud (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956042&quot;,&quot;position&quot;:7,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Stirland Mud">
+<img class="test-img-prod4190189 record-spotlight__item-image" data-name="/Technical-Stirland-Mud-2019" alt="Stirland Mud" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956042_technicalStirlandMud.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190190" class="recordItem record-spotlight__item" data-name="/Technical-Stirland-Battlemire-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Stirland Battlemire (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956043&quot;,&quot;position&quot;:8,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Stirland Battlemire">
+<img class="test-img-prod4190190 record-spotlight__item-image" data-name="/Technical-Stirland-Battlemire-2019" alt="Stirland Battlemire" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956043_technicalStirlandBattlemire.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190193" class="recordItem record-spotlight__item" data-name="/Technical-Astrogranite-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Astrogranite (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956046&quot;,&quot;position&quot;:9,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Astrogranite">
+<img class="test-img-prod4190193 record-spotlight__item-image" data-name="/Technical-Astrogranite-2019" alt="Astrogranite" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956046_technicalAstrogranite.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190194" class="recordItem record-spotlight__item" data-name="/Technical-Astrogranite-Debris-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Astrogranite Debris (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956047&quot;,&quot;position&quot;:10,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Astrogranite Debris">
+<img class="test-img-prod4190194 record-spotlight__item-image" data-name="/Technical-Astrogranite-Debris-2019" alt="Astrogranite Debris" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956047_technicalAstrograniteDebris.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190184" class="recordItem record-spotlight__item" data-name="/Mordant-Earth-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Mordant Earth (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956037&quot;,&quot;position&quot;:11,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Mordant Earth">
+<img class="test-img-prod4190184 record-spotlight__item-image" data-name="/Mordant-Earth-2019" alt="Mordant Earth" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956037_technicalMordantEarth.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190195" class="recordItem record-spotlight__item" data-name="/Technical-Valhallan-Blizzard-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Valhallan Blizzard (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956048&quot;,&quot;position&quot;:12,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Valhallan Blizzard">
+<img class="test-img-prod4190195 record-spotlight__item-image" data-name="/Technical-Valhallan-Blizzard-2019" alt="Valhallan Blizzard" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956048_technicalValhallanBlizzard.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210415" class="recordItem record-spotlight__item" data-name="/Technical-Blood-for-the-Blood-God-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;2.75&quot;,&quot;name&quot;:&quot;Technical: Blood For The Blood God (2019)&quot;,&quot;id&quot;:&quot;99189956005&quot;,&quot;position&quot;:13,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Blood For The Blood God">
+<img class="test-img-prod4210415 record-spotlight__item-image" data-name="/Technical-Blood-for-the-Blood-God-2019" alt="Blood For The Blood God" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956005_technicalBloodForTheBloodGod.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190196" class="recordItem record-spotlight__item" data-name="/Technical-Lahmian-Medium-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Lahmian Medium (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956049&quot;,&quot;position&quot;:14,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Lahmian Medium">
+<img class="test-img-prod4190196 record-spotlight__item-image" data-name="/Technical-Lahmian-Medium-2019" alt="Lahmian Medium" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956049_technicalLahmianMedium.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190198" class="recordItem record-spotlight__item" data-name="/Contrast-Medium-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Contrast Medium (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956051&quot;,&quot;position&quot;:15,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Contrast Medium">
+<img class="test-img-prod4190198 record-spotlight__item-image" data-name="/Contrast-Medium-2019" alt="Contrast Medium" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956051_technicalContrastMedium.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4190199" class="recordItem record-spotlight__item" data-name="/Stormshield-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Stormshield (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956052&quot;,&quot;position&quot;:16,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Stormshield">
+<img class="test-img-prod4190199 record-spotlight__item-image" data-name="/Stormshield-2019" alt="Stormshield" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956052_technicalStormShield.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210414" class="recordItem record-spotlight__item" data-name="/Technical-Ardcoat-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Ardcoat (2019)&quot;,&quot;id&quot;:&quot;99189956050&quot;,&quot;position&quot;:17,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Ardcoat">
+<img class="test-img-prod4210414 record-spotlight__item-image" data-name="/Technical-Ardcoat-2019" alt="Ardcoat" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956050_technicalArdcoat.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210389" class="recordItem record-spotlight__item" data-name="/Technical-Nurgles-Rot-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;2.75&quot;,&quot;name&quot;:&quot;Technical: Nurgles Rot (2019)&quot;,&quot;id&quot;:&quot;99189956009&quot;,&quot;position&quot;:18,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Nurgles Rot">
+<img class="test-img-prod4210389 record-spotlight__item-image" data-name="/Technical-Nurgles-Rot-2019" alt="Nurgles Rot" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956009_technicalNurglesRot.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210386" class="recordItem record-spotlight__item" data-name="/Technical-Spiritstone-Red-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;2.75&quot;,&quot;name&quot;:&quot;Technical: Spiritstone Red (12ml) (2019)&quot;,&quot;id&quot;:&quot;99189956015&quot;,&quot;position&quot;:19,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Spiritstone Red">
+<img class="test-img-prod4210386 record-spotlight__item-image" data-name="/Technical-Spiritstone-Red-2019" alt="Spiritstone Red" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956015_technicalSpiritstoneRed.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210385" class="recordItem record-spotlight__item" data-name="/Technical-Soulstone-Blue-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;2.75&quot;,&quot;name&quot;:&quot;Technical: Soulstone Blue (12ml) (2019)&quot;,&quot;id&quot;:&quot;99189956016&quot;,&quot;position&quot;:20,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Soulstone Blue">
+<img class="test-img-prod4210385 record-spotlight__item-image" data-name="/Technical-Soulstone-Blue-2019" alt="Soulstone Blue" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956016_technicalSoulstoneBlue.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210393" class="recordItem record-spotlight__item" data-name="/Technical-Waystone-Green-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;2.75&quot;,&quot;name&quot;:&quot;Technical: Waystone Green (2019)&quot;,&quot;id&quot;:&quot;99189956017&quot;,&quot;position&quot;:21,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Waystone Green">
+<img class="test-img-prod4210393 record-spotlight__item-image" data-name="/Technical-Waystone-Green-2019" alt="Waystone Green" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956017_technicalWaystoneGreen.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210417" class="recordItem record-spotlight__item" data-name="/Technical-Nighthaunt-Gloom-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Nighthaunt Gloom (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956025&quot;,&quot;position&quot;:22,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Nighthaunt Gloom">
+<img class="test-img-prod4210417 record-spotlight__item-image" data-name="/Technical-Nighthaunt-Gloom-2019" alt="Nighthaunt Gloom" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956025_technicalNighthauntGloom.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210416" class="recordItem record-spotlight__item" data-name="/Technical-Hexwraith-Flame-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Hexwraith Flame (24ml) (2019)&quot;,&quot;id&quot;:&quot;99189956026&quot;,&quot;position&quot;:23,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Hexwraith Flame">
+<img class="test-img-prod4210416 record-spotlight__item-image" data-name="/Technical-Hexwraith-Flame-2019" alt="Hexwraith Flame" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956026_technicalHexwraithFlame.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210388" class="recordItem record-spotlight__item" data-name="/Technical-Nihilakh-Oxide-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;2.75&quot;,&quot;name&quot;:&quot;Technical: Nihilakh Oxide (2019)&quot;,&quot;id&quot;:&quot;99189956006&quot;,&quot;position&quot;:24,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Nihilakh Oxide">
+<img class="test-img-prod4210388 record-spotlight__item-image" data-name="/Technical-Nihilakh-Oxide-2019" alt="Nihilakh Oxide" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956006_technicalNihilakhOxide.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4210392" class="recordItem record-spotlight__item" data-name="/Technical-Typhus-Corrosion-2019" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;2.75&quot;,&quot;name&quot;:&quot;Technical: Typhus Corrosion (2019)&quot;,&quot;id&quot;:&quot;99189956010&quot;,&quot;position&quot;:25,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Typhus Corrosion">
+<img class="test-img-prod4210392 record-spotlight__item-image" data-name="/Technical-Typhus-Corrosion-2019" alt="Typhus Corrosion" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956010_technicalTyphusCorrosion.svg"></img>
+</span>
+</li>
+<li class="record-spotlight__item-wrapper">
+<span data-test="record-prod4480165" class="recordItem record-spotlight__item" data-name="/Technical-Tesseract-Glow-2020" data-gtm-productfieldobject="{&quot;quantity&quot;:1,&quot;price&quot;:&quot;4.75&quot;,&quot;name&quot;:&quot;Technical: Tesseract Glow (2020)&quot;,&quot;id&quot;:&quot;99189956053&quot;,&quot;position&quot;:26,&quot;category&quot;:&quot;GW: New and Exclusive|GW: Painting and Modelling&quot;}" data-gtm-actionfieldobject="" data-tooltip="Tesseract Glow">
+<img class="test-img-prod4480165 record-spotlight__item-image" data-name="/Technical-Tesseract-Glow-2020" alt="Tesseract Glow" src="https://www.games-workshop.com/resources/catalog/product/600x620/99189956053_technicalTesseractGlow.svg"></img>
+</span>
+</li>
+
+ </ul>
 </div>

@@ -2808,5 +2808,307 @@
     "hex": "#FFFFFF",
     "hex1": "#ddb06d",
     "hex2": "#886625"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Casandora Yellow",
+    "year": "2019",
+    "code": "53021",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953021_shadeCasandoraYellow.svg",
+    "transparent": true,
+    "hex": "#FCEFBC",
+    "hex2": "#E78035"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Fuegan Orange",
+    "year": "2019",
+    "code": "53023",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953023_shadeFueganOrange.svg",
+    "transparent": true,
+    "hex": "#DF9F68",
+    "hex2": "#6C1C03"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Carroburg Crimson",
+    "year": "2019",
+    "code": "53016",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953016_shadeCarroburgCrimson.svg",
+    "transparent": true,
+    "hex": "#FFB7EB",
+    "hex2": "#310808"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Druchii Violet",
+    "year": "2019",
+    "code": "53019",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953019_shadeDruchiiViolet.svg",
+    "transparent": true,
+    "hex": "#BF8EC3",
+    "hex2": "#250B27"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Drakenhof Nightshade",
+    "year": "2019",
+    "code": "53020",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953020_shadeDrakenhofNightshade.svg",
+    "transparent": true,
+    "hex": "#E6E8F3",
+    "hex2": "#0A131B"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Coelia Greenshade",
+    "year": "2019",
+    "code": "53025",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953025_shadeCoeliaGreenshade.svg",
+    "transparent": true,
+    "hex": "#20B8AC",
+    "hex2": "#113431"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Biel-Tan Green",
+    "year": "2019",
+    "code": "53022",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953022_shadeBielTanGreen.svg",
+    "transparent": true,
+    "hex": "#AEDCA2",
+    "hex2": "#132E21"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Athonian Camoshade",
+    "year": "2019",
+    "code": "53024",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953024_shadeAthonianCamoshade.svg",
+    "transparent": true,
+    "hex": "#FDFEBF",
+    "hex2": "#1C1C10"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Seraphim Sepia",
+    "year": "2019",
+    "code": "53026",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953026_shadeSeraphimSepia.svg",
+    "transparent": true,
+    "hex": "#E9AE7D",
+    "hex2": "#2E1F08"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Agrax Earthshade",
+    "year": "2019",
+    "code": "53018",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953018_shadeAgraxEarthshade.svg",
+    "transparent": true,
+    "hex": "#E2DAC8",
+    "hex2": "#2D190C"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Nuln Oil",
+    "year": "2019",
+    "code": "53017",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953017_shadeNulnOil.svg",
+    "transparent": true,
+    "hex": "#DFD9D6",
+    "hex2": "#101010"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Reikland Fleshshade Gloss",
+    "year": "2019",
+    "code": "53035",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953035_shadeReiklandFleshshadeGloss.svg",
+    "transparent": true,
+    "hex": "#FFD5B7",
+    "hex2": "#311908"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Reikland Fleshshade",
+    "year": "2019",
+    "code": "53027",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953027_shadeReiklandFleshshade.svg",
+    "transparent": true,
+    "hex": "#FFD5B7",
+    "hex2": "#311908"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Agrax Earthshade Gloss",
+    "year": "2019",
+    "code": "53034",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953034_shadeAgraxEarthshadeGloss.svg",
+    "transparent": true,
+    "hex": "#E2DAC8",
+    "hex2": "#2D190C"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Nuln Oil Gloss",
+    "year": "2019",
+    "code": "53033",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953033_shadeNulnOilGloss.svg",
+    "transparent": true,
+    "hex": "#DFD9D6",
+    "hex2": "#101010"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Shade",
+    "name": "Cryptek Armourshade Gloss",
+    "year": "2020",
+    "code": "53038",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99189953038_shadeCryptekArmourshadeGloss.svg",
+    "transparent": true,
+    "hex": "#FAEEED",
+    "hex2": "#532724"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Runelord Brass",
+    "year": "2020",
+    "code": "99061",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999061_sprayRunelordBrass_GLOB.svg",
+    "metallic": true,
+    "hex": "#F5EDE3",
+    "hex1": "#74624d",
+    "hex2": "#190E07"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Retributor Armour",
+    "year": "2020",
+    "code": "99100",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999044_sprayRetributorArmour.svg",
+    "metallic": true,
+    "hex": "#FFFFFF",
+    "hex1": "#ebb854",
+    "hex2": "#89571D"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Chaos Black",
+    "year": "2020",
+    "code": "99065",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999042_sprayChaosBlack.svg",
+    "hex": "#000000"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Mechanicus Standard Grey",
+    "year": "2020",
+    "code": "99073",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999050_sprayMechanicusStandardGrey.svg",
+    "hex": "#39484A"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Leadbelcher",
+    "year": "2020",
+    "code": "99097",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999051_sprayLeadbelcher.svg",
+    "metallic": true,
+    "hex": "#F0F0F0",
+    "hex1": "#8a8a8a",
+    "hex2": "#151E24"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Munitorum Varnish",
+    "year": "2020",
+    "code": "99093",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999058_sprayMunitorumVarnish.svg",
+    "hex": "#FFFFFF"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Mephiston Red",
+    "year": "2020",
+    "code": "99072",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999045_sprayMephistonRed.svg",
+    "hex": "#960C09"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Macragge Blue",
+    "year": "2020",
+    "code": "99069",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999046_sprayMacraggeBlue.svg",
+    "hex": "#0F3D7C"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Zandri Dust",
+    "year": "2020",
+    "code": "99096",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999048_sprayZandriDust.svg",
+    "hex": "#988E56"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Corax White",
+    "year": "2020",
+    "code": "99089",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999041_sprayCoraxWhite.svg",
+    "hex": "#FFFFFF"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Death Guard Green",
+    "year": "2020",
+    "code": "99070",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999057_sprayDeathGuardGreen.svg",
+    "hex": "#556229"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Grey Seer",
+    "year": "2020",
+    "code": "99063",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999060_sprayGreySeer.svg",
+    "hex": "#A2A5A7"
+  },
+  {
+    "brand": "Citadel",
+    "range": "Spray",
+    "name": "Wraithbone",
+    "year": "2020",
+    "code": "99062",
+    "url": "https://www.games-workshop.com/resources/catalog/product/600x620/99209999059_sprayWraithBone.svg",
+    "hex": "#DBD1B2"
   }
 ]

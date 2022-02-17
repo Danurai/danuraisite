@@ -29,10 +29,10 @@
               [:div.d-flex
                 [:div.flex-fill.me-1
                   [:h5 "Brand"]
-                  [:select#brandmulti.form-control {:multiple true}]]
+                  [:select#brandmulti.form-control {:multiple true :size 10}]]
                 [:div.flex-fill 
                   [:h5 "Range"]
-                  [:select#rangemulti.form-control {:multiple true}]]]]
+                  [:select#rangemulti.form-control {:multiple true :size 10}]]]]
             [:div.modal-footer
               [:button.btn.btn-primary {:type "button" :data-bs-dismiss "modal"} "OK"]]]]]
       [:div.container.my-3
