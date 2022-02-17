@@ -13,6 +13,40 @@
 (load "pages/admin")
 (load "pages/legendsuntold")
 (load "pages/colour")
+     
+(defn paintranges [ req ]
+  (h/html5
+    pretty-head
+    [:body
+      (navbar req)
+      [:div#filterModal.modal {:tabindex -1}
+        [:div.modal-dialog
+          [:div.modal-content 
+            [:div.modal-header
+              [:h4.modal-title "Filters"]
+              [:button.btn-close {:type "button" :data-bs-dismiss "modal"} ]]
+            [:div.modal-body
+              [:div.d-flex
+                [:div.flex-fill.me-1
+                  [:h5 "Brand"]
+                  [:select#brandmulti.form-control {:multiple true}]]
+                [:div.flex-fill 
+                  [:h5 "Range"]
+                  [:select#rangemulti.form-control {:multiple true}]]]]
+            [:div.modal-footer
+              [:button.btn.btn-primary {:type "button" :data-bs-dismiss "modal"} "OK"]]]]]
+      [:div.container.my-3
+        [:div#comparison.d-flex.mb-2]
+        [:div
+          [:table#colourtable]]]
+      (h/include-css "//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css")
+      (h/include-js  "//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js")
+      ;<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+      ;<script type="text/javascript" src="DataTables/datatables.min.js"></script>
+      (h/include-js  "/js/paintchart2.js")
+      (h/include-css "/css/colour.css")
+      ]))
+
 (load "pages/deadofnight")
 (load "pages/netrunner")
 (load "pages/kt2")
