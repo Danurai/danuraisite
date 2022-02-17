@@ -5,52 +5,70 @@ $.getJSON("/colours/api/json", function (data) {
 	dt = $('#colourtable').DataTable({
 		searching: true,
 		pageLength: 50,
-		dom: '<"d-flex justify-content-between"l<"#brandfilter.dataTables_length"><"#rangefilter.dataTables_length">f>tip',	//https://datatables.net/examples/basic_init/dom.html
+		dom: '<"d-flex"l<"#filterbtn.mx-2"><"#filters.flex-fill d-flex mx-2">f>tip',	//https://datatables.net/examples/basic_init/dom.html
 		data: data,
 		columns: [
 			{ title: "Code",  data: "code" },
 			{ title: "Brand", data: "brand" },
 			{ title: "Range", data: "range" },
 			{ title: "Name",  data: "name", render: function (data, type, row, meta) {return get_name(row);} },
-			{ title: "Hex" , data: "hex", width: '20%', className: "text-center" },
+			{ title: "Hex" , data: "hex", className: "text-center"}, //render: function(data, type, row, meta) {return row.hex.toUpperCase(); }, width: '20%', className: "text-center" },
 			{ title: "Colour" , data: "hex", width: '20%', className: "hexcode text-center"}
 		],
 		'rowCallback': function( row, data, index) {
-			$(row).find('td:eq(4)').text(data.hex + (data.hex2 != null ? ' - ' + data.hex2 : ''));
 			$(row).find('td:eq(5)').text('');
 			$(row).find('td:eq(5)').css('background', get_background( data ));
 			$(row).find('td:eq(5)').css('color', fontcolour(data.hex));
 		}
 	});
-	$brandselect = $('<select id="brandselect"></select>');
-	$brandselect.append('<option>(All)</option>');
-	data.map( d => d.brand )
-		.filter( (v, i, a) => a.indexOf(v) == i).sort()
-		.forEach( b => {
-			$brandselect.append('<option>' + b + '</option>')
-		} );
-	$rangeselect = $('<select id="rangeselect"></select>');
-	$rangeselect.append('<option>(All)</option>');
-	data.map( d => d.range )
-		.filter( (v, i, a) => a.indexOf(v) == i).sort()
-		.forEach( b => {
-			$rangeselect.append('<option>' + b + '</option>')
-		} );
-	$('#brandfilter').append($('<label></label>').text("Brand ").append($brandselect));
-	$('#rangefilter').append($('<label></label>').text("Range ").append($rangeselect));
-	filter_table();
+	$('#filterbtn').append('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal">Filter</button>');
+	set_filters(data);
 	compare_row();
-	//$brandselect.selectpicker();
 });
 
+function set_filters ( data ) {
+	let brandnames = data.map( d => d.brand ).filter( (v, i, a) => a.indexOf(v) == i).sort();
+	let rangenames = data.map( d => d.range ).filter( (v, i, a) => a.indexOf(v) == i).sort();
+
+	$('#brandmulti').empty();
+	brandnames.forEach( b => {
+		$('#brandmulti').append('<option value="' + b + '">' + b + '</option>');
+	})
+	$('#rangemulti').empty();
+	rangenames.forEach( r => {
+		$('#rangemulti').append('<option value="' + r + '">' + r + '</option>');
+	})
+	$.each(['Citadel', 'Pro Acryl', 'Molotow'], function (i, b) {
+		$('#brandmulti').find('option[value="' + b + '"]').prop("selected", true);
+	});
+	$.each(['Classic', 'Base', 'Base 1', 'Base 3', 'Metallic', 'Layer'], function (i, r) {
+		$('#rangemulti').find('option[value="' + r + '"]').prop("selected", true);
+	});
+	filter_table();
+}
+
+$('#filterModal').on('change', 'select', function () {
+	filter_table();
+});
 
 function filter_table () {
-	let bs = $('#brandselect').val();
-	let rs = $('#rangeselect').val();
-	if (bs != "(All)") { dt.columns(1).search(bs); } else { dt.columns(1).search(''); } 
-	if (rs != "(All)") { dt.columns(2).search(rs); } else { dt.columns(2).search(''); }
+	let bs = $('#brandmulti').val().map( d => "^" + d + "$").join("|");
+	let rs = $('#rangemulti').val().map( d => "^" + d + "$").join("|");
+	$('#filters').empty();
+	$('#brandmulti').val().forEach( b => $('#filters').append('<div class="filter-label rounded bg-light my-auto me-2" data-brand="'  + b + '">' + b + '<i class="fas fa-times-circle text-secondary ms-1" /></label>'))
+	$('#rangemulti').val().forEach( r => $('#filters').append('<div class="filter-label rounded bg-light my-auto me-2" data-range="'  + r + '">' + r + '<i class="fas fa-times-circle text-secondary ms-1" /></label>'))
+	dt.columns(1).search(bs, true, false)
+	dt.columns(2).search(rs, true, false)
 	dt.draw();
 }
+
+$('body').on('click', '.filter-label', function () {
+	let brand = $(this).data('brand');
+	let range = $(this).data('range');
+	$('#brandmulti').find('option[value="' + brand + '"]').prop("selected", false);
+	$('#rangemulti').find('option[value="' + range + '"]').prop("selected", false);
+	filter_table()
+} );
 
 function get_background (data) {
 	if (typeof data !== 'undefined') {
@@ -78,18 +96,6 @@ function get_name (data) {
 	}
 }
 
-$('body').on('change', 'select', function () {
-	let sl =  ($(this)[0].id)
-	if (sl == "brandselect" || sl == "rangeselect")  {
-		filter_table();
-	}
-});
-
-$('#colourtable').on('click', 'tbody tr', function () {
-	_compare.push( dt.row(this).data() );
-	compare_row();
-});
-
 function compare_row () {
 	let $comp = $('#comparison');
 	$comp.empty();
@@ -110,11 +116,25 @@ function compare_row () {
 	});
 }
 
+$('body').on('change', 'select', function () {
+	let sl =  ($(this)[0].id)
+	if (sl == "brandselect" || sl == "rangeselect")  {
+		filter_table();
+	}
+});
+
+$('#colourtable').on('click', 'tbody tr', function () {
+	_compare.push( dt.row(this).data() );
+	compare_row();
+});
+
+
 $('#comparison').on('click', '.removecolour', function () {
 	let code = $(this).data('code');
 	_compare = _compare.filter( d => d.code != code );
 	compare_row();
 });
+
 
 
 function fontcolour (hex) {
