@@ -35,7 +35,7 @@
                   [:select#rangemulti.form-control {:multiple true :size 10}]]]]
             [:div.modal-footer
               [:button.btn.btn-primary {:type "button" :data-bs-dismiss "modal"} "OK"]]]]]
-      [:div.container.my-3
+      [:div.container-fluid.my-3
         [:div#comparison.d-flex.mb-2]
         [:div
           [:table#colourtable]]]
