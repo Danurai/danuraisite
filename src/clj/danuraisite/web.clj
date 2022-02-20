@@ -122,7 +122,7 @@
                                 %)))
         allcolours  (apply concat (map #(json/read-str
                       (slurp (io/resource (str "private/colour_"  % ".json")))
-                      :key-fn keyword) ["proacryl" "citadel"] ))]
+                      :key-fn keyword) ["proacryl" "citadel" "molotow" "molotow22"] ))]
     (reduce update-or-append allcolours oldgw)))
 
 (defroutes colour-routes

@@ -1,0 +1,1773 @@
+[
+  {
+    "code": "001",
+    "name": "jasmin yellow",
+    "hex": "#fdf4a6",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "002",
+    "name": "zinc yellow",
+    "hex": "#ffe655",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "003",
+    "name": "cadmium yellow",
+    "hex": "#ffd700",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "004",
+    "name": "signal yellow",
+    "hex": "#ffcc00",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "005",
+    "name": "nature white",
+    "hex": "#faf4e3",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "006",
+    "name": "vanilla",
+    "hex": "#fff0b9",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "007",
+    "name": "cashmere yellow",
+    "hex": "#ffe26e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "008",
+    "name": "quince",
+    "hex": "#ffcf59",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "009",
+    "name": "golden yellow",
+    "hex": "#fbbe00",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "010",
+    "name": "melon yellow",
+    "hex": "#f7ac00",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "011",
+    "name": "light orange",
+    "hex": "#f18c00",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "012",
+    "name": "pastel orange",
+    "hex": "#ed7920",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "013",
+    "name": "DARE orange light NEW",
+    "hex": "#eb6916",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "014",
+    "name": "DARE orange",
+    "hex": "#e15c0f",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "015",
+    "name": "LINDA\u00e2\u20ac\u2122s sunset",
+    "hex": "#df4f1a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "016",
+    "name": "SWET 100 traffi c red",
+    "hex": "#d4021d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "017",
+    "name": "tornado red",
+    "hex": "#c2002d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "018",
+    "name": "ruby red",
+    "hex": "#990c25",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "019",
+    "name": "burgundy",
+    "hex": "#711820",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "020",
+    "name": "garnet NEW",
+    "hex": "#4d171c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "021",
+    "name": "black red",
+    "hex": "#3e1715",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "022",
+    "name": "LOOMIT\u00e2\u20ac\u2122s aubergine",
+    "hex": "#3a2119",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "023",
+    "name": "peach pastel NEW",
+    "hex": "#faccb0",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "024",
+    "name": "peach light NEW",
+    "hex": "#f8c0a0",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "025",
+    "name": "peach",
+    "hex": "#f6b388",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "026",
+    "name": "goldfi sh",
+    "hex": "#f08c4a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "027",
+    "name": "lobster light",
+    "hex": "#ed7929",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "028",
+    "name": "lobster middle NEW",
+    "hex": "#e96024",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "029",
+    "name": "lobster",
+    "hex": "#e74f2a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "030",
+    "name": "vermillion",
+    "hex": "#be372a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "031",
+    "name": "shock orange",
+    "hex": "#db4430",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "032",
+    "name": "MAD C cherry red NEW",
+    "hex": "#d80028",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "033",
+    "name": "signal red",
+    "hex": "#c00418",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "034",
+    "name": "apricot",
+    "hex": "#f39a5a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "035",
+    "name": "salmon orange",
+    "hex": "#db623a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "036",
+    "name": "autum leaf",
+    "hex": "#a53513",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "037",
+    "name": "LOOMIT\u00e2\u20ac\u2122s apricot pastel NEW",
+    "hex": "#f4beae",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "038",
+    "name": "LOOMIT\u00e2\u20ac\u2122s apricot light",
+    "hex": "#f3a18b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "039",
+    "name": "LOOMIT\u00e2\u20ac\u2122s apricot middle NEW",
+    "hex": "#ee836f",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "040",
+    "name": "LOOMIT\u00e2\u20ac\u2122s apricot",
+    "hex": "#eb6b4a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "041",
+    "name": "strawberry red NEW",
+    "hex": "#d45746",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "042",
+    "name": "pussy pink",
+    "hex": "#be4638",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "043",
+    "name": "raspberry red",
+    "hex": "#bb2038",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "044",
+    "name": "sangria (formerly: purple dark)",
+    "hex": "#9c052d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "045",
+    "name": "grapefruit light NEW",
+    "hex": "#f8cac2",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "046",
+    "name": "grapefruit",
+    "hex": "#f5b2a7",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "047",
+    "name": "mauve light NEW",
+    "hex": "#e2a09a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "048",
+    "name": "mauve",
+    "hex": "#cf918c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "049",
+    "name": "antique pink middle NEW",
+    "hex": "#a9736a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "050",
+    "name": "antique pink",
+    "hex": "#996a63",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "051",
+    "name": "piglet pink light",
+    "hex": "#f7c6cd",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "052",
+    "name": "piglet pink",
+    "hex": "#f0a2ba",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "053",
+    "name": "candy NEW",
+    "hex": "#dc7fa0",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "054",
+    "name": "lipstick NEW",
+    "hex": "#b74d74",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "055",
+    "name": "purple",
+    "hex": "#74324a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "056",
+    "name": "ESHER dirty red",
+    "hex": "#6c3640",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "057",
+    "name": "TILT bubble pink NEW",
+    "hex": "#de95bc",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "058",
+    "name": "fuchsia pink",
+    "hex": "#d36aa2",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "059",
+    "name": "MAD C psycho pink NEW",
+    "hex": "#d94476",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "060",
+    "name": "telemagenta",
+    "hex": "#b71d5b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "061",
+    "name": "amaranth red (formerly: raspberry dark)",
+    "hex": "#910041",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "062",
+    "name": "MACrew purple",
+    "hex": "#68184b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "063",
+    "name": "purple violet",
+    "hex": "#3e1f30",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "064",
+    "name": "crocus NEW",
+    "hex": "#d7c7db",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "065",
+    "name": "lavender NEW",
+    "hex": "#bca0c0",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "066",
+    "name": "lilac NEW",
+    "hex": "#a77ea9",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "067",
+    "name": "grape NEW",
+    "hex": "#856195",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "068",
+    "name": "blackberry NEW",
+    "hex": "#673c7c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "069",
+    "name": "currant (formerly: CES violet)",
+    "hex": "#4c2561",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "070",
+    "name": "crazy plum",
+    "hex": "#251241",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "071",
+    "name": "violet dark",
+    "hex": "#33265e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "072",
+    "name": "black violet",
+    "hex": "#21194b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "073",
+    "name": "thistle (formerly: grape light)",
+    "hex": "#d9dad6",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "074",
+    "name": "viola pastel",
+    "hex": "#c7c4cf",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "075",
+    "name": "viola light",
+    "hex": "#a3a0c3",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "076",
+    "name": "viola middle NEW",
+    "hex": "#7b7cab",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "077",
+    "name": "viola",
+    "hex": "#6166a2",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "078",
+    "name": "viola dark NEW",
+    "hex": "#464e96",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "079",
+    "name": "night SEEN blue",
+    "hex": "#243c81",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "080",
+    "name": "grape middle",
+    "hex": "#505b8e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "081",
+    "name": "grape dark",
+    "hex": "#3a4187",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "082",
+    "name": "purple velvet",
+    "hex": "#232a60",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "083",
+    "name": "light violet",
+    "hex": "#7d83b4",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "084",
+    "name": "plum middle NEW",
+    "hex": "#595c79",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "085",
+    "name": "plum",
+    "hex": "#383959",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "086",
+    "name": "pigeon blue middle NEW",
+    "hex": "#a6b3cc",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "087",
+    "name": "pigeon blue NEW",
+    "hex": "#8d9fc0",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "088",
+    "name": "blueberry light",
+    "hex": "#6581b1",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "089",
+    "name": "azure blue light NEW",
+    "hex": "#d1e6ee",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "090",
+    "name": "azure blue NEW",
+    "hex": "#b9dcec",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "091",
+    "name": "shock blue pastel",
+    "hex": "#a1cee4",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "092",
+    "name": "shock blue light",
+    "hex": "#88bcd8",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "093",
+    "name": "shock blue middle",
+    "hex": "#59a8cd",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "094",
+    "name": "shock blue",
+    "hex": "#0083ba",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "095",
+    "name": "tulip blue light NEW",
+    "hex": "#3682bd",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "096",
+    "name": "tulip blue middle NEW",
+    "hex": "#0068a3",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "097",
+    "name": "tulip blue",
+    "hex": "#004b83",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "098",
+    "name": "light blue 19",
+    "hex": "#008eb3",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "099",
+    "name": "ceramic pastel",
+    "hex": "#77a5c7",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "100",
+    "name": "jeans blue",
+    "hex": "#5089ae",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "101",
+    "name": "wild WANE blue",
+    "hex": "#315384",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "102",
+    "name": "navy blue NEW",
+    "hex": "#1f3d79",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "103",
+    "name": "ultramarine blue",
+    "hex": "#002d5c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "104",
+    "name": "sapphire blue",
+    "hex": "#002e59",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "105",
+    "name": "indigo NEW",
+    "hex": "#002743",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "106",
+    "name": "ECB prussian blue dark",
+    "hex": "#00243b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "107",
+    "name": "petrol",
+    "hex": "#0f3c50",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "108",
+    "name": "deep-sea blue",
+    "hex": "#1b394a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "109",
+    "name": "deep-sea blue dark",
+    "hex": "#00233c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "110",
+    "name": "ice-blue dark",
+    "hex": "#97ccd8",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "111",
+    "name": "dolphin blue",
+    "hex": "#468f9c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "112",
+    "name": "petrol blue",
+    "hex": "#006a7d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "113",
+    "name": "cream blue",
+    "hex": "#6bb8c4",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "114",
+    "name": "olympia blue",
+    "hex": "#4899a1",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "115",
+    "name": "aqua NEW",
+    "hex": "#217e8b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "116",
+    "name": "alga",
+    "hex": "#005362",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "117",
+    "name": "baby blue (formerly: ice-blue light)",
+    "hex": "#b6dcd2",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "118",
+    "name": "crystal blue dark",
+    "hex": "#88cac1",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "119",
+    "name": "blue gin (formerly: petrol blue pastell)",
+    "hex": "#54a79c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "120",
+    "name": "verdigris",
+    "hex": "#67b1b8",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "121",
+    "name": "caribbean (alt: creme blue pastel)",
+    "hex": "#d0e8dd",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "122",
+    "name": "riviera pastel NEW",
+    "hex": "#a8d5c4",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "123",
+    "name": "riviera light",
+    "hex": "#80c2ae",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "124",
+    "name": "riviera middle NEW",
+    "hex": "#44b39b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "125",
+    "name": "riviera dark",
+    "hex": "#00998a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "126",
+    "name": "lagoon blue",
+    "hex": "#00857d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "127",
+    "name": "MARTHA marine",
+    "hex": "#00605b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "128",
+    "name": "turquoise dark",
+    "hex": "#00454d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "129",
+    "name": "nori NEW",
+    "hex": "#003c43",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "130",
+    "name": "black turquoise",
+    "hex": "#00333d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "131",
+    "name": "gale green",
+    "hex": "#aab98f",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "132",
+    "name": "reed NEW",
+    "hex": "#8fb18d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "133",
+    "name": "aquamarine",
+    "hex": "#77a479",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "134",
+    "name": "swamp NEW",
+    "hex": "#4d7057",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "135",
+    "name": "black forest green",
+    "hex": "#3d5b46",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "136",
+    "name": "blueberry pastel 27",
+    "hex": "#d1ded3",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "137",
+    "name": "calypso light",
+    "hex": "#c2deba",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "138",
+    "name": "calypso middle",
+    "hex": "#74bd8b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "139",
+    "name": "calypso dark",
+    "hex": "#53a977",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "140",
+    "name": "turquoise green NEW",
+    "hex": "#00794d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "141",
+    "name": "turquoise green middle (formerly: turquoise green)",
+    "hex": "#005a3c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "142",
+    "name": "turquoise green dark NEW",
+    "hex": "#004932",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "143",
+    "name": "SEAK future green",
+    "hex": "#004230",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "144",
+    "name": "menthol light",
+    "hex": "#b8d69d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "145",
+    "name": "menthol",
+    "hex": "#6bb66c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "146",
+    "name": "KACAO77 UNIVERSES green NEW",
+    "hex": "#009951",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "147",
+    "name": "lettuce green",
+    "hex": "#00873e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "148",
+    "name": "kiwi pastel",
+    "hex": "#dee38c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "149",
+    "name": "kiwi light",
+    "hex": "#bace3c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "150",
+    "name": "kiwi",
+    "hex": "#95b922",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "151",
+    "name": "dandelion",
+    "hex": "#c8d97d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "152",
+    "name": "brilliant green",
+    "hex": "#b2cc54",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "153",
+    "name": "grasshopper",
+    "hex": "#88bb3c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "154",
+    "name": "cream green",
+    "hex": "#a5c85c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "155",
+    "name": "hippie green",
+    "hex": "#9ec874",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "156",
+    "name": "wasabi NEW",
+    "hex": "#7eb94f",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "157",
+    "name": "cliff green",
+    "hex": "#57ab27",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "158",
+    "name": "clover green NEW",
+    "hex": "#2da43e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "159",
+    "name": "juice green",
+    "hex": "#008834",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "160",
+    "name": "MISTER green",
+    "hex": "#00763b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "161",
+    "name": "leaf green",
+    "hex": "#1f5a2e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "162",
+    "name": "MIGHTY green",
+    "hex": "#93bf3d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "163",
+    "name": "avocado NEW",
+    "hex": "#6b9619",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "164",
+    "name": "fern green",
+    "hex": "#567513",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "165",
+    "name": "moss green NEW",
+    "hex": "#325815",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "166",
+    "name": "chromium oxide green",
+    "hex": "#2c4025",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "167",
+    "name": "black green",
+    "hex": "#002c1c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "168",
+    "name": "butterfly green",
+    "hex": "#dae07f",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "169",
+    "name": "green tea NEW",
+    "hex": "#b9c579",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "170",
+    "name": "P.JAY green",
+    "hex": "#949955",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "171",
+    "name": "amazonas",
+    "hex": "#908f5e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "172",
+    "name": "camouflage NEW",
+    "hex": "#5e5d33",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "173",
+    "name": "evil olive",
+    "hex": "#414423",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "174",
+    "name": "poison green",
+    "hex": "#dedd2e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "175",
+    "name": "apple",
+    "hex": "#ccc545",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "176",
+    "name": "sorbet green",
+    "hex": "#f0e397",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "177",
+    "name": "soft pastell",
+    "hex": "#e5e08c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "178",
+    "name": "carambola NEW",
+    "hex": "#c1c13b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "179",
+    "name": "hemp",
+    "hex": "#b4a438",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "180",
+    "name": "green bean NEW",
+    "hex": "#98961e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "181",
+    "name": "pear",
+    "hex": "#838423",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "182",
+    "name": "mustard",
+    "hex": "#d3bb58",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "183",
+    "name": "khaki",
+    "hex": "#ac8b34",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "184",
+    "name": "ivory light",
+    "hex": "#fde9c5",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "185",
+    "name": "milk coffee",
+    "hex": "#d5b072",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "186",
+    "name": "cappuccino NEW",
+    "hex": "#a47a4e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "187",
+    "name": "espresso (formerly: nougat dark)",
+    "hex": "#86653d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "188",
+    "name": "mocca",
+    "hex": "#533e27",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "189",
+    "name": "sahara beige light NEW",
+    "hex": "#f6deb2",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "190",
+    "name": "sahara beige middle NEW",
+    "hex": "#f1cb83",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "191",
+    "name": "saharah beige",
+    "hex": "#f0bf6e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "192",
+    "name": "papyrus NEW",
+    "hex": "#c2954a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "193",
+    "name": "nougat",
+    "hex": "#b87c3f",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "194",
+    "name": "beige brown",
+    "hex": "#834e2d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "195",
+    "name": "apricot beige",
+    "hex": "#fad09b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "196",
+    "name": "labrador NEW",
+    "hex": "#edbf8b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "197",
+    "name": "camel (formerly: nougat light)",
+    "hex": "#dc9b55",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "198",
+    "name": "ocher brown",
+    "hex": "#ac702e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "199",
+    "name": "orange brown light",
+    "hex": "#f49f4e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "200",
+    "name": "orange brown middle",
+    "hex": "#d7712e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "201",
+    "name": "orange brown",
+    "hex": "#b45a1d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "202",
+    "name": "cocoa light",
+    "hex": "#9f5348",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "203",
+    "name": "cocoa middle NEW",
+    "hex": "#88463d",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "204",
+    "name": "cocoa",
+    "hex": "#783a2f",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "205",
+    "name": "caramel",
+    "hex": "#a76845",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "206",
+    "name": "walnut (formerly: ocher brown dark)",
+    "hex": "#75462a",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "207",
+    "name": "hazelnut",
+    "hex": "#5e3121",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "208",
+    "name": "chocolate brown",
+    "hex": "#4b301e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "209",
+    "name": "CMP dark brown",
+    "hex": "#3f271b",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "210",
+    "name": "tar black",
+    "hex": "#3c3b36",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "211",
+    "name": "stone grey dark",
+    "hex": "#5d5947",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "212",
+    "name": "stone grey middle",
+    "hex": "#848169",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "213",
+    "name": "stone grey light",
+    "hex": "#c4c1ab",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "214",
+    "name": "TOAST signal black",
+    "hex": "#061722",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "215",
+    "name": "black grey neutral",
+    "hex": "#41403e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "216",
+    "name": "dark grey neutral",
+    "hex": "#5f5f5c",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "217",
+    "name": "middle grey neutral",
+    "hex": "#989892",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "218",
+    "name": "light grey neutral",
+    "hex": "#d8d7cc",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "219",
+    "name": "mouse grey",
+    "hex": "#707574",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "220",
+    "name": "silver dollar",
+    "hex": "#---",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "221",
+    "name": "deep black",
+    "hex": "#040608",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "222",
+    "name": "black grey dark",
+    "hex": "#303330",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "223",
+    "name": "anthracite grey",
+    "hex": "#3c4144",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "224",
+    "name": "grey blue dark",
+    "hex": "#6e7172",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "225",
+    "name": "granite NEW",
+    "hex": "#848788",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "226",
+    "name": "grey blue middle",
+    "hex": "#9c9e9e",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "227",
+    "name": "rock grey NEW",
+    "hex": "#adaeac",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "228",
+    "name": "grey blue light",
+    "hex": "#bdbcbb",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "229",
+    "name": "pebble grey NEW",
+    "hex": "#cdcbca",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "230",
+    "name": "marble NEW",
+    "hex": "#dad8d8",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "231",
+    "name": "signal white",
+    "hex": "#ffffff",
+    "brand": "Molotow 22",
+    "range": "Classic"
+  },
+  {
+    "code": "232",
+    "name": "neon yellow NEW",
+    "hex": "#fae500",
+    "brand": "Molotow 22",
+    "range": "Neon"
+  },
+  {
+    "code": "233",
+    "name": "neon orange NEW",
+    "hex": "#f0943d",
+    "brand": "Molotow 22",
+    "range": "Neon"
+  },
+  {
+    "code": "234",
+    "name": "neon pink NEW",
+    "hex": "#e983ff",
+    "brand": "Molotow 22",
+    "range": "Neon"
+  },
+  {
+    "code": "235",
+    "name": "neon blue NEW",
+    "hex": "#00a8db",
+    "brand": "Molotow 22",
+    "range": "Neon"
+  },
+  {
+    "code": "236",
+    "name": "neon green NEW",
+    "hex": "#52da3f",
+    "brand": "Molotow 22",
+    "range": "Neon"
+  },
+  {
+    "code": "237",
+    "name": "melon yellow transparent",
+    "hex": "#f7ac00",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "238",
+    "name": "DARE orange transparent",
+    "hex": "#e15c0f",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "239",
+    "name": "SWET traffic red transparent",
+    "hex": "#d4021d",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "240",
+    "name": "telemagenta transparent",
+    "hex": "#b71d5b",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "241",
+    "name": "currant transparent (formerly: CES violet transp.)",
+    "hex": "#4c2561",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "242",
+    "name": "ultramarine blue transparent NEW",
+    "hex": "#002d5c",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "243",
+    "name": "shock blue transparent",
+    "hex": "#0083ba",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "244",
+    "name": "lagoon blue transparent NEW",
+    "hex": "#00857d",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "245",
+    "name": "juice green transparent",
+    "hex": "#008834",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "246",
+    "name": "hazelnut transparent",
+    "hex": "#5e3121",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "247",
+    "name": "beige brown transparent NEW",
+    "hex": "#834e2d",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "248",
+    "name": "milk coffee transparent",
+    "hex": "#be9e6d",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "249",
+    "name": "signal black transparent",
+    "hex": "#061722",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "250",
+    "name": "middle grey neutral transparent",
+    "hex": "#989892",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "251",
+    "name": "signal white transparent",
+    "hex": "#ffffff",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "252",
+    "name": "clear coat gloss",
+    "hex": "#---",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  },
+  {
+    "code": "253",
+    "name": "clear coat matt",
+    "hex": "#---",
+    "brand": "Molotow 22",
+    "range": "Transparent"
+  }
+]
