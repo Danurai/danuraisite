@@ -6,7 +6,7 @@ def hex_corner (center, size, i):
      return (center[0] + size * math.cos(ar), center[1] + size * math.sin(ar))
 
 dxfdoc = dxf.drawing('hexy.dxf')
-size = 10#
+size = 5
 
 for q in range(10):
      for r in range(10):
