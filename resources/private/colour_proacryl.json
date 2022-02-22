@@ -1,315 +1,315 @@
 [
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-001",
 		"name": "Bold Titanium White",
-		"hex": "#fcfefd"
+		"hex": "#fefefe"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-002",
 		"name": "Coal Black",
-		"hex": "#060807"
+		"hex": "#050807"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-003",
 		"name": "Bold Pyrrole Red",
-		"hex": "#d90102"
+		"hex": "#da0000"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-004",
 		"name": "Green",
-		"hex": "#2be603"
+		"hex": "#2be601"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-005",
 		"name": "Blue",
-		"hex": "#2156fe"
+		"hex": "#2057ff"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-006",
 		"name": "Golden Yellow",
-		"hex": "#eff706"
+		"hex": "#f0f706"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-007",
 		"name": "Orange",
-		"hex": "#ff6801"
+		"hex": "#ff6800"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-008",
 		"name": "Burnt Red",
-		"hex": "#650101"
+		"hex": "#630100"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-009",
 		"name": "Mahogany",
-		"hex": "#370d0e"
+		"hex": "#370b0c"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-010",
 		"name": "Purple",
-		"hex": "#7b0ff8"
+		"hex": "#7b0ef7"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-011",
 		"name": "Magenta",
 		"hex": "#e324b0"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-012",
 		"name": "Sky Blue",
 		"hex": "#4fd7ff"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-013",
 		"name": "Faded Ultramarine",
 		"hex": "#85beff"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-014",
 		"name": "Dark Grey Blue",
 		"hex": "#001a8b"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-015",
 		"name": "Bright Warm Grey",
 		"hex": "#cedcb8"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-016",
 		"name": "Dark Warm Grey",
 		"hex": "#2e393d"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-017",
 		"name": "Golden Brown",
 		"hex": "#e0b228"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-018",
 		"name": "Light Umber",
 		"hex": "#532412"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-019",
 		"name": "Dark Umber",
 		"hex": "#18100e"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-020",
 		"name": "Camo Green",
 		"hex": "#245a02"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-021",
 		"name": "Jade",
 		"hex": "#12685b"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-022",
 		"name": "Bright Ivory",
 		"hex": "#edf4d3"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-023",
 		"name": "Ivory",
 		"hex": "#dcdfc2"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-024",
 		"name": "Tan Flesh",
 		"hex": "#deb18a"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-034",
 		"name": "Dark Blue",
 		"hex": "#03123b"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-035",
 		"name": "Dark Purple",
 		"hex": "#00006c"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-036",
 		"name": "Dark Camo Green",
 		"hex": "#264410"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-037",
 		"name": "Burnt Orange",
 		"hex": "#802302"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-038",
 		"name": "Yellow Ochre",
 		"hex": "#a86902"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-039",
 		"name": "Bright Yellow Green",
 		"hex": "#84ff00"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-040",
 		"name": "Black Brown",
 		"hex": "#2a2b1d"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-041",
 		"name": "Olive Flesh",
 		"hex": "#e3da8f"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-042",
 		"name": "Shadow Fles",
 		"hex": "#aa5048"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-043",
 		"name": "Pale Pink",
 		"hex": "#feb9cc"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-044",
 		"name": "Dark Neutral Grey",
 		"hex": "#243139"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 1",
+		"range": "Base",
 		"code": "MPA-045",
 		"name": "Bright Neutral Grey",
 		"hex": "#c4d5c5"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-054",
 		"name": "Turquoise",
 		"hex": "#42fab4"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-055",
 		"name": "Grey Blue",
 		"hex": "#c1e7fe"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-056",
 		"name": "Blue Black",
 		"hex": "#1b2d3b"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-057",
 		"name": "Black Green",
 		"hex": "#0f2510"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-058",
 		"name": "Bright Pale green",
 		"hex": "#9eff8b"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-059",
 		"name": "Burnt Sienna",
 		"hex": "#611305"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-060",
 		"name": "Pale Yellow",
 		"hex": "#fbffa0"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-062",
 		"name": "Dark Golden Brown",
 		"hex": "#6c590c"
 	},
 	{
 		"brand": "Pro Acryl",
-		"range": "Base 3",
+		"range": "Base",
 		"code": "MPA-063",
 		"name": "Faded Plum",
 		"hex": "#8c53c6"

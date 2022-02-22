@@ -36,7 +36,8 @@
             [:div.modal-footer
               [:button.btn.btn-primary {:type "button" :data-bs-dismiss "modal"} "OK"]]]]]
       [:div.container-fluid.my-3
-        [:div#comparison.d-flex.mb-2]
+        [:div#comparison.d-flex]
+        [:div#matches.d-flex.mb-2]
         [:div
           [:table#colourtable]]]
       (h/include-css "//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css")
