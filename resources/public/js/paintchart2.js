@@ -1,8 +1,11 @@
 let _compare = [];
 let dt;
 let data;
+let colour_collection_codes = [] 
 
 $.getJSON("/colours/api/json", function (d) {
+	let ls = localStorage.getItem('colour_collection_codes');
+	if ( ls != null ) { colour_collection_codes = JSON.parse(ls) }
 	data = add_hsl( d );
 	dt = $('#colourtable').DataTable({
 		searching: true,
@@ -14,14 +17,25 @@ $.getJSON("/colours/api/json", function (d) {
 			{ title: "Brand", data: "brand" },
 			{ title: "Range", data: "range" },
 			{ title: "Name",  data: "name", render: function (data, type, row, meta) {return get_name(row);} },
-			{ title: "Hex" , data: "hex", className: "text-center"}, //render: function(data, type, row, meta) {return row.hex.toUpperCase(); }, width: '20%', className: "text-center" },
-			{ title: "Colour" , data: "hex", width: '20%', className: "hexcode text-center"},
-			{ title: "Hue" , data: "h", className: "text-center"}
+			//{ title: "Hex" , data: "hex", className: "text-center"},
+			{ title: "Colour" , data: "hex" , className: "hexcode text-center"},
+			{ title: "Hue" , data: "h", className: "text-center"},
+			//{ title: "Sat." , data: "s", className: "text-center"},
+			//{ title: "Lum." , data: "l", className: "text-center"}
+			{ title: "Own?" , data: "code" ,  className: "text-center", render: function(data, type, row, meta) {
+																																						in_collection = colour_collection_codes.indexOf(row.code) > -1
+																																						if ( type === 'filter' ) {
+																																							return (in_collection ? "y" : "n")
+																																						} else {
+																																							return '<input data-code="' + row.code + '" type="checkbox" ' + (in_collection ? 'checked ' : '') + '/>'
+																																						}
+																																					}  }
 		],
 		'rowCallback': function( row, data, index) {
-			$(row).find('td:eq(5)').text('');
-			$(row).find('td:eq(5)').css('background', get_background( data ));
-			$(row).find('td:eq(5)').css('color', fontcolour(data.hex));
+			let in_collection = colour_collection_codes.indexOf( String(data.code) ) > -1
+			$(row).find('td:eq(4)').css('background', get_background( data ));
+			$(row).find('td:eq(4)').css('color', fontcolour(data.hex));
+			//$(row).find('td:eq(6)').html('<input data-code="' + data.code + '" type="checkbox" ' + (in_collection ? 'checked ' : '') + '/>');
 		}
 	});
 	$('#filterbtn').append('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal">Filter</button>');
@@ -72,6 +86,14 @@ $('body').on('click', '.filter-label', function () {
 	$('#rangemulti').find('option[value="' + range + '"]').prop("selected", false);
 	filter_table()
 } );
+
+$('#filter_owned').on('click', function () {
+	if ($(this).prop('checked') ) {
+		dt.columns(6).search("y").draw();
+	} else {
+		dt.columns(6).search("").draw();
+	}
+})
 
 function get_background (data) {
 	if (typeof data !== 'undefined') {
@@ -140,9 +162,23 @@ $('body').on('change', 'select', function () {
 	}
 });
 
-$('#colourtable').on('click', 'tbody tr', function () {
+$('#colourtable').on('click', 'tbody tr .hexcode', function () {
 	_compare.push( dt.row(this).data() );
 	compare_row();
+});
+
+$('#colourtable').on('click', 'tbody tr input', function () {
+	let code =  String( $(this).data('code') );
+	let owned = $(this).prop('checked');
+	if (owned) {
+		colour_collection_codes.push(code)
+	} else {
+		colour_collection_codes.splice(colour_collection_codes.indexOf(code) , 1)
+	}
+	localStorage.setItem("colour_collection_codes", JSON.stringify(colour_collection_codes));
+	dt.clear();
+	dt.rows.add(data);
+	dt.draw();
 });
 
 
@@ -151,7 +187,6 @@ $('#comparison').on('click', '.removecolour', function () {
 	_compare = _compare.filter( d => d.code != code );
 	compare_row();
 });
-
 
 
 function fontcolour (hex) {
