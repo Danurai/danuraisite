@@ -122,7 +122,7 @@
                                 %)))
         allcolours  (apply concat (map #(json/read-str
                       (slurp (io/resource (str "private/colour_"  % ".json")))
-                      :key-fn keyword) ["proacryl" "citadel" "molotow" "molotow22"] ))]
+                      :key-fn keyword) ["proacryl" "citadel" "molotow" "molotow22" "vallejo" "ap"] ))]
     (reduce update-or-append allcolours oldgw)))
 
 (defroutes colour-routes
@@ -180,7 +180,33 @@
   (db/save-specops-equipment (:params req) )
   (redirect (str "/killteam/specops/" (-> req :params :specop) "?equipment")))
 
+(defn- response_as_json [ data ]
+  (-> data json/write-str response (content-type "application/json")))
+
+(defn- get_kt2data 
+  [ faction field rnd ]
+  (let [kt2l (-> "private/kt2lists.json" io/resource slurp (json/read-str :key-fn keyword)) 
+        field_data (-> kt2l (get (keyword faction))  (get (keyword field)))]
+    ;(println faction field rnd)
+    (response_as_json
+      (case field
+        :faction (->> kt2l keys)
+        :data    (-> kt2l (get (keyword faction)) )
+        nil kt2l
+        "team_name" (if rnd (str (-> field_data first rand-nth) " " (-> field_data last rand-nth)) field_data)
+        (if rnd (rand-nth field_data) field_data)
+      ))))
+
+(defroutes kt2apiroutes
+  (GET "/"        [] (get_kt2data nil nil nil))
+  (GET "/faction" [] (get_kt2data nil :faction nil))
+  (GET "/:faction/" [faction] (get_kt2data faction :data nil))
+  (GET "/:faction/:field" [faction field rnd] (get_kt2data faction field (or rnd false)))
+  ;(GET "/faction" [] (get_kt2data :faction))
+  )
+
 (defroutes killteamroutes
+  (context "/api"       [] kt2apiroutes)
   (GET "/"              [] pages/killteam) 
   (GET "/compendium"    [] pages/killteam)
   (GET "/specops"       [] pages/kt2dataslate)
