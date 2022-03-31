@@ -1,0 +1,232 @@
+[
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2009",
+		"name": "Orc Skin*",
+		"hex": "#2A4E26",
+		"hex1": "#376632",
+		"hex2": "#6E875B",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2006",
+		"name": "Pallid Bone*",
+		"hex": "#B8B18A",
+		"hex1": "#D0C89A",
+		"hex2": "#DED8B7",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2004",
+		"name": "Crusader Skin*",
+		"hex": "#A27547",
+		"hex1": "#D3975C",
+		"hex2": "#DFB588",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2023",
+		"name": "Hardened Leather*",
+		"hex": "#573D16",
+		"hex1": "#72501C",
+		"hex2": "#93784D",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2002",
+		"name": "Gravelord Grey*",
+		"hex": "#2C2E2F",
+		"hex1": "#414447",
+		"hex2": "#4E5054",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2013",
+		"name": "Zealot Yellow*",
+		"hex": "#B9A400",
+		"hex1": "#F1D500",
+		"hex2": "#F5E169",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2017",
+		"name": "Fire Giant Orange*",
+		"hex": "#953711",
+		"hex1": "#C24616",
+		"hex2": "#D18051",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2010",
+		"name": "Blood Red*",
+		"hex": "#841115",
+		"hex1": "#AC161B",
+		"hex2": "#BB563F",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2018",
+		"name": "Hive Dweller Purple*",
+		"hex": "#332154",
+		"hex1": "#432B6D",
+		"hex2": "#685184",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2015",
+		"name": "Highlord Blue*",
+		"hex": "#244161",
+		"hex1": "#30557F",
+		"hex2": "#697C9D",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Grim Black",
+		"hex": "#110e00",
+		"hex1": "#32323e",
+		"hex2": "#41413d",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Holy White",
+		"hex": "#c3c4c4",
+		"hex1": "#fefefe",
+		"hex2": "#eaeaea",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Dark Wood",
+		"hex": "#27180b",
+		"hex1": "#402812",
+		"hex2": "#5c4330",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Absolution Green",
+		"hex": "#1b2c17",
+		"hex1": "#23391e",
+		"hex2": "#425237",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Camo Cloak",
+		"hex": "#49582f",
+		"hex1": "#5e723d",
+		"hex2": "#87916b",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Slaughter Red",
+		"hex": "#4e100f",
+		"hex1": "#821b18",
+		"hex2": "#93422f",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Malignant Green",
+		"hex": "#a4aa7e",
+		"hex1": "#b9c08e",
+		"hex2": "#ccd2ad",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Magic Blue",
+		"hex": "#1a5d8c",
+		"hex1": "#2279b6",
+		"hex2": "#6e98c9",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Runic Grey",
+		"hex": "#4b5e6a",
+		"hex1": "#62798a",
+		"hex2": "#8e9aa7",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Plasmatic Bolt",
+		"hex": "#006c5a",
+		"hex1": "#008b77",
+		"hex2": "#66a899",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Sand Golem",
+		"hex": "#8d7819",
+		"hex1": "#b89b20",
+		"hex2": "#ccb662",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Purple Alchemy",
+		"hex": "#702e4f",
+		"hex1": "#923c67",
+		"hex2": "#ad768c",
+		"transparent": true
+	},
+	{
+		"brand": "Army Painter",
+		"range": "Speedpaint",
+		"code": "APWP2099",
+		"name": "Cloudburst Blue",
+		"hex": "#2f3d48",
+		"hex1": "#3e4f5e",
+		"hex2": "#6d7a89",
+		"transparent": true
+	}
+]
