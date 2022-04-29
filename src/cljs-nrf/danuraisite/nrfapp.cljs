@@ -1,13 +1,14 @@
 (ns danuraisite.nrfapp
-  (:require-macros [cljs.core.async.macros :refer [go]])
+  ;(:require-macros [cljs.core.async.macros :refer [go]])
   (:require 
     [reagent.core :as r]
-    [cljs-http.client :as http]
-    [cljs.core.async :refer [<!]]))
+  ;  [cljs-http.client :as http]
+  ;  [cljs.core.async :refer [<!]]
+  ))
     
 ; virtual folders
 
-(def ^:const imgurltemplate "https://netrunnerdb.com/card_image/{code}.png")
+(def ^:const imgurltemplate "https://assets.netrunnerdb.com/v1//large/{code}.jpg")
 
 (defn- set-item!
   "Set `key' in browser's localStorage to `val`."
@@ -94,22 +95,47 @@
                 (if (< 0 (mod (count sector) 9))
                   (concat sector (repeat (- 9 (mod (count sector) 9)) {:blank true :side side}))
                   sector)))))))
-                
+
+(def nrdb-url "https://netrunnerdb.com/api/2.0/public/")
+
+(defn json-callback [ atm, data ]
+  (reset! atm (-> data (js->clj :keywordize-keys true) :data)))
+
+(defn- colour-callback [ data ]
+  (reset! colours 
+    (apply merge 
+      (map 
+        #(hash-map (:code %) (str "#" (:color %))) 
+        (json-callback factions data)))))
+
+(defn- cards-callback [ data ]
+  (let [cardsapi  (-> data (js->clj :keywordize-keys true) :data)
+        cardsslug (->> cardsapi (map #(assoc % :slug (-> % :title normalise))))]
+    ;(reset! cards    cardsslug)
+    (reset! cardlist cardsslug)))
+
 (defn- initdata! []
   (reset! pwned (cljs.reader/read-string (get-item "nrpacks_owned")))
-  (reset! setcounts (cljs.reader/read-string (get-item "nrsets_owned")))
-  (go
-    (reset! cycles   (-> (<! (http/get "/netrunner/api/cycles"))  :body :data))
-    (reset! packs    (-> (<! (http/get "/netrunner/api/packs"))   :body :data))
-    (reset! factions (-> (<! (http/get "/netrunner/api/factions")) :body :data))
-    (reset! types    (-> (<! (http/get "/netrunner/api/types"))   :body :data))
-    (reset! colours 
-      (apply merge 
-        (map 
-          #(hash-map (:code %) (str "#" (:color %))) 
-          (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
-    (reset! cardlist (->> (<! (http/get "/netrunner/api/cards")) :body :data (map #(assoc % :slug (-> % :title normalise)))))))
-          
+  (.getJSON js/$ (str nrdb-url "cycles")   #(json-callback cycles %))
+  (.getJSON js/$ (str nrdb-url "packs")    #(json-callback packs %))
+  (.getJSON js/$ (str nrdb-url "types")    #(json-callback types %))
+  ;(.getJSON js/$ (str nrdb-url "factions") #(json-callback factions %))
+  (.getJSON js/$ (str nrdb-url "factions") #(colour-callback %))
+  (.getJSON js/$ (str nrdb-url "cards")    #(cards-callback %)))
+;(defn- initdata! []
+;  (reset! setcounts (cljs.reader/read-string (get-item "nrsets_owned")))
+;  (go
+;    (reset! cycles   (-> (<! (http/get "/netrunner/api/cycles"))  :body :data))
+;    (reset! packs    (-> (<! (http/get "/netrunner/api/packs"))   :body :data))
+;    (reset! factions (-> (<! (http/get "/netrunner/api/factions")) :body :data))
+;    (reset! types    (-> (<! (http/get "/netrunner/api/types"))   :body :data))
+;    (reset! colours 
+;      (apply merge 
+;        (map 
+;          #(hash-map (:code %) (str "#" (:color %))) 
+;          (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
+;    (reset! cardlist (->> (<! (http/get "/netrunner/api/cards")) :body :data (map #(assoc % :slug (-> % :title normalise)))))))
+;          
 (defn add-owned-packs! [ packs pwned ]
   (reset! pwned (clojure.set/union @pwned (->> packs (map :code) set)))
   (.setItem (.-localStorage js/window) "nrpacks_owned" @pwned))
@@ -120,11 +146,11 @@
   (.setItem (.-localStorage js/window) "nrpacks_owned" @pwned))
                                    
 (defn- pack-list-group-item [ cycle pack pageno rot-icon pwned ]
-  ^{:key (gensym)}[:div.mt-1
-    [:span.icon.icon-subroutine.mr-1]
+  ^{:key (gensym)}[:div.mt-1.d-flex
+    [:span.icon.icon-subroutine.me-1]
     [:span (:name pack)]
     rot-icon
-    [:span.mr-2.float-right {    
+    [:span.ms-auto {    
       :style {:cursor "pointer"}
       :on-click (fn []
         (reset! pageno 1)
@@ -136,24 +162,23 @@
                            
 (defn- cycle-list-group-item [ cycle packs pageno showrotated? pwned ]
   (let [rot-icon (if (:rotated cycle)
-                    [:i.fas.fa-sync-alt.text-danger.ml-2 {
+                    [:i.fas.fa-sync-alt.text-danger.ms-2 {
                       :title "Rotated"}])
        cyclepacks (->> packs (filter #(= (:cycle_code %) (:code cycle))))
        allpwned?  (clojure.set/subset? (->> cyclepacks (map :code) set) @pwned)]
     ^{:key (gensym)}[:div.list-group-item {:hidden (if (and (:rotated cycle) (not showrotated?)) "true")}
-      [:div      
-        [:span.icon.mr-2 {:class (str "icon-" (:code cycle))}]
+      [:div.d-flex
+        [:span.icon.me-2 {:class (str "icon-" (:code cycle))}]
         [:span.h5 (:name cycle)]
         rot-icon
-        [:span.mr-2.float-right {
+        [:span.ms-auto {
           :style {:cursor "pointer"}
           :on-click  (fn []
             (reset! pageno 1)
             (if allpwned? 
-                (rmv-owned-packs! cyclepacks pwned)
-                (add-owned-packs! cyclepacks pwned)))}
-          [:i.fas.fa-2x {:class (if allpwned? "fa-toggle-on" "fa-toggle-off")}]]
-        [:span.clearfix]]
+              (rmv-owned-packs! cyclepacks pwned)
+              (add-owned-packs! cyclepacks pwned)))}
+          [:i.fas.fa-2x {:class (if allpwned? "fa-toggle-on" "fa-toggle-off")}]]]
       (if (< 1 (count cyclepacks))
         (doall (for [pack  (sort-by :position cyclepacks)]
           (pack-list-group-item cycle pack pageno rot-icon pwned))))]))
@@ -213,8 +238,8 @@
             [:div.col-12.col-lg-5.mb-3
               [:div.row-fluid.mb-2
                 [:ul.nav.nav-tabs.nav-fill.mb-2
-                  [:li.nav-item [:a.nav-link.active {:data-toggle "tab" :href "#collection" :role "tab"} "Collection"]]
-                  [:li.nav-item [:a.nav-link {:data-toggle "tab" :href "#counts" :role "tab"} "Set counts"]]]
+                  [:li.nav-item [:a.nav-link.active {:data-bs-toggle "tab" :href "#collection" :role "tab"} "Collection"]]
+                  [:li.nav-item [:a.nav-link {:data-bs-toggle "tab" :href "#counts" :role "tab"} "Set counts"]]]
                 [:div.tab-content
                   [:div#collection.tab-pane.fade.active.show.my-2 {:role "tabpanel"}
                     [:button.btn.btn-sm.btn-outline-secondary.float-right.mb-2 {
@@ -224,11 +249,11 @@
                     [:div.list-group.w-100
                       (let [cycles @cycles
                             packs @packs]
-                        (doall (for [cycle (sort-by :position cycles)]
+                        (doall (for [cycle (->> cycles (sort-by :position) reverse)]
                           (cycle-list-group-item cycle packs pageno @showrotated? pwned))))]]
                   [:div#counts.tab-pane.fade.my-2 {:role "tabpanel"}
                     [:div.d-flex.justify-content-between
-                      [:span.mr-2.w-25 "Core 1.0"]
+                      [:span.me-2.w-25 "Core 1.0"]
                       [:span.text-muted (-> @setcounts :core str)]
                       [:input.custom-range.w-50 {
                         :type "range"
@@ -239,7 +264,7 @@
                           (swap! setcounts assoc :core (-> e .-target .-value))
                           (set-item! "nrsets_owned" @setcounts))}]]
                     [:div.d-flex.justify-content-between
-                      [:span.mr-2.w-25 "Core 2.0"]
+                      [:span.me-2.w-25 "Core 2.0"]
                       [:span.text-muted (-> @setcounts :core2 str)]
                       [:input.custom-range.w-50 {
                         :type "range"
