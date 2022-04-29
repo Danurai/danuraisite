@@ -17,12 +17,12 @@
         [:div.modal-header  
           [:div (str @modal-data)]
           [:h5 "Confirmation"]
-          [:button.close {:type "button" :data-dismiss "modal" :aria-label "close"} [:span {:aria-hidden "true"} "x"]]]
+          [:button.close {:type "button" :data-bs-dismiss "modal" :aria-label "close"} [:span {:aria-hidden "true"} "x"]]]
         [:div.modal-body
           [:div (str "Are you sure you want to remove " (:name @modal-data) " from the roll of victims?")]]
         [:div.modal-footer 
-          [:button.btn.btn-secondary {:type "button" :data-dismiss "modal"} "Cancel"]
-          [:button.btn.btn-warning   {:type "button" :data-dismiss "modal" :on-click (:fn @modal-data)} "Confirm"]]]]])
+          [:button.btn.btn-secondary {:type "button" :data-bs-dismiss "modal"} "Cancel"]
+          [:button.btn.btn-warning   {:type "button" :data-bs-dismiss "modal" :on-click (:fn @modal-data)} "Confirm"]]]]])
     
 (defn- don-modal []
   (let [spec-score (get-spec-score (:score @modal-data) (:specialisations @modal-data))]
@@ -31,7 +31,7 @@
         [:div.modal-content
           [:div.modal-header
             [:h5.modal-title (str (:name @modal-data) "/" (:complement @modal-data) " Specialisation")]
-            [:button.close {:type "button" :data-dismiss "modal" :aria-label "close"} 
+            [:button.close {:type "button" :data-bs-dismiss "modal" :aria-label "close"} 
               [:span {:aria-hidden "true"} "x"]]]
           [:div.modal-body
             [:div.input-group
@@ -44,10 +44,10 @@
             [:div.small.mt-2 (str "Examples: " (get @model/hints (:key @modal-data)) )]]
           [:div.modal-footer 
             [:button.btn.btn-secondary {:type "button" 
-                                     :data-dismiss "modal"} 
+                                     :data-bs-dismiss "modal"} 
                                     "Close"]
             [:button.btn.btn-primary   {:type "button" 
-                                     :data-dismiss "modal"
+                                     :data-bs-dismiss "modal"
                                      :disabled (empty? (:specialisation @modal-data))
                                      :on-click (fn [] (model/add-specialisation! @modal-data spec-score)
                                                     (reset! modal-data nil))} 
@@ -59,14 +59,14 @@
        specialised? (-> @model/don-data :stats statkey :specialisations empty? not)]
     [:div.row-fluid.border-bottom.mb-2.pb-3
       [:div.d-flex.justify-content-between
-          [:div [:b.py-1.px-2.mr-1 (:score stat)][:span (:name stat)]]
+          [:div [:b.py-1.px-2.me-1 (:score stat)][:span (:name stat)]]
           [:a.small
              {:href   "#"
-             :data-toggle "modal" 
-             :data-target "#don-modal" 
+             :data-bs-toggle "modal" 
+             :data-bs-target "#don-modal" 
              :on-click #(reset! modal-data (assoc stat :key statkey))}
               "Specialise"]
-          [:div [:span (:complement stat)][:b.py-1.px-2.ml-1 (- pool (:score stat))]]]
+          [:div [:span (:complement stat)][:b.py-1.px-2.ms-1 (- pool (:score stat))]]]
       [:div
         [:input.custom-range {:type "range"
                            :min 0 
@@ -85,7 +85,7 @@
 
 (defn- don-input [ key label & params ] 
   [:div.form-group
-    [:label.form-label.mr-1.show-tooltip {:title (key @model/hints)} label]
+    [:label.form-label.me-1.show-tooltip {:title (key @model/hints)} label]
     [:input.form-control (merge (first params) 
                               {:type "text" 
                                :value (key @model/don-data) 
@@ -98,7 +98,7 @@
       (don-input :concept "Concept" {:placeholder "Victim is a..."})
       (don-input :badhabits "Bad Habit(s)")
       [:div.form-group
-        [:label.form-label.mr-1 "Notes"]
+        [:label.form-label.me-1 "Notes"]
         [:textarea.form-control {:rows "4"
                               :value (:notes @model/don-data)
                               :on-change #(swap! model/don-data assoc :notes (.. % -target -value))}]]
@@ -106,7 +106,7 @@
         [:label.form-label "Survival Points"]
         [:div.d-flex.justify-content-center
           (for [n (range 5)]
-            ^{:key n}[:i.fas.fa-skull.fa-2x.mr-1])]]]
+            ^{:key n}[:i.fas.fa-skull.fa-2x.me-1])]]]
     [:div.col-sm-6
       [:div.text-center [:b "Attributes"]]
       (don-slider :identify)
@@ -126,8 +126,8 @@
               (.preventDefault e)
               (model/choose-victim (:uid v)))}
             [:div.d-flex.h4 (:name v)
-              [:button.btn.close.ml-auto.show-tooltip {
-                :data-toggle "modal" :data-target "#confirm-modal" 
+              [:button.btn.close.ms-auto.show-tooltip {
+                :data-bs-toggle "modal" :data-bs-target "#confirm-modal" 
                 :title "Remove Victim" 
                 :on-click (fn [e] 
                           (reset! modal-data {:name (:name v) :fn #(model/remove-victim (:uid v))}) 
@@ -149,10 +149,10 @@
             [:div.row "Log in to see your Victim Roll."]
             [don-victim-roll])]
       [:div.col-sm-9
-        [:div.row.px-3
+        [:div.d-flex.px-3
           [:button.btn.btn-primary {:on-click #(model/reset-don!)} "Reset"]
-          [:button.btn.btn-outline-dark.ml-2 {:on-click #(.print js/window)} "Print"]
+          [:button.btn.btn-outline-dark.ms-2 {:on-click #(.print js/window)} "Print"]
           (if (false? @model/don-victims)
-            [:div.ml-auto "You must be logged in to Save Victims"]
-            [:button.btn.btn-warning.ml-auto {:on-click #(model/savevictim)} "Save"])]
+            [:div.ms-auto "You must be logged in to Save Victims"]
+            [:button.btn.btn-warning.ms-auto {:on-click #(model/savevictim)} "Save"])]
         [don-sheet]]]])
