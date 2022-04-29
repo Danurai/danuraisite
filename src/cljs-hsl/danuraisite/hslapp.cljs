@@ -88,6 +88,7 @@ Intermediary Values:
           background-image: linear-gradient(90deg,black," (hsltohex [(:h @hslvals) (/ (:s @hslvals) 100) 0.5]) ",white);
         })")]
     [:div.col-sm-6
+      [:h4 "Colour Sliders"]
       [:form
         [:label "Hue 0-360"]
         [:input.form-control-range.hue-range.w-100 {
@@ -107,6 +108,7 @@ Intermediary Values:
         [:div (str "Hex: " (:hex @hslvals))]]
       [:div.row [:a {:href "https://en.wikipedia.org/wiki/HSL_and_HSV" :target "_blank"} "https://en.wikipedia.org/wiki/HSL_and_HSV"]]]
    [:div.col-sm-6
+    [:h4 "Random Colours"]
     [:div.row-fluid
       [:div.btn-group.d-flex {:role "group"}
         (map (fn [c] 

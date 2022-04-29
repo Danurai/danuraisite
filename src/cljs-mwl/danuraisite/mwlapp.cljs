@@ -1,10 +1,11 @@
 (ns danuraisite.mwlapp
-  (:require-macros [cljs.core.async.macros :refer [go]])
+  ;(:require-macros [cljs.core.async.macros :refer [go]])
   (:require 
-    [goog.string :as gstring]
+    ;[goog.string :as gstring]
     [reagent.core :as r]
-    [cljs-http.client :as http]
-    [cljs.core.async :refer [<!]]))
+    ;[cljs-http.client :as http]
+    ;[cljs.core.async :refer [<!]]
+    ))
     
 (enable-console-print!)
 
@@ -33,21 +34,47 @@
       (clojure.string/replace #"[\u015e-\u015f]" "s") ;Ş
       (clojure.string/replace #"[\u0022|\s|\-|\_]" "")))
 
+(def nrdb-url "https://netrunnerdb.com/api/2.0/public/")
+
+(defn json-callback [ atm, data ]
+  (reset! atm (-> data (js->clj :keywordize-keys true) :data)))
+
+(defn- colour-callback [ data ]
+  (reset! colours 
+    (apply merge 
+      (map 
+        #(hash-map (:code %) (str "#" (:color %))) 
+        (json-callback factions data)))))
+
+(defn- cards-callback [ data ]
+  (let [cardsapi  (-> data (js->clj :keywordize-keys true) :data)
+        cardsslug (->> cardsapi (map #(assoc % :slug (-> % :title normalise))))]
+    (reset! cards    cardsslug)
+    (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug))))
+
 (defn- init! []
-  (go
-    (reset! colours 
-      (apply merge 
-        (map 
-          #(hash-map (:code %) (str "#" (:color %))) 
-          (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
-    (reset! cycles   (-> (<! (http/get "/netrunner/api/cycles"))   :body :data))
-    (reset! packs    (-> (<! (http/get "/netrunner/api/packs"))    :body :data))
-    (reset! mwls     (-> (<! (http/get "/netrunner/api/mwl"))      :body :data))
-    (reset! types    (-> (<! (http/get "/netrunner/api/types"))    :body :data))
-    (let [cardsapi (<! (http/get "/netrunner/api/cards"))
-          cardsslug (->> cardsapi :body :data (map #(assoc % :slug (-> % :title normalise))))]
-      (reset! cards    cardsslug)
-      (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug)))))
+  (.getJSON js/$ (str nrdb-url "cycles")   #(json-callback cycles %))
+  (.getJSON js/$ (str nrdb-url "packs")    #(json-callback packs %))
+  (.getJSON js/$ (str nrdb-url "types")    #(json-callback types %))
+  (.getJSON js/$ (str nrdb-url "mwl")      #(json-callback mwls %))
+  ;(.getJSON js/$ (str nrdb-url "factions") #(json-callback factions %))
+  (.getJSON js/$ (str nrdb-url "factions") #(colour-callback %))
+  (.getJSON js/$ (str nrdb-url "cards")    #(cards-callback %)))
+;; Replace by .getJSON js/$ calls
+  ;(go
+    ;(reset! colours 
+    ;  (apply merge 
+    ;    (map 
+    ;      #(hash-map (:code %) (str "#" (:color %))) 
+    ;      (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
+    ;(reset! cycles   (-> (<! (http/get (str nrdb-url "cycles")))   :body :data))
+    ;(reset! packs    (-> (<! (http/get "/netrunner/api/packs"))    :body :data))
+    ;(reset! mwls     (-> (<! (http/get "/netrunner/api/mwl"))      :body :data))
+    ;(reset! types    (-> (<! (http/get "/netrunner/api/types"))    :body :data))
+    ;(let [cardsapi (<! (http/get "/netrunner/api/cards"))
+    ;      cardsslug (->> cardsapi :body :data (map #(assoc % :slug (-> % :title normalise))))]
+    ;  (reset! cards    cardsslug)
+    ;  (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug)))))
  ; (reset! factions (-> (<! (http/get "/api/factions")) :body :data))))
           
   
@@ -79,7 +106,7 @@
     
 (defn- packtags [ cardcycles ]
   (for [oc cardcycles]
-    ^{:key (gensym)}[:i.icon.mr-2 {
+    ^{:key (gensym)}[:i.icon.me-2 {
       :class (str "icon-" (:code oc) (if (:rotated oc) " text-danger")) 
       :title (str (:name oc) (if (:rotated oc) " !Rotated")) }]))              
         
@@ -101,12 +128,12 @@
             :text-decoration (if rotated? "line-through")
           }}
           (if (:is_restricted cardmwl)
-            [:i.fas.fa-exclamation.text-warning.mr-2 {:title "Restricted"}])
+            [:i.fas.fa-exclamation.text-warning.me-2 {:title "Restricted"}])
           (if (= 0 (:deck_limit cardmwl))
-            [:i.fas.fa-times-circle.text-danger.mr-2 {:title "Removed"}])
-          [:span.mr-2 (str (if (:uniqueness c) "\u2B24 ") (:title c) " (" (:quantity c) ")")]
-          (repeat (:universal_faction_cost cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])
-          (repeat (:global_penalty cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.mr-1.fa-xs])]
+            [:i.fas.fa-times-circle.text-danger.me-2 {:title "Removed"}])
+          [:span.me-2 (str (if (:uniqueness c) "\u2B24 ") (:title c) " (" (:quantity c) ")")]
+          (repeat (:universal_faction_cost cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.me-1.fa-xs])
+          (repeat (:global_penalty cardmwl) ^{:key (gensym)}[:i.fas.fa-circle.me-1.fa-xs])]
         (packtags cardcycles)]]))
         
 (defn- packlist [ cardset cards cycles packs ]
@@ -156,7 +183,7 @@
                         (reset! selected_name (:name c))
                         (reset! selected_rotated? (:rotated c)))
                       }
-                      [:i.icon.mr-2 {:class (str "icon-" (:code c))}]
+                      [:i.icon.me-2 {:class (str "icon-" (:code c))}]
                       [:span (:name c)]
                       [:span.float-right rotated_icon]]
                     (if (< 1 (:size c))
@@ -168,7 +195,7 @@
                             (reset! selected_name (:name p))
                             (reset! selected_rotated? (:rotated c)))
                           }
-                            [:i.icon.icon-subroutine.mr-2] 
+                            [:i.icon.icon-subroutine.me-2] 
                             (:name p)
                             [:span.float-right rotated_icon]]))])))]]
           [:div#deck.tab-pane.fade {:role "tabpanel"}
@@ -180,11 +207,11 @@
       [:div.pt-2 ;sticky-top.pt-2
         [:div.row-fluid.d-flex.mb-2
           [:span.w-50.h4 
-            [:span.mr-2 @selected_name]
-            [:span.mr-2 (str "(" (->> @cardlist count-qty) ")")]
+            [:span.me-2 @selected_name]
+            [:span.me-2 (str "(" (->> @cardlist count-qty) ")")]
             [:span {:hidden (false? @selected_rotated?)}
               [:span.fas.fa-sync-alt.text-danger {:title "Rotated"}]]]
-          [:select.form-control.w-50.ml-auto {:value @mwl :on-change #(reset! mwl (-> % .-target .-value))}
+          [:select.form-control.w-50.ms-auto {:value @mwl :on-change #(reset! mwl (-> % .-target .-value))}
             (for [mwl @mwls]
               ^{:key (gensym)}[:option (:name mwl)])]]
         (let [mwlcards (->> @mwls (filter #(= (:name %) @mwl)) first :cards)
@@ -198,7 +225,7 @@
           (doall (for [sc (->> @cardlist (map :side_code) distinct)]
             [:div.row-fluid.mb-3 {:key (gensym)}
               [:div
-                [:b.mr-2 (clojure.string/capitalize sc)]
+                [:b.me-2 (clojure.string/capitalize sc)]
                 [:span (str "(" (->> @cardlist (filter #(= (:side_code %) sc)) count-qty) ")")]]
               [:div {:style {
                 :-webkit-column-gap "20px" :-webkit-column-count 3
@@ -208,7 +235,7 @@
                   ^{:key (gensym)}[:div {:style {:break-inside "avoid"}}
                     [:div 
                       [:u 
-                        [:span.mr-2 (clojure.string/capitalize tc)]
+                        [:span.me-2 (clojure.string/capitalize tc)]
                         [:span (str "(" (->> cardset (filter #(= (:side_code %) sc)) (filter #(= (:type_code %) tc)) count-qty) ")")]]]
                       (for [c (->> cardset (filter #(= (:side_code %) sc)) (filter #(= (:type_code %) tc)) (sort-by :position))]
                         (card-div colours cards packs cycles mwlcards c))
@@ -306,22 +333,22 @@
             [:h5 "Runner Cards"]
             [:div.row
               [:div.col-sm-6
-                [:div.mb-1 [:b "Restricted"] [:span.ml-2 "🦄"]]
+                [:div.mb-1 [:b "Restricted"] [:span.ms-2 "🦄"]]
                 (for [c (->> mwlcards (filter #(= (:side_code %) "runner")) (filter #(true? (:unicorn %))) (sort-by :title))]
                   (card-link c))]
               [:div.col-sm-6
-                [:div.mb-1 [:b "Banned"] [:i.fas.fa-times-circle.text-danger.ml-2]]
+                [:div.mb-1 [:b "Banned"] [:i.fas.fa-times-circle.text-danger.ms-2]]
                 (for [c (->> mwlcards (filter #(= (:side_code %) "runner")) (filter #(true? (:banned %))) (sort-by :title))]
                   (card-link c))]]]
           [:div.col-sm-6
             [:h5 "Corp Cards"]
             [:div.row
               [:div.col-sm-6
-                [:div.mb-1 [:b "Restricted"] [:span.ml-2 "🦄"]]
+                [:div.mb-1 [:b "Restricted"] [:span.ms-2 "🦄"]]
                 (for [c (->> mwlcards (filter #(= (:side_code %) "corp")) (filter #(true? (:unicorn %))) (sort-by :title))]
                   (card-link c))]
               [:div.col-sm-6
-                [:div.mb-1 [:b "Banned"] [:i.fas.fa-times-circle.text-danger.ml-2]]
+                [:div.mb-1 [:b "Banned"] [:i.fas.fa-times-circle.text-danger.ms-2]]
                 (for [c (->> mwlcards (filter #(= (:side_code %) "corp")) (filter #(true? (:banned %))) (sort-by :title))]
                   (card-link c))]]]]]]))
       
@@ -337,14 +364,14 @@
           ; Tablist
             [:ul.nav.nav-tabs.w-100.nav-fill {:role "tablist"}
               [:li.nav-item
-                [:a.nav-link {:data-toggle "tab" :href "#main" :role "tab"} "Main"]]
+                [:a.nav-link.active {:data-bs-toggle "tab" :href "#main" :role "tab"} "Main"]]
               [:li.nav-item
-                [:a.nav-link.active {:data-toggle "tab" :href "#timeline" :role "tab"} "MWL / Rotation Timeline"]]]
+                [:a.nav-link {:data-bs-toggle "tab" :href "#timeline" :role "tab"} "MWL / Rotation Timeline"]]]
           ; Tab Content 
             [:div.tab-content.w-100.py-2
-              [:div#main.tab-pane.fade {:role "tabpanel"}
+              [:div#main.tab-pane.fade.show.active {:role "tabpanel"}
                 (main mwl selected_name selected_rotated?)]
-              [:div#timeline.tab-pane.fade.show.active {:role "tabpanel"}
+              [:div#timeline.tab-pane.fade {:role "tabpanel"}
                 (timeline @mwls @cycles @packs @cards)
                 ]]]]])))
                           

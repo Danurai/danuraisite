@@ -75,9 +75,21 @@
       [:img#boardb {:src "img/boards/boardb.png"}]
       [:img#boardc {:src "img/boards/boardc.png"}]
       [:img#boardd {:src "img/boards/boardd.png"}]]
+    [:div.row.mb-2 
+      [:h4.text-center "Spirit Island Score Log"]]
+    [:h5 "Setup"]
     [:div.row.mb-2
       [:div.col-sm-4
+        [:div.d-flex.justify-content-center.input-group.mb-1 {:style {:display "inline-flex" :flex "auto"}}
+          [:label.my-auto.me-1 "Players:"]
+          [:select.form-control.w-auto.me-2 {
+            :value (:players @app) 
+            :on-change #(swap! app assoc :players (-> % .-target .-value int))}
+            (for [n (range 1 5)] [:option {:key (gensym)} n])]
+          [:div [:button.btn.btn-outline-secondary.me-1 {:on-click #(randomise)} "Randomise"]]]]
+      [:div.col-sm-4
         [:div.d-flex.justify-content-center
+          [:span.me-2 "Expansions:"]
           [:div.form-check.form-check-inline
             [:input.form-check-input {
               :type "checkbox" 
@@ -90,20 +102,12 @@
               :value (-> @app :sets :bandc) 
               :on-change #(if (-> @app :sets :bandc) (swap! app update :sets dissoc :bandc) (swap! app assoc-in [:sets :bandc] true))}]
             [:label.form-check-label "Branch and Claw"]]]]
-        [:div.col-sm-4
-          [:div.d-flex.justify-content-center.input-group.mb-1 {:style {:display "inline-flex" :flex "auto"}}
-            [:label.my-auto.mr-1 "Players:"]
-            [:select.form-control.w-auto.mr-2 {
-              :value (:players @app) 
-              :on-change #(swap! app assoc :players (-> % .-target .-value int))}
-              (for [n (range 1 5)] [:option {:key (gensym)} n])]
-            [:div [:button.btn.btn-outline-secondary.mr-1 {:on-click #(randomise)} "Randomise"]]]]
-        [:div.col-sm-4
-          [:div.d-flex.justify-content-center
-            [:span.my-auto (str "Difficulty: " (getdiff) "/" maxdiff)]
-            [:div.progress.mx-1.border.my-auto {:style {:width "150px"}}
-              [:div.progress-bar {:role "" :style {:width (-> (getdiff) (/ maxdiff) (* 100) int (str "%"))}}]]]]]
-    [:div.row.mb-2
+      [:div.col-sm-4
+        [:div.d-flex.justify-content-center
+          [:span.my-auto (str "Difficulty: " (getdiff) "/" maxdiff)]
+          [:div.progress.mx-1.border.my-auto {:style {:width "150px"}}
+            [:div.progress-bar {:role "" :style {:width (-> (getdiff) (/ maxdiff) (* 100) int (str "%"))}}]]]]]
+    [:div.row.mb-3
       [:div.col-sm-6
         [:label "Spirits"]
         (doall (for [n (range (:players @app)) :let [spirits (concat (->> sidata :spirits (map :name)) ["none"])] ]
@@ -113,7 +117,9 @@
             :on-change #(swap! app assoc-in [:spirits n] (-> % .-target .-value))}
             (for [spirit spirits]
               [:option {:key (gensym)} spirit])]))
-        [:div (apply str "Boards: " (->> @app :boards (take (:players @app)) (map #(str "'" (clojure.string/upper-case %) "' "))))]]
+        [:div.d-flex.justify-content-around
+          [:button.btn.btn-primary {:type "button" :data-bs-toggle "modal" :data-bs-target "#mapmodal"} 
+            (apply str "Show Boards: " (->> @app :boards (take (:players @app)) (map #(str "'" (clojure.string/upper-case %) "' "))))]]]
       [:div.col-sm-6
         [:label "Scenario"]
         [:select.form-control.mb-1 {
@@ -123,12 +129,12 @@
             [:option {:key (gensym)} scen])]
         [:label "Adversary"]
         [:div.d-flex
-          [:select.form-control.mr-1 {
+          [:select.form-control.me-1 {
             :value (:adversary @app) 
             :on-change #(swap! app assoc :adversary (-> % .-target .-value))}
             (for [adv (->> sidata :adversaries (map :name))]
               [:option {:key (gensym)} adv])]
-          [:label.my-auto.mr-1 "Lvl:"]
+          [:label.my-auto.me-1 "Lvl:"]
           [:select.form-control {
             :style {:width "auto"}
             :value (:advlvl @app "Base")
@@ -136,19 +142,24 @@
             (for [advlvl (range 7)] [:option {:key (gensym)} (if (= 0 advlvl) "Base" advlvl)])]]]]
     [:div.row.border-top.my-2.py-2
       [:div.col
-        [:div.form-inline
-          [:label.mr-1.my-auto "Win?"]
-          [:input.form-control.mr-2 {
-            :type "checkbox" 
-            :checked (-> @app :score :win true?) 
-            :on-change #(if (-> @app :score :win) (swap! app update :score dissoc :win) (swap! app assoc-in [:score :win] true))}]
-          [:label.mr-1 "Invader Deck"]
-          [:input.form-control.mr-2 {:type "number" :value (-> @app :score :invdeck) :on-change #(swap! app assoc-in [:score :invdeck] (-> % .-target .-value))}]
-          [:label.mr-1 "Dahan"]
-          [:input.form-control.mr-2 {:type "number" :value (-> @app :score :dahan) :on-change #(swap! app assoc-in [:score :dahan] (-> % .-target .-value))}]
-          [:label.mr-1 "Blight"]
-          [:input.form-control.mr-2 {:type "number" :value (-> @app :score :blight) :on-change #(swap! app assoc-in [:score :blight] (-> % .-target .-value))}]
-          [:div.h5.ml-auto  "Score: " (score)]
+        [:h5 "Board State at end of Game"]
+        [:div.d-flex.justify-content-between
+          [:div.d-flex
+            [:label.me-1.my-auto {:style {:white-space "nowrap"}} "Invader Deck"]
+            [:input.form-control {:type "number" :value (-> @app :score :invdeck) :on-change #(swap! app assoc-in [:score :invdeck] (-> % .-target .-value))}]]
+          [:div.d-flex
+            [:label.me-1.my-auto "Dahan"]
+            [:input.form-control {:type "number" :value (-> @app :score :dahan) :on-change #(swap! app assoc-in [:score :dahan] (-> % .-target .-value))}]]
+          [:div.d-flex
+            [:label.me-1.my-auto "Blight"]
+            [:input.form-control {:type "number" :value (-> @app :score :blight) :on-change #(swap! app assoc-in [:score :blight] (-> % .-target .-value))}]]
+          [:div.form-check.me-2.my-auto 
+            [:input.form-check-input {
+              :type "checkbox" 
+              :checked (-> @app :score :win true?) 
+              :on-change #(if (-> @app :score :win) (swap! app update :score dissoc :win) (swap! app assoc-in [:score :win] true))}]
+            [:label.form-check-label "Win?"]]
+          [:h4.my-auto.me-3  "Score: " (score)]
         ]]]
     [:div.row.border-bottom..pb-2.mb-2
       [:div.col

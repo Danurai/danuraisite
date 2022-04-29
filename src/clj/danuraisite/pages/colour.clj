@@ -12,13 +12,32 @@
           [:div#app]]
        (h/include-js "/js/compiled/hsl-app.js")])))
      
+
 (defn paintranges [ req ]
   (h/html5
     pretty-head
     [:body
       (navbar req)
-      [:div.container.my-3
-        [:div#comparison.d-flex.mb-2]
+      [:div#filterModal.modal {:tabindex -1}
+        [:div.modal-dialog
+          [:div.modal-content 
+            [:div.modal-header
+              [:h4.modal-title "Filters"]
+              [:button.btn-close {:type "button" :data-bs-dismiss "modal"} ]]
+            [:div.modal-body
+              [:div.d-flex [:div.form-check [:input#filter_owned.form-check-input {:type "checkbox"}] [:label.form-check-label "Owned"] ]]
+              [:div.d-flex
+                [:div.flex-fill.me-1
+                  [:h5 "Brand"]
+                  [:select#brandmulti.form-control {:multiple true :size 10}]]
+                [:div.flex-fill 
+                  [:h5 "Range"]
+                  [:select#rangemulti.form-control {:multiple true :size 10}]]]]
+            [:div.modal-footer
+              [:button.btn.btn-primary {:type "button" :data-bs-dismiss "modal"} "OK"]]]]]
+      [:div.container-fluid.my-3
+        [:div#comparison.d-flex]
+        [:div#matches.d-flex.mb-2]
         [:div
           [:table#colourtable]]]
       (h/include-css "//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css")
@@ -26,35 +45,19 @@
       ;<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
       ;<script type="text/javascript" src="DataTables/datatables.min.js"></script>
       (h/include-js  "/js/paintchart2.js")
-      (h/include-css "/css/colour.css")
-      ]))
+      (h/include-css "/css/colour.css")]))
 
-(defn citadel-old [ req ]
-  (h/html5 
-    pretty-head
-    [:style ".sample { cursor: pointer;} .sortable { cursor: pointer;}"]
-    [:body
-      (navbar req)
-      [:div.container
-        [:div.sticky-top.py-3.bg-light.row {:style "z-index: 1;"}
-          [:div.col-12
-            [:div.row.form-inline
-              [:label.mr-2.my-auto "Filter by Range"]
-              [:select#selectrange.mr-2 {:multiple true}]
-              [:input#filter.form-control {:type "text" :placeholder "Filter Name"}]]
-            [:div#comparison.row]]]
-        [:div.row
-          [:table.table.table-sm
-            [:thead 
-              [:tr 
-                [:th.sortable "Name"]
-                [:th.sortable "Range"]
-                [:th.sortable "Match"]
-                [:th.sortable "Hex"]
-                [:th.sortable "hue"]
-                [:th.sortable "sat"]
-                [:th.sortable "lum"]
-                [:th "Sample"]]]
-            [:tbody#colours]]]]
-      (h/include-js "https://cdnjs.cloudflare.com/ajax/libs/taffydb/2.7.2/taffy-min.js")
-      (h/include-js "/js/paintchart.js?v=1.000")]))
+(defn painttbl [ req ]
+  (let [cols (-> "private/paintlist.json" io/resource slurp (json/read-str :key-fn keyword))]
+    (h/html5
+      pretty-head
+      [:div.container.my-3
+        [:table#tbl.table
+          [:thead [:tr [:th "Name"][:th "Range"][:th "OldGW"][:th "Hex"]]]
+          [:tbody
+            (for [clr cols]
+              [:tr [:td (:name clr)][:td (:range clr)][:td (:oldgw clr)][:td (:hex clr)]])]
+        ]]
+      [:script "$(document).ready(function(){$('#tbl').DataTable({paging: false})});"]
+      (h/include-css "//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css")
+      (h/include-js "//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"))))

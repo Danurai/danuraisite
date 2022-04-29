@@ -128,7 +128,6 @@
 (defroutes colour-routes
   (GET "/hsl" [] pages/hsl)
   (GET "/paintranges" [] pages/paintranges)
-  (GET "/citadel-old" [] pages/citadel-old)
 	(GET "/paintlist" [] 
 		(response (slurp (io/resource "private/paintlist.json"))))
 	(GET "/api/json" [] 
