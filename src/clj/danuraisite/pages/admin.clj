@@ -10,8 +10,8 @@
         [:div.row.my-2
           [:div.col-sm-6.mx-auto
             [:ul.nav.nav-tabs.nav-fill {:role "tablist"}
-              [:li.nav-item [:a.nav-link.active {:data-toggle "tab" :role "tab" :href "#logintab"} "Login"]]
-              [:li.nav-item [:a.nav-link {:data-toggle "tab" :role "tab" :href "#registertab"} "Register"]]]
+              [:li.nav-item {:role "presentation"} [:button.nav-link.active {:data-bs-toggle "tab" :data-bs-target "#logintab" :type "button" :role "tab"} "Login"]]
+              [:li.nav-item {:role "presentation"} [:button.nav-link {:data-bs-toggle "tab" :data-bs-target "#registertab" :type "button" :role "tab"} "Register"]]]
             [:div.tab-content.my-2
               [:div#logintab.tab-pane.fade.show.active {:role "tabpanel"}
                 [:form {:action "login" :method "post"}
@@ -23,7 +23,8 @@
                     [:input.form-control {:type "password" :name "password" :placeholder "Password"}]]
                   [:button.btn.btn-warning.my-2 {:type "submit"} "Login"]]]
               [:div#registertab.tab-pane.fade {:role "tabpanel"}
-                [:form.needs-validation.was-validated {:action "register" :method "post" :novalidate true}
+                [:div [:b "This form is not active"]]
+                [:form.needs-validation {:action "register" :method "post" :novalidate true}
                   [:div.form-group
                     [:label {:for "username"} "User Name"]
                     [:input#username.form-control {:type "text" :name "username" :placeholder "Username" :auto-focus true :required true}]
@@ -36,17 +37,17 @@
                     [:div.input-group
                       [:input#password.form-control {:type "password" :name "password" :placeholder "password" :auto-focus true :required true}]
                       [:div.invalid-feedback "Password is required"]]
-                    [:small [:meter#pwdscoremeter.mr-1 {:value 0 :min 0 :max 5 :low 2 :high 4 :optimum 5}][:span#pwdscoretxt "Very Weak"]]]
+                    [:small [:meter#pwdscoremeter.me-1 {:value 0 :min 0 :max 5 :low 2 :high 4 :optimum 5}][:span#pwdscoretxt "Very Weak"]]]
                   [:div.form-group
                     [:label {:for "password1"} "Confirm Password"]
                     [:input#password1.form-control {:type "password" :name "password1" :placeholder "password" :auto-focus true :required true}]
                     [:div.invalid-feedback "Passwords required, passwords must match"]]
-                  [:button.btn.btn-warning.mr-2.disabled {:type "submit"} "Register"]]]]]]]
+                  [:button.btn.btn-warning.me-2.disabled {:type "submit"} "Register"]]]]]]]
       (h/include-js "/js/formvalidation.js?v=0.1")
       [:script {
         :src "https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" 
         :integrity "sha256-Znf8FdJF85f1LV0JmPOob5qudSrns8pLPZ6qkd/+F0o="
-        :crossorigin "anonymous"}]]))        
+        :crossorigin "anonymous"}]]))
         
 (defn useradmin [ req ]
   (h/html5
@@ -72,18 +73,18 @@
                   [:div.form-check
                     [:input.form-check-input {:name "admin" :type "checkbox"}]
                     [:label.form-check-label "Admin"]]]]
-              [:button.btn.btn-primary.float-right {:role "submit"} [:i.fas.fa-plus-circle.mr-1] "Create User"]]]
+              [:button.btn.btn-primary.float-right {:role "submit"} [:i.fas.fa-plus-circle.me-1] "Create User"]]]
           (for [user (db/get-users)]
             ^{:key (:uid user)}[:li.list-group-item
                 [:div.row-fluid.mb-1
-                  [:span.h3.mr-2 (:username user)]
+                  [:span.h3.me-2 (:username user)]
                   (if (or (true? (:admin user)) (= 1 (:admin user)))
                     [:i.fas.fa-user-plus.text-primary.align-top]
                     [:i.fas.fa-user.align-top])
                     (if (not= (:uid user) 1001) 
                       [:form {:action "admin/deleteuser" :method "post"}
                         [:input {:type "text" :name "uid" :value (:uid user) :readonly true :hidden true}]
-                        ;[:button.btn.btn-danger.float-right [:i.fas.fa-times.mr-1] "Delete"]
+                        ;[:button.btn.btn-danger.float-right [:i.fas.fa-times.me-1] "Delete"]
                         ])]
                 [:div.row
                   [:div.col-sm-2
@@ -91,16 +92,16 @@
                       [:form.form-inline {:action "admin/updateadmin" :method "post"}
                         [:input {:type "text" :name "uid" :value (:uid user) :readonly true :hidden true}]
                         (if (or (true? (:admin user)) (= 1 (:admin user)))
-                          [:button.btn.btn-danger {:role "submit"} [:i.fas.fa-minus-circle.mr-1] "Admin"]
-                          [:button.btn.btn-primary {:role "submit" :name "admin"} [:i.fas.fa-plus-circle.mr-1] "Admin"])])]
+                          [:button.btn.btn-danger {:role "submit"} [:i.fas.fa-minus-circle.me-1] "Admin"]
+                          [:button.btn.btn-primary {:role "submit" :name "admin"} [:i.fas.fa-plus-circle.me-1] "Admin"])])]
                   [:div.col-auto
                     [:form.form-inline {:action "admin/updatepassword" :method "post"}
                       [:input.form-control {:name "uid" :value (:uid user) :readonly true :hidden true}]
                       [:div.form-group 
-                        [:label.mr-2 "Reset password"]
+                        [:label.me-2 "Reset password"]
                         [:input.form-control {:name "password" :type "password" :placeholder "new password"}]
                         [:input.form-control {:name "confirm" :type "password" :placeholder "confirm password"}]]
-                      [:button.btn.btn-warning [:i.fas.fa-edit.mr-1] "Reset"]]]]])]]
+                      [:button.btn.btn-warning [:i.fas.fa-edit.me-1] "Reset"]]]]])]]
     (h/include-js "/js/formvalidation.js?v=0.1")
     [:script {
       :src "https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" 

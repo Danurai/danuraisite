@@ -29,7 +29,7 @@
   ;; Bootstrap Select
     [:link {:rel "stylesheet" :href "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"}]
     [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"}]
-    [:script {:defer true :src "https://use.fontawesome.com/releases/v5.6.3/js/all.js"}]
+    [:script {:defer true :src "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"}]
     ;[:script "$.fn.selectpicker.Constructor.BootstrapVersion = '4';"]
   ;; fonts
     [:link {:href "https://fonts.googleapis.com/css?family=Orbitron|Exo+2|Eczar|Special+Elite&display=swap" :rel "stylesheet"}]
@@ -67,8 +67,7 @@
             [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Colours"]
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/colours/hsl"} "HSL Demo"]
-              [:a.dropdown-item {:href "/colours/paintranges"} "Paint Ranges"]
-              [:a.dropdown-item {:href "/colours/citadel-old"} "Citadel (old)"]]]
+              [:a.dropdown-item {:href "/colours/paintranges"} "Paint Ranges"]]]
           (navlink (:uri req) "/don" "DoN Sheets")
           [:li.nav-item.dropdown
             [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Netrunner"]

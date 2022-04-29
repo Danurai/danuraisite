@@ -21,7 +21,7 @@
       (* (->> reqs (filter #(= (:type %) "Equipment Drop")) count))
       (- (->> equip (map :ep) (apply +)))
       ))
-
+    
 (defn kt2dataslate [ req ]
   (let [uid (-> req :params :id)
         data (if uid (first (db/getspecop uid)))
@@ -46,7 +46,8 @@
               [:form {:action "/killteam/specops/save" :method "POST"}
                 [:div.d-flex.mb-2
                   [:h5.ms-auto.me-auto "Spec Ops Kill Team"]
-                  [:button.btn.btn-primary.ms-auto {:type "submit"} "Save"]]
+                  [:a.btn.btn-primary.ms-auto.me-1 {:type "button" :href "/killteam/specops"} "New"]
+                  [:button.btn.btn-primary {:type "submit"} "Save"]]
                 [:div.d-flex.mb-2
                   [:b.me-3 "Requisition Points: " (get-rp requisitions specops)]
                   [:b.me-3 "Equipment Points: " (get-ep requisitions equipment)]]
@@ -54,7 +55,9 @@
                 [:div.row.mb-2
                   [:label.col-sm-3.col-form-label "Kill Team Name"]
                   [:div.col-sm-9
-                    [:input.form-control {:type "text" :name "name" :required true :value (:name data)}]]]
+                    [:div.input-group
+                      [:input.form-control {:type "text" :name "name" :required true :value (:name data)}]
+                      [:button#random.btn.btn-outline-secondary {:data-field "name" :type "button"} [:i.fas.fa-shuffle]]]]]
                 [:div.row.mb-2
                   [:label.col-sm-3.col-form-label "Faction/Selectable Keyword"]
                   [:div.col-sm-9
@@ -63,17 +66,23 @@
                 [:div.row.mb-2
                   [:label.col-sm-3.col-form-label "Base of Operations"]
                   [:div.col-sm-9
-                    [:input.form-control {:type "text" :name "base" :value (:base data)} ]]]
+                    [:div.input-group 
+                      [:input.form-control {:type "text" :name "base" :value (:base data)} ]
+                      [:button#random.btn.btn-outline-secondary {:data-field "base" :type "button"} [:i.fas.fa-shuffle]]]]]
                 (for [asset (filter #(= (:type %) "Asset Acquired") requisitions)]
                   [:div.col-sm-9.offset-sm-3.mb-2 [:div.ms-2 (:note asset)]])
                 [:div.row.mb-2
-                  [:label.col-sm-3.col-form-label "History"]
+                  [:label.col-sm-3.col-form-label "Background"]
                   [:div.col-sm-9
-                    [:input.form-control {:type "text" :name "history" :value (:history data)} ]]]
+                    [:div.input-group 
+                      [:input.form-control {:type "text" :name "history" :value (:history data)} ]
+                      [:button#random.btn.btn-outline-secondary {:data-field "background" :type "button"} [:i.fas.fa-shuffle]]]]]
                 [:div.row.mb-2
                   [:label.col-sm-3.col-form-label "Quirks"]
                   [:div.col-sm-9
-                    [:input.form-control {:type "text" :name "quirks" :value (:quirks data)} ]]]
+                    [:div.input-group 
+                      [:input.form-control {:type "text" :name "quirks" :value (:quirks data)} ]
+                      [:button#random.btn.btn-outline-secondary {:data-field "quirks" :type "button"} [:i.fas.fa-shuffle]]]]]
                 ;[:div.row.mb-2
                 ;  [:label.col-sm-3.col-form-label "Notes"]
                 ;  [:div.col-sm-9
@@ -161,6 +170,6 @@
                               [:span.badge.bg-primary.rounded-pill "x " (second e)]])]
                       ]]
                   ])
-              
             ]]]
           ])))
+      
