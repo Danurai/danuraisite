@@ -1,0 +1,23 @@
+{
+	"Corsair Voidscarred": 
+		{
+			"team_name": [
+				["Black", "Dark", "Lightning", "Sun", "Moon", "Star", "Warp"],
+				["Brother\\Sisterhood", "Reavers", "Plunderers", "Striders", "Riders", "Ravagers"]
+			],
+			"background": ["Bound to the Craftworld", "Bound to Yvraine", "Bloodthirsty", "Lethal Assassins", "Newly Free", "Students of Yriel"],
+			"base":				["Webway Haven", "'Borrowed' Vehicles", "Corsair Cruiser", "Debros-cloud Station", "Craftworld", "Rogue Trader Outpost"],
+			"quirk":			["Ever on the Move", "Plunderers", "Mercs", "Independent of Spirit", "Vengeful", "Bonded in Blood"]
+		},
+	"Void-Dancer Troupe":
+		{
+			"team_name": [
+				["Players of the", "Swords of the", "Ensemble of the", "Spears of the", "Cast of the", "Band of the", "Company of the", "Assembly of the", "Coterie of the", "Kiss of the", "Symphony of the", "Harmony of the"],
+				["Glittering Tide", "Jape Most Dark", "Crimson Sun", "Swooping Falcon", "Never-ending Dream", "Shimmering Prism", "Crystal Stage", "Healer's Lament", "Azure Moon", "Crone's Talon", "End of Days", "Blinding Serpent"]
+			],
+			"background":	["The Swords of Khaine", "Webway Wanderers", "The Solitary", "Fate's Messengers", "Sinister Killers", "Guardians of the Black Library"],
+			"base":				["Webway Spur", "The Black Library", "Fated Craftworld", "Dark Corner of Commorragh", "Corsair Vessel", "Starweavers"],
+			"quirk":			["Bringers of Terror", "Like Shadows in the Dark", "Come Hither, Behold Thy Destroyers", "Swift as the Wind", "Cruelly Mocking", "Startlight Stride"]
+		}
+
+}
