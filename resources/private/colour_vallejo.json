@@ -1,0 +1,23 @@
+[	
+	{
+		"brand": "Vallejo",
+		"range": "Model Air",
+		"code": "71.401",
+		"name": "Silver Grey",
+		"hex": "#cbcbbe"
+	},
+	{
+		"brand": "Vallejo",
+		"range": "Model Air",
+		"code": "71.052",
+		"name": "Anthracite Grey",
+		"hex": "#252b2b"
+	},
+	{
+		"brand": "Vallejo",
+		"range": "Model Air",
+		"code": "71.014",
+		"name": "Gunship Green",
+		"hex": "#3c4b48"
+	}
+]
