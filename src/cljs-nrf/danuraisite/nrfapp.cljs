@@ -18,7 +18,7 @@
 (defn- get-item
   "Returns value of `key' from browser's localStorage."
   [key]
-  (.getItem (.-localStorage js/window) key))
+  (or (.getItem (.-localStorage js/window) key) ""))
 
 (defn- remove-item!
   "Remove the browser's localStorage value for the given `key`"
@@ -115,30 +115,19 @@
     (reset! cardlist cardsslug)))
 
 (defn- initdata! []
-  (reset! pwned (cljs.reader/read-string (get-item "nrpacks_owned")))
+  (reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
+  (reset! setcounts (cljs.reader/read-string (get-item "nrsets_owned")))
   (.getJSON js/$ (str nrdb-url "cycles")   #(json-callback cycles %))
   (.getJSON js/$ (str nrdb-url "packs")    #(json-callback packs %))
   (.getJSON js/$ (str nrdb-url "types")    #(json-callback types %))
-  ;(.getJSON js/$ (str nrdb-url "factions") #(json-callback factions %))
+  ;;(.getJSON js/$ (str nrdb-url "factions") #(json-callback factions %))
   (.getJSON js/$ (str nrdb-url "factions") #(colour-callback %))
-  (.getJSON js/$ (str nrdb-url "cards")    #(cards-callback %)))
-;(defn- initdata! []
-;  (reset! setcounts (cljs.reader/read-string (get-item "nrsets_owned")))
-;  (go
-;    (reset! cycles   (-> (<! (http/get "/netrunner/api/cycles"))  :body :data))
-;    (reset! packs    (-> (<! (http/get "/netrunner/api/packs"))   :body :data))
-;    (reset! factions (-> (<! (http/get "/netrunner/api/factions")) :body :data))
-;    (reset! types    (-> (<! (http/get "/netrunner/api/types"))   :body :data))
-;    (reset! colours 
-;      (apply merge 
-;        (map 
-;          #(hash-map (:code %) (str "#" (:color %))) 
-;          (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
-;    (reset! cardlist (->> (<! (http/get "/netrunner/api/cards")) :body :data (map #(assoc % :slug (-> % :title normalise)))))))
-;          
+  (.getJSON js/$ (str nrdb-url "cards")    #(cards-callback %))
+  )
+
 (defn add-owned-packs! [ packs pwned ]
   (reset! pwned (clojure.set/union @pwned (->> packs (map :code) set)))
-  (.setItem (.-localStorage js/window) "nrpacks_owned" @pwned))
+  (.setItem (.-localStorage js/window) "nrpacks_owned" (into [] @pwned)))
 
 (defn rmv-owned-packs! [ packs pwned ]
   (doseq [p (map :code packs)]

@@ -166,9 +166,9 @@
       [:div.row-fluid
         [:ul.nav.nav-tabs.w-100.nav-fill {:role "tablist"}
           [:li.nav-item
-            [:a.nav-link.active {:data-toggle "tab" :href "#packs" :role "tab"} "Packs"]]
+            [:a.nav-link.active {:data-bs-toggle "tab" :href "#packs" :role "tab"} "Packs"]]
           [:li.nav-item
-            [:a.nav-link {:data-toggle "tab" :href "#deck" :role "tab"} "Deck"]]]
+            [:a.nav-link {:data-bs-toggle "tab" :href "#deck" :role "tab"} "Deck"]]]
         [:div.tab-content.w-100.py-2
           [:div#packs.tab-pane.fade.show.active {:role "tabpanel"}
             [:div.list-group.w-100
