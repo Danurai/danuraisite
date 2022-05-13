@@ -18,7 +18,7 @@
 (defn- get-item
   "Returns value of `key' from browser's localStorage."
   [key]
-  (or (.getItem (.-localStorage js/window) key) ""))
+  (or (.getItem (.-localStorage js/window) key) "[]"))
 
 (defn- remove-item!
   "Remove the browser's localStorage value for the given `key`"
@@ -115,6 +115,7 @@
     (reset! cardlist cardsslug)))
 
 (defn- initdata! []
+  (println (get-item "nrsetsowned"))
   (reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
   (reset! setcounts (cljs.reader/read-string (get-item "nrsets_owned")))
   (.getJSON js/$ (str nrdb-url "cycles")   #(json-callback cycles %))
