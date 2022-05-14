@@ -115,7 +115,7 @@
     (reset! cardlist cardsslug)))
 
 (defn- initdata! []
-  ;(println @setcounts)
+  (println "14/05/2022 12:29")
 
   ;(reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
   ;(if (not= "[]" (get-item "nrsets_owned"))
