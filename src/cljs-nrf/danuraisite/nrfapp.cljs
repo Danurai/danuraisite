@@ -113,19 +113,21 @@
         cardsslug (->> cardsapi (map #(assoc % :slug (-> % :title normalise))))]
     ;(reset! cards    cardsslug)
     (reset! cardlist cardsslug)))
+    
+(def jquery (js* "$"))
 
 (defn- initdata! []
-  (println "14/05/2022 12:29")
+  (println "14/05/2022 17:50")
 
   ;(reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
   ;(if (not= "[]" (get-item "nrsets_owned"))
   ;  (reset! setcounts  (cljs.reader/read-string (get-item "nrsets_owned"))))
-  (.getJSON js/$ (str nrdb-url "cycles")   #(json-callback cycles %))
-  (.getJSON js/$ (str nrdb-url "packs")    #(json-callback packs %))
-  (.getJSON js/$ (str nrdb-url "types")    #(json-callback types %))
-  ;;(.getJSON js/$ (str nrdb-url "factions") #(json-callback factions %))
-  (.getJSON js/$ (str nrdb-url "factions") #(colour-callback %))
-  (.getJSON js/$ (str nrdb-url "cards")    #(cards-callback %))
+  (.getJSON jquery (str nrdb-url "cycles")   #(json-callback cycles %))
+  (.getJSON jquery (str nrdb-url "packs")    #(json-callback packs %))
+  (.getJSON jquery (str nrdb-url "types")    #(json-callback types %))
+  ;;(.getJSON jquery (str nrdb-url "factions") #(json-callback factions %))
+  (.getJSON jquery (str nrdb-url "factions") #(colour-callback %))
+  (.getJSON jquery (str nrdb-url "cards")    #(cards-callback %))
   )
 
 (defn add-owned-packs! [ packs pwned ]
