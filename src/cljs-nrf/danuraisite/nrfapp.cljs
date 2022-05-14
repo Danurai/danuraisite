@@ -115,9 +115,12 @@
     (reset! cardlist cardsslug)))
 
 (defn- initdata! []
-  (println (get-item "nrsetsowned"))
+  ;(println @setcounts)
+
   (reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
-  (reset! setcounts (cljs.reader/read-string (get-item "nrsets_owned")))
+  (if-let [so (not-empty (cljs.reader/read-string (get-item "nrsets_owned")))]
+    ;(println  (cljs.reader/read-string (get-item "nrsets_owned"))))
+    (reset! setcounts so))
   (.getJSON js/$ (str nrdb-url "cycles")   #(json-callback cycles %))
   (.getJSON js/$ (str nrdb-url "packs")    #(json-callback packs %))
   (.getJSON js/$ (str nrdb-url "types")    #(json-callback types %))
