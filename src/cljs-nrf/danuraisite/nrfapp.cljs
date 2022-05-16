@@ -1,9 +1,9 @@
 (ns danuraisite.nrfapp
-  ;(:require-macros [cljs.core.async.macros :refer [go]])
+  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require 
     [reagent.core :as r]
-  ;  [cljs-http.client :as http]
-  ;  [cljs.core.async :refer [<!]]
+    [cljs-http.client :as http]
+    [cljs.core.async :refer [<!]]
   ))
     
 ; virtual folders
@@ -114,20 +114,30 @@
     ;(reset! cards    cardsslug)
     (reset! cardlist cardsslug)))
     
-(def jquery (js* "$"))
+;(def jquery (js* "$"))
 
 (defn- initdata! []
-  (println "14/05/2022 17:50")
-
+  (println "16/05/2022 17:50")
   ;(reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
   ;(if (not= "[]" (get-item "nrsets_owned"))
   ;  (reset! setcounts  (cljs.reader/read-string (get-item "nrsets_owned"))))
-  (.getJSON jquery (str nrdb-url "cycles")   #(json-callback cycles %))
-  (.getJSON jquery (str nrdb-url "packs")    #(json-callback packs %))
-  (.getJSON jquery (str nrdb-url "types")    #(json-callback types %))
+  (go 
+    (reset! cycles   (-> (<! (http/get (str nrdb-url "cycles") {:with-credentials? false}))    :body :data))
+    (reset! packs    (-> (<! (http/get (str nrdb-url "packs")  {:with-credentials? false}))    :body :data))
+    (reset! types    (-> (<! (http/get (str nrdb-url "types")  {:with-credentials? false}))    :body :data))
+    (let [factiondata (-> (<! (http/get (str nrdb-url "factions")  {:with-credentials? false})) :body :data)]
+      (reset! factions factiondata)
+      (reset! colours  (-> (apply merge (map #(hash-map (:code %) (str "#" (:color %))) factiondata)))))
+    (let [cardsapi (<! (http/get (str nrdb-url "cards")  {:with-credentials? false}))
+          cardsslug (->> cardsapi :body :data (map #(assoc % :slug (-> % :title normalise))))]
+    ;  (reset! cards    cardsslug)
+      (reset! cardlist cardsslug)))
+  ;(.getJSON jquery (str nrdb-url "cycles")   #(json-callback cycles %))
+  ;(.getJSON jquery (str nrdb-url "packs")    #(json-callback packs %))
+  ;(.getJSON jquery (str nrdb-url "types")    #(json-callback types %))
   ;;(.getJSON jquery (str nrdb-url "factions") #(json-callback factions %))
-  (.getJSON jquery (str nrdb-url "factions") #(colour-callback %))
-  (.getJSON jquery (str nrdb-url "cards")    #(cards-callback %))
+  ;(.getJSON jquery (str nrdb-url "factions") #(colour-callback %))
+  ;(.getJSON jquery (str nrdb-url "cards")    #(cards-callback %))
   )
 
 (defn add-owned-packs! [ packs pwned ]
