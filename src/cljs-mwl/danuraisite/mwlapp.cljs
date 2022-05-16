@@ -1,10 +1,10 @@
 (ns danuraisite.mwlapp
-  ;(:require-macros [cljs.core.async.macros :refer [go]])
+  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require 
     ;[goog.string :as gstring]
     [reagent.core :as r]
-    ;[cljs-http.client :as http]
-    ;[cljs.core.async :refer [<!]]
+    [cljs-http.client :as http]
+    [cljs.core.async :refer [<!]]
     ))
     
 (enable-console-print!)
@@ -36,46 +36,38 @@
 
 (def nrdb-url "https://netrunnerdb.com/api/2.0/public/")
 
-(defn json-callback [ atm, data ]
-  (reset! atm (-> data (js->clj :keywordize-keys true) :data)))
-
-(defn- colour-callback [ data ]
-  (reset! colours 
-    (apply merge 
-      (map 
-        #(hash-map (:code %) (str "#" (:color %))) 
-        (json-callback factions data)))))
-
-(defn- cards-callback [ data ]
-  (let [cardsapi  (-> data (js->clj :keywordize-keys true) :data)
-        cardsslug (->> cardsapi (map #(assoc % :slug (-> % :title normalise))))]
-    (reset! cards    cardsslug)
-    (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug))))
+;(defn json-callback [ atm, data ]
+;  (reset! atm (-> data (js->clj :keywordize-keys true) :data)))
+;
+;(defn- colour-callback [ data ]
+;  (reset! colours 
+;    (apply merge 
+;      (map 
+;        #(hash-map (:code %) (str "#" (:color %))) 
+;        (json-callback factions data)))))
+;
+;(defn- cards-callback [ data ]
+;  (let [cardsapi  (-> data (js->clj :keywordize-keys true) :data)
+;        cardsslug (->> cardsapi (map #(assoc % :slug (-> % :title normalise))))]
+;    (reset! cards    cardsslug)
+;    (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug))))
 
 (defn- init! []
-  (.getJSON js/$ (str nrdb-url "cycles")   #(json-callback cycles %))
-  (.getJSON js/$ (str nrdb-url "packs")    #(json-callback packs %))
-  (.getJSON js/$ (str nrdb-url "types")    #(json-callback types %))
-  (.getJSON js/$ (str nrdb-url "mwl")      #(json-callback mwls %))
-  ;(.getJSON js/$ (str nrdb-url "factions") #(json-callback factions %))
-  (.getJSON js/$ (str nrdb-url "factions") #(colour-callback %))
-  (.getJSON js/$ (str nrdb-url "cards")    #(cards-callback %)))
-;; Replace by .getJSON js/$ calls
-  ;(go
-    ;(reset! colours 
-    ;  (apply merge 
-    ;    (map 
-    ;      #(hash-map (:code %) (str "#" (:color %))) 
-    ;      (-> (<! (http/get "/netrunner/api/factions")) :body :data))))
-    ;(reset! cycles   (-> (<! (http/get (str nrdb-url "cycles")))   :body :data))
-    ;(reset! packs    (-> (<! (http/get "/netrunner/api/packs"))    :body :data))
-    ;(reset! mwls     (-> (<! (http/get "/netrunner/api/mwl"))      :body :data))
-    ;(reset! types    (-> (<! (http/get "/netrunner/api/types"))    :body :data))
-    ;(let [cardsapi (<! (http/get "/netrunner/api/cards"))
-    ;      cardsslug (->> cardsapi :body :data (map #(assoc % :slug (-> % :title normalise))))]
-    ;  (reset! cards    cardsslug)
-    ;  (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug)))))
- ; (reset! factions (-> (<! (http/get "/api/factions")) :body :data))))
+  (go
+    (reset! colours 
+      (apply merge 
+        (map 
+          #(hash-map (:code %) (str "#" (:color %))) 
+          (-> (<! (http/get (str nrdb-url "factions") {:with-credentials? false})) :body :data))))
+    (reset! cycles   (-> (<! (http/get (str nrdb-url "cycles")   {:with-credentials? false})) :body :data))
+    (reset! packs    (-> (<! (http/get (str nrdb-url "packs")    {:with-credentials? false})) :body :data))
+    (reset! mwls     (-> (<! (http/get (str nrdb-url "mwl")      {:with-credentials? false})) :body :data))
+    (reset! types    (-> (<! (http/get (str nrdb-url "types")    {:with-credentials? false})) :body :data))
+    (reset! factions (-> (<! (http/get (str nrdb-url "factions") {:with-credentials? false})) :body :data))
+    (let [cardsapi (<! (http/get (str nrdb-url "cards") {:with-credentials? false}))
+          cardsslug (->> cardsapi :body :data (map #(assoc % :slug (-> % :title normalise))))]
+      (reset! cards    cardsslug)
+      (reset! cardlist (filter #(= (:pack_code %) "core") cardsslug)))))
           
   
       

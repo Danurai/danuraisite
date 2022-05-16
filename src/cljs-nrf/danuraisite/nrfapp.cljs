@@ -98,27 +98,27 @@
 
 (def nrdb-url "https://netrunnerdb.com/api/2.0/public/")
 
-(defn json-callback [ atm, data ]
-  (reset! atm (-> data (js->clj :keywordize-keys true) :data)))
-
-(defn- colour-callback [ data ]
-  (reset! colours 
-    (apply merge 
-      (map 
-        #(hash-map (:code %) (str "#" (:color %))) 
-        (json-callback factions data)))))
-
-(defn- cards-callback [ data ]
-  (let [cardsapi  (-> data (js->clj :keywordize-keys true) :data)
-        cardsslug (->> cardsapi (map #(assoc % :slug (-> % :title normalise))))]
-    ;(reset! cards    cardsslug)
-    (reset! cardlist cardsslug)))
-    
+;(defn json-callback [ atm, data ]
+;  (reset! atm (-> data (js->clj :keywordize-keys true) :data)))
+;
+;(defn- colour-callback [ data ]
+;  (reset! colours 
+;    (apply merge 
+;      (map 
+;        #(hash-map (:code %) (str "#" (:color %))) 
+;        (json-callback factions data)))))
+;
+;(defn- cards-callback [ data ]
+;  (let [cardsapi  (-> data (js->clj :keywordize-keys true) :data)
+;        cardsslug (->> cardsapi (map #(assoc % :slug (-> % :title normalise))))]
+;    ;(reset! cards    cardsslug)
+;    (reset! cardlist cardsslug)))
+;    
 ;(def jquery (js* "$"))
 
 (defn- initdata! []
   (println "16/05/2022 17:50")
-  ;(reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
+  (reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
   ;(if (not= "[]" (get-item "nrsets_owned"))
   ;  (reset! setcounts  (cljs.reader/read-string (get-item "nrsets_owned"))))
   (go 
@@ -130,15 +130,14 @@
       (reset! colours  (-> (apply merge (map #(hash-map (:code %) (str "#" (:color %))) factiondata)))))
     (let [cardsapi (<! (http/get (str nrdb-url "cards")  {:with-credentials? false}))
           cardsslug (->> cardsapi :body :data (map #(assoc % :slug (-> % :title normalise))))]
-    ;  (reset! cards    cardsslug)
       (reset! cardlist cardsslug)))
+  )
   ;(.getJSON jquery (str nrdb-url "cycles")   #(json-callback cycles %))
   ;(.getJSON jquery (str nrdb-url "packs")    #(json-callback packs %))
   ;(.getJSON jquery (str nrdb-url "types")    #(json-callback types %))
   ;;(.getJSON jquery (str nrdb-url "factions") #(json-callback factions %))
   ;(.getJSON jquery (str nrdb-url "factions") #(colour-callback %))
   ;(.getJSON jquery (str nrdb-url "cards")    #(cards-callback %))
-  )
 
 (defn add-owned-packs! [ packs pwned ]
   (reset! pwned (clojure.set/union @pwned (->> packs (map :code) set)))
