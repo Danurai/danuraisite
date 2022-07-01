@@ -95,3 +95,60 @@
                 ]
               )]]]]
       (h/include-js "/js/compiled/scoresapp.js")]))
+
+(defn ffqchome [ req ]
+  (h/html5 
+    pretty-head
+    [:body
+      (navbar req)
+      [:div.container.my-3
+        [:div.d-flex.mb-2.sticky-top
+          [:div.me-2.my-auto "Name" ]
+          [:input#pn.form-control.me-2]
+          [:div.me-2.my-auto "Skill" ]
+          [:input#sk.form-control.me-2 {:list "datalist1"}]
+          [:div.me-2.my-auto "Stamina" ]
+          [:input#st.form-control.me-2 {:list "datalist2"}]
+          [:div.me-2.my-auto "Luck" ]
+          [:input#lk.form-control {:list "datalist1"}]]
+        [:div#enemyinput.mb-2]
+        [:div#buttons.d-flex.justify-content-end.mb-2
+          [:button#add.me-2.btn.btn-success "Add"]
+          [:button#run.btn.btn-primary "FIGHT!"]]
+        [:div#results.my-3]  
+      ]
+      [:datalist#datalist1
+        [:option {:value 4}]
+        [:option {:value 5}]
+        [:option {:value 6}]
+        [:option {:value 7}]
+        [:option {:value 8}]
+        [:option {:value 9}]
+        [:option {:value 10}]
+        [:option {:value 11}]
+        [:option {:value 12}]]
+      [:datalist#datalist2
+        [:option {:value 3}]
+        [:option {:value 4}]
+        [:option {:value 5}]
+        [:option {:value 6}]
+        [:option {:value 7}]
+        [:option {:value 8}]
+        [:option {:value 9}]
+        [:option {:value 10}]
+        [:option {:value 11}]
+        [:option {:value 12}]
+        [:option {:value 13}]
+        [:option {:value 14}]
+        [:option {:value 15}]
+        [:option {:value 16}]
+        [:option {:value 17}]
+        [:option {:value 18}]
+        [:option {:value 19}]
+        [:option {:value 20}]
+        [:option {:value 21}]
+        [:option {:value 22}]
+        [:option {:value 23}]
+        [:option {:value 24}]]
+      (h/include-js "/js/ffqc.js")  
+  ]))

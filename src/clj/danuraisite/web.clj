@@ -232,6 +232,7 @@
       killteamroutes 
       ;#{::db/user})
   )
+  (GET     "/ffqc"       [] pages/ffqchome)
 ; ADMIN
   (context "/:id/login" [id]
     (friend/wrap-authorize
