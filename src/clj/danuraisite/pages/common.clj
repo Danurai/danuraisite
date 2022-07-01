@@ -79,7 +79,9 @@
             [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Kill Team"]
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/killteam/compendium"} "Compendium Reference"]
-              [:a.dropdown-item {:href "/killteam/specops"} "Spec Ops Dataslate"]]]]
+              [:a.dropdown-item {:href "/killteam/specops"} "Spec Ops Dataslate"]]]
+          (navlink (:uri req) "/ffqc" "FF Quick Combat")    
+        ]
     ;; Login Icon
         [:span.nav-item.dropdown.ms-auto
           [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href "#" :role "button" :data-bs-toggle "dropdown"} [:i.fas.fa-user]]
