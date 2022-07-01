@@ -3,9 +3,9 @@ let nmy = [
 	{pn: "Enemy1", sk: 6, st: 6}
 ];
 
-udpate_page()
+update_page()
 
-function udpate_page() {
+function update_page() {
 	$('#pn').val(plyr.pn);
 	$('#sk').val(plyr.sk);
 	$('#st').val(plyr.st);
@@ -14,32 +14,45 @@ function udpate_page() {
 	
 	$.each( nmy, id => {
 		let ei = $('<div class="d-flex justify-content-left mb-2"></div>');
-		ei.append('<div class="me-2 my-auto">Name</div>');
+		let pn = $('<div>').attr({class:"me-2"}).appendTo(ei);
+		let sk = $('<div>').attr({class:"me-2"}).appendTo(ei);
+		let st = $('<div>').attr({class:"me-2"}).appendTo(ei);
+		$('<div class="me-2 my-auto">Name</div>').appendTo(pn);
 		$('<input>').attr({
 			class: "form-control me-2",
+			"data-stat": "pn",
+			"data-id": id,
 			value: nmy[id].pn
-		}).appendTo(ei);
-		ei.append('<div class="me-2 my-auto">Skill</div>');
+		}).appendTo(pn);
+		$(`<div>Skill</div>`).attr({class: "me-2 my-auto"}).appendTo(sk);
 		$('<input>').attr({
 			class: "form-control me-2",
 			value: nmy[id].sk,
+			"data-stat": "sk",
+			"data-id": id,
 			list: "datalist1"
-		}).appendTo(ei);
-		ei.append('<div class="me-2 my-auto">Stamina</div>');
+		}).appendTo(sk);
+		$('<div class="me-2 my-auto">Stamina</div>').appendTo(st);
 		$('<input>').attr({
-			class: "form-control me-2",
+			class: "form-control",
 			value: nmy[id].st,
+			"data-stat": "st",
+			"data-id": id,
 			list: "datalist2"
-		}).appendTo(ei);
+		}).appendTo(st);
 		$('#enemyinput').append(ei)
 	})
 
 }
 
 $('#pn').on('input', function() {plyr.pn = $(this).val()} );
-$('#sk').on('input', function() {plyr.sk = $(this).val()} );
-$('#st').on('input', function() {plyr.st = $(this).val()} );
-$('#lk').on('input', function() {plyr.lk = $(this).val()} );
+$('#sk').on('input', function() {plyr.sk = parseInt($(this).val())} );
+$('#st').on('input', function() {plyr.st = parseInt($(this).val())} );
+$('#lk').on('input', function() {plyr.lk = parseInt($(this).val())} );
+
+$('#enemyinput').on('input', 'input', function () {
+	nmy[$(this).data('id')][$(this).data('stat')] = $(this).val();
+});
 
 /*
 $('#add').on('click', function() {
@@ -77,9 +90,15 @@ $('#run').on('click', function () {
 	cb.forEach( cbr =>
 		$(`<div>${cbres(cbr.plyr)}${cbres(cbr.nmy)}</div>`).attr({class: "row"}).appendTo('#results')
 	);
-	udpate_page();
+	update_page();
 })
 
 function cbres( data ) {
-	return (`<div class="col-4">${data.pn}: SK=${data.sk} Roll=${data.roll[0]+data.roll[1]} (${data.roll[0]}+${data.roll[0]}) ST=<span class="${data.wnd ? "text-danger" : ""}">${data.st}</span></div>`);
+	return (`<div class="col">${data.pn}: SK=${data.sk} + ${data.roll[0]},${data.roll[1]} Total=${data.tot} ST=<span class="${data.wnd ? "text-danger" : ""}">${data.st}</span></div>`);
 }
+
+$('#rosters').on('click','li',function () {
+	nmy = JSON.parse(JSON.stringify($(this).data('roster')));
+	$('#results').empty();
+	update_page();
+})
