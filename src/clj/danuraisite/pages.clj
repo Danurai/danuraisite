@@ -96,27 +96,53 @@
               )]]]]
       (h/include-js "/js/compiled/scoresapp.js")]))
 
+(def ffqfroster [
+  [{:pn "Hobbit" :sk 5 :st 6}]
+  [{:pn "Armoured Knight" :sk 8 :st 9}]
+  [
+    {:pn "Flesh Feeder #1" :sk 6 :st 6}
+    {:pn "Flesh Feeder #2" :sk 6 :st 7}
+    {:pn "Flesh Feeder #3" :sk 6 :st 6}
+  ]
+  [{:pn "Clawbeast" :sk 9 :st 14}]
+])
+
 (defn ffqchome [ req ]
   (h/html5 
     pretty-head
     [:body
       (navbar req)
       [:div.container.my-3
-        [:div.d-flex.mb-2.sticky-top
-          [:div.me-2.my-auto "Name" ]
-          [:input#pn.form-control.me-2]
-          [:div.me-2.my-auto "Skill" ]
-          [:input#sk.form-control.me-2 {:list "datalist1"}]
-          [:div.me-2.my-auto "Stamina" ]
-          [:input#st.form-control.me-2 {:list "datalist2"}]
-          [:div.me-2.my-auto "Luck" ]
-          [:input#lk.form-control {:list "datalist1"}]]
-        [:div#enemyinput.mb-2]
-        [:div#buttons.d-flex.justify-content-end.mb-2
-          [:button#add.me-2.btn.btn-success "Add"]
-          [:button#run.btn.btn-primary "FIGHT!"]]
-        [:div#results.my-3]  
-      ]
+        [:div.row
+          [:div.col-8
+            [:div.d-flex.mb-2
+              [:div.me-2
+                [:div.my-auto "Name" ]
+                [:input#pn.form-control]]
+              [:div.me-2
+                [:div.my-auto "Skill" ]
+                [:input#sk.form-control {:list "datalist1"}]]
+              [:div.me-2
+                [:div.my-auto "Stamina" ]
+                [:input#st.form-control {:list "datalist2"}]]
+              [:div
+                [:div.my-auto "Luck" ]
+                [:input#lk.form-control {:list "datalist1"}]]]
+            [:h5.text-center "VS"]
+            [:div#enemyinput.mb-2]
+            [:div#buttons.d-flex.justify-content-end.mb-2
+              [:button#add.me-2.btn.btn-success "Add"]
+              [:button#run.btn.btn-primary "FIGHT!"]]]
+          [:div.col-4
+            [:div.h5.text-center "Quick Load"]
+            [:ul#rosters.list-group
+              (for [ros ffqfroster] 
+                [:li.list-group-item {:data-roster (json/write-str ros)}
+                  (for [nm ros] 
+                    [:div (str (:pn nm) ": " (:sk nm) "/" (:st nm))]
+                    )])]
+          ]]
+        [:div#results.my-3]]
       [:datalist#datalist1
         [:option {:value 4}]
         [:option {:value 5}]
