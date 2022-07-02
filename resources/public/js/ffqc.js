@@ -88,9 +88,9 @@ $('#run').on('click', function () {
 			round.nmy[tgtid].wnd = true;
 			killid = tgtid;
 		} else if (round.plyr.tot > round.nmy[tgtid].tot) {
-			round.nmy[tgtid].st = round.nmy[tgtid].st - 2;
+			round.nmy[tgtid].st = Math.max(0, round.nmy[tgtid].st - 2);
 			round.nmy[tgtid].wnd = true;
-			if (round.nmy[tgtid].st == 0) { killid = tgtid }
+			if (round.nmy[tgtid].st <= 0) { killid = tgtid }
 		}
 
 		$.each( round.nmy, idx => {
