@@ -1,6 +1,6 @@
-let plyr = {pn: "Player1", sk: 10, st: 20, lk: 10, tuff: true};
+let plyr = {pn: "Creature", sk: 10, st: 20, lk: 10, tuff: true};
 let nmy = [
-	{pn: "Enemy1", sk: 6, st: 6}
+	{pn: "Enemy #1", sk: 6, st: 6}
 ];
 
 update_page()
@@ -54,47 +54,68 @@ $('#enemyinput').on('input', 'input', function () {
 	nmy[$(this).data('id')][$(this).data('stat')] = $(this).val();
 });
 
-/*
 $('#add').on('click', function() {
 	n = nmy.length;
-	nx = {pn: "Enemy", sk: 6, st: 6};
+	nx = {pn: `Enemy #${n}`, sk: 6, st: 6};
 	nmy.push(nx);
-	udpate_page();
+	update_page();
 });
-*/
+
 
 $('#run').on('click', function () {
 	// 1st iteration 1:1
 	let cb = [];
 	let round = {};
+	let killid;
+	
+	round = {plyr: $.extend({}, plyr), nmy: JSON.parse(JSON.stringify(nmy))};
 	do  {
-		round = {plyr: $.extend({}, plyr), nmy: $.extend( {}, nmy[0])};
-		round.plyr.roll = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
-		round.nmy.roll = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
-		round.plyr.tot = round.plyr.sk + round.plyr.roll[0] + round.plyr.roll[1];
-		round.nmy.tot = round.nmy.sk + round.nmy.roll[0] + round.nmy.roll[1];
-		if (round.plyr.tot > round.nmy.tot) {
-			nmy[0].st = nmy[0].st - 2;
-			round.nmy.st = round.nmy.st - 2;
-			round.nmy.wnd = true;
-		} else if (round.plyr.tot < round.nmy.tot) {
-			plyr.st = plyr.st - (plyr.tuff ? 1 : 2);
-			round.plyr.st = round.plyr.st - (plyr.tuff ? 1 : 2);
-			round.plyr.wnd = true;
-		} 
-		cb.push(round);
-	} while ( plyr.st > 0 && nmy.reduce( (p,c) => p+=c.st,0) > 0)
-	$('#results').html(JSON.stringify(cb));
+		//round = {plyr: $.extend({}, plyr), nmy: JSON.parse(JSON.stringify(round.nmy))};
+		killid = -1;
+
+		round.plyr.roll = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];		
+		round.plyr.tot = round.plyr.sk + round.plyr.roll[0] + round.plyr.roll[1];		
+
+		$.each( round.nmy, idx => {
+			round.nmy[idx].roll = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)]
+			round.nmy[idx].tot = round.nmy[idx].sk + round.nmy[idx].roll[0] + round.nmy[idx].roll[1]
+		});
+
+		// check focus nmy max skill, min stam
+		let tgtid = 0;
+		if (round.plyr.roll[0] == round.plyr.roll[1]) {
+			round.nmy[tgtid].st = 0;
+			round.nmy[tgtid].wnd = true;
+			killid = tgtid;
+		} else if (round.plyr.tot > round.nmy[tgtid].tot) {
+			round.nmy[tgtid].st = round.nmy[tgtid].st - 2;
+			round.nmy[tgtid].wnd = true;
+			if (round.nmy[tgtid].st == 0) { killid = tgtid }
+		}
+
+		$.each( round.nmy, idx => {
+			if (round.plyr.tot < round.nmy[idx].tot) {
+				plyr.st = plyr.st - (plyr.tuff ? 1 : 2);
+				round.plyr.st = round.plyr.st - (plyr.tuff ? 1 : 2);
+				round.plyr.wnd = true;
+			} 
+		});
+		cb.push(JSON.parse(JSON.stringify(round)));
+		if (killid > -1) { round.nmy.splice(killid,1)} 
+	} while ( plyr.st > 0 && round.nmy.length > 0) //nmy.reduce( (p,c) => p+=c.st,0) > 0)
+
 	$('#results').empty();
 	$(`<div>Combat Complete in  ${cb.length}  Rounds</div>`).attr({class: "h5"}).appendTo('#results')
-	cb.forEach( cbr =>
-		$(`<div>${cbres(cbr.plyr)}${cbres(cbr.nmy)}</div>`).attr({class: "row"}).appendTo('#results')
-	);
+	cb.forEach( cbr => {
+		let cbrnmyres = ''
+		cbr.nmy.forEach( cbrnmy => cbrnmyres += cbres(cbrnmy) )
+		$(`<div><div class="col">${cbres(cbr.plyr)}</div><div class="col">${cbrnmyres}</div></div>`).attr({class: "row border"}).appendTo('#results')
+	});
 	update_page();
 })
 
 function cbres( data ) {
-	return (`<div class="col">${data.pn}: SK=${data.sk} + ${data.roll[0]},${data.roll[1]} Total=${data.tot} ST=<span class="${data.wnd ? "text-danger" : ""}">${data.st}</span></div>`);
+	return (`<div>${data.pn}: SK=<b>${data.tot}</b> <span class="small">(${data.sk}+${data.roll[0]}+${data.roll[1]})</span> ST=<span class="${data.wnd ? "text-danger" : ""}">${data.st}</span></div>`);
 }
 
 $('#rosters').on('click','li',function () {
