@@ -105,6 +105,18 @@
     {:pn "Flesh Feeder #3" :sk 6 :st 6}
   ]
   [{:pn "Clawbeast" :sk 9 :st 14}]
+  [{:pn "Strongarm" :sk 7 :st 8}]
+  [
+    {:pn "Warrior" :sk 7 :st 7}
+    {:pn "Thief" :sk 8 :st 6}
+  ]
+  [{:pn "Devourer" :sk 10 :st 8}]
+  [
+    {:pn "Blood Orc #1" :sk 7 :st 7}
+    {:pn "Blood Orc #2" :sk 8 :st 7}
+  ]
+  [{:pn "Warrior" :sk 8 :st 9}]
+  [{:pn "Fighter" :sk 7 :st 8}]
 ])
 
 (defn ffqchome [ req ]
@@ -132,7 +144,8 @@
             [:div#enemyinput.mb-2]
             [:div#buttons.d-flex.justify-content-end.mb-2
               [:button#add.me-2.btn.btn-success "Add"]
-              [:button#run.btn.btn-primary "FIGHT!"]]]
+              [:button#run.btn.btn-primary "FIGHT!"]]
+            [:div#results.my-3]]
           [:div.col-4
             [:div.h5.text-center "Quick Load"]
             [:ul#rosters.list-group
@@ -141,8 +154,7 @@
                   (for [nm ros] 
                     [:div (str (:pn nm) ": " (:sk nm) "/" (:st nm))]
                     )])]
-          ]]
-        [:div#results.my-3]]
+          ]]]
       [:datalist#datalist1
         [:option {:value 4}]
         [:option {:value 5}]

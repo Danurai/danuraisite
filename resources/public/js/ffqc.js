@@ -51,7 +51,8 @@ $('#st').on('input', function() {plyr.st = parseInt($(this).val())} );
 $('#lk').on('input', function() {plyr.lk = parseInt($(this).val())} );
 
 $('#enemyinput').on('input', 'input', function () {
-	nmy[$(this).data('id')][$(this).data('stat')] = $(this).val();
+	let val = isNaN(parseInt($(this).val())) ? $(this).val() : parseInt($(this).val())
+	nmy[$(this).data('id')][$(this).data('stat')] = val;
 });
 
 $('#add').on('click', function() {
@@ -83,6 +84,13 @@ $('#run').on('click', function () {
 
 		// check focus nmy max skill, min stam
 		let tgtid = 0;
+		$.each(round.nmy, idx => {
+			if (round.nmy[idx].sk > round.nmy[tgtid].sk) {
+				tgtid = idx
+			} else if (round.nmy[idx].sk == round.nmy[tgtid].sk && round.nmy[idx].st < round.nmy[tgtid].st) {
+				tgtid = idx
+			}
+		});
 		if (round.plyr.roll[0] == round.plyr.roll[1]) {
 			round.nmy[tgtid].st = 0;
 			round.nmy[tgtid].wnd = true;
