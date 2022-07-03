@@ -110,6 +110,8 @@ $('#run').on('click', function () {
 		});
 		cb.push(JSON.parse(JSON.stringify(round)));
 		if (killid > -1) { round.nmy.splice(killid,1)} 
+		round.plyr.wnd = false;
+		round.nmy.forEach( n => n.wnd = false);
 	} while ( plyr.st > 0 && round.nmy.length > 0) //nmy.reduce( (p,c) => p+=c.st,0) > 0)
 
 	$('#results').empty();
