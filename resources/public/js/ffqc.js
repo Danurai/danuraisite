@@ -45,6 +45,20 @@ function update_page() {
 
 }
 
+$('#reroll').on('click', function () {
+	plyr.sk = 6 + Math.ceil(Math.random() * 6);
+	plyr.st = 12 + Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
+	plyr.lk = 6 + Math.ceil(Math.random() * 6);
+	update_page();
+})
+
+$('#testluck').on('click', function () {
+	let roll = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
+	window.alert("Rolled " + roll[0] + "+" + roll[1] + " vs " + plyr.lk + "\n" + (roll[0] + roll[1] > plyr.lk ? "Un-lucky" : "Lucky!"));
+	plyr.lk -= 1;
+	update_page();
+})
+
 $('#pn').on('input', function() {plyr.pn = $(this).val()} );
 $('#sk').on('input', function() {plyr.sk = parseInt($(this).val())} );
 $('#st').on('input', function() {plyr.st = parseInt($(this).val())} );
