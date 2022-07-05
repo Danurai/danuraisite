@@ -126,7 +126,7 @@
       (navbar req)
       [:div.container.my-3
         [:div.row
-          [:div.col-8
+          [:div.col-md-8
             [:div.d-flex.mb-2
               [:div.me-2
                 [:div.my-auto "Name" ]
@@ -140,13 +140,16 @@
               [:div
                 [:div.my-auto "Luck" ]
                 [:input#lk.form-control {:list "datalist1"}]]]
+            [:div.d-flex.mb-2.justify-content-end
+              [:button#reroll.btn.btn-sm.btn-secondary.me-2 "Roll Up"]
+              [:button#testluck.btn.btn-sm.btn-warning "Test Luck"]]
             [:h5.text-center "VS"]
             [:div#enemyinput.mb-2]
             [:div#buttons.d-flex.justify-content-end.mb-2
               [:button#add.me-2.btn.btn-success "Add"]
               [:button#run.btn.btn-primary "FIGHT!"]]
             [:div#results.my-3]]
-          [:div.col-4
+          [:div.col-md-4
             [:div.h5.text-center "Quick Load"]
             [:ul#rosters.list-group
               (for [ros ffqfroster] 
