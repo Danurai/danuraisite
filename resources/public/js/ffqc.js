@@ -1,4 +1,4 @@
-let plyr = {pn: "Creature", sk: 10, st: 20, lk: 10, tuff: true};
+let plyr = {pn: "Creature", sk: 10, st: 20, lk: 10, tuff: true, dedly: true};
 let nmy = [
 	{pn: "Enemy #1", sk: 6, st: 6}
 ];
@@ -10,6 +10,9 @@ function update_page() {
 	$('#sk').val(plyr.sk);
 	$('#st').val(plyr.st);
 	$('#lk').val(plyr.lk);
+	$('#tough').prop('checked', plyr.tuff);
+	
+	$('#deadly').prop('checked', plyr.dedly);
 	$('#enemyinput').empty();
 	
 	$.each( nmy, id => {
@@ -63,6 +66,8 @@ $('#pn').on('input', function() {plyr.pn = $(this).val()} );
 $('#sk').on('input', function() {plyr.sk = parseInt($(this).val())} );
 $('#st').on('input', function() {plyr.st = parseInt($(this).val())} );
 $('#lk').on('input', function() {plyr.lk = parseInt($(this).val())} );
+$('#tough').on('change', function() {plyr.tuff = true == $(this).prop('checked')});
+$('#deadly').on('change', function() {plyr.dedly = true == $(this).prop('checked')});
 
 $('#enemyinput').on('input', 'input', function () {
 	let val = isNaN(parseInt($(this).val())) ? $(this).val() : parseInt($(this).val())
@@ -105,7 +110,7 @@ $('#run').on('click', function () {
 				tgtid = idx
 			}
 		});
-		if (round.plyr.roll[0] == round.plyr.roll[1]) {
+		if (round.plyr.roll[0] == round.plyr.roll[1] && round.plyr.dedly) {
 			round.nmy[tgtid].st = 0;
 			round.nmy[tgtid].wnd = true;
 			killid = tgtid;
@@ -147,3 +152,34 @@ $('#rosters').on('click','li',function () {
 	$('#results').empty();
 	update_page();
 })
+
+
+// TRANSLATION
+
+$('#lang').val("Whpod jstv rbsum yusl vmbfr?")
+
+$('#trans').on('click',function() {
+	let t = $('#lang').val();
+	t = t.replace(/\s/g, '');
+	s = t.split(/[aeiou]/gi);
+	st = s.map( w => { return translate(w); });
+	r = st.join(' ');
+	alert(r);
+})
+
+function translate (w) {
+	r = w//.replace('b','a')
+			.replace('f', 'e')
+			.replace('j', 'i')
+			.replace('p', 'o')
+			.replace('v', 'u');
+	//$.getJSON('https://api.dictionaryapi.dev/api/v2/entries/en/' + w, function(data) {
+	//	return w;
+	//}).fail( function() {
+	//	return "false"
+	//});
+	//console.log (r);
+	return r;
+}
+
+//ab ef ij op uv

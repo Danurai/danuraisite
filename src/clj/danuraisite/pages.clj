@@ -137,9 +137,17 @@
               [:div.me-2
                 [:div.my-auto "Stamina" ]
                 [:input#st.form-control {:list "datalist2"}]]
-              [:div
+              [:div.me-2
                 [:div.my-auto "Luck" ]
-                [:input#lk.form-control {:list "datalist1"}]]]
+                [:input#lk.form-control {:list "datalist1"}]]
+              [:div
+                [:div.form-check
+                  [:input#tough.form-check-input {:type "checkbox"} ]
+                  [:label.form-check-label "Tough"]]
+                [:div.form-check
+                  [:input#deadly.form-check-input {:type "checkbox"} ]
+                  [:label.form-check-label "Deadly"]]]
+              ]
             [:div.d-flex.mb-2.justify-content-end
               [:button#reroll.btn.btn-sm.btn-secondary.me-2 "Roll Up"]
               [:button#testluck.btn.btn-sm.btn-warning "Test Luck"]]
@@ -156,8 +164,16 @@
                 [:li.list-group-item {:data-roster (json/write-str ros)}
                   (for [nm ros] 
                     [:div (str (:pn nm) ": " (:sk nm) "/" (:st nm))]
-                    )])]
-          ]]]
+                    )])]]]
+        [:div.row
+          [:div.col-md-6
+            [:div.d-flex.justify-content-between.mb-2
+              [:h5 "Translation"]
+              [:button#trans.btn.btn-sm.btn-secondary "Translate"]]
+            [:textarea#lang.form-control]]
+          [:div.col-md-6
+            [:div [:b "Translated"]]
+            [:div#translated]]]]
       [:datalist#datalist1
         [:option {:value 4}]
         [:option {:value 5}]
