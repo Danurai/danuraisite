@@ -40,8 +40,8 @@
             [:div.mb-2 "Spirit Island score log"]
             [:h5 "Kill Team"]
             [:div.mb-2 "Sample Compendium Reference and Spec Ops Dataslates"]
-            [:h5 "Bardsung"]
-            [:div.mb-2 "Marching Order Randomiser"]
+            ;[:h5 "Bardsung"]
+            ;[:div.mb-2 "Marching Order Randomiser"]
           ]]]]))
       
 (defn scorehome [ req ]
@@ -154,7 +154,8 @@
             [:h5.text-center "VS"]
             [:div#enemyinput.mb-2]
             [:div#buttons.d-flex.justify-content-end.mb-2
-              [:button#add.me-2.btn.btn-success "Add"]
+              [:button#coh.btn.btn-secondary "CoH"]
+              [:button#add.me-2.btn.btn-success.ms-auto "Add"]
               [:button#run.btn.btn-primary "FIGHT!"]]
             [:div#results.my-3]]
           [:div.col-md-4

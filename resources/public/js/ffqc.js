@@ -1,4 +1,4 @@
-let plyr = {pn: "Creature", sk: 10, st: 20, lk: 10, tuff: true, dedly: true};
+let plyr = {pn: "Creature", maxsk: 10, sk: 10, maxst: 20, st: 20, maxlk: 10, lk: 10, tuff: true, dedly: true};
 let nmy = [
 	{pn: "Enemy #1", sk: 6, st: 6}
 ];
@@ -48,19 +48,29 @@ function update_page() {
 
 }
 
-$('#reroll').on('click', function () {
-	plyr.sk = 6 + Math.ceil(Math.random() * 6);
-	plyr.st = 12 + Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
-	plyr.lk = 6 + Math.ceil(Math.random() * 6);
+$('#reroll').on('click', function () { roll_new_char() });
+
+function roll_new_char() {
+	plyr.maxsk = 6 + Math.ceil(Math.random() * 6);
+	plyr.sk = plyr.maxsk;
+	plyr.maxst = 12 + Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
+	plyr.st = plyr.maxst;
+	plyr.maxlk = 6 + Math.ceil(Math.random() * 6);
+	plyr.lk = plyr.maxlk;
 	update_page();
-})
+}
 
 $('#testluck').on('click', function () {
-	let roll = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
-	window.alert("Rolled " + roll[0] + "+" + roll[1] + " vs " + plyr.lk + "\n" + (roll[0] + roll[1] > plyr.lk ? "Un-lucky" : "Lucky!"));
-	plyr.lk -= 1;
+	let lk = test_luck();
+	window.alert("Rolled " + lk.roll[0] + "+" + lk.roll[1] + " vs " + plyr.lk + "\n" + (lk.lucky ? "Lucky!" : "Un-Lucky!"));
 	update_page();
-})
+});
+
+function test_luck() {
+	let roll = [d6(), d6()];
+	plyr.lk -= 1;
+	return {roll: roll, lucky: (roll[0] + roll[1] <= plyr.lk + 1)}
+}
 
 $('#pn').on('input', function() {plyr.pn = $(this).val()} );
 $('#sk').on('input', function() {plyr.sk = parseInt($(this).val())} );
@@ -83,6 +93,12 @@ $('#add').on('click', function() {
 
 
 $('#run').on('click', function () {
+	$('#results').empty();
+	do_fight();
+	update_page();
+});
+
+function do_fight() {
 	// 1st iteration 1:1
 	let cb = [];
 	let round = {};
@@ -133,15 +149,14 @@ $('#run').on('click', function () {
 		round.nmy.forEach( n => n.wnd = false);
 	} while ( plyr.st > 0 && round.nmy.length > 0) //nmy.reduce( (p,c) => p+=c.st,0) > 0)
 
-	$('#results').empty();
 	$(`<div>Combat Complete in  ${cb.length}  Rounds</div>`).attr({class: "h5"}).appendTo('#results')
 	cb.forEach( cbr => {
 		let cbrnmyres = ''
 		cbr.nmy.forEach( cbrnmy => cbrnmyres += cbres(cbrnmy) )
 		$(`<div><div class="col">${cbres(cbr.plyr)}</div><div class="col">${cbrnmyres}</div></div>`).attr({class: "row border"}).appendTo('#results')
 	});
-	update_page();
-})
+	return cb;
+}
 
 function cbres( data ) {
 	return (`<div>${data.pn}: SK=<b>${data.tot}</b> <span class="small">(${data.sk}+${data.roll[0]}+${data.roll[1]})</span> ST=<span class="${data.wnd ? "text-danger" : ""}">${data.st}</span></div>`);
@@ -154,6 +169,146 @@ $('#rosters').on('click','li',function () {
 })
 
 
+// CoH
+$('#coh').on('click', evt =>  {
+	CoH();
+}); 
+function CoH () {
+	$('#results').empty()
+	roll_new_char();
+	let cb, lk, kill;
+	
+	$('#results').append(`<br /><div><b>${plyr.pn}: SK:${plyr.sk} ST:${plyr.st} LK:${plyr.lk}</b></div><br />`);
+
+	rolls = Array(3).fill().map( () => d6());
+	if (rolls[0]<4 || rolls[1]<3 || rolls[2]<1 ) {
+		$('#results').append('<div>Straight to Hobbit fight.</div>')
+	} else {
+		$('#results').append('<div>Turn to 170 first...</div>')
+	}	
+	
+	cb = show_fight( [{pn: 'Hobbit', sk: 5, st: 6}] )
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return nil;
+	}
+
+	kill = true;
+	lk = test_luck(); 
+	if (cb.length < 4 && lk || d6() > 4) {
+		kill = false;
+		$('#results').append('<div>Killed Hobbit and Lucky</div>')
+	} else {
+		kill = true;
+	}
+	if (kill) {
+		$('#results').append('<div>Killed by Mage</div>')
+		return null;
+	}
+
+	cb = show_fight( [{pn: 'Knight', sk: 8, st: 9}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+	
+	$('#results').append('<div>Restore Stamina</div>');
+	plyr.st = plyr.maxst;
+
+	if (d6()<3 ) {
+		$('#results').append('<div>attacked by bat, -1 Skill.</div>')
+		plyr.sk -= 1;
+	}
+	if(d6()>3) {
+		$('#results').append('<div>Bitten by Flesh Feeder, -2 Stamina.</div>');
+		plyr.st -= 2;
+	}
+
+	cb = show_fight( [{pn: 'Flesh Feeder #1', sk: 6, st: 6},{pn: 'Flesh Feeder #2', sk: 6, st: 7},{pn: 'Flesh Feeder #3', sk: 6, st: 6}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+
+	$('#results').append('<div>Found Vapour of Reason, +2 Luck</div>');
+	plyr.lk = Math.min(plyr.maxlk, plyr.lk+2);
+
+	cb = show_fight( [{pn: 'Strongarm', sk: 7, st: 8}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+	cb = show_fight( [{pn: 'Warrior', sk: 7, st: 7},{pn: 'Thief', sk: 8, st: 6}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+
+	lk = test_luck();
+	if (lk.lucky) {
+		$('#results').append('<div>Crossed the Bilgewater Safely</div>')
+	} else {
+		$('#results').append('<div>Fell into the Bilgewater & died.</div>');
+		return null;
+	}
+	
+	$('#results').append('<div>Grabbed the Crystal Club. Gain 1 luck.</div>')
+	plyr.lk = Math.min(plyr.maxlk, plyr.lk+1);
+
+	cb = show_fight( [{pn: 'Warrior', sk: 8, st: 9}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+
+	cb = show_fight( [{pn: 'Fighter', sk: 7, st: 8}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+
+	$('#results').append('<div>Found Vapour of Tongues, +1 Luck</div>');
+	plyr.lk = Math.min(plyr.maxlk, plyr.lk+1);
+
+	$('#results').append('<div>Meet Rhino Man #62</div>');
+
+	cb = show_fight( [{pn: 'Blood Orc #1', sk: 7, st: 7},{pn: 'Blood Orc #2', sk: 8, st: 7}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+
+	$('#results').append('<div>Gained Ring of Devotion</div>');
+
+	lk = test_luck();
+	if (lk.lucky) {
+		$('#results').append('<div>Crossed the Bilgewater Safely</div>')
+	} else {
+		$('#results').append('<div>Fell into the Bilgewater & died.</div>');
+		return null;
+	}
+
+	$('#results').append('<div>Gained Parchment #193</div>');
+	$('#results').append('<div>Fight MANIC BEAST Sk: 7 St: 8 *Special Rules* #xxx</div>');
+	$('#results').append(`<div>${plyr.pn}: SK:${plyr.sk} ST:${plyr.st} LK:${plyr.lk}</div>`);
+	$('#results').append('<div>Drink potion of strength, restore Stamina</div>');
+	plyr.st = plyr.maxst;
+
+	
+	$('#results').append('<div>Defeat Darramous and Escape! Turn to 442</div>');
+
+
+	$('#results').append(`<br /><div><b>${plyr.pn}: SK:${plyr.sk} ST:${plyr.st} LK:${plyr.lk}</b></div><br />`);
+	update_page();
+}
+
+function d6() { return Math.floor( Math.random() * 6 ) + 1}
+function show_fight( enemies ) {
+	nmy = enemies; 
+	$('#results').append(`<div><b>Fight ${ nmy.map( e => e.pn).join(',') }</b></div>`)
+	cb = do_fight();
+	return cb;
+}
 // TRANSLATION
 
 $('#lang').val("Whpod jstv rbsum yusl vmbfr?")
