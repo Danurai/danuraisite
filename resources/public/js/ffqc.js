@@ -126,6 +126,7 @@ function do_fight() {
 				tgtid = idx
 			}
 		});
+
 		if (round.plyr.roll[0] == round.plyr.roll[1] && round.plyr.dedly) {
 			round.nmy[tgtid].st = 0;
 			round.nmy[tgtid].wnd = true;
@@ -144,6 +145,11 @@ function do_fight() {
 			} 
 		});
 		cb.push(JSON.parse(JSON.stringify(round)));
+
+		if (round.nmy[tgtid].manic && round.plyr.tot > round.nmy[tgtid].tot) { round.nmy[tgtid].sk = 9 } // Hard-coded for Manic Beast
+		$.each( round.nmy, idx => {
+			if (round.nmy[idx].manic && (round.plyr.tot <= round.nmy[idx].tot)) { round.nmy[tgtid].sk = 7 } // Hard-coded for Manic Beast
+		});
 		if (killid > -1) { round.nmy.splice(killid,1)} 
 		round.plyr.wnd = false;
 		round.nmy.forEach( n => n.wnd = false);
@@ -289,8 +295,13 @@ function CoH () {
 	}
 
 	$('#results').append('<div>Gained Parchment #193</div>');
-	$('#results').append('<div>Fight MANIC BEAST Sk: 7 St: 8 *Special Rules* #xxx</div>');
-	$('#results').append(`<div>${plyr.pn}: SK:${plyr.sk} ST:${plyr.st} LK:${plyr.lk}</div>`);
+
+	cb = show_fight( [{pn: 'Manic Beast', sk: 7, st: 8, manic: true}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		return null;
+	}
+
 	$('#results').append('<div>Drink potion of strength, restore Stamina</div>');
 	plyr.st = plyr.maxst;
 
@@ -324,7 +335,7 @@ $('#trans').on('click',function() {
 
 function translate (w) {
 	r = w//.replace('b','a')
-			.replace('f', 'e')
+			.replace(/f/gi, 'e')
 			.replace('j', 'i')
 			.replace('p', 'o')
 			.replace('v', 'u');
