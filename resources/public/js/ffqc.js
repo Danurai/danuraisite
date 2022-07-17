@@ -156,6 +156,7 @@ function do_fight() {
 	} while ( plyr.st > 0 && round.nmy.length > 0) //nmy.reduce( (p,c) => p+=c.st,0) > 0)
 
 	$(`<div>Combat Complete in  ${cb.length}  Rounds</div>`).attr({class: "h5"}).appendTo('#results')
+	$(`<div><small><b>${plyr.pn} SK:${plyr.sk}/${plyr.maxsk} ST:${plyr.st}/${plyr.maxst} LK:${plyr.lk}/${plyr.maxlk}</b></small></div>`).appendTo('#results')
 	cb.forEach( cbr => {
 		let cbrnmyres = ''
 		cbr.nmy.forEach( cbrnmy => cbrnmyres += cbres(cbrnmy) )
@@ -190,12 +191,28 @@ function CoH () {
 	if (rolls[0]<4 || rolls[1]<3 || rolls[2]<1 ) {
 		$('#results').append('<div>Straight to Hobbit fight.</div>')
 	} else {
-		$('#results').append('<div>Turn to 170 first...</div>')
+		
+		cb = show_fight( [{pn: 'Clawbeast', sk: 9, st: 14}] )
+		if(plyr.st <= 0) {
+			$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
+			return null;
+		}
+		
+		if (d6() < 5) {
+			plyr.st = Math.min(plyr.maxst, plyr.st+2);
+		}
+
+		if (d6() < 4) {
+			$('#results').append('<div>Killed by Dark Elves</div>');
+			return null;
+		} else {
+			$('#results').append('<div>Return to staring point</div>');
+		}
 	}	
 	
 	cb = show_fight( [{pn: 'Hobbit', sk: 5, st: 6}] )
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return nil;
 	}
 
@@ -214,7 +231,7 @@ function CoH () {
 
 	cb = show_fight( [{pn: 'Knight', sk: 8, st: 9}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 	
@@ -232,7 +249,7 @@ function CoH () {
 
 	cb = show_fight( [{pn: 'Flesh Feeder #1', sk: 6, st: 6},{pn: 'Flesh Feeder #2', sk: 6, st: 7},{pn: 'Flesh Feeder #3', sk: 6, st: 6}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 
@@ -241,12 +258,12 @@ function CoH () {
 
 	cb = show_fight( [{pn: 'Strongarm', sk: 7, st: 8}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 	cb = show_fight( [{pn: 'Warrior', sk: 7, st: 7},{pn: 'Thief', sk: 8, st: 6}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 
@@ -263,13 +280,13 @@ function CoH () {
 
 	cb = show_fight( [{pn: 'Warrior', sk: 8, st: 9}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 
 	cb = show_fight( [{pn: 'Fighter', sk: 7, st: 8}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 
@@ -280,7 +297,7 @@ function CoH () {
 
 	cb = show_fight( [{pn: 'Blood Orc #1', sk: 7, st: 7},{pn: 'Blood Orc #2', sk: 8, st: 7}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 
@@ -298,7 +315,7 @@ function CoH () {
 
 	cb = show_fight( [{pn: 'Manic Beast', sk: 7, st: 8, manic: true}])
 	if(plyr.st <= 0) {
-		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.`)
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
 		return null;
 	}
 
@@ -306,10 +323,70 @@ function CoH () {
 	plyr.st = plyr.maxst;
 
 	
-	$('#results').append('<div>Defeat Darramous and Escape! Turn to 442</div>');
+	$('#results').append('<div>Defeat Darramous and Escape! (442)</div>');
+
+	$('#results').append('<div>Visit witches and rest, +8 Stamina, +2 Luck</div>')
+	plyr.st = Math.min(plyr.maxst, plyr.st + 8)
+	plyr.st = Math.min(plyr.maxlk, plyr.lk + 2)
+
+	cb = show_fight( [{pn: 'Fighter', sk: 7, st: 8}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
+		return null;
+	}
+
+	$('#results').append('<div>Meet Grog, Visit Rosina. +2 Luck, +4 Stamina</div>')
+	plyr.st = Math.min(plyr.maxst, plyr.st + 4)
+	plyr.st = Math.min(plyr.maxlk, plyr.lk + 2)
+
+	$('#results').append('<div>Get Sculliweed Root</div>')
+
+	cb = show_fight( [{pn: 'Toadman', sk: 9, st: 9}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
+		return null;
+	}
+
+	$('#results').append('<div>Visit witches and rest, Restore Stamina and Luck, gain Ringof truth</div>')
+	plyr.st = plyr.maxst
+	plyr.lk = plyr.maxlk
+
+	if (d6()+d6() <= plyr.sk) {
+		$('#results').append('<div>Ride Ophidataur to Dara Weaseltongue</div>')
+	} else {
+		$('#results').append('<div>Fail to catch Ophidataur and die in Knot Oak Wood</div>')
+		return null;
+	}
+
+	cb = show_fight( [{pn: 'Brigand #1', sk: 8, st: 9},{pn: 'Brigand #2', sk: 8, st: 7}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
+		return null;
+	}
+
+	let findtrap = false;
+	if (test_luck()) {
+		findtrap = true;
+	} else if (test_luck()) {
+		findtrap=true;
+	}
+
+	if (!findtrap) {
+		$('#results').append('<div>Caught in trap and died</div>')
+		return null
+	}
+
+	cb = show_fight( [{pn: 'Goblin #1', sk: 6, st: 5},{pn: 'Goblin #2', sk: 5, st: 5}])
+	if(plyr.st <= 0) {
+		$('#results').append(`<div>Killed by ${nmy.map(c=>c.pn).join(",")}.</div>`)
+		return null;
+	}
+
+	$('#results').append('<div>Got onto Gelleykeep! (312)</div>')
+	
 
 
-	$('#results').append(`<br /><div><b>${plyr.pn}: SK:${plyr.sk} ST:${plyr.st} LK:${plyr.lk}</b></div><br />`);
+	$('#results').append(`<br /><div><b>${plyr.pn}: SK:${plyr.sk}<small>/${plyr.maxsk}</small> ST:${plyr.st}<small>/${plyr.maxst}</small> LK:${plyr.lk}<small>/${plyr.maxlk}</small></b></div><br />`);
 	update_page();
 }
 
