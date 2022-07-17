@@ -208,5 +208,5 @@
         [:option {:value 22}]
         [:option {:value 23}]
         [:option {:value 24}]]
-      (h/include-js "/js/ffqc.js?v=1")  
+      (h/include-js "/js/ffqc.js?v=1.2")  
   ]))
