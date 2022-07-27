@@ -1,0 +1,86 @@
+.card	{
+	width: 120px;
+	padding: 2px;
+}
+.card-unrezzed	{
+	opacity:	0.6;
+}
+.card-info	{
+	position:	absolute;
+	right:	5px;
+	bottom:	0px;
+	color:	#FFFFFF;
+	opacity:	0.7;
+}
+.row	{
+	margin-top: 10px;
+}
+
+.dropdown-menu {
+    min-width: auto;
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.region	{
+	border: 1px solid	#AAAAAA;
+	border-radius: 5px;
+	min-height: 50px;
+}
+.region-drop	{
+	border-color: #AA0000;
+}
+.region-installed-corp	{
+	background-image:	url('../img/corp_back.png');
+    background-size: 120px;
+    background-repeat: no-repeat;
+}
+.row	{
+	margin-top: 5px;
+}
+.region-title	{
+	color:	#AAAAAA;
+}
+.region-root	{
+	position: relative;
+}
+.region-installed	{
+	position: relative;
+   display: inline-block;
+}
+.card-count	{
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #666699;
+	border-radius: 5px;
+	text-align: center;
+	padding: 0px 5px;
+}
+.card-counter	{
+	width: 1.8em;
+	height: 1.8em;
+	position: absolute;
+	bottom: 30%;
+	left: 20%;
+	background-color: #FFAA00;
+	border-radius: 50%;
+	text-align: center;
+	cursor: pointer;
+}
+.counter-value	{
+	line-height: 1.8em;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+#popupmenu	{
+	position: 		absolute;
+	background-color: #FFF;
+	border: 			1px solid #AAAAAA;
+	text-align: 	center;
+}
