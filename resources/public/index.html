@@ -2,33 +2,59 @@
 <html>
 <head>
   <meta charset="utf-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/css/rpg-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3,npm/chart.js@3,npm/chartjs-chart-graph@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-graph@3/build/index.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+  </style>
 </head>
-<body>
-  <div>
-    <span class="ra-stack ra-lg">
-      <i class="ra ra-aura ra-stack-2x"></i>
-      <i class="ra ra-aware ra-stack-1x"></i>
-    </span>
-  </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-aura"></i> ra-aura </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-aware"></i> ra-aware </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-double-team"></i> ra-double-team </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-falling"></i> ra-falling </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-monster-skull"></i> ra-monster-skull </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-muscle-fat"></i> ra-muscle-fat </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-muscle-up"></i> ra-muscle-up </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player"></i> ra-player </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-despair"></i> ra-player-despair </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-dodge"></i> ra-player-dodge </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-king"></i> ra-player-king </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-lift"></i> ra-player-lift </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-pain"></i> ra-player-pain </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-pyromaniac"></i> ra-player-pyromaniac </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-shot"></i> ra-player-shot </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-teleport"></i> ra-player-teleport </div>
-  <div class="ra-hover col-md-3 col-sm-4"><i class="ra ra-player-thunder-struck"></i> ra-player-thunder-struck </div>
-</body>
+  <body>
+    <div>
+      <canvas id="f"></canvas>
+    </div>
+  </body>
+  <script>
+    const data = `https://raw.githubusercontent.com/sgratzl/chartjs-chart-graph/master/samples/miserables.json`;
+    fetch(data).then((r) => r.json()).then((data) => {
+      new Chart(document.querySelector("canvas").getContext("2d"), {
+        type: 'forceDirectedGraph',
+        data: {
+          labels: ["1","2","3","4","5"], //data.nodes.map((d) => d.id),
+          datasets: [{
+            pointBackgroundColor: 'steelblue',
+            pointRadius: 5,
+            data: //data.nodes,
+              [
+                {"id": 1, group: 0},
+                {"id": 2, group: 0},
+                {"id": 3, group: 1},
+                {"id": 4, group: 2},
+                {"id": 5, group: 2}
+              ],
+            edges:
+              [
+                { source: "1", target: "2", value: 0 },
+                { source: "2", target: "3", value: 0 },
+                { source: "2", target: "4", value: 3 },
+                { source: "3", target: "4", value: 500 },
+                { source: "4", target: "5", value: 500 }
+              ]
+          }]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          plugins: {
+            datalabels: {
+              color: 'blue'
+            }
+          }
+        }
+      });
+    });
+  </script>
 </html>
