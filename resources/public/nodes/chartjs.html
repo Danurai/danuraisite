@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3,npm/chart.js@3,npm/chartjs-chart-graph@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-graph@3/build/index.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+  </style>
+</head>
+  <body>
+    <div>
+      <canvas id="f"></canvas>
+    </div>
+  </body>
+  <script>
+    const data = `/js/nodes/deathtrapsample.json`;
+    fetch(data).then((r) => r.json()).then((data) => {
+      let fdata = data.map((n)=>{let x={}; x.id = n.id.toString(); return x;});
+      let edges = [];
+      data.forEach(n => {
+        if (typeof(n.targets) !== 'undefined') {
+          n.targets.forEach(t=>edges.push({source: n.id.toString(), target: t.toString()}))
+        }
+      });
+      new Chart(document.querySelector("canvas").getContext("2d"), {
+        type: 'forceDirectedGraph',
+        data: {
+          labels: fdata.map(d=>d.id),
+          datasets: [{
+            pointBackgroundColor: 'steelblue',
+            pointRadius: 6,
+            data: fdata,
+            edges: edges
+          }]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          plugins: {
+            datalabels: {
+              color: 'green'
+            }
+          }
+        }
+      });
+    });
+  </script>
+</html>
