@@ -20,7 +20,7 @@
   <script>
 		const width = 1500, height = 1000
 		
-    const data = `/js/nodes/deathtrapsample.json`;
+    const data = `/nodes/deathtrapsample.json`;
     fetch(data).then((r) => r.json()).then((data) => {
       const nodes = data;
 			const N = nodes.map(d => d.id);
