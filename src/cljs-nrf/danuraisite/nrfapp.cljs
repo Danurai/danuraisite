@@ -8,7 +8,7 @@
     
 ; virtual folders
 
-(def ^:const imgurltemplate "https://assets.netrunnerdb.com/v1//large/{code}.jpg")
+(def ^:const imgurltemplate "https://static.nrdbassets.com/v1/large/{code}.jpg")
 
 (defn- set-item!
   "Set `key' in browser's localStorage to `val`."
@@ -66,6 +66,7 @@
     (add-pwned-pack! pcode)))
     
 (defn- dedupesc19 [ cards ]
+; Extend to Core, Revised Core, System Core 19, System Update 2021 
   (let [titlecounts (->> cards (map :title) frequencies)]
     (filter 
       #(or 
@@ -78,23 +79,24 @@
     (* (get @setcounts (-> % :pack_code keyword) 1) (:quantity %))) cards))
       
 (defn- buildpages [ packs faction types cards ]
-;TODO duplicates from SC19?
   (let [factioncards (->> cards 
                           (filter #(contains? packs (:pack_code %)))
-                          (filter #(= (:faction_code %) faction))
+                          (filter #(or (nil? faction) (= (:faction_code %) faction)))
                           (sort-by :slug) ;:title
-                          dedupesc19
+                          ;dedupesc19
                           setqty)
-        side (-> factioncards first :side_code)
-        typecodes (->> types (sort-by :position) (map :code))]
-        (apply concat
+        typecodes (->> types (sort-by :position) (map :code))
+        factioncodes (->> @factions (map :code))]
+    (apply concat
+      (for [f factioncodes]
+        (apply concat 
           (for [t typecodes]
-            (let [sector (->> factioncards (filter #(= (:type_code %) t)))]
+            (let [sector (->> factioncards (filter #(= (:faction_code %) f)) (filter #(= (:type_code %) t)))]
               (if (and (not= t (last typecodes)) (< (count factioncards) 19))
                 sector
                 (if (< 0 (mod (count sector) 9))
-                  (concat sector (repeat (- 9 (mod (count sector) 9)) {:blank true :side side}))
-                  sector)))))))
+                  (concat sector (repeat (- 9 (mod (count sector) 9)) {:blank true :side (-> sector first :side_code)}))
+                  sector)))))))))
 
 (def nrdb-url "https://netrunnerdb.com/api/2.0/public/")
 
@@ -117,7 +119,6 @@
 ;(def jquery (js* "$"))
 
 (defn- initdata! []
-  (println "16/05/2022 17:50")
   (reset! pwned (set (js->clj (.parse js/JSON (get-item "nrpacks_owned")))))
   ;(if (not= "[]" (get-item "nrsets_owned"))
   ;  (reset! setcounts  (cljs.reader/read-string (get-item "nrsets_owned"))))
@@ -141,12 +142,12 @@
 
 (defn add-owned-packs! [ packs pwned ]
   (reset! pwned (clojure.set/union @pwned (->> packs (map :code) set)))
-  (.setItem (.-localStorage js/window) "nrpacks_owned" (into [] @pwned)))
+  (.setItem (.-localStorage js/window) "nrpacks_owned" (.stringify js/JSON (clj->js (into [] @pwned)))))
 
 (defn rmv-owned-packs! [ packs pwned ]
   (doseq [p (map :code packs)]
     (swap! pwned disj p))
-  (.setItem (.-localStorage js/window) "nrpacks_owned" @pwned))
+  (.setItem (.-localStorage js/window) "nrpacks_owned" (.stringify js/JSON (clj->js (into [] @pwned)))))
                                    
 (defn- pack-list-group-item [ cycle pack pageno rot-icon pwned ]
   ^{:key (gensym)}[:div.mt-1.d-flex
@@ -160,7 +161,7 @@
         (if (contains? @pwned (:code pack))
           (swap! pwned disj (:code pack))
           (swap! pwned conj (:code pack)))
-        (.setItem (.-localStorage js/window) "nrpacks_owned" @pwned))}
+        (.setItem (.-localStorage js/window) "nrpacks_owned" (.stringify js/JSON (clj->js (into [] @pwned)))))}
       [:i.fas.fa-lg {:class (if (contains? @pwned (:code pack)) "fa-toggle-on" "fa-toggle-off")}]]])
                            
 (defn- cycle-list-group-item [ cycle packs pageno showrotated? pwned ]
@@ -188,7 +189,7 @@
           
 (defn App []
   (let [pageno       (r/atom 1)
-        faction      (r/atom "anarch")
+        faction      (r/atom nil)
         showrotated? (r/atom false)]
     (initdata!)
     (fn []
@@ -197,16 +198,16 @@
             pagecount (-> clist count (/ 9) Math/ceil)
             currentpage (take 9 (-> clist (nthnext (-> @pageno dec (* 9)))))
             factions @factions]
-        [:div.container-fluid.my-3
+        [:div.container.my-3
           [:div.row
             [:div.col-12.col-lg-7.mb-3
               [:div.row-fluid.mb-3
+                [:nav [:ol.breadcrumb [:li.breadcrumb-item {:style {:cursor "pointer"} :on-click (fn [] (reset! faction nil) (reset! pageno 1))} "All"]]]
                 (doall (for [side ["runner" "corp"]]
                   ^{:key (gensym)}[:ol.breadcrumb
-                    (doall (for [f (->> factions (filter #(= (:side_code %) side)) (sort-by :position))]
+                    (doall (for [f (->> factions (filter #(= (:side_code %) side)) (sort-by :position))] 
                     ^{:key (gensym)}[:li.breadcrumb-item {
-                      :class (if (= (:code f) @faction) "active")
-                      :style {:color (get @colours (:code f)) :cursor "pointer"}
+                      :style {:color (or (get @colours (:code f)) "#222") :cursor "pointer"}
                       :on-click (fn [] (reset! faction (:code f)) (reset! pageno 1))}
                       (:name f)]))]))]
               [:div.row-fluid.mb-3.d-flex.justify-content-between
@@ -227,8 +228,8 @@
                         (if (not (:blank c))
                           [:span.py-1.px-2 {
                             :style {
-                              :position "absolute" :left "5px" :bottom "5px"
-                              :background-color "white" :opacity "0.8":border-radius "8px"}}
+                              :position "absolute" :right "5px" :bottom "5px"
+                              :background-color "white" :opacity "0.6":border-radius "8px"}}
                             (str "x" (:qty c))])
                         [:img.img-fluid {
                           :title (:pack_code c)
