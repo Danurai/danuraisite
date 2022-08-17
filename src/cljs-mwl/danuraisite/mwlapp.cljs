@@ -164,7 +164,7 @@
         [:div.tab-content.w-100.py-2
           [:div#packs.tab-pane.fade.show.active {:role "tabpanel"}
             [:div.list-group.w-100
-              (doall (for [c (->> @cycles (sort-by :position))] ; reverse)]
+              (doall (for [c (->> @cycles (sort-by :position) reverse)]
                 (let [packs (packs-in-cycle @packs (:code c))
                       rotated_icon (if (:rotated c) [:i.fas.fa-sync-alt.text-danger {:title "Rotated"}])]
                   ^{:key (gensym)}[:div.list-group-item
