@@ -65,38 +65,60 @@
     (remove-pwned-pack! pcode)
     (add-pwned-pack! pcode)))
     
-(defn- dedupesc19 [ cards ]
+(defn- dedupecards [ cards ]
 ; Extend to Core, Revised Core, System Core 19, System Update 2021 
-  (let [titlecounts (->> cards (map :title) frequencies)]
+  (let [titlecounts (->> cards (map :title) frequencies) ; slug?
+        pack_codes  (->> cards (map :pack_code) frequencies keys set)
+        card_packs  (reduce (fn [a b] (assoc a (:slug b) (map :pack_code (filter #(= (:slug %) (:slug b)) cards)))) {} cards)]
+    (print pack_codes (false? (contains? pack_codes "msbp")))
     (filter 
       #(or 
         (= (get titlecounts (:title %) 0) 1)
-        (not= (:pack_code %) "sc19"))        
+        (case (:pack_code %) ; REFACTOR for -regex "#(..)bp"
+          "urbp" true
+          "msbp" true
+          "ms"   (false? (contains? pack_codes "msbp"))
+          "ur"   (false? (contains? pack_codes "urbp"))
+          (= (:pack_code %) (last (get card_packs (:slug %))))))
       cards)))
       
-(defn- setqty [ cards ]
+(defn- setqty [ qtys cards ]
   (map #(assoc % :qty
-    (* (get @setcounts (-> % :pack_code keyword) 1) (:quantity %))) cards))
+    (* (get @setcounts (-> % :pack_code keyword) 1) (get qtys (:slug %)))) cards))
+
+(defn- extend-sector [ sector ]
+  (if (< 0 (mod (count sector) 9))
+    (concat sector (repeat (- 9 (mod (count sector) 9)) {:blank true :side (-> sector first :side_code)}))
+    sector))
       
 (defn- buildpages [ packs faction types cards ]
-  (let [factioncards (->> cards 
+  (let [quantities   (->> cards
+                          (filter #(contains? packs (:pack_code %)))
+                          (reduce 
+                            #(let [slug (:slug %2) qty (:quantity %2)] 
+                              (if (get %1 slug) 
+                                  (update %1 slug + qty) 
+                                  (assoc %1 slug qty))) {}))
+        factioncards (->> cards 
                           (filter #(contains? packs (:pack_code %)))
                           (filter #(or (nil? faction) (= (:faction_code %) faction)))
-                          (sort-by :slug) ;:title
-                          ;dedupesc19
-                          setqty)
+                          (filter #(or (not= "neutral" (-> % :faction_code (subs 0 7))) (not= "identity" (:type_code %))))
+                          (sort-by :slug)
+                          (setqty quantities)
+                          dedupecards)
         typecodes (->> types (sort-by :position) (map :code))
         factioncodes (->> @factions (map :code))]
     (apply concat
       (for [f factioncodes]
-        (apply concat 
-          (for [t typecodes]
-            (let [sector (->> factioncards (filter #(= (:faction_code %) f)) (filter #(= (:type_code %) t)))]
-              (if (and (not= t (last typecodes)) (< (count factioncards) 19))
-                sector
-                (if (< 0 (mod (count sector) 9))
-                  (concat sector (repeat (- 9 (mod (count sector) 9)) {:blank true :side (-> sector first :side_code)}))
-                  sector)))))))))
+        (extend-sector 
+          (apply concat 
+            (for [t typecodes]
+              (let [sector (->> factioncards (filter #(= (:faction_code %) f)) (filter #(= (:type_code %) t)))]
+                (if (= t (last typecodes))
+                  sector
+                  (if (< (count factioncards) 19) ; fill 3 pages
+                    sector
+                    (extend-sector sector)))))))))))
 
 (def nrdb-url "https://netrunnerdb.com/api/2.0/public/")
 
@@ -232,7 +254,7 @@
                               :background-color "white" :opacity "0.6":border-radius "8px"}}
                             (str "x" (:qty c))])
                         [:img.img-fluid {
-                          :title (:pack_code c)
+                          :title (str c)
                           :style {:opacity (if (:blank c) "0.3" "1")} 
                           :src (if (:blank c)
                                    (str "/img/" (:side c) "_back.png")
@@ -277,6 +299,15 @@
                         :value (:core2 @setcounts) 
                         :on-change (fn [e]
                           (swap! setcounts assoc :core2 (-> e .-target .-value))
-                          (set-item! "nrsets_owned" @setcounts))}]]]]]]]]))))
+                          (set-item! "nrsets_owned" @setcounts))}]]
+                    [:div.my-3
+                      (doall (for [pack @packs]
+                        (if (contains? (->> clist (map :pack_code) set) (:code pack))
+                          [:div.d-flex {:key (gensym)}
+                            [:div (:name pack)]
+                            [:div.ms-auto (->> clist (filter #(= (:pack_code %) (:code pack))) (map :quantity) (apply +) (* (get @setcounts (-> pack :code keyword) 1)))]])))
+                      [:div.d-flex 
+                        [:b "Total"]
+                        [:b.ms-auto (->> clist (map #(* (:quantity %) (get @setcounts (-> % :pack_code keyword) 1))) (apply +))]]]]]]]]]))))
 
 (r/render [App] (.getElementById js/document "app"))
