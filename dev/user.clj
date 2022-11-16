@@ -32,7 +32,7 @@
 
   ;; otherwise you can pass a configuration into start-figwheel! manually
   ;; https://cljdoc.org/d/figwheel-sidecar/figwheel-sidecar/0.5.18/api/figwheel-sidecar.repl-api#start-figwheel!
-  (f/start-figwheel! "kt-dev" "mwl-dev" "lugs-dev" "hsl-dev" "don-dev" "mwl-dev" "nrf-dev" "kasei-dev" "scores-dev" "kt-dev"))
+  (f/start-figwheel! "genesys-dev")) ;"mwl-dev" "lugs-dev" "hsl-dev" "don-dev" "mwl-dev" "nrf-dev" "kasei-dev" "scores-dev" "kt-dev" ))
 
 (defn fig-stop
   "Stop the figwheel server and watch based auto-compiler."

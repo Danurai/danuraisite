@@ -220,6 +220,7 @@
 ;;;;;;;;;;;;;;;;
 (defroutes app-routes
   (GET     "/"          [] pages/homepage)
+  (GET     "/genesys"   [] pages/genesys)
   (context "/api"       [] api-routes)
   (context "/lu"        [] lu-routes)
   (context "/colours"   [] colour-routes)

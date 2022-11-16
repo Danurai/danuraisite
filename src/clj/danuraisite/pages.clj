@@ -210,3 +210,12 @@
         [:option {:value 24}]]
       (h/include-js "/js/ffqc.js?v=1.2")  
   ]))
+
+(defn genesys [ req ]
+  (h/html5 
+    pretty-head
+    [:body
+      (navbar req)
+      [:div.container.my-3
+        [:div#app]]]
+    (h/include-js "/js/compiled/genesys-app.js?v=1")))

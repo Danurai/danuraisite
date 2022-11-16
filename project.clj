@@ -178,6 +178,23 @@
           :output-to "resources/public/js/compiled/kt-app.js"
           :output-dir "resources/public/js/compiled/prd-out-kt"
           :optimizations :advanced :pretty-print false}}
+
+      :genesys-dev {
+        :source-paths ["src/cljs-genesys"]
+        :figwheel true
+        :compiler {
+          :main       danuraisite.genesys
+          :asset-path "/js/compiled/out-genesys"
+          :output-to  "resources/public/js/compiled/genesys-app.js"
+          :output-dir "resources/public/js/compiled/out-genesys"
+          :preloads [devtools.preload]}}
+      :genesys-prod {
+        :source-paths ["src/cljs-genesys"]
+        :compiler {
+          :main      danuraisite.genesys
+          :output-to "resources/public/js/compiled/genesys-app.js"
+          :output-dir "resources/public/js/compiled/prd-out-genesys"
+          :optimizations :advanced :pretty-print false}}
       }}
 
   :figwheel { :css-dirs ["resources/public/css"]}

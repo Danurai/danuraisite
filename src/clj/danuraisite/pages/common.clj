@@ -80,8 +80,13 @@
             [:div.dropdown-menu
               [:a.dropdown-item {:href "/killteam/compendium"} "Compendium Reference"]
               [:a.dropdown-item {:href "/killteam/specops"} "Spec Ops Dataslate"]]]
-          (navlink (:uri req) "/ffqc" "FF Quick Combat")    
-        ]
+          [:li.nav-item.dropdown
+              [:a.nav-link.dropdown-toggle {:href "#" :role "button" :data-bs-toggle "dropdown"} "Misc."]
+              [:div.dropdown-menu
+                [:a.dropdown-item {:href "/scores"}  "Spirit Island Scores"]
+                [:a.dropdown-item {:href "/ffqc"}    "FF Quick Combat"]
+                [:a.dropdown-item {:href "/genesys"} "Genesys CharGen"]
+                ]]]
     ;; Login Icon
         [:span.nav-item.dropdown.ms-auto
           [:a#userDropdown.nav-link.dropdown-toggle.text-white {:href "#" :role "button" :data-bs-toggle "dropdown"} [:i.fas.fa-user]]
