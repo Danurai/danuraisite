@@ -12,40 +12,40 @@
 	{:name "Human"   :stats [2 2 2 2 2 2] :basexp 110 :health [{:name "Soak" :base 0 :stat "Br" :rank 2 :mod 0} {:name "Wounds" :base 10 :stat "Br" :rank 12 :mod 0} {:name "Strain" :base 10 :stat "Will" :rank 12 :mod 0}] :free_skills ["any" "any"]}
 	{:name "Twi'Lek" :stats [1 2 2 2 2 3] :basexp 100 :health [{:name "Soak" :base 0 :stat "Br" :rank 1 :mod 0} {:name "Wounds" :base 10 :stat "Br" :rank 11 :mod 0} {:name "Strain" :base 11 :stat "Will" :rank 13 :mod 0}] :free_skills ["Charm|Deception"]}])
 (def skills [
-	{:name "Astrogation" :stat "Int" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Athletics" :stat "Br" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Charm" :stat "Pr" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Coercion" :stat "Will" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Computers" :stat "Int" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Cool" :stat "Pr" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Coordination" :stat "Ag" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Deception" :stat "Cun" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Discipline" :stat "Will" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Leadership" :stat "Pr" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Mechanics" :stat "Int" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Medicine" :stat "Int" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Negotiation" :stat "Pr" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Perception" :stat "Cun" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Piloting - Planetary" :stat "Ag" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Piloting - Space" :stat "Ag" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Resilience" :stat "Br" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Skullduggery" :stat "Cun" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Stealth" :stat "Ag" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Streetwise" :stat "Cun" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Survival" :stat "Cun" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Vigilance" :stat "Will" :career "" :free_rank false :rank 0 :type "General"}
-	{:name "Brawl" :stat "Br" :career "" :free_rank false :rank 0 :type "Combat"}
-	{:name "Gunnery" :stat "Ag" :career "" :free_rank false :rank 0 :type "Combat"}
-	{:name "Melee" :stat "Br" :career "" :free_rank false :rank 0 :type "Combat"}
-	{:name "Ranged - Light" :stat "Ag" :career "" :free_rank false :rank 0 :type "Combat"}
-	{:name "Ranged - Heavy" :stat "Ag" :career "" :free_rank false :rank 0 :type "Combat"}
-	{:name "Core Worlds" :stat "Int" :career "" :free_rank false :rank 0 :type "Knowledge"}
-	{:name "Education" :stat "Int" :career "" :free_rank false :rank 0 :type "Knowledge"}
-	{:name "Lore" :stat "Int" :career "" :free_rank false :rank 0 :type "Knowledge"}
-	{:name "Outer Rim" :stat "Int" :career "" :free_rank false :rank 0 :type "Knowledge"}
-	{:name "Underworld" :stat "Int" :career "" :free_rank false :rank 0 :type "Knowledge"}
-	{:name "Xenology" :stat "Int" :career "" :free_rank false :rank 0 :type "Knowledge"}
-	{:name "Other" :stat "Int" :career "" :free_rank false :rank 0 :type "Knowledge"}])
+	{:name "Astrogation" :stat "Int" :free_rank false :rank 0 :type "General"}
+	{:name "Athletics" :stat "Br" :free_rank false :rank 0 :type "General"}
+	{:name "Charm" :stat "Pr" :free_rank false :rank 0 :type "General"}
+	{:name "Coercion" :stat "Will" :free_rank false :rank 0 :type "General"}
+	{:name "Computers" :stat "Int" :free_rank false :rank 0 :type "General"}
+	{:name "Cool" :stat "Pr" :free_rank false :rank 0 :type "General"}
+	{:name "Coordination" :stat "Ag" :free_rank false :rank 0 :type "General"}
+	{:name "Deception" :stat "Cun" :free_rank false :rank 0 :type "General"}
+	{:name "Discipline" :stat "Will" :free_rank false :rank 0 :type "General"}
+	{:name "Leadership" :stat "Pr" :free_rank false :rank 0 :type "General"}
+	{:name "Mechanics" :stat "Int" :free_rank false :rank 0 :type "General"}
+	{:name "Medicine" :stat "Int" :free_rank false :rank 0 :type "General"}
+	{:name "Negotiation" :stat "Pr" :free_rank false :rank 0 :type "General"}
+	{:name "Perception" :stat "Cun" :free_rank false :rank 0 :type "General"}
+	{:name "Piloting - Planetary" :stat "Ag" :free_rank false :rank 0 :type "General"}
+	{:name "Piloting - Space" :stat "Ag" :free_rank false :rank 0 :type "General"}
+	{:name "Resilience" :stat "Br" :free_rank false :rank 0 :type "General"}
+	{:name "Skullduggery" :stat "Cun" :free_rank false :rank 0 :type "General"}
+	{:name "Stealth" :stat "Ag" :free_rank false :rank 0 :type "General"}
+	{:name "Streetwise" :stat "Cun" :free_rank false :rank 0 :type "General"}
+	{:name "Survival" :stat "Cun" :free_rank false :rank 0 :type "General"}
+	{:name "Vigilance" :stat "Will" :free_rank false :rank 0 :type "General"}
+	{:name "Brawl" :stat "Br" :free_rank false :rank 0 :type "Combat"}
+	{:name "Gunnery" :stat "Ag" :free_rank false :rank 0 :type "Combat"}
+	{:name "Melee" :stat "Br" :free_rank false :rank 0 :type "Combat"}
+	{:name "Ranged - Light" :stat "Ag" :free_rank false :rank 0 :type "Combat"}
+	{:name "Ranged - Heavy" :stat "Ag" :free_rank false :rank 0 :type "Combat"}
+	{:name "Core Worlds" :stat "Int" :free_rank false :rank 0 :type "Knowledge"}
+	{:name "Education" :stat "Int" :free_rank false :rank 0 :type "Knowledge"}
+	{:name "Lore" :stat "Int" :free_rank false :rank 0 :type "Knowledge"}
+	{:name "Outer Rim" :stat "Int" :free_rank false :rank 0 :type "Knowledge"}
+	{:name "Underworld" :stat "Int" :free_rank false :rank 0 :type "Knowledge"}
+	{:name "Xenology" :stat "Int" :free_rank false :rank 0 :type "Knowledge"}
+	{:name "Other" :stat "Int" :free_rank false :rank 0 :type "Knowledge"}])
 (def careers [
   {
     :name "Bounty Hunter" 
