@@ -218,4 +218,6 @@
       (navbar req)
       [:div.container.my-3
         [:div#app]]]
-    (h/include-js "/js/compiled/genesys-app.js?v=1")))
+    (h/include-js "/js/compiled/genesys-app.js?v=1")
+    (h/include-css "/css/genesys.css")
+    ))

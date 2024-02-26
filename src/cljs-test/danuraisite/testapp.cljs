@@ -6,6 +6,8 @@
 (def width 500)
 (def height 600)
 
+; Edge of the empire force map
+
 (def talents [
   {:id 0  :name "Brace" :ap "A" :cost 5 :trained false} 
   {:id 1  :name "Toughened" :ap "P" :cost 5 :trained false}
